@@ -40,7 +40,7 @@
     An in-depth developmental look into how the Nixahams website was created
     <br />
     <br />
-    <a href="https://www.nixahams.net/search/label/Video">View Live Site</a>
+    <a href="https://www.nixahams.net">View Live Site</a>
     ·
     <a href="https://github.com/joshdejeu/NixaHams-Website/issues">Report Bug</a>
     ·
@@ -80,7 +80,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://www.nixahams.net)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
