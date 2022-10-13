@@ -1,14 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -87,7 +77,7 @@
 
 <!-- BUILT WITH -->
 ### Built With
-
+* [![Node][Node.js]][Node-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
@@ -99,7 +89,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Download this project As-Is, unzip into your directory of choice. Follwo the steps below to actually run the website in your browser. I will walk you through what you need to be able to run this as it is built with the Vue.js framework and is not stand-alone. 
+Download this project As-Is, unzip into your directory of choice. Follow the steps below to actually run the website in your browser. I will walk you through what is required. This project was created using Vue.js, a JavaScript framework, so it is not standalone. Start with the following prerequisites. 
 
 ### Prerequisites
 
@@ -211,6 +201,8 @@ Resources I found helpful when creating this website. I've included those I woul
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/josh-dejeu-767557239
 [product-screenshot]: images/screenshot.png
+[Node.js]: https://img.shields.io/badge/node.js-35495E?style=for-the-badge&logo=nodedotjs&logoColor=6cc24a
+[Node-url]: https://nodejs.org/en/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
