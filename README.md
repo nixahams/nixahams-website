@@ -103,7 +103,7 @@ Now make sure you have the latest version of Node.js by opening a command line a
 
 Next you have to install Vue.js, this can also be done through the command line. NPM (Node Package Manager) will allow you to do this. 
 Open a command line and type the following
-* [![Vue][Vue.js][https://github.com/joshdejeu/NixaHams-Website]
+* [![Vue][Vue.js]][https://github.com/joshdejeu/NixaHams-Website]
 * ```sh
   npm init vue@latest
   ```
@@ -111,11 +111,11 @@ Open a command line and type the following
 <!-- INSTALLATION -->
 ### Running The Wesite
 
-_Now you are ready to view the index.html file (the website). I recommend using Visual Studio Code as the interface and control are simple to use._
+_Now you are ready to view the index.html file (the website). I recommend using Visual Studio Code as the interface and controls are simple to use._
 
 1. Open a terminal
   ```sh
-  Make sure the file path is correct, it should be the same place that you unzipped it at.
+  Make sure the file path is correct, it should be the same place that you unzipped this project at.
   ```
 2. Clone the repo
    ```sh
