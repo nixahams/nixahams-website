@@ -8,6 +8,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
+[![Commits][commits-shield]][commits-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -74,7 +76,6 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- BUILT WITH -->
 ### Built With
 * [![Node][Node.js]][Node-url]
@@ -83,8 +84,6 @@
 * [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -204,6 +203,8 @@ Resources I found helpful when creating this website. I've included those I woul
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/commits/joshdejeu/NixaHams-Website.svg?style=for-the-badge
+[contributors-url]: https://github.com/joshdejeu/NixaHams-Website/commits/master
 [contributors-shield]: https://img.shields.io/github/contributors/joshdejeu/NixaHams-Website.svg?style=for-the-badge
 [contributors-url]: https://github.com/joshdejeu/NixaHams-Website/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/joshdejeu/NixaHams-Website.svg?style=for-the-badge
