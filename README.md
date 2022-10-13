@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/joshdejeu/NixaHams-Website">
-    <img src="images/logo.jpg" alt="Logo" width="80">
+    <img src="images/logo.jpg" alt="Logo" height="80">
   </a>
 
   <h3 align="center">Nixa Amateur Radio Club Website</h3>
