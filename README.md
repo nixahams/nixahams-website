@@ -54,7 +54,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Viewing The Website</a></li>
       </ul>
     </li>
     <li><a href="#Development Updates">Development Updates</a></li>
@@ -96,36 +96,40 @@ Download this project As-Is, unzip into your directory of choice. Follow the ste
 This program requires NPM which requires Node.js to be installed. I am using version 16.18.0 LTS for Windows (x64).
 * [![Node][Node.js]][Node-url]
 
-Now make sure you have the latest version of node by opening a command line and typing the following.
+Now make sure you have the latest version of Node.js by opening a command line and typing the following.
 * ```sh
   npm install npm@latest -g
   ```
 
-Next you have to install Vue.js, this can be done through the command line. NPM (Node Package Manager) will allow you to do this. 
+Next you have to install Vue.js, this can also be done through the command line. NPM (Node Package Manager) will allow you to do this. 
 Open a command line and type the following
-* [![Vue][Vue.js]]
+* [![Vue][Vue.js][https://github.com/joshdejeu/NixaHams-Website]
 * ```sh
   npm init vue@latest
   ```
   
 <!-- INSTALLATION -->
-### Installation
+### Running The Wesite
 
-_To view the dist (distribution) file you must use a live server. An easy way to do this is by using Visual Studio Code and downloading a Live Server in the package tab. After running the server you should see the page with no probelms._
+_Now you are ready to view the index.html file (the website). I recommend using Visual Studio Code as the interface and control are simple to use._
 
-1. Clone the repo
+1. Open a terminal
+  ```sh
+  Make sure the file path is correct, it should be the same place that you unzipped it at.
+  ```
+2. Clone the repo
    ```sh
    git clone https://github.com/joshdejeu/NixaHams-Website.git
    ```
-2. Install NPM packages, this will create the 'node_modules' folder
+3. Install NPM packages, this will create the 'node_modules' folder
    ```sh
    npm install
    ```
-3. Run the live server
+4. Run the live server
    ```sh
    npm run serve
    ```
-4. Go to [http://localhost:8080/](http://localhost:8080/)
+5. Go to [http://localhost:8080/](http://localhost:8080/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
