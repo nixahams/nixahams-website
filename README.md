@@ -103,7 +103,7 @@ Now make sure you have the latest version of Node.js by opening a command line a
 
 Next you have to install Vue.js, this can also be done through the command line. NPM (Node Package Manager) will allow you to do this. 
 Open a command line and type the following
-* [![Vue][Vue.js]][Node-url]
+* [![Vue][Vue.js]][Vue-url]
 * ```sh
   npm init vue@latest
   ```
