@@ -93,10 +93,19 @@ Download this project As-Is, unzip into your directory of choice. Follow the ste
 
 ### Prerequisites
 
-This program requires NPM which requires Node.js to be installed.
-* npm
-  ```sh
+This program requires NPM which requires Node.js to be installed. I am using version 16.18.0 LTS for Windows (x64).
+* [![Node][Node.js]][Node-url]
+
+Now make sure you have the latest version of node by opening a command line and typing the following.
+* ```sh
   npm install npm@latest -g
+  ```
+
+Next you have to install Vue.js, this can be done through the command line. NPM (Node Package Manager) will allow you to do this. 
+Open a command line and type the following
+* [![Vue][Vue.js]]
+* ```sh
+  npm init vue@latest
   ```
   
 <!-- INSTALLATION -->
@@ -104,16 +113,19 @@ This program requires NPM which requires Node.js to be installed.
 
 _To view the dist (distribution) file you must use a live server. An easy way to do this is by using Visual Studio Code and downloading a Live Server in the package tab. After running the server you should see the page with no probelms._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/joshdejeu/NixaHams-Website.git
    ```
-3. Install NPM packages
+2. Install NPM packages, this will create the 'node_modules' folder
    ```sh
    npm install
    ```
-4. Run the live server in your browser
+3. Run the live server
+   ```sh
+   npm run serve
+   ```
+4. Go to [http://localhost:8080/](http://localhost:8080/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
