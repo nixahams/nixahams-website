@@ -203,7 +203,7 @@ Resources I found helpful when creating this website. I've included those I woul
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[commits-shield]: https://img.shields.io/github/last-commit/joshdejeu/NixaHams-Website
+[commits-shield]: https://img.shields.io/github/last-commit/joshdejeu/NixaHams-Website.svg?style=for-the-badge
 [commits-url]: https://github.com/joshdejeu/NixaHams-Website/commits/master
 [contributors-shield]: https://img.shields.io/github/contributors/joshdejeu/NixaHams-Website.svg?style=for-the-badge
 [contributors-url]: https://github.com/joshdejeu/NixaHams-Website/graphs/contributors
