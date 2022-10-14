@@ -96,7 +96,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Download this project As-Is, unzip into your directory of choice. Follow the steps below to actually run the website in your browser. I will walk you through what is required. This project was created using Vue.js, a JavaScript framework, so it is not standalone. Start with the following prerequisites. 
+Follow the steps below to actually run the website in your browser. I will walk you through what is required. This project was created using Vue.js, a JavaScript framework, so it is not standalone. Start with the following prerequisites. 
 
 ### Prerequisites
 
@@ -122,7 +122,7 @@ _Now you are ready to view the index.html file (the website). I recommend using 
 
 1. Open a terminal
   ```sh
-  Make sure the file path is correct, it should be the same place that you unzipped this project at.
+  Navigate to the directory of your choice, by default CMD is set to C:\Windows\System32, _stop here if you do not know how to change directories_
   ```
 2. Clone the repo
    ```sh
