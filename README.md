@@ -223,7 +223,7 @@ Resources I found helpful when creating this website. I've included those I woul
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/josh-dejeu-767557239
 [product-screenshot]: images/screenshot.png
-[current-screenshot]: images/current.png
+[current-screenshot]: images/update.png
 [Node.js]: https://img.shields.io/badge/node.js-35495E?style=for-the-badge&logo=nodedotjs&logoColor=6cc24a
 [Node-url]: https://nodejs.org/en/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D

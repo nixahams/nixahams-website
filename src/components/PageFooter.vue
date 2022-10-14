@@ -85,14 +85,15 @@ a{
 }
 #copyright{
     width: 100%;
+    margin-left: 20%;
     text-align: center;
     padding: 10px;
     font-size: 0.8em;
     background-color: rgb(0,0,0);
 }
 #created{
-    position: absolute;
-    right: 10px;
+    position: relative;
+    width: 20%;
     bottom: 0;
     font-size: 0.8em;
     padding: 10px;
@@ -100,6 +101,7 @@ a{
 }
 #copyright_block{
     display: flex;
+    background-color: rgb(0,0,0);
 }
 #footer_parent{
     display: flex; flex-direction: column;

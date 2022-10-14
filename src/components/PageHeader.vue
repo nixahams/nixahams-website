@@ -1,18 +1,34 @@
 <template>
     <div id="header_parent">
+        <div id="header_hamburger" @click="ham_header()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div v-if="ham_active" id="header_hamburger_menu">
+            <a href="#/" class="header_option_active" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="home">home</a>
+            <a href="#/About" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="about">about</a>
+            <a href="#/Repeaters" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="repeaters">repeaters</a>
+            <a href="#/Roster" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="roster">roster</a>
+            <a href="#/Newsletter" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="newsletter">newsletter</a>
+            <a href="#/Contacts" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="contacts">contacts</a>
+            <a href="#/Meetings" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="meetings">meetings</a>
+            <a href="#/404" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="broken">broken link</a>
+        </div>
+
         <div id="header_p1">
             <img src="../assets/logo1.png" alt="Logo" height="90">
         </div>
 
         <div id="header_p2">
-            <a href="#/" class="header_option">Home</a>
-            <a href="#/About" class="header_option">About</a>
-            <a href="#/Repeaters" class="header_option">Repeaters</a>
-            <a href="#/Roster" class="header_option">Roster</a>
-            <a href="#/Newsletter" class="header_option">Newsletter</a>
-            <a href="#/Contacts" class="header_option">Contacts</a>
-            <a href="#/Meetings" class="header_option">Meetings</a>
-            <a href="#/404" class="header_option">Broken Link</a>
+            <a href="#/" class="header_option_active" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="home">home</a>
+            <a href="#/About" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="about">about</a>
+            <a href="#/Repeaters" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="repeaters">repeaters</a>
+            <a href="#/Roster" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="roster">roster</a>
+            <a href="#/Newsletter" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="newsletter">newsletter</a>
+            <a href="#/Contacts" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="contacts">contacts</a>
+            <a href="#/Meetings" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="meetings">meetings</a>
+            <a href="#/404" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="broken">broken link</a>
         </div>
         
         <div id="header_p3">
@@ -47,33 +63,79 @@ export default {
   name: 'PageHeader',
   props: {
     
+  },
+  data(){
+    return{
+        activePage: "Home",
+        previousPage: "",
+        currPath: "/",
+        class: false,
+        ham_active: false,
+    }
+  },
+  methods:{
+    /* changes the line under the active nav bar option*/
+    updateActivePage(option, key){
+        if(option==""){option="Home";}
+        this.previousPage = this.activePage.toLowerCase();
+        this.activePage = option.toLowerCase();
+        try{
+            document.getElementById(this.previousPage).className = "header_option_inactive";
+            document.getElementById(this.activePage).className = "header_option_active";
+        }catch{
+            console.log("That page does not exist.")
+        }
+        if(key=="ham"){
+            this.ham_active=false;
+        }
+    },
+    /*opens the hamburger header*/
+    ham_header(){
+        if(this.ham_active){
+            this.ham_active = false;
+        }else{
+            this.ham_active = true;
+        }
+    }
+  },
+  mounted(){
+    this.updateActivePage(this.$route.path.substring(1), 'normal');
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#header_parent{
-    position: fixed;
-    top: 0%; left: 0;
-    z-index: 2;
-    left: 0;
-    background-color: rgba(52,55,58,0.5);
-    position: relative;
-    height: 120px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-
-}
 a{
     text-decoration: none;
-    color: white;
-    font-size: 1.3em;
+    color: rgb(255,255,255);
+    font-size: 1.0em;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    background-color: rgba(255,255,255,0);
+    padding: 5px 10px;
+    text-transform: uppercase;
 }
 a:hover{
-    color: rgba(255,255,255,0.5);
+    color: rgb(255,255,255);
     transition: 0.2s ease;
+}
+#header_parent{
+    /* fixed relative relative to viewport not parent */
+    /* absolute relative relative to parent not viewport */
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 2;
+    left: 0;
+    background-color: rgba(0,0,0,0);
+    height: 120px;
+    width: calc(100% - 15px);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+/* don't display responsive styles on normal view */
+#header_hamburger, #header_hamburger_menu{
+    display: none;
 }
 .header_social{
     width: 30px;
@@ -98,21 +160,102 @@ a:hover{
     background-color: transparent;
     font-size: 1em;
 }
-.header_option{
-    position: relative;
-}
-.header_option::after{
+.header_option_active{position: relative;}
+.header_option_inactive{position: relative;}
+.header_option_inactive:after{
+	transition: 0.2s ease;
     content: '';
     position: absolute;
-    bottom: -5px; left: 0;
+    bottom: -3px; left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: rgba(255,255,255,0.1);
+}
+.header_option_inactive:hover:after{
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
     width: 100%;
     height: 1px;
-    background-color: white;
+    background-color: rgba(255,255,255,1);
 }
+.header_option_active:hover, .header_option_inactive:hover{
+    background-color: rgba(255,255,255,0.2);
+}
+.header_option_active:after{
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255,255,255,1);
+}
+
+
 #header_p3{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: transparent;
+}
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+    a{
+       color: rgb(255, 255, 255);
+    }
+    #header_parent{
+        /* background-color: green; */
+        position: fixed;
+        top: 0; left: 0;
+        z-index: 2;
+        left: 0;
+        height: 120px;
+        width: calc(100% - 15px);
+        display: flex;   
+    }
+    #header_p2, #header_p3{ display: none;}
+    #header_hamburger{
+        position: absolute;
+        top: 30px; right: 30px;
+        width: 30px; height: 20px;
+        display: flex; flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+    #header_hamburger>div{
+        width: 100%; height: 3px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    #header_hamburger_menu{
+        position: absolute;
+        background-color: rgba(0,0,0,0.8);
+        width: 100%;
+        display: flex; flex-direction: column;
+        top: 100px;
+        color: black;
+    }
+    .header_option_active, .header_option_inactive{
+        font-size: 1.3em;
+    }
+}
+
+
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+    #header_parent{
+        /* background-color: blue; */
+    }
+}
+
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    #header_parent{
+        /* background-color: red; */
+    }
 }
 </style>

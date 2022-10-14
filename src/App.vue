@@ -21,6 +21,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@font-face{
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');
+    font-weight: normal;
+    font-style: lighter;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: light;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body,html{
   margin: 0;
   padding: 0;
@@ -40,5 +58,24 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(208, 213, 239);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #434343;
+  background-clip: content-box;
+  box-shadow: inset 3px 3px 3px 0px #707070;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #555; */
 }
 </style>
