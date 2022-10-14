@@ -23,7 +23,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/joshdejeu/NixaHams-Website">
-    <img src="images/logo.jpg" alt="Logo" height="80">
+    <img src="src/assets/logo1.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">Nixa Amateur Radio Club Website</h3>
@@ -217,7 +217,7 @@ Resources I found helpful when creating this website. I've included those I woul
 [license-url]: https://github.com/joshdejeu/NixaHams-Website/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/josh-dejeu-767557239
-[product-screenshot]: src/assets/logo1.png
+[product-screenshot]: images/screenshot.png
 [Node.js]: https://img.shields.io/badge/node.js-35495E?style=for-the-badge&logo=nodedotjs&logoColor=6cc24a
 [Node-url]: https://nodejs.org/en/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
