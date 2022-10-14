@@ -68,7 +68,7 @@
 </details>
 
 <!-- CURRENT STATE -->
-## Curent State 
+## What it looks like so far
 ### Landscape View
 [![Current Screenshot][current-screenshot]](https://www.nixahams.net)
 
