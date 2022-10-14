@@ -104,6 +104,9 @@ a{
     background-color: rgb(0,0,0);
 }
 #footer_parent{
+    /* border: 1px solid; */
+    width: 100%; height: fit-content;
+    position: relative;
     display: flex; flex-direction: column;
 }
 #footer_block_parent{

@@ -72,6 +72,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(208, 213, 239);
+  display: flex; flex-direction: column;
 }
 /* width */
 ::-webkit-scrollbar {
