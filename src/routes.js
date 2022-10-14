@@ -16,5 +16,5 @@ export default[
     { path: '/newsletter', component: Newsletter},
     { path: '/contacts', component: Contacts},
     { path: '/meetings', component: Meetings},
-    { path: '/404', component: Invalid},
+    { path: '*', component: Invalid},
 ];
