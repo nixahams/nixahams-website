@@ -15,7 +15,14 @@ export default {
   components: {
     PageHeader,
     PageFooter
-}
+  },
+  data(){
+    return {
+    }
+  },
+  methods:{
+  }
+  
 }
 </script>
 
@@ -24,20 +31,26 @@ export default {
 @font-face{
     font-family: 'Montserrat';
     src: url('./assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');
-    font-weight: normal;
-    font-style: lighter;
+    font-weight: 100;
+    font-style: sans-serif;
 }
 @font-face{
     font-family: 'Montserrat';
     src: url('./assets/fonts/Montserrat-Light.ttf') format('truetype');
-    font-weight: normal;
-    font-style: light;
+    font-weight: 200;
+    font-style: sans-serif;
 }
 @font-face{
     font-family: 'Montserrat';
     src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
+    font-style: sans-serif;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: sans-serif;
 }
 body,html{
   margin: 0;
@@ -54,6 +67,7 @@ body{
   width: 100%;
   height: 100%;
   position: relative;
+  /* overflow:scroll;allows scroll event */
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

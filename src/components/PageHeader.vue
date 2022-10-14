@@ -1,5 +1,5 @@
 <template>
-    <div id="header_parent">
+    <div :id="changeHeader">
         <div id="header_hamburger" @click="ham_header()">
             <div></div>
             <div></div>
@@ -17,7 +17,9 @@
         </div>
 
         <div id="header_p1">
-            <img src="../assets/logo1.png" alt="Logo" height="90">
+            <a href="#/" @click="updateActivePage($event.path[0].innerHTML, 'normal')">
+                <img src="../assets/logo1.png" alt="Logo" height="90">
+            </a>
         </div>
 
         <div id="header_p2">
@@ -58,7 +60,6 @@
 
 <script>
 
-
 export default {
   name: 'PageHeader',
   props: {
@@ -71,6 +72,7 @@ export default {
         currPath: "/",
         class: false,
         ham_active: false,
+        changeHeader: "header_parent",
     }
   },
   methods:{
@@ -96,11 +98,21 @@ export default {
         }else{
             this.ham_active = true;
         }
+    },
+    onScroll(e) {
+        if(e.target.scrollTop>10){this.changeHeader = "header_parent_scroll";}
+        else{this.changeHeader="header_parent";}
+        this.windowTop = window.top.scrollY /* or: e.target.documentElement.scrollTop */
     }
   },
-  mounted(){
-    this.updateActivePage(this.$route.path.substring(1), 'normal');
-  }
+  mounted() {
+    this.updateActivePage(this.$route.path.toLowerCase().substring(1),"normal");
+    window.addEventListener("scroll", this.onScroll, true);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll, true);
+  },
+
 }
 </script>
 
@@ -108,7 +120,7 @@ export default {
 <style scoped>
 a{
     text-decoration: none;
-    color: rgb(255,255,255);
+    color: rgba(255,255,255, 0.7);
     font-size: 1.0em;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -117,22 +129,25 @@ a{
     text-transform: uppercase;
 }
 a:hover{
-    color: rgb(255,255,255);
+    color: rgba(255,255,255,1);
     transition: 0.2s ease;
 }
-#header_parent{
+#header_parent{background-color: rgba(0,0,0,0);}
+#header_parent_scroll{background-color: rgba(0,0,0,0.5);}
+#header_parent, #header_parent_scroll{
+    transition: 0.2s ease;
     /* fixed relative relative to viewport not parent */
     /* absolute relative relative to parent not viewport */
     position: fixed;
     top: 0; left: 0;
-    z-index: 2;
+    z-index: 999;
     left: 0;
-    background-color: rgba(0,0,0,0);
     height: 120px;
     width: calc(100% - 15px);
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
+#header_parent:hover{background-color: rgba(0,0,0,0.5);}
 /* don't display responsive styles on normal view */
 #header_hamburger, #header_hamburger_menu{
     display: none;
@@ -160,7 +175,7 @@ a:hover{
     background-color: transparent;
     font-size: 1em;
 }
-.header_option_active{position: relative;}
+.header_option_active{position: relative; color: white}
 .header_option_inactive{position: relative;}
 .header_option_inactive:after{
 	transition: 0.2s ease;
@@ -204,18 +219,21 @@ a:hover{
     a{
        color: rgb(255, 255, 255);
     }
-    #header_parent{
+    #header_parent, #header_parent_scroll{
         /* background-color: green; */
         position: fixed;
         top: 0; left: 0;
-        z-index: 2;
+        z-index: 999;
         left: 0;
         height: 120px;
         width: calc(100% - 15px);
         display: flex;   
     }
+    #header_parent_scroll{background-color: rgba(0,0,0,0);}
+    #header_parent:hover{background-color: rgba(0,0,0,0.0);}
     #header_p2, #header_p3{ display: none;}
     #header_hamburger{
+        z-index: 999;
         position: absolute;
         top: 30px; right: 30px;
         width: 30px; height: 20px;
