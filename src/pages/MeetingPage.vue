@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="meeting_page">
       zoom link
   
     </div>
@@ -14,8 +14,8 @@
   }
   }
   </script>
-  
-  <style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
   body,html{
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@
   body{
     background-color: #1c2023;
   }
-  #app {
+  #meeting_page {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

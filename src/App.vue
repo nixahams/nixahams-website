@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <PageHeader/>
-    app page info
-    <hr>
     <router-view></router-view>
-
     <PageFooter/>
   </div>
 </template>
@@ -22,18 +19,23 @@ export default {
 }
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 body,html{
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 body{
   background-color: #1c2023;
 }
 #app {
+  width: 100%;
+  height: 100%;
+  position: relative;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
