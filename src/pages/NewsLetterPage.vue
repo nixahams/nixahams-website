@@ -1,35 +1,80 @@
 <template>
-    <div id="news_letter">
-      the news
-  
+  <div id="news_letter">
+    <div id="blog_parent">
+      <div id="blog_title">Blog Posts</div>
+      <BlogPost/>
+      <BlogPost/>
+      <BlogPost/>
     </div>
-  </template>
+
+  </div>
+</template>
   
-  <script>
-  
-  export default {
-    name: 'NewsletterPage',
-    components: {
-      
+<script>
+import BlogPost from "../components/BlogPost.vue";
+
+export default {
+  name: 'NewsletterPage',
+  components: {
+    BlogPost
   }
-  }
-  </script>
+}
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  body,html{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #1c2023;
+  position: relative;
+}
+#news_letter {
+  color: rgb(208, 213, 239);
+  padding-top: 120px;
+  background-color: rgb(21, 24, 28);
+}
+
+/* contains components of messages */
+#blog_parent {
+  min-height: 100vh;
+  width: 100%;
+  height: fit-content;
+}
+#blog_title{
+  width: 100%; height: fit-content;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: rgb(247, 247, 247);
+  padding: 2% 10% 0% 10%;
+  font-size: 5em;
+}
+
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+  #blog_title{
+    font-size: 4em;
   }
-  body{
-    background-color: #1c2023;
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+  #blog_title{
+    font-size: 3em;
   }
-  #news_letter {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: rgb(208, 213, 239);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  #blog_title{
+    font-size: 2em;
   }
-  </style>
+}
+</style>
   
