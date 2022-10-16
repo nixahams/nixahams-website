@@ -116,9 +116,9 @@ export default {
             }
         },
         onScroll(e) {
+            if(e.path[0].tagName!="BODY"){return;}
             if (e.target.scrollTop > 10) { this.changeHeader = "header_parent_scroll"; }
             else { this.changeHeader = "header_parent"; }
-            this.windowTop = window.top.scrollY /* or: e.target.documentElement.scrollTop */
         }
     },
     mounted() {
