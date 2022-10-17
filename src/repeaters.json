@@ -30,36 +30,6 @@
             "short_desc": "Ano3ther a desc short format",
             "location": "Rolla, MO",
             "key" : 3
-        },
-        { 
-            "img_arr": {
-                "img1": "https://i.imgur.com/y2delry.png",
-                "img2": ""
-            },
-            "name": "inactive4",
-            "short_desc": "Ano3ther a desc short format",
-            "location": "Bolivar, MO",
-            "key" : 4
-        },
-        { 
-            "img_arr": {
-                "img1": "https://i.imgur.com/y2delry.png",
-                "img2": ""
-            },
-            "name": "inactive5",
-            "short_desc": "Ano3ther a desc short format",
-            "location": "Bolivar, MO",
-            "key" : 5
-        },
-        { 
-            "img_arr": {
-                "img1": "https://i.imgur.com/y2delry.png",
-                "img2": ""
-            },
-            "name": "inactive6",
-            "short_desc": "Ano3ther a desc short format",
-            "location": "Bolivar, MO",
-            "key" : 6
         }
     ]
 }

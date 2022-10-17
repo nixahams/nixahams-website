@@ -23,7 +23,6 @@ export default {
     methods: {
     },
     mounted(){
-        console.log(this.img_src);
         /* Initially set the first item in array to true, will bring it to fron and others to side*/
         if(this.$vnode.key == 1){
             this.active=true;
@@ -54,31 +53,31 @@ export default {
 .active_card{
     background-color: red;
     color: white;
-    z-index: 2;
+    z-index: 3;
 }
 .inactive_card_left{ 
     pointer-events: none; 
     position: relative;
     background-color: rgb(118, 184, 118);
     transform: 
-    translateX(-220%)
+    translateX(-150%)
     perspective(1000px)
     scale(80%) scaleX(130%)
     rotateY(30deg);
-    visibility: hidden;
-    filter: brightness(50%);
+    filter: brightness(40%);
+    /* visibility: hidden; */
 }
 .inactive_card_right{
     pointer-events: none;
     position: relative;
     background-color: rgb(123, 123, 195);
     transform: 
-    translateX(120%)
+    translateX(150%)
     perspective(1000px)
     scale(80%) scaleX(130%)
     rotateY(-30deg);
-    visibility: hidden;
-    filter: brightness(50%);
+    filter: brightness(40%);
+    /* visibility: hidden; */
 }
 .inactive_card_right ~ .inactive_card_right, 
 .inactive_card_left ~ .inactive_card_left{ 
@@ -119,17 +118,19 @@ export default {
     }
     .inactive_card_right{
         transform: 
-        translateX(170%)
+        translateX(130%)
         perspective(1000px)
-        scale(80%) scaleX(150%)
-        rotateY(-20deg);
+        scale(50%)
+        scaleX(100%)
+        rotateY(-30deg);
     }
     .inactive_card_left{
         transform: 
-        translateX(-270%)
+        translateX(-130%)
         perspective(1000px)
-        scale(80%) scaleX(150%)
-        rotateY(20deg);
+        scale(50%)
+        scaleX(100%)
+        rotateY(30deg);
     }
 }
 /* ---------------------------------------- */
