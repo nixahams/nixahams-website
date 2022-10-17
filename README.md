@@ -68,7 +68,7 @@
 </details>
 
 <!-- CURRENT STATE -->
-## What the website currently looks like as of 10/17/2022
+## What the website currently looks like
 ### Landscape View
 [![Current Screenshot][current-screenshot]](https://www.nixahams.net)
 
