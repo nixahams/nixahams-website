@@ -174,7 +174,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.5);
   outline: none;
   border: 2px dashed black;
-  padding: 0px 10px;
+  padding: 0px 20px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .input_parent {
@@ -195,7 +199,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.5);
   outline: none;
   border: 2px dashed black;
-  padding: 10px;
+  padding: 20px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 #form_btn_parent {
