@@ -1,5 +1,5 @@
 <template>
-    <div class="repeater">
+    <div class="repeater inactive_card">
         <div id="repeater_text">
             <div id="repeater_name">{{name}}</div>
             <div id="repeater_loc">{{this.$vnode.key}} ⎯ {{location}}</div>
@@ -21,31 +21,58 @@ export default {
         }   
     },
     methods: {
+        arrowClick(e){
+            let eltouched = e.srcElement.id;
+            console.log(eltouched);
+        }
     },
     mounted(){
         /* Initially set the first item in array to true, will bring it to fron and others to side*/
-        if(this.$vnode.key == 1){
-            this.active=true;
+        if (this.$vnode.key == 1) {
+            this.active = true;
             this.$el.className = "repeater active_card";
             return;
         }
-        if(this.$vnode.key % 2 == 0){
-            this.$el.className = "repeater inactive_card_left";
-        }else{
-            this.$el.className = "repeater inactive_card_right";
-        }
+        // if (this.$vnode.key % 2 == 0) {
+        //     this.$el.className = "repeater inactive_card_left";
+        // }
+        // else {
+        //     this.$el.className = "repeater inactive_card_right";
+        // }
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* for left side */
+.inactive_card{ 
+    pointer-events: none; 
+    position: relative;
+    filter: brightness(60%);
+    transition: 0.5s ease;
+}
+.inactive_card:nth-child(odd) {
+    transform: 
+    translateX(-100%)
+    perspective(1000px)
+    scale(80%) scaleX(130%)
+    rotateY(30deg);}
+.inactive_card:nth-child(even) {
+    transform: 
+    translateX(100%)
+    perspective(1000px)
+    scale(80%) scaleX(130%)
+    rotateY(-30deg);
+}
+
+
 .card_gone{
     transform: translateX(-200%);
     transition: 0.5s ease;
 }
 .repeater{
-    position: absolute;
+    z-index: 3;
     top: 0;
     width: 25%; height: 70%;
     color: transparent;
@@ -55,15 +82,17 @@ export default {
     display: flex; justify-content: center; align-items: center;
 }
 .active_card{
+    position: absolute;
+    left: 0; right: 0; 
+    margin-left: auto;margin-right: auto; 
     background-color: red;
     color: white;
     z-index: 3;
     transition: 0.5s ease;
 }
-.inactive_card_left{ 
+.inactive_card_left{
     pointer-events: none; 
     position: relative;
-    background-color: rgb(118, 184, 118);
     transform: 
     translateX(-50%)
     perspective(1000px)
@@ -72,12 +101,10 @@ export default {
     filter: brightness(40%);
     /* visibility: hidden; */
     transition: 0.5s ease;
-
 }
 .inactive_card_right{
     pointer-events: none;
     position: relative;
-    background-color: rgb(123, 123, 195);
     transform: 
     translateX(50%)
     perspective(1000px)
@@ -88,10 +115,7 @@ export default {
     transition: 0.5s ease;
 
 }
-.inactive_card_right ~ .inactive_card_right, 
-.inactive_card_left ~ .inactive_card_left{ 
-    visibility: visible;
-}
+
 #repeater_img{
     pointer-events: none;
     background-color: rgb(241, 241, 241);

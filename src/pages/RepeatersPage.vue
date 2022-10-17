@@ -1,83 +1,24 @@
 <template>
   <div id="repeaters_page">
-      <div id="repeater_arrows" @click="arrowClick($event)">
-        <div id="repeater_left">
-            <i id="repeater_left" class='fas fa-chevron-left'></i>
-        </div>
-        <div></div>
-        <div id="repeater_right">
-            <i id="repeater_left" class='fas fa-chevron-right'></i>
-        </div>
-      </div>
-      <div id="repeater_card_slide">
-          <RepeaterCard v-for="rep in repeater_array" :key="rep.key" :img_src="rep.img_arr.img1" :name="rep.name" :short_desc="rep.short_desc" :location="rep.location"/>
-      </div>
+    <CardArrow/>
   </div>
 </template>
   
 <script>
-import RepeaterCard from '../components/RepeaterCard.vue';
-import repeaters from "../repeaters.json";
+import CardArrow from '../components/CardArrow.vue';
 
 export default {
   name: 'RepeatersPage',
   components: {
-    RepeaterCard
-  },
+    CardArrow
+},
   data(){
     return{
-      repeater_array: []
     }
   },
   methods: {
-    arrowClick(e){
-      let eltouched = e.srcElement.id;
-      if(eltouched==""){return}
-      let elem = document.getElementById('repeater_card_slide');
-      let firstChild = elem.firstChild;
-      console.log(elem.children);
-
-      this.$emit('arrowClick', eltouched);
-      /* left comes into view */
-      if(eltouched=="repeater_right"){
-        /* Get divs of 3 cards on screen */
-        let div1 = elem.children[0];
-        let div2 = elem.children[1];
-        let div3 = elem.children[2];
-
-        /* changes class names for styles */
-        firstChild.className = "repeater inactive_card_right";
-        div2.className = "repeater active_card";
-
-        /* change order of divs */
-        console.log(div1,div2,div3);
-        div3.className =  "card_gone";
-
-        // elem.children[0]=div2;
-        // elem.children[1]="";/* next card here */
-        // elem.children[2]=div1;
-      }else{
-        /* changes class names for styles */
-        firstChild.className = "repeater inactive_card_left";
-        let newActive = elem.children[2];
-        newActive.className = "repeater active_card";
-        /* change order of divs */
-        let div1 = elem.children[0];
-        let div2 = elem.children[1];
-        let div3 = elem.children[2];
-
-        div2;
-
-        elem.children[0]=div3;
-        elem.children[1]=div1;
-        elem.children[2]="";/* next card here */
-
-      }
-
-    }
   },
   mounted() {
-    this.repeater_array = repeaters.repeater_list;
   },
 }
 </script>
@@ -101,52 +42,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: rgb(208, 213, 239);
   /* multiple sections of various VH height */
-  height: fit-content;
+  width: 100%; height: fit-content;
   padding-top: 120px;
   background-color: #1c2023;
-}
-#repeater_card_slide{
   position: relative;
-  width: 100%; height: 110vh;
-  display: flex; justify-content: center; align-items: flex-start;
 }
-#repeater_arrows{
-  position: absolute;
-  width: 100%; height: 70%;
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-}
-#repeater_arrows>div{
-  color: rgba(255,255,255,0.8);
-  display: flex;
-  align-items: center;
-  font-size: 3em;
-  padding: 25%;
-  transition: 0.2s ease;
-}
-#repeater_left{cursor: pointer;justify-content: flex-end;}
-#repeater_right{cursor: pointer;justify-content: flex-start;}
-#repeater_left:hover,#repeater_right:hover{
-  color: white;
-  transform: scale(110%);
-  transition: 0.2s ease;
-}
+
+
 
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-  #repeater_card_slide{
-    width: 90%;
-  }
+
 
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-  #repeater_card_slide{
-    width: 100%;
-  }
+
 }
 
 /* Mobile Styles */
