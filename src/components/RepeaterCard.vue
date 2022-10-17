@@ -30,9 +30,9 @@ export default {
             return;
         }
         if(this.$vnode.key % 2 == 0){
-            this.$el.className = "repeater inactive_card_right";
-        }else{
             this.$el.className = "repeater inactive_card_left";
+        }else{
+            this.$el.className = "repeater inactive_card_right";
         }
     }
 }
@@ -40,6 +40,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.card_gone{
+    transform: translateX(-200%);
+    transition: 0.5s ease;
+}
 .repeater{
     position: absolute;
     top: 0;
@@ -54,30 +58,35 @@ export default {
     background-color: red;
     color: white;
     z-index: 3;
+    transition: 0.5s ease;
 }
 .inactive_card_left{ 
     pointer-events: none; 
     position: relative;
     background-color: rgb(118, 184, 118);
     transform: 
-    translateX(-150%)
+    translateX(-50%)
     perspective(1000px)
     scale(80%) scaleX(130%)
     rotateY(30deg);
     filter: brightness(40%);
     /* visibility: hidden; */
+    transition: 0.5s ease;
+
 }
 .inactive_card_right{
     pointer-events: none;
     position: relative;
     background-color: rgb(123, 123, 195);
     transform: 
-    translateX(150%)
+    translateX(50%)
     perspective(1000px)
     scale(80%) scaleX(130%)
     rotateY(-30deg);
     filter: brightness(40%);
     /* visibility: hidden; */
+    transition: 0.5s ease;
+
 }
 .inactive_card_right ~ .inactive_card_right, 
 .inactive_card_left ~ .inactive_card_left{ 
@@ -112,13 +121,13 @@ export default {
 }
 
 /* Adjusting card widths */
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1300px) {
     .repeater{
         width: 40%; height: 70%;
     }
     .inactive_card_right{
         transform: 
-        translateX(130%)
+        translateX(30%)
         perspective(1000px)
         scale(50%)
         scaleX(100%)
@@ -126,7 +135,7 @@ export default {
     }
     .inactive_card_left{
         transform: 
-        translateX(-130%)
+        translateX(-30%)
         perspective(1000px)
         scale(50%)
         scaleX(100%)

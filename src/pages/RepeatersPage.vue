@@ -35,16 +35,43 @@ export default {
       if(eltouched==""){return}
       let elem = document.getElementById('repeater_card_slide');
       let firstChild = elem.firstChild;
-      console.log(elem);
+      console.log(elem.children);
 
       this.$emit('arrowClick', eltouched);
       /* left comes into view */
       if(eltouched=="repeater_right"){
-        /* center goes to right */
-        firstChild.id = "repeater inactive_card_right";
+        /* Get divs of 3 cards on screen */
+        let div1 = elem.children[0];
+        let div2 = elem.children[1];
+        let div3 = elem.children[2];
 
+        /* changes class names for styles */
+        firstChild.className = "repeater inactive_card_right";
+        div2.className = "repeater active_card";
+
+        /* change order of divs */
+        console.log(div1,div2,div3);
+        div3.className =  "card_gone";
+
+        // elem.children[0]=div2;
+        // elem.children[1]="";/* next card here */
+        // elem.children[2]=div1;
       }else{
-        firstChild.id = "repeater inactive_card_right";
+        /* changes class names for styles */
+        firstChild.className = "repeater inactive_card_left";
+        let newActive = elem.children[2];
+        newActive.className = "repeater active_card";
+        /* change order of divs */
+        let div1 = elem.children[0];
+        let div2 = elem.children[1];
+        let div3 = elem.children[2];
+
+        div2;
+
+        elem.children[0]=div3;
+        elem.children[1]=div1;
+        elem.children[2]="";/* next card here */
+
       }
 
     }
