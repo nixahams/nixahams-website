@@ -1,8 +1,9 @@
 <template>
     <div id="CardArrow">
-        <img id="currImg" :src="pageBackGround" alt="">
-        <img id="nextImgRight" :src="nextPageBackGroundR" alt="">
-        <img id="nextImgLeft" :src="nextPageBackGroundL" alt="">
+        <img :id="imgid1" class="imgInGeneral" :src="imgsrc1" alt="">
+        <img :id="imgid2" class="imgInGeneral" :src="imgsrc2" alt="">
+        <img :id="imgid3" class="imgInGeneral" :src="imgsrc3" alt="">
+        <img :id="imgid4" class="imgInGeneral" :src="imgsrc4" alt="">
         <div id="repeater_arrows" @click="arrowClick($event)">
             <div id="repeater_left">
                 <i id="repeater_left" class='fas fa-chevron-left'></i>
@@ -13,21 +14,29 @@
             </div>
         </div>
         <div id="repeater_card_slide">
-            <!-- <RepeaterCard 
-            v-for="rep in repeater_array" 
-            :key="rep.key" 
-            :img_src="rep.img_arr.img1" 
-            :name="rep.name"
-            :short_desc="rep.short_desc" 
-            :location="rep.location" /> -->
-            <div class="repeater active_card">
-
+            
+            <div class="repeater" id="left">
+                <RepeaterCard 
+                :key="rep1.key" 
+                :img_src="rep1.img_arr.img1" 
+                :name="rep1.name"
+                :short_desc="rep1.short_desc" 
+                :location="rep1.location" />            </div>
+            <div class="repeater" id="center">
+                <RepeaterCard 
+                :key="rep2.key" 
+                :img_src="rep2.img_arr.img1" 
+                :name="rep2.name"
+                :short_desc="rep2.short_desc" 
+                :location="rep2.location" />
             </div>
-            <div class="repeater inactive_card_right">
-
-            </div>
-            <div class="repeater inactive_card_left">
-                
+            <div class="repeater" id="right">
+                <RepeaterCard 
+                :key="rep3.key" 
+                :img_src="rep3.img_arr.img1" 
+                :name="rep3.name"
+                :short_desc="rep3.short_desc" 
+                :location="rep3.location" />
             </div>
             
         </div>
@@ -35,48 +44,101 @@
 </template>
 
 <script>
-// import RepeaterCard from '../components/RepeaterCard.vue';
+import RepeaterCard from '../components/RepeaterCard.vue';
 import repeaters from "../repeaters.json";
 export default {
     name: 'CardArrow',
     components: {
-        // RepeaterCard,
+        RepeaterCard,
     },
     props: [''],
     data() {
         return {
             repeater_array: [],
-            pageBackGround: '',
-            nextPageBackGroundR: '',
-            nextPageBackGroundL: '',
-            i: 0
+            imgsrc1: '',
+            imgsrc2: '',
+            imgsrc3: '',
+            imgsrc4: '',
+            imgid1: 'img1',
+            imgid2: 'img2',
+            imgid3: 'img3',
+            imgid4: 'img4',
+            i: 0,
+            toggleRight: 0,
+            toggleLeft: 0,
+            rep1: {},
+            rep2: {},
+            rep3: {}
         }
     },
     methods: {
-        arrowClick(e) {
-            // let currImg = document.getElementById('currImg');
-            // let nextImgR = document.getElementById('nextImgRight');
-            // let nextImgL = document.getElementById('nextImgLeft');
-            
-            this.i++;/* iterate through img array */
-            if(this.i>=this.repeater_array.length-1){this.i = 0;}
-            
+        shiftRight(left, center, right){
+            left.id = "right";
+            center.id = "left";
+            right.id = "center";
+        },
+        shiftLeft(left, center, right){
+            left.id = "center";
+            center.id = "right";
+            right.id = "left";
+        },
+        imageShiftRight(){
+            this.imgid3 = "hide";
+            this.imgid4 = "hide";
+            if(this.toggleRight%2==0){
+                this.imgsrc2 = this.repeater_array[this.i].img_arr.img1;
+                this.imgid1 = "goOutR";
+                this.imgid2 = "goInR";
+            }else{
+                this.imgsrc1 = this.repeater_array[this.i].img_arr.img1;
+                this.imgid1 = "goInR";
+                this.imgid2 = "goOutR";
+            }
+            this.toggleRight++;
+        },
+        imageShiftLeft(){
+            this.imgid1 = "hide";
+            this.imgid2 = "hide";
+            if(this.toggleLeft%2==0){
+                this.imgsrc4 = this.repeater_array[this.i].img_arr.img1;
+                this.imgid3 = "goOutL";
+                this.imgid4 = "goInL";
+            }else{
+                this.imgsrc3 = this.repeater_array[this.i].img_arr.img1;
+                this.imgid3 = "goInL";
+                this.imgid4 = "goOutL";
+            }
+            this.toggleLeft++;
+        },
+        arrowClick(e) { 
             let eltouched = e.srcElement.id;
             if(eltouched==""){return;}
 
-            this.pageBackGround = this.repeater_array[this.i].img_arr.img1;
-            this.nextPageBackGroundR = this.repeater_array[this.i+1].img_arr.img1;
-            this.nextPageBackGroundL = this.repeater_array[this.i+1].img_arr.img1;
-            
-            // if(eltouched=="repeater_right"){
-            //     document.getElementById('active_card_right')
-            // }else{
-            // }
+            let card_left = document.getElementById('left');
+            let card_center = document.getElementById('center');
+            let card_right = document.getElementById('right');
+
+            if(eltouched=="repeater_right"){
+                this.i++;
+                if(this.i > this.repeater_array.length-1){this.i = 0}
+                this.shiftRight(card_left,card_center,card_right);
+                this.imageShiftRight();
+            }else{
+                this.i--;
+                if(this.i < 0){this.i = this.repeater_array.length-1}
+                this.shiftLeft(card_left,card_center,card_right);
+                this.imageShiftLeft();
+            }
         }
     },
     mounted(){
         this.repeater_array = repeaters.repeater_list;
-        this.pageBackGround = this.repeater_array[0].img_arr.img1;
+        this.imgsrc1 = this.repeater_array[0].img_arr.img1;
+        
+        this.rep1 = this.repeater_array[0];
+        this.rep2 = this.repeater_array[1];
+        this.rep3 = this.repeater_array[2];
+
         console.log(this.repeater_array);
     }
 }
@@ -85,68 +147,84 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .repeater{
-    z-index: 3;
-    top: 0;
-    color: transparent;
+    background-color: aliceblue;
     font-family: 'Montserrat', sans-serif;
-    transform-style: preserve-3d;
     width: 25%; height: 70%;
     position: absolute;
-    left: 0; right: 0; 
-}
-.active_card{
-    left: 0; right: 0; 
     margin-left: auto;margin-right: auto; 
-    background-color: red;
-    color: white;
-    z-index: 3;
-    transition: 0.5s ease;
+    left: 0; right: 0; 
+    transition: 0.6s ease;
 }
-.inactive_card_left{
+#center{
+    left: 0; right: 0; 
+    z-index: 4;
+    color: black;
+    font-size: 2em;
+}
+#left{
+    z-index: 2;
     pointer-events: none; 
     transform: 
-    translateX(0%)
-    perspective(1000px)
+    translateX(-100%)
+    perspective(2000px)
     scale(80%) scaleX(130%)
     rotateY(30deg);
     filter: brightness(40%);
-    transition: 0.5s ease;
-    margin-left: 50%;margin-right: 25%; 
 }
-.inactive_card_right{
-    pointer-events: none;
-    margin-left: auto;margin-right: auto; 
-    
+#right{
+    z-index: 2;
+    pointer-events: none; 
+    transform: 
+    translateX(100%)
+    perspective(2000px)
+    scale(80%) scaleX(130%)
+    rotateY(-30deg);
     filter: brightness(40%);
-    transition: 0.5s ease;
 }
 
 
-
-
-
-#currImg, #nextImgRight, #nextImgLeft{
+.imgInGeneral{
     width: 100%; height: 100%;
     position: absolute;
     top: 0; left: 0;
     object-position: center;
+    transform: scale(2);
     object-fit: cover;
-    transition: 1s ease;
+    transition: 0.6s ease;
     filter: brightness(50%) blur(15px);
 }
-/* move by 50% */
-/* +50%: right   -50%: left */
-#currImg{
-    transform: translateX(0%) scale(1.5);
-    opacity: 1;
-    z-index: 1;
+
+#hide{opacity: 0; transition: 1s ease;}
+
+#goOutR{
+    transform: translateX(50%) scale(2);
+    visibility: hidden;
 }
-#nextImgRight,#nextImgLeft{
-    opacity: 0;
-    z-index: 1;
+#goInR{
+    animation: moveR 0.8s cubic-bezier(.39,.01,.55,.98) forwards; 
+    z-index: 2;
 }
-#nextImgRight{transform: translateX(50%) scale(1.5);}
-#nextImgLeft{transform: translateX(-50%) scale(1.5);}
+
+@keyframes moveR{
+    0%{transform: translateX(50%) scale(2);}
+    100%{transform: translateX(0%) scale(2);}
+}
+
+#goOutL{
+    transform: translateX(-50%) scale(2);
+    visibility: hidden;
+}
+#goInL{
+    animation: moveL 0.8s cubic-bezier(.39,.01,.55,.98) forwards; 
+    z-index: 2;
+}
+@keyframes moveL{
+    0%{transform: translateX(-50%) scale(2);}
+    100%{transform: translateX(0%) scale(2);}
+}
+
+
+
 
 
 #CardArrow {
@@ -189,8 +267,7 @@ export default {
     position: relative;
     width: 100%;height: 100%; 
     flex-direction: row;
-    background-color: white;
-    z-index: 7;
+    z-index: 2;
 }
 
 
