@@ -128,7 +128,8 @@ export default {
                 gyroscopeMaxAngleX: 45, // This is the top limit of the device angle on X axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the right border of the element;
                 gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
                 gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
-            }
+            },
+            positionA: {index: 0, at: 2}
         }
     },
     methods: {
@@ -170,32 +171,53 @@ export default {
             }
             this.toggleLeft++;
         },
-        getIndex(index, from){
-            if(from=="right"){
-                index;
+        getIndex(indx, position){
+            console.log(indx, position);
+            if(position==1){
+                if((indx-1)<0){
+                    this.positionA.index = this.repeater_array.length-1;
+                }else{
+                    this.positionA.index--;
+                }
+                console.log("pos index", this.positionA.index)
+                return this.positionA.index;
             }
-            if(index < 0){index = this.repeater_array.length-1;}
-            if(index == this.repeater_array.length){index = 0;}
-            return index;
+            if(position==2){
+                
+                this.positionA.at = 3;
+                return this.positionA.index;
+            }
+            if(position==3){
+                if((indx-1)<0){
+                    this.positionA.index = this.repeater_array.length-1;
+                }else{
+                    this.positionA.index--;
+                }
+                return this.positionA.index;
+            }
+            
+
+            // if(from=="L3"){index = this.i-1;}
+
+            // if(index < 0){index = this.repeater_array.length-1;}
+            // if(index == this.repeater_array.length){index = 0;}
+            // return index;
         },
         arrowClick(e) { 
             let eltouched = e.srcElement.id;
             if(eltouched==""){return;}
-
-
-
             let card_left = document.getElementById('left');
             let card_center = document.getElementById('center');
             let card_right = document.getElementById('right');
-
             if(eltouched=="testright"){
                 this.i++;
                 if(this.i > this.repeater_array.length-1){this.i = 0;}
 
-                console.log(this.i)
-                this.rep2 = this.repeater_array[this.getIndex(this.i-2, 'right')];
-                this.rep1 = this.repeater_array[this.getIndex(this.i-1, 'right')];
-                this.rep3 = this.repeater_array[this.getIndex(this.i, 'right')];
+                this.rep1 = this.repeater_array[this.getIndex(this.positionA.index, this.positionA.at)];
+                
+                
+                // this.rep2 = this.repeater_array[this.getIndex(this.i-1, 'R1')];
+                // this.rep3 = this.repeater_array[this.getIndex(this.i+1, 'R3')];
 
                 this.shiftRight(card_left,card_center,card_right);
                 this.imageShiftRight();
@@ -205,9 +227,9 @@ export default {
                 if(this.i < 0){this.i = this.repeater_array.length-1}
 
                 console.log(this.i)
-                this.rep2 = this.repeater_array[this.getIndex(this.i-2, 'left')];
-                this.rep1 = this.repeater_array[this.getIndex(this.i-1, 'left')];
-                this.rep3 = this.repeater_array[this.getIndex(this.i, 'left')];
+                this.rep2 = this.repeater_array[this.getIndex(this.i-2, 'L1')];
+                this.rep1 = this.repeater_array[this.getIndex(this.i-1, 'L2')];
+                this.rep3 = this.repeater_array[this.getIndex(this.i, 'L3')];
 
 
                 this.shiftLeft(card_left,card_center,card_right);
@@ -218,12 +240,13 @@ export default {
     mounted(){
         this.repeater_array = repeaters.repeater_list;
         this.imgsrc1 = this.repeater_array[0].img_arr.img1;
-        
-        this.rep2 = this.repeater_array[this.getIndex(this.i-1)];
-        this.rep1 = this.repeater_array[this.getIndex(this.i)];
-        this.rep3 = this.repeater_array[this.getIndex(this.i+1)];
+        console.log(this.i)
 
-        console.log(this.repeater_array);
+        this.rep1 = this.repeater_array[0];
+        // this.rep2 = this.repeater_array[this.getIndex(this.i-1)];
+        // this.rep3 = this.repeater_array[this.getIndex(this.i+1)];
+
+        // console.log(this.repeater_array);
     }
 }
 </script>
