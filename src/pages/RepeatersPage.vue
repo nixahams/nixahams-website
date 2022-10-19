@@ -10,15 +10,15 @@
         </div>
         <input type="text" @click="user_active($event.target.values)" @input="user_typing($event.target.value)" :placeholder="search_by" name="user_input" id="user_input">
         <div id="filter_drop">
-          <select name="search_options" id="search_options">
+          <select name="search_options" id="search_options" @change="onChange($event)">
             <option value="all">All</option>
             <option value="location">Location</option>
-            <option value="frequenct">Frequency</option>
+            <option value="frequency">Frequency</option>
           </select>
 
         </div>
         <div v-if="result_visible" id="search_results">
-          <ResultOption @option_selected="op_selected" v-for="res in result_list" :key="res.key" :val="res.key" :title="res.long_title"/>
+          <ResultOption @option_selected="op_selected" v-for="res in result_list" :key="res.key" :res="res" :filter="filter_by"/>
         </div>
       </div>
 
@@ -48,17 +48,22 @@ export default {
   data(){
     return{
       rep_arr: {},
-      search_by: "Search by All",
+      search_by: "Search by all",
       count: 0,
       desc_class: "desc_fade2",
       long_title: "This is a long title",
       date: "10/15/2022",
       long_desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
       result_visible: false,
-      result_list: []
+      result_list: [],
+      filter_by: 'all'
     }
   },
   methods: {
+    onChange(e){
+      this.filter_by = e.target.value;
+      this.search_by = `Search by ${this.filter_by}`;
+    },
     user_active(text){
       if(text!=''){this.result_visible=true;}
     },
@@ -86,11 +91,23 @@ export default {
       let stringArray = str.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
       /* case: all */
       // check every objet in database
+      let search_criteria = '';
       for(let i = 0; i < this.rep_arr.length;i++){
         // check if text appears in databse
         for(let j = 0; j < stringArray.length; j++){
-            if(this.rep_arr[i].long_title.toLowerCase().includes(stringArray[j])){
-            this.result_list.push(this.rep_arr[i]);
+            switch(this.filter_by){
+              case("all"):
+                search_criteria = this.rep_arr[i].long_title.toLowerCase(); 
+                break;
+              case("location"):
+                search_criteria = this.rep_arr[i].location.toLowerCase(); 
+                break;
+              case("frequency"):
+                search_criteria = this.rep_arr[i].name.toLowerCase(); 
+                break;
+            }
+            if(search_criteria.includes(stringArray[j])){
+              this.result_list.push(this.rep_arr[i]);
           }
         }
       }

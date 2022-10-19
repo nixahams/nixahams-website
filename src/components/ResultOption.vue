@@ -1,7 +1,7 @@
 <template>
     <div id="ResultOption" @click="$emit('option_selected', val)">
         <img id="result_img" src="https://cdn3.iconfinder.com/data/icons/flaticons-1/24/flaticon_search-512.png" alt="">
-        {{title}} - {{val}}
+        {{title}}
     </div>
   </template>
     
@@ -9,17 +9,28 @@
 
   export default {
     name: 'ResultOption',
-    props: ['val','title'],
+    props: ['res','filter'],
     components: {
     },
     data(){
       return{
+        title: ''
       }
     },
     methods: {
     },
     mounted(){
-
+      switch(this.filter){
+        case("all"):
+          this.title = this.res.long_title.toLowerCase(); 
+          break;
+        case("location"):
+          this.title = this.res.location.toLowerCase(); 
+          break;
+        case("frequency"):
+          this.title = this.res.name.toLowerCase(); 
+          break;
+      }
     }
   }
   </script>
