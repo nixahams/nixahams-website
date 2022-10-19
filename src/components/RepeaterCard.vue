@@ -2,9 +2,11 @@
     <div class="repeatercard">
         <div id="repeater_text">
             <div id="repeater_name">{{name}}</div>
-            <div id="repeater_loc">{{this.$vnode.key}} ⎯ {{location}}</div>
-            <hr>
-            <div id="repeater_desc">{{short_desc}}</div>
+            <div id="repeater_loc">⎯ {{location}}</div>
+            <div>
+                <div id="break_line">.</div>
+            </div>
+            <div id="repeater_desc">{{this.$vnode.key}} - {{short_desc}}</div>
         </div>
         <img id="repeater_img" :src="img_src" alt="Repeater Image">
     </div>
@@ -32,27 +34,25 @@ export default {
 <style scoped>
 
 .repeatercard{
+    z-index:99;
     width: 100%; height: 100%;
-    color: transparent;
     font-family: 'Montserrat', sans-serif;
-    position: relative;
     display: flex; justify-content: center; align-items: center;
 }
 #repeater_img{
-    pointer-events: none;
-    background-color: rgb(241, 241, 241);
     width: 100%; height: 100%;
     position: absolute;
     top: 0; left: 0;
     z-index: -1;
-    opacity: 0.5;
     object-fit: cover;
     object-position: center;
-    filter: brightness(70%);
+    filter: brightness(50%);
 }
 #repeater_text{
+    pointer-events: none;
     position: absolute;
-    left: -50px;
+    left: -20%;
+    top: 45%;
 }
 #repeater_name{
     position: relative;
@@ -60,11 +60,12 @@ export default {
     font-size: 4em; font-weight: bold;
 }
 #repeater_loc{
-    font-size: 3em;
+    font-size: 2.5em; font-weight: bold;
+    white-space: nowrap;
 }
 #repeater_desc{
     font-size: 1.5em;
-    opacity: 0.8;
+    opacity: 0.8; font-weight: normal;
 }
 
 /* Adjusting card widths */

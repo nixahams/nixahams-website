@@ -1,41 +1,35 @@
 <template>
   <div id="repeaters_page">
+
     <CardArrow/>
   </div>
 </template>
   
 <script>
+
 import CardArrow from '../components/CardArrow.vue';
 
 export default {
+  props: {parallax: {
+    type: Boolean,
+    default: true
+  }},
   name: 'RepeatersPage',
   components: {
-    CardArrow
-},
+    CardArrow,
+  },
   data(){
     return{
     }
   },
   methods: {
   },
-  mounted() {
-  },
+  mounted(){
+  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  background-color: #1c2023;
-}
-
 #repeaters_page {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,8 +41,6 @@ body {
   background-color: #1c2023;
   position: relative;
 }
-
-
 
 
 /* Slightly Resized Screen Styles */
