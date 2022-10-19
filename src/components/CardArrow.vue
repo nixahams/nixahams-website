@@ -4,11 +4,11 @@
         <img :id="imgid2" class="imgInGeneral" :src="imgsrc2" alt="">
         <img :id="imgid3" class="imgInGeneral" :src="imgsrc3" alt="">
         <img :id="imgid4" class="imgInGeneral" :src="imgsrc4" alt="">
-        <div class="arrs" id="testright" @click="arrowClick($event)">
-            <i id="testright" class='fas fa-chevron-right'></i>
+        <div class="arrs" id="arr_right" @click="arrowClick($event)">
+            <i id="arr_right" class='fas fa-chevron-right'></i>
         </div>
-        <div class="arrs" id="testleft" @click="arrowClick($event)">
-            <i id="testleft"  class='fas fa-chevron-left'></i>
+        <div class="arrs" id="arr_left" @click="arrowClick($event)">
+            <i id="arr_left"  class='fas fa-chevron-left'></i>
         </div>
 
         <div id="repeater_card_slide">
@@ -17,11 +17,11 @@
                 <Tilt :options="options">
                     <div id="topg">
                         <RepeaterCard 
-                        :key="rep2.key" 
-                        :img_src="rep2.img_arr.img1"
-                        :name="rep2.name"
-                        :short_desc="rep2.short_desc" 
-                        :location="rep2.location" />
+                        :key="rep1.key" 
+                        :img_src="rep1.img_arr.img1"
+                        :name="rep1.name"
+                        :short_desc="rep1.short_desc" 
+                        :location="rep1.location" />
                     </div>
                 </Tilt>
             </div>
@@ -29,11 +29,11 @@
                 <Tilt :options="options">
                     <div id="topg">
                         <RepeaterCard 
-                        :key="rep1.key" 
-                        :img_src="rep1.img_arr.img1"
-                        :name="rep1.name"
-                        :short_desc="rep1.short_desc" 
-                        :location="rep1.location" />
+                        :key="rep2.key" 
+                        :img_src="rep2.img_arr.img1"
+                        :name="rep2.name"
+                        :short_desc="rep2.short_desc" 
+                        :location="rep2.location" />
                     </div>
                 </Tilt>
             </div>
@@ -129,7 +129,10 @@ export default {
                 gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
                 gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
             },
-            positionA: {index: 0, at: 2}
+            expos: 0,
+            posA: 1,
+            posB: 2,
+            posC: 3
         }
     },
     methods: {
@@ -171,37 +174,50 @@ export default {
             }
             this.toggleLeft++;
         },
-        getIndex(indx, position){
-            console.log(indx, position);
-            if(position==1){
-                if((indx-1)<0){
-                    this.positionA.index = this.repeater_array.length-1;
-                }else{
-                    this.positionA.index--;
-                }
-                console.log("pos index", this.positionA.index)
-                return this.positionA.index;
+        getIndex(pos, card, side){
+            card = card.trim();
+            side = side.trim();
+            if(pos==1 && side == "right"){ 
+                if(card=='A'){this.posA=3;}
+                else if(card=='B'){this.posB=3;}
+                else if(card=='C'){this.posC=3;}
+                if(this.expos+1 > this.repeater_array.length-1){return 0;}
+                else{return this.expos + 1;}
             }
-            if(position==2){
-                
-                this.positionA.at = 3;
-                return this.positionA.index;
+            else if(pos==2 && side == "right"){
+                if(card=='A'){this.posA=1;}
+                else if(card=='B'){this.posB=1;}
+                else if(card=='C'){this.posC=1;}
+                if(this.expos-1 < 0){return this.repeater_array.length-1}
+                else{return this.expos - 1;}
             }
-            if(position==3){
-                if((indx-1)<0){
-                    this.positionA.index = this.repeater_array.length-1;
-                }else{
-                    this.positionA.index--;
-                }
-                return this.positionA.index;
+            else if(pos==3 && side == "right"){
+                if(card=='A'){this.posA=2;}
+                else if(card=='B'){this.posB=2;}
+                else if(card=='C'){this.posC=2;}
+                return this.expos;
             }
-            
+            else if(pos==1 && side == "left"){
+                if(card=='A'){this.posA=2;}
+                else if(card=='B'){this.posB=2;}
+                else if(card=='C'){this.posC=2;}
+                return this.expos;
+            }
+            else if(pos==2 && side == "left"){
+                if(card=='A'){this.posA=3;}
+                else if(card=='B'){this.posB=3;}
+                else if(card=='C'){this.posC=3;}
+                if(this.expos+1 > this.repeater_array.length-1){return 0;}
+                else{return this.expos + 1;}
+            }
+            else if(pos==3 && side == "left"){
+                if(card=='A'){this.posA=1;}
+                else if(card=='B'){this.posB=1;}
+                else if(card=='C'){this.posC=1;}
+                if(this.expos-1 < 0){return this.repeater_array.length-1}
+                else{return this.expos - 1;}
+            }
 
-            // if(from=="L3"){index = this.i-1;}
-
-            // if(index < 0){index = this.repeater_array.length-1;}
-            // if(index == this.repeater_array.length){index = 0;}
-            // return index;
         },
         arrowClick(e) { 
             let eltouched = e.srcElement.id;
@@ -209,29 +225,24 @@ export default {
             let card_left = document.getElementById('left');
             let card_center = document.getElementById('center');
             let card_right = document.getElementById('right');
-            if(eltouched=="testright"){
+            if(eltouched=="arr_right"){
                 this.i++;
+                this.expos ++;
                 if(this.i > this.repeater_array.length-1){this.i = 0;}
-
-                this.rep1 = this.repeater_array[this.getIndex(this.positionA.index, this.positionA.at)];
-                
-                
-                // this.rep2 = this.repeater_array[this.getIndex(this.i-1, 'R1')];
-                // this.rep3 = this.repeater_array[this.getIndex(this.i+1, 'R3')];
-
+                if(this.expos > this.repeater_array.length-1){this.expos = 0;}
+                this.rep1 = this.repeater_array[this.getIndex(this.posA,"A","right")];
+                this.rep2 = this.repeater_array[this.getIndex(this.posB,'B',"right")];
+                this.rep3 = this.repeater_array[this.getIndex(this.posC,"C","right")];
                 this.shiftRight(card_left,card_center,card_right);
                 this.imageShiftRight();
             }else{
                 this.i--;
-                this.rep2 = this.repeater_array[this.i-1];
+                this.expos--;
                 if(this.i < 0){this.i = this.repeater_array.length-1}
-
-                console.log(this.i)
-                this.rep2 = this.repeater_array[this.getIndex(this.i-2, 'L1')];
-                this.rep1 = this.repeater_array[this.getIndex(this.i-1, 'L2')];
-                this.rep3 = this.repeater_array[this.getIndex(this.i, 'L3')];
-
-
+                if(this.expos < 0){this.expos = this.repeater_array.length-1}
+                this.rep1 = this.repeater_array[this.getIndex(this.posA,"A","left")];
+                this.rep2 = this.repeater_array[this.getIndex(this.posB,'B',"left")];
+                this.rep3 = this.repeater_array[this.getIndex(this.posC,"C","left")];
                 this.shiftLeft(card_left,card_center,card_right);
                 this.imageShiftLeft();
             }
@@ -240,13 +251,9 @@ export default {
     mounted(){
         this.repeater_array = repeaters.repeater_list;
         this.imgsrc1 = this.repeater_array[0].img_arr.img1;
-        console.log(this.i)
-
-        this.rep1 = this.repeater_array[0];
-        // this.rep2 = this.repeater_array[this.getIndex(this.i-1)];
-        // this.rep3 = this.repeater_array[this.getIndex(this.i+1)];
-
-        // console.log(this.repeater_array);
+        this.rep1 = this.repeater_array[this.repeater_array.length-1];
+        this.rep2 = this.repeater_array[0];
+        this.rep3 = this.repeater_array[1];
     }
 }
 </script>
@@ -266,8 +273,8 @@ export default {
     top: 0; 
     background-color: transparent;
 }
-#testright{right: 0;}
-#testleft{left: 0}
+#arr_right{right: 0;}
+#arr_left{left: 0}
 
 #topg{
     color: white;
@@ -338,6 +345,7 @@ export default {
     scale(80%) scaleX(130%)
     rotateY(30deg);
     filter: brightness(75%);
+    user-select: none;
 }
 #right{
     z-index: 2;
@@ -348,9 +356,8 @@ export default {
     scale(80%) scaleX(130%)
     rotateY(-30deg);
     filter: brightness(75%);
+    user-select: none;
 }
-
-
 .imgInGeneral{
     width: 100%; height: 100%;
     position: absolute;
@@ -361,6 +368,7 @@ export default {
     object-position: top;
     transition: 0.6s ease;
     filter: brightness(30%) blur(15px);
+    user-select: none;
 }
 
 #hide{opacity: 0; transition: 0s ease;}
@@ -396,13 +404,14 @@ export default {
 
 
 
-#CardArrow {
+#CardArrow{
     position: relative;
     width: 100%;
     height: 110vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: hidden;
 }
 
 #repeater_card_slide{
