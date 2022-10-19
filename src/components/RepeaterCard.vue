@@ -43,6 +43,7 @@ export default {
     width: 100%; height: 100%;
     position: absolute;
     top: 0; left: 0;
+    
     z-index: -1;
     object-fit: cover;
     object-position: center;
@@ -100,6 +101,12 @@ export default {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
+    #repeater_text{
+        pointer-events: none;
+        position: absolute;
+        left: 0; right: 0;
+        margin: 0 auto;
+        top: 45%;
+    }
 }
 </style>

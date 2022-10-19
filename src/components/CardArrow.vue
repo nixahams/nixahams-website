@@ -195,13 +195,38 @@ export default {
                 if(card=='A'){this.posA=2;}
                 else if(card=='B'){this.posB=2;}
                 else if(card=='C'){this.posC=2;}
+                let emitthis;
+                switch(card){
+                    case("A"):
+                        emitthis=this.rep1;
+                        break;
+                    case("B"):
+                        emitthis=this.rep2;
+                        break;
+                    case("C"):
+                        emitthis=this.rep3;
+                        break;
+                }
+                this.$emit("displayinfo", emitthis);
                 return this.expos;
             }
             else if(pos==1 && side == "left"){
                 if(card=='A'){this.posA=2;}
                 else if(card=='B'){this.posB=2;}
                 else if(card=='C'){this.posC=2;}
-                return this.expos;
+                let emitthis;
+                switch(card){
+                    case("A"):
+                        emitthis=this.rep1;
+                        break;
+                    case("B"):
+                        emitthis=this.rep2;
+                        break;
+                    case("C"):
+                        emitthis=this.rep3;
+                        break;
+                }
+                this.$emit("displayinfo", emitthis);                return this.expos;
             }
             else if(pos==2 && side == "left"){
                 if(card=='A'){this.posA=3;}
@@ -269,7 +294,7 @@ export default {
     align-items: center;
     font-size: 4em;
     position: absolute;
-    width: 20vw; height: 70%;
+    width: 20vw; height: 100%;
     top: 0; 
     background-color: transparent;
 }
@@ -313,13 +338,14 @@ export default {
     font-family: 'Montserrat', sans-serif;
     width: 20vw; height: 80vh;
     position: absolute;
-    margin-left: auto;margin-right: auto; 
-    left: 0; right: 0; 
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
     transition: 0.6s ease, color 0s;
 }
 
 #center{
-    left: 0; right: 0; 
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
     position: absolute;
     z-index: 99;
     font-size: 1em;
@@ -337,6 +363,7 @@ export default {
 
 
 #left{
+
     z-index: 2;
     pointer-events: none; 
     transform: 
@@ -407,7 +434,7 @@ export default {
 #CardArrow{
     position: relative;
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
