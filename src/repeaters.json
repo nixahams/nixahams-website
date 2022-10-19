@@ -1,7 +1,7 @@
 {
     "repeater_list": [
         { 
-            "name": "INDEX 0",
+            "name": "123.456",
             "img_arr": {
                 "img1": "data:image/png;base64,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",
                 "img2": "https://i.imgur.com/yyIICis.jpeg"
@@ -9,12 +9,12 @@
             "short_desc": "Thi1s is a desc short format",
             "location": "Crane, MO",
             "key" : 1,
-            "long_title": "long1 fasdasdf asf sad fas",
-            "long_desc": "desc1 sadfasdfa sfas dfas",
+            "long_title": "Purple",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "10/12/2022"
         },
         { 
-            "name": "INDEX 1",
+            "name": "987.654",
             "img_arr": {
                 "img1": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Eo_circle_blue_number-1.svg/1200px-Eo_circle_blue_number-1.svg.png",
                 "img2": "willow_prings_146.985(1).jpg"
@@ -22,12 +22,12 @@
             "short_desc": "Ano2ther a desc short format",
             "location": "Willow Springs, MO",
             "key" : 2,
-            "long_title": "long1 adsf asdf ",
-            "long_desc": "desc1 fds asdfasdfasdfdas fsadfasd dfads adf",
+            "long_title": "Blue Purple",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "8/12/2022"
         },
         { 
-            "name": "INDEX 2",
+            "name": "345.234",
             "img_arr": {
                 "img1": "https://e7.pngegg.com/pngimages/1012/998/png-clipart-white-number-2-social-media-logo-computer-icons-number-2-infographic-blue.png",
                 "img2": "rolla_146.820(1).jpg"
@@ -35,25 +35,25 @@
             "short_desc": "Ano3ther a desc short format",
             "location": "Rolla, MO",
             "key" : 3,
-            "long_title": "long1 asdf asdfasdf",
-            "long_desc": "desc1 sadfasdfsdf",
+            "long_title": "Pink Green Yellow",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "1/12/2022"
         },
         { 
-            "name": "INDEX 3",
+            "name": "293.930",
             "img_arr": {
                 "img1": "https://www.pinclipart.com/picdir/big/88-887211_number-3-in-black-circle-clipart.png",
                 "img2": ""
             },
             "short_desc": "Ano3ther a desc short format",
-            "location": "Bolivar, MO",
+            "location": "Billings, MO",
             "key" : 4,
-            "long_title": "long1ewqr wer qerqrw e",
-            "long_desc": "desc1 qwer qwe rqwrqwqwe rq ewr",
+            "long_title": "Green Green Blue",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "5/12/2022"
         },
         { 
-            "name": "INDEX 4",
+            "name": "657.234",
             "img_arr": {
                 "img1": "https://www.seekpng.com/png/detail/38-385121_number-4-png-number-4-design-clip-art.png",
                 "img2": ""
@@ -61,12 +61,12 @@
             "short_desc": "Ano3ther a desc short format",
             "location": "Bolivar, MO",
             "key" : 5,
-            "long_title": "long1 vbcnvbc bvncbv n",
-            "long_desc": "desc1 cvbnbvn cvbn cn cbn cb",
+            "long_title": "Purple Yellow",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "4/12/2022"
         },
         { 
-            "name": "INDEX 5",
+            "name": "124.495",
             "img_arr": {
                 "img1": "https://i.pinimg.com/originals/e2/dc/51/e2dc5135380a121cdff33c2445a2a317.png",
                 "img2": ""
@@ -74,8 +74,8 @@
             "short_desc": "Ano3ther a desc short format",
             "location": "Bolivar, MO",
             "key" : 6,
-            "long_title": "long1a sdfads fsadf adsa",
-            "long_desc": "desc1 dfa sa sd adfs",
+            "long_title": "Yellow Green",
+            "long_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
             "date": "12/12/2022"
         }
     ]

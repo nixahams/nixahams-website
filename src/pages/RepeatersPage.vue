@@ -8,7 +8,7 @@
         <div id="filter_img_parent">
           <img id="filter_img" src="https://cdn3.iconfinder.com/data/icons/flaticons-1/24/flaticon_search-512.png" alt="">
         </div>
-        <input type="text" placeholder="Search by name" name="user_input" id="user_input">
+        <input type="text" @click="user_active($event.target.values)" @input="user_typing($event.target.value)" :placeholder="search_by" name="user_input" id="user_input">
         <div id="filter_drop">
           <select name="search_options" id="search_options">
             <option value="all">All</option>
@@ -16,6 +16,9 @@
             <option value="frequenct">Frequency</option>
           </select>
 
+        </div>
+        <div v-if="result_visible" id="search_results">
+          <ResultOption @option_selected="op_selected" v-for="res in result_list" :key="res.key" :val="res.key" :title="res.long_title"/>
         </div>
       </div>
 
@@ -27,8 +30,9 @@
 </template>
   
 <script>
-
+ResultOption
 import CardArrow from '../components/CardArrow.vue';
+import ResultOption from '../components/ResultOption.vue';
 import repeaters from "../repeaters.json";
 
 export default {
@@ -39,18 +43,63 @@ export default {
   name: 'RepeatersPage',
   components: {
     CardArrow,
+    ResultOption
   },
   data(){
     return{
       rep_arr: {},
+      search_by: "Search by All",
       count: 0,
       desc_class: "desc_fade2",
       long_title: "This is a long title",
       date: "10/15/2022",
       long_desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
+      result_visible: false,
+      result_list: []
     }
   },
   methods: {
+    user_active(text){
+      if(text!=''){this.result_visible=true;}
+    },
+    op_selected(val){
+      let obj;
+      for(let i = 0; i < this.rep_arr.length;i++){
+        if(this.rep_arr[i].key == val){
+          obj = this.rep_arr[i];
+        }
+      }
+      this.long_title=obj.long_title;
+      this.date=obj.date;
+      this.long_desc=obj.long_desc;
+      this.result_visible = false;
+    },
+    user_typing(text){
+      text=text.toLowerCase();
+      this.result_list = [];
+      if(text==""){
+        this.result_visible = false;
+        return;
+      }
+      this.result_visible = true;
+      let str = text;
+      let stringArray = str.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+      /* case: all */
+      // check every objet in database
+      for(let i = 0; i < this.rep_arr.length;i++){
+        // check if text appears in databse
+        for(let j = 0; j < stringArray.length; j++){
+            if(this.rep_arr[i].long_title.toLowerCase().includes(stringArray[j])){
+            this.result_list.push(this.rep_arr[i]);
+          }
+        }
+      }
+      // remove duplicate values from results
+      let uniqueResults = this.result_list.filter((c, index) => {
+        return this.result_list.indexOf(c) === index;
+      });
+      this.result_list = uniqueResults;
+    },
     showinfo(obj){
       if(this.count%2==0){
         this.desc_class="desc_fade1";
@@ -129,7 +178,8 @@ export default {
   cursor: pointer;
 }
 #user_input{
-  height: 100%; width: 80%;
+  height: 100%; width: 75%;
+  padding-right: 3%;
   background-color: transparent;
   outline: none; border: none;
   color: rgb(99, 201, 97);
@@ -146,16 +196,21 @@ export default {
   filter: invert(100%);
 }
 #filter_drop{
-  width: 10%; height: 100%;
+  width: fit-content; height: 100%;
+  min-width: 15%;
   display: flex; justify-content: center;  align-items: center;
   background-color: rgba(30, 216, 26, 0.268);
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
+  transition: 0.2s ease;
   padding: 10px;
+}
+#filter_drop:hover{
+  background-color: rgba(30, 216, 26, 0.2);
 }
 #search_options{
   outline: none; border: none;
-  width: 100%; height: 100%;
+  width: fit-content; height: 100%;
   background-color: transparent; outline: none;
   cursor: pointer;
   color: white;
@@ -163,21 +218,44 @@ export default {
 option{
   color:black;
 }
+#search_results{
+  height: fit-content; width: 75%;
+  margin-left: -5%;
+  background-color: rgb(63, 63, 67);
+  position: absolute;
+  top: 100%;
+  color: white;
+  display: flex; flex-direction: column;
+  border-end-end-radius: 30px;
+  border-end-start-radius: 30px;
+  overflow: hidden;
+}
+
+
+
+
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-
+  #repeater_filter{
+    width: 60%; height: 8vh;
+  }
 
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-
+  #repeater_filter{
+    width: 60%; height: 8vh;
+  }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
+  #repeater_filter{
+    width: 80%; height: 8vh;
+    font-size: 0.8em;
+  }
 }
 </style>
   
