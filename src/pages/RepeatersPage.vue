@@ -6,7 +6,7 @@
 
       <div id="repeater_filter">
         <div id="filter_img_parent">
-          <img id="filter_img" src="https://cdn3.iconfinder.com/data/icons/flaticons-1/24/flaticon_search-512.png" alt="">
+          <i id="filter_img" class="fa-solid fa-magnifying-glass"></i>
         </div>
         <input type="text" @click="user_active($event.target.values)" @input="user_typing($event.target.value)" :placeholder="search_by" name="user_input" id="user_input">
         <div id="filter_drop">
@@ -22,7 +22,8 @@
         </div>
       </div>
 
-      <div id="desc_info_title">{{long_title}}</div>
+      <div id="desc_info_title1">{{long_name}} - {{long_location}}</div>
+      <div id="desc_info_title2">{{long_title}}</div>
       <div id="desc_info_date">{{date}}</div>
       <div id="desc_info_desc">{{long_desc}}</div>
     </div>
@@ -51,9 +52,11 @@ export default {
       search_by: "Search by all",
       count: 0,
       desc_class: "desc_fade2",
-      long_title: "This is a long title",
-      date: "10/15/2022",
-      long_desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui explicabo, quasi provident voluptas iusto aut ea ullam veritatis earum, perspiciatis, odio nihil illo. Nam necessitatibus, nihil atque aliquam impedit magnam animi ipsa dolorem amet aliquid voluptates quis cumque doloremque possimus unde, recusandae eos. Deserunt sunt ea incidunt iure ratione laboriosam minus non. Et eum quaerat delectus neque ab porro aut, harum ut distinctio aspernatur necessitatibus dolorem repellendus totam beatae sint nisi commodi magni, saepe sequi ex veniam fugiat. Perferendis ab dignissimos corrupti? Beatae, et in odit praesentium suscipit nisi, distinctio porro adipisci deserunt tempore aperiam modi, ducimus voluptas odio quidem.",
+      long_name: '000.000',
+      long_location: 'No data to provide',
+      long_title: "No data to provide",
+      date: "00/00/0000",
+      long_desc: "No data to provide",
       result_visible: false,
       result_list: [],
       filter_by: 'all'
@@ -61,19 +64,16 @@ export default {
   },
   methods: {
     onChange(e){
+      this.result_visible = false;
       this.filter_by = e.target.value;
       this.search_by = `Search by ${this.filter_by}`;
     },
     user_active(text){
       if(text!=''){this.result_visible=true;}
     },
-    op_selected(val){
-      let obj;
-      for(let i = 0; i < this.rep_arr.length;i++){
-        if(this.rep_arr[i].key == val){
-          obj = this.rep_arr[i];
-        }
-      }
+    op_selected(obj){
+      this.long_name=obj.name;
+      this.long_location=obj.location;
       this.long_title=obj.long_title;
       this.date=obj.date;
       this.long_desc=obj.long_desc;
@@ -123,6 +123,8 @@ export default {
       }else{
         this.desc_class="desc_fade2";
       }
+      this.long_name=obj.name;
+      this.long_location=obj.location;
       this.long_title=obj.long_title;
       this.date=obj.date;
       this.long_desc=obj.long_desc;
@@ -131,6 +133,8 @@ export default {
   },
   mounted(){
     this.rep_arr = repeaters.repeater_list;
+    this.long_name=this.rep_arr[0].name;
+    this.long_location=this.rep_arr[0].location;
     this.long_title=this.rep_arr[0].long_title;
     this.date=this.rep_arr[0].date;
     this.long_desc=this.rep_arr[0].long_desc;
@@ -169,7 +173,11 @@ export default {
   justify-content: flex-start;
   padding-top: 25vh;
 }
-#desc_info_title{
+#desc_info_title1{
+  color: #db7b32a9;
+  font-size: 3.5em;
+}
+#desc_info_title2{
   color: white;
   font-size: 4em;
 }
@@ -188,42 +196,43 @@ export default {
   top: 10vh;
   right: 0; left: 0;
   border-radius: 100px;
-  border: 3px solid rgb(63, 153, 51);
+  border: 3px solid #DB7B32;
   display: flex; justify-content: center; align-items: center;
   margin: 0 auto;
   width: 40%; height: 8vh;
   cursor: pointer;
 }
+
 #user_input{
   height: 100%; width: 75%;
   padding-right: 3%;
   background-color: transparent;
   outline: none; border: none;
-  color: rgb(99, 201, 97);
+  color: #e49050;
   font-size: 2em;
 }
 #filter_img_parent{
   height: 100%;width: 10%;
-  display: flex; justify-content: center;
-  align-items: center;
+  display: flex; justify-content: center;align-items: center;
 }
 #filter_img{
-  width: 45%; height: 45%;
+  width: 100%; height: 100%;
+  display: flex; justify-content: center;align-items: center;
   object-fit: contain;
-  filter: invert(100%);
+  color: white; font-size: 1.6em;
 }
 #filter_drop{
   width: fit-content; height: 100%;
   min-width: 15%;
   display: flex; justify-content: center;  align-items: center;
-  background-color: rgba(30, 216, 26, 0.268);
+  background-color: #DB7B32;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   transition: 0.2s ease;
   padding: 10px;
 }
 #filter_drop:hover{
-  background-color: rgba(30, 216, 26, 0.2);
+  background-color: #DB7B32ae;
 }
 #search_options{
   outline: none; border: none;

@@ -1,6 +1,6 @@
 <template>
-    <div id="ResultOption" @click="$emit('option_selected', val)">
-        <img id="result_img" src="https://cdn3.iconfinder.com/data/icons/flaticons-1/24/flaticon_search-512.png" alt="">
+    <div id="ResultOption" @click="$emit('option_selected', res)">
+      <i id="result_img" class="fa-solid fa-magnifying-glass"></i>
         {{title}}
     </div>
   </template>
@@ -49,8 +49,7 @@
     height: 50%;
     width: 5%;
     margin-right: 3%;
-    object-fit: contain;
-    filter: invert(42%) sepia(86%) saturate(400%) hue-rotate(66deg) brightness(98%) contrast(86%);
+    color: #db7b32;
 }
 
 
