@@ -18,7 +18,7 @@
             <div class="card_title">Single</div>
             <div class="card_price">$15 / Mo</div>
             <div class="card_button_parent">
-              <button class="card_btn">Select</button>
+              <button id="card_btn_front" class="card_btn">Select</button>
             </div>
 
           </div>
@@ -31,7 +31,7 @@
             <div class="card_title">Family</div>
             <div class="card_price">$20 / Mo</div>
             <div class="card_button_parent">
-              <button class="card_btn">Select</button>
+              <button id="card_btn_back" class="card_btn">Select</button>
             </div>
           </div>
 
@@ -97,7 +97,8 @@ export default {
   grid-template-rows: 1fr 1fr 1fr 1fr;
   overflow: visible;
   transform-style: preserve-3d;
-  perspective: 2000px;
+  perspective: 1000px;
+  border-radius: 10px;
 }
 #card_front{
   transform: rotateY(0deg) translateZ(1px);}
@@ -106,25 +107,30 @@ export default {
   width: 20%; height: 55%;
   margin-top: 50px;
   transform-style: preserve-3d;
-  perspective: 2000px;
+  perspective: 1000px;
   perspective-origin: center;
-  transition: 1.5s 0.3s ease;
+  transition: 1s 0.3s ease-out;
   -webkit-font-smoothing: antialiased;
 }
 .card_img_parent{
   position: relative;
   width: 100%; height: 100%;
   transform-style: preserve-3d;
-  perspective: 2000px;
+  perspective: 1000px;
 }
 #front_img{
   transform: translateZ(15px);
-  width: 98%; height: 100%;
-  margin-top: 1.2%; margin-left: 1%;
+  width: 96%; height: 100%;
+  margin-top: 2%; margin-left: 2%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 #back_img{
-  transform: translateZ(15px);
-  width: 100%; height: 100%;
+  transform: translateZ(20px);
+  width: 99%; height: 100%;
+  margin-left: 0.5%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 .card_title{
   width: 100%; height: 100%;
@@ -144,7 +150,6 @@ export default {
   height: 100%; width: 100%;
 }
 .card_btn{
-  background-color: #102770;
   border: none; outline: none;
   height: 40%; width: 30%;
   border-radius: 5px;
@@ -152,9 +157,10 @@ export default {
   font-size: 1.2em; font-family: 'Montserrat';
   transition: 0.2s ease;
 }
-.card_btn:hover{
-  background-color: #0c1c52;
-}
+#card_btn_front{  background-color: #102770;}
+#card_btn_back{  background-color: #11500c;}
+#card_btn_front:hover{  background-color: #0a1a4b;}
+#card_btn_back:hover{background-color: #0b3607;}
 /* card end */
 
 
