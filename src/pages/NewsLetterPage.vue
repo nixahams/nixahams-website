@@ -17,6 +17,12 @@ export default {
   name: 'NewsletterPage',
   components: {
     BlogPost
+  },
+  methods:{
+    scrollToTop() {document.body.scrollTop = 0;},
+  },
+  mounted(){
+    this.scrollToTop();
   }
 }
 </script>

@@ -142,6 +142,12 @@ export default {
     return {
 
     }
+  },
+  methods:{
+    scrollToTop() {document.body.scrollTop = 0;},
+  },
+  mounted(){
+    this.scrollToTop();
   }
 }
 </script>

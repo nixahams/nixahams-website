@@ -68,6 +68,12 @@ export default {
   name: 'AboutPage',
   components: {
 
+  },
+  methods:{
+    scrollToTop() {document.body.scrollTop = 0;},
+  },
+  mounted(){
+    this.scrollToTop();
   }
 }
 </script>

@@ -63,6 +63,7 @@ export default {
     }
   },
   methods: {
+    scrollToTop() {document.body.scrollTop = 0;},
     onChange(e){
       this.result_visible = false;
       this.filter_by = e.target.value;
@@ -132,6 +133,7 @@ export default {
     }
   },
   mounted(){
+    this.scrollToTop();
     this.rep_arr = repeaters.repeater_list;
     this.long_name=this.rep_arr[0].name;
     this.long_location=this.rep_arr[0].location;

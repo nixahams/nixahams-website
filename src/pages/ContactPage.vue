@@ -13,6 +13,12 @@ export default {
   name: 'ContactPage.vue',
   components: {
 
+  },
+  methods:{
+    scrollToTop() {document.body.scrollTop = 0;},
+  },
+  mounted(){
+    this.scrollToTop();
   }
 }
 </script>
