@@ -69,7 +69,7 @@
 
 <!-- CURRENT STATE -->
 ## What the website currently looks like
-To see more pictures of the progression on the site, check out the [landscape view](NixaHams-Website/images/landscape/) folder and the [portrait view](NixaHams-Website/images/portrait/) folders [here.](NixaHams-Website/images/)
+To see more pictures of the progression on the site, check out the [landscape view](https://github.com/joshdejeu/NixaHams-Website/tree/master/images/landscape) folder and the [portrait view](https://github.com/joshdejeu/NixaHams-Website/tree/master/images/portrait) folders [here.](https://github.com/joshdejeu/NixaHams-Website/tree/master/images)
 
 ### Landscape View
 [![Current Screenshot][current-screenshot]](https://www.nixahams.net)
