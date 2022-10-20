@@ -1,0 +1,437 @@
+[
+    {
+      "callsign": "KBØNHX",
+      "name": "James Adkins",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KCØIYI",
+      "name": "Jim Adkins",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØGKP",
+      "name": "Kim Adkins",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KAØRZE",
+      "name": "Shawn Baker",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KBØUTY",
+      "name": "Pat Barber",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KBØUTI",
+      "name": "Tom Bieker",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØBGQ",
+      "name": "Clint Block",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØEIU",
+      "name": "Chris Blakemore",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KTØAMY",
+      "name": "Tammy Blakemore",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "WBØQIR",
+      "name": "David Bowman",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WØPFO",
+      "name": "Ray Cadmus",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WØNQW",
+      "name": "Larry Catron",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "K9HRD",
+      "name": "Robert Clark",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KI4CHS",
+      "name": "Shelley Clark",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KBØWZC",
+      "name": "Chris Cochran",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØSQC",
+      "name": "Jordan Cochran",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØSQB",
+      "name": "Shannon Cochran",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "NMØU",
+      "name": "Leo Cocquyt",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "K7FOX",
+      "name": "Julie Combs",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØQNM",
+      "name": "John Copelin",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "Member",
+      "name": "Donna Christell",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "ADØRR",
+      "name": "Todd Christell",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØCRT",
+      "name": "Tom Duey",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "NØIRN",
+      "name": "Gary Doucey",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "NØIRM",
+      "name": "Kent Doucey",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KØILG",
+      "name": "Patty Doucey",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KDØHGY",
+      "name": "Richard Doucey",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KE0HYJ",
+      "name": "Dr. Thomas Dronet",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "Member",
+      "name": "James Fleming",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØTQD",
+      "name": "James French",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KEØDFX",
+      "name": "Ron Foster",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KCØTCF",
+      "name": "Bill Gilmore",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WAØJZK",
+      "name": "Larry Grinstead",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WSØE",
+      "name": "Joe Hargis",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "ACØHD",
+      "name": "Les Heitman",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "W3LGA",
+      "name": "Robert Huelga",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KAØI",
+      "name": "Kevin Hunter",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KE4ULG",
+      "name": "Steven Jones",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "Member",
+      "name": "Cameron Jordan",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØUKB",
+      "name": "Randy Jordan",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "Member",
+      "name": "Susan Jordan",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "Member",
+      "name": "Tristan Jordan",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KFØIQ",
+      "name": "Bill Kastler",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KEØAYM",
+      "name": "Brandon Kerr",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "Member",
+      "name": "Dee Kerr",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØYOO",
+      "name": "Emily Kerr",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KCØVGC",
+      "name": "Jeff Kerr",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "Member",
+      "name": "Stephanie Kerr",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KØADI",
+      "name": "Rod Kittleman",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WØHL",
+      "name": "Dennis Kimrey",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "NØINF",
+      "name": "Dan Mann",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KDØTFG",
+      "name": "Debi Mann",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KC5HXO",
+      "name": "James Manning",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KØATZ",
+      "name": "Brian Martin",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "N0OCP",
+      "name": "Joye McElwee",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WDØAFP",
+      "name": "Shannon McGowan",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "W0PP",
+      "name": "Jerry Miller",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KBØWVT",
+      "name": "Jeff Morrissey",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KEØKGU",
+      "name": "Carl J Nelson",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "WAØMBE",
+      "name": "Jim Nicoll",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KJØSHP",
+      "name": "Joshua Pautz",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KØPNN",
+      "name": "Alan Penn",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KF7TGS",
+      "name": "Gary Pester",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "WØLEP",
+      "name": "Larry Pitts",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WBØQWZ",
+      "name": "Ken Reeder",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "N7WY",
+      "name": "Robert Rennard",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KEØDJM",
+      "name": "Tim Ricke",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "WØDR",
+      "name": "David Roberts",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KØAZ",
+      "name": "Michael Sanders",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KD5Z",
+      "name": "Corey Schneider",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KDØAA",
+      "name": "Peter Sils",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "NØCSA",
+      "name": "Tom Simmons",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "N5TU",
+      "name": "William Stacy",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØCBI",
+      "name": "Gail Stafford",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "ADØGD",
+      "name": "David Switzer",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØGWU",
+      "name": "Tyler Upton",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KDØONE",
+      "name": "John Wall",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KDØYTJ",
+      "name": "Jim Walton",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KEØDPW",
+      "name": "Keith Wiedemann",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KE0KDE",
+      "name": "Frank Whitchurch",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "WØCMW",
+      "name": "Mike Williams",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KDØWQZ",
+      "name": "Garry Williams",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "WØMLW",
+      "name": "Mark Wells",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "NM5X",
+      "name": "J.W. Wilson",
+      "ARRL_membership": false
+    },
+    {
+      "callsign": "KDØSUG",
+      "name": "Sid Wilson",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "NØING",
+      "name": "Brenda Young",
+      "ARRL_membership": true
+    },
+    {
+      "callsign": "KØLAF",
+      "name": "Charlie Young",
+      "ARRL_membership": true
+    }
+]

@@ -1,76 +1,194 @@
 <template>
   <div id="roster">
-    <div id="rost">
-      <!-- <Tilt :parallax="true" :options="options"/> -->
-      <Tilt :options="options">
-        <div id="tiltthis">
+    <div id="membership_parent">
+
+        <div id="membership_buttons">
+          <button @click="membership_select($event.target.id)" :id="single"><div id="btn_txt1">Single</div></button>
+          <button @click="membership_select($event.target.id)" :id="family"><div id="btn_txt2">Family</div></button>
+          <div class="btn_side" :id="membership_selected"></div>
+        </div>
+        
+        <div class="ease" :id="card_side">
+          <div class="full_card" id="card_front">
+            front front front front 
+          </div>
+
+          <div class="full_card" id="card_back">
+            backside backside backside backside
+          </div>
 
         </div>
-      </Tilt>
+
     </div>
 
   </div>
 </template>
   
 <script>
-import Tilt from 'vanilla-tilt-vue'
 
 export default {
-  props: {parallax: {
-    type: Boolean,
-    default: true
-  }},
   name: 'RosterPage',
   components: {
-    Tilt
+    
   },
   data(){
     return{
-      options: {
-        reverse: false, // reverse the tilt direction
-        max: 35, // max tilt rotation (degrees)
-        startX: 0, // the starting tilt on the X axis, in degrees.
-        startY: 0, // the starting tilt on the Y axis, in degrees.
-        perspective: 1000, // Transform perspective, the lower the more extreme the tilt gets.
-        scale: 1, // 2 = 200%, 1.5 = 150%, etc..
-        speed: 300, // Speed of the enter/exit transition
-        transition: true, // Set a transition on enter/exit.
-        axis: null, // What axis should be disabled. Can be X or Y.
-        reset: true, // If the tilt effect has to be reset on exit.
-        easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
-        glare: false, // if it should have a "glare" effect
-        "max-glare": 1, // the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
-        "glare-prerender": false, // false = VanillaTilt creates the glare elements for you, otherwise
-        // you need to add .js-tilt-glare>.js-tilt-glare-inner by yourself
-        "mouse-event-element": null, // css-selector or link to HTML-element what will be listen mouse events
-        // you need to add .js-tilt-glare>.js-tilt-glare-inner by yourself
-        gyroscope: true, // Boolean to enable/disable device orientation detection,
-        gyroscopeMinAngleX: -45, // This is the bottom limit of the device angle on X axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the left border of the element;
-        gyroscopeMaxAngleX: 45, // This is the top limit of the device angle on X axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the right border of the element;
-        gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
-        gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
-      }
+      membership_selected: "single_side",
+      single: 'single_on',
+      family: 'family_off',
+      card_side: 'membership_card_side_front',
     }
+  },
+  methods:{
+    membership_select(id){
+      if(id=="single_on" || id=="single_off"){
+        /* single */
+        this.membership_selected="single_side";
+        this.single = "single_on";
+        this.family = "family_off";
+        this.card_side = "membership_card_side_front";
+      }
+      else{
+        /* family */
+        this.membership_selected="family_side";
+        this.single = "single_off";
+        this.family = "family_on";
+        this.card_side = "membership_card_side_back";
+      }
+    },
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* card start */
+#membership_card_side_front{
+  transform: rotateY(0deg);
+}
+#membership_card_side_back{
+  transform: rotateY(180deg) rotateX(0deg);
+}
+.full_card{
+  width: 100%; height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
+  display: flex; justify-content: center; align-items: center;
+  position: absolute;
+  -webkit-font-smoothing: antialiased;
+
+}
+#card_front{transform: rotateY(0deg) translateZ(30px); background-color: red;}
+#card_back{transform: rotateY(180deg) translateZ(0px) scale(101%); background-color: blue;}
+.ease{
+  width: 20%; height: 55%;
+  margin-top: 50px;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  perspective-origin: center;
+  transition: 1.5s 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+
+}
+/* card end */
+
+
 #roster {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(208, 213, 239);
 }
-#rost{
-  height: 100vh; width: 100%;
-  background-color: rgb(45, 19, 71);
+#membership_parent{
+  height: 110vh; width: 100%;
+  background: linear-gradient(#584f37,#FFEBA7 40%);
   display: flex; justify-content: center; align-items: center;
+  flex-direction: column;
 }
-#tiltthis{
-  width: 300px;
-  height: 500px;
-  background-color: black;
+#membership_buttons{
+  height: fit-content; width: fit-content;
+  position: relative;
+  padding: 20px;
+}
+#membership_buttons > button{
+  width: 150px; height: 70px;
+  border: none;
+  outline: none;
+  background-color: #102770;
+  font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#membership_buttons > button > div{
+  pointer-events: none;
+  position: absolute;
+  display: flex; justify-content: center; align-items: center;
+  width: 150px; height: 70px;
+  top: 20px;
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+#btn_txt1{left: 20px;}
+#btn_txt2{right: 20px;}
+.btn_side{
+  transition: 0.5s ease;
+  position: absolute;
+  top: 0; bottom: 0;
+  margin: auto 0;
+  width: calc(50% - 30px); height: calc(100% - 50px);
+  background-color: #FFEBA7;
+  pointer-events: none;
+  border-radius: 5px;
+}
+#single_side{
+  margin-left: 5px;
+}
+#family_side{
+  margin-left: 155px;
+}
+#single_side{
+  margin-left: 5px;
+}
+#family_side{
+  margin-left: 155px;
+}
+#single_on,#single_off{
+  border-bottom-left-radius: 5px; border-top-left-radius: 5px;
+}
+#family_on,#family_off{
+  border-bottom-right-radius: 5px; border-top-right-radius: 5px;
+}
+
+#family_on,#single_on{color: #102770;}
+#family_off,#single_off{color: #FFEBA7;}
+
+
+
+
+
+
+
+
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+  .ease{
+    width: 40%; height: 55%;
+  }
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+  .ease{
+    width: 50%; height: 55%;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .ease{
+    width: 60%; height: 55%;
+  }
 }
 </style>
   
