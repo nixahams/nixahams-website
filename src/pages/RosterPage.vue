@@ -9,12 +9,30 @@
         </div>
         
         <div class="ease" :id="card_side">
+
           <div class="full_card" id="card_front">
-            front front front front 
+
+            <div class="card_img_parent">
+              <img id="front_img" src="https://assets.codepen.io/1462889/sea.png" alt="">
+            </div> 
+            <div class="card_title">Single</div>
+            <div class="card_price">$15 / Mo</div>
+            <div class="card_button_parent">
+              <button class="card_btn">Select</button>
+            </div>
+
           </div>
 
           <div class="full_card" id="card_back">
-            backside backside backside backside
+
+            <div class="card_img_parent">
+              <img id="back_img" src="https://assets.codepen.io/1462889/grass.png" alt="">
+            </div> 
+            <div class="card_title">Family</div>
+            <div class="card_price">$20 / Mo</div>
+            <div class="card_button_parent">
+              <button class="card_btn">Select</button>
+            </div>
           </div>
 
         </div>
@@ -75,10 +93,15 @@ export default {
   display: flex; justify-content: center; align-items: center;
   position: absolute;
   -webkit-font-smoothing: antialiased;
-
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  overflow: visible;
+  transform-style: preserve-3d;
+  perspective: 2000px;
 }
-#card_front{transform: rotateY(0deg) translateZ(30px); background-color: red;}
-#card_back{transform: rotateY(180deg) translateZ(0px) scale(101%); background-color: blue;}
+#card_front{
+  transform: rotateY(0deg) translateZ(1px);}
+#card_back{transform: rotateY(180deg);}
 .ease{
   width: 20%; height: 55%;
   margin-top: 50px;
@@ -87,7 +110,50 @@ export default {
   perspective-origin: center;
   transition: 1.5s 0.3s ease;
   -webkit-font-smoothing: antialiased;
-
+}
+.card_img_parent{
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+#front_img{
+  transform: translateZ(15px);
+  width: 98%; height: 100%;
+  margin-top: 1.2%; margin-left: 1%;
+}
+#back_img{
+  transform: translateZ(15px);
+  width: 100%; height: 100%;
+}
+.card_title{
+  width: 100%; height: 100%;
+  text-align: center;
+  font-size: 2.5em; font-family: 'Montserrat';
+  font-weight: bold;
+  display: flex; justify-content: center; align-items: center;
+}
+.card_price{
+  text-align: center;
+  font-size: 3em; font-family: 'Montserrat';
+  height: 100%; width: 100%;
+  display: flex; justify-content: center; align-items: flex-start;
+}
+.card_button_parent{
+  display: flex; justify-content: center; align-items: flex-start;
+  height: 100%; width: 100%;
+}
+.card_btn{
+  background-color: #102770;
+  border: none; outline: none;
+  height: 40%; width: 30%;
+  border-radius: 5px;
+  color: #FFEBA7;
+  font-size: 1.2em; font-family: 'Montserrat';
+  transition: 0.2s ease;
+}
+.card_btn:hover{
+  background-color: #0c1c52;
 }
 /* card end */
 
@@ -100,7 +166,7 @@ export default {
 }
 #membership_parent{
   height: 110vh; width: 100%;
-  background: linear-gradient(#584f37,#FFEBA7 40%);
+  background: linear-gradient(#131123,#0f0e19 40%);
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
 }
@@ -113,7 +179,7 @@ export default {
   width: 150px; height: 70px;
   border: none;
   outline: none;
-  background-color: #102770;
+  background-color: #FFEBA7;
   font-size: 1.5em;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -136,7 +202,7 @@ export default {
   top: 0; bottom: 0;
   margin: auto 0;
   width: calc(50% - 30px); height: calc(100% - 50px);
-  background-color: #FFEBA7;
+  background-color: #242245;
   pointer-events: none;
   border-radius: 5px;
 }
@@ -159,8 +225,8 @@ export default {
   border-bottom-right-radius: 5px; border-top-right-radius: 5px;
 }
 
-#family_on,#single_on{color: #102770;}
-#family_off,#single_off{color: #FFEBA7;}
+#family_on,#single_on{color: #FFEBA7;}
+#family_off,#single_off{color: #102770;}
 
 
 
