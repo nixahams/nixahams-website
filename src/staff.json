@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Shawn Roessle",
+        "image": "https://i.imgur.com/p98o0yU.png",
+        "position": "President",
+        "callsign": "KE0JGI"
+    },
+    {
+        "name": "James Adkins",
+        "image": "https://i.imgur.com/B7Dgtqy.png",
+        "position": "Member",
+        "callsign": "KB0NHX"
+    },
+    {       
+        "name": "Chris Cochran",
+        "image": "https://i.imgur.com/4fttV90.png",
+        "position": "1st NARC President",
+        "callsign": "KB0WZC"
+    }
+]

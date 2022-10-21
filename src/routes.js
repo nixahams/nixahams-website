@@ -5,6 +5,7 @@ import Roster from './pages/RosterPage.vue';
 import Newsletter from './pages/NewsLetterPage.vue';
 import Contacts from './pages/ContactPage.vue';
 import Meetings from './pages/MeetingPage.vue';
+import Staff from './pages/StaffPage.vue';
 import Invalid from './pages/InvalidPage.vue';
 
 export default[
@@ -16,5 +17,6 @@ export default[
     { path: '/newsletter', component: Newsletter},
     { path: '/contacts', component: Contacts},
     { path: '/meetings', component: Meetings},
+    { path: '/staff', component: Staff},
     { path: '*', component: Invalid},
 ];

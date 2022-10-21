@@ -57,9 +57,9 @@
       <table v-if="!nodata" class="roster_table">
         <thead>
           <tr>
-            <th>Callsign</th>
+            <th id="thl">Callsign</th>
             <th>Name</th>
-            <th>ARRL Membership</th>
+            <th id="thr">ARRL Membership</th>
           </tr>
         </thead>
         <tbody>
@@ -161,21 +161,26 @@ export default {
 table{
   width: 50%;
   font-family: 'Montserrat';
+
 }
+tr{border-bottom: 1px solid rgb(76, 74, 80);}
 tbody{
   width: 100%;
 }
 th{
   font-size: 1.5em;
   text-align: center;
-  border: 3px solid #43414b;
+  padding: 10px 0px;
 }
-tr{
+thead{
+  overflow: hidden;
+  background-color: rgb(199, 127, 38);
 }
-td{
-  border: 3px solid #43414b;
-  padding: 5px 3px;
-}
+#thl{border-top-left-radius: 30px;}
+#thr{border-top-right-radius: 30px;}
+td{padding: 5px 3px;}
+td:nth-child(even){background-color: #23202e;}
+td:nth-child(odd){background-color: rgb(44, 40, 59);}
 #roster_list{
   height: fit-content;
   min-height: 90vh; width: 100%;
