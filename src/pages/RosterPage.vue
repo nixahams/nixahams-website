@@ -218,13 +218,14 @@ a,a:hover{color: inherit; cursor: pointer;}
   padding-bottom: 50px;
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
-  font-size: 2em; font-family: 'Montserrat';
+  font-size: 3em; font-family: 'Montserrat';
   color: #FFEBA7;
   text-align: center;
 }
 #roster_subtext{
-  font-size: 0.8em; font-family: 'Montserrat';
+  font-size: 0.5em; font-family: 'Montserrat';
   color: #D0D5EF;
+  padding-top: 20px;
   padding-left: 20%; padding-right: 20%;
   text-align: center;
 }
