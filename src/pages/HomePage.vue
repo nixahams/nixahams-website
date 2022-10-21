@@ -59,7 +59,9 @@
           <div id="home_btn">
             <a target="_blank"
               href="https://teams.microsoft.com/registration/lkJMZdqi6ECZM7f-j6_kKQ,Lhkin-1Z6EqhacQ2vUrL5w,96DOEte9fEetRDePEi5HiQ,amKMf19nQ0Swpve7AGkZag,0Ut6HB5_cEKs2mYNDKnf6g,-npWuWzEJ0iENk3_3CnVsQ?mode=read&tenantId=654c4296-a2da-40e8-9933-b7fe8fafe429">
-              <button id="info_btn">Webinar Link 🡪</button>
+              <button id="info_btn">Webinar Link 
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
             </a>
           </div>
         </div>
@@ -594,13 +596,20 @@ export default {
   box-shadow: 0px 0px 0px 0px white;
 }
 
+@media screen and (max-width: 1300px) {
+  #form_title{
+    font-size: 1.7em;
+  }
+}
 
 
 @media screen and (max-width: 1200px) {
   #home_text {
     text-align: center;
   }
-
+  #form_title{
+    font-size: 2.5em;
+  }
   #this_container {
     height: 60%;
     width: 100%;
@@ -642,7 +651,7 @@ export default {
 
   #contact_form {
     width: 80%;
-    height: 50%;
+    height: 55%;
     bottom: 13%;
     right: 10%;
     background-color: rgb(225, 225, 225);
@@ -670,7 +679,9 @@ export default {
     height: 50%;
     width: 100%;
   }
-
+  #form_title{
+    font-size: 1.7em;
+  }
   #home_text_parent {
     padding: 0px 100px;
   }
@@ -713,6 +724,10 @@ export default {
 
   #contact_form {
     bottom: 2%;
+    height: 60%;
+  }
+  .full_page {
+    height: 160vh;
   }
 }
 
@@ -726,7 +741,9 @@ export default {
   #home_text_parent {
     padding: 0px 50px;
   }
-
+  .full_page {
+    height: 200vh;
+  }
   #home_btn {
     margin-top: 50px;
     width: 100%;
@@ -754,6 +771,9 @@ export default {
   #contact_top {
     height: 50%;
     padding: 0vh 10% 5vh 10%;
+  }
+  #contact_form {
+    height: 50%;
   }
 }
 </style>

@@ -3,7 +3,7 @@
     <div id="roster_desc">
       Want to join the roster?
       <div id="roster_subtext">
-        You will instantly get access to exclusive content on the website and be posted on the offical 
+        You will instantly get access to all exclusive content on the website and be posted on the offical 
         <a id="roster_link" @click="scrollToRoster()">NixaHams Roster!</a>
       </div>
     </div>
@@ -51,7 +51,6 @@
 
       <div v-if="nodata" id="nodata">
         <i class="fa-solid fa-signal"></i>       
-      
         No data for this year
       </div>
       
@@ -208,12 +207,14 @@ td{
 a,a:hover{color: inherit; cursor: pointer;}
 #roster_link{text-decoration: underline;}
 #roster_desc{
-  width: 100%;height: 30vh;
+  width: 100%; min-height: 30vh;
+  height: fit-content;
   padding-top: 120px; min-height: 150px;
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
   font-size: 2em; font-family: 'Montserrat';
   color: #FFEBA7;
+  text-align: center;
 }
 #roster_subtext{
   font-size: 0.8em; font-family: 'Montserrat';
@@ -395,6 +396,8 @@ a,a:hover{color: inherit; cursor: pointer;}
   .ease{
     width: 40%; height: 55%;
   }
+  .full_card{font-size: 0.7em; height: 450px;}
+  table{width: 60%;}
 }
 
 /* Half-Screen Styles */
@@ -402,6 +405,13 @@ a,a:hover{color: inherit; cursor: pointer;}
   .ease{
     width: 50%; height: 55%;
   }
+  #nodata{
+    font-size: 2em;
+  }
+  .card_ref{width: 50%;}
+  .full_card{font-size: 1em; height: 550px; width: 100%;}
+  table{width: 70%;}
+
 }
 
 /* Mobile Styles */
@@ -409,6 +419,11 @@ a,a:hover{color: inherit; cursor: pointer;}
   .ease{
     width: 60%; height: 55%;
   }
+  #nodata{
+    font-size: 1.5em;
+  }
+  .full_card{font-size: 0.7em; min-height: 50vh; height: 350px;}
+  table{width: 80%;}
 }
 </style>
   
