@@ -18,8 +18,8 @@
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="announcements">announcements</a>
             <a href="#/Contacts" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="contacts">contacts</a>
-            <a href="#/Meetings" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="meetings">meetings</a>
+            <a href="#/Media" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="media">media</a>
             <a href="#/Staff" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')"
                 id="staff">staff</a>
         </div>
@@ -43,8 +43,8 @@
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="announcements">announcements</a>
             <a href="#/Contacts" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="contacts">contacts</a>
-            <a href="#/Meetings" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="meetings">meetings</a>
+            <a href="#/Media" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="media">media</a>
             <a href="#/Staff" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')"
                 id="staff">staff</a>
         </div>

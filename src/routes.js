@@ -4,7 +4,7 @@ import Repeaters from './pages/RepeatersPage.vue';
 import Roster from './pages/RosterPage.vue';
 import Announcements from './pages/AnnouncePage.vue';
 import Contacts from './pages/ContactPage.vue';
-import Meetings from './pages/MeetingPage.vue';
+import Media from './pages/MediaPage.vue';
 import Staff from './pages/StaffPage.vue';
 import Invalid from './pages/InvalidPage.vue';
 
@@ -16,7 +16,7 @@ export default[
     { path: '/roster', component: Roster},
     { path: '/announcements', component: Announcements},
     { path: '/contacts', component: Contacts},
-    { path: '/meetings', component: Meetings},
+    { path: '/media', component: Media},
     { path: '/staff', component: Staff},
     { path: '*', component: Invalid},
 ];
