@@ -42,15 +42,51 @@
         </div>
     </div>
 
+    <div id="roster_list">
+      <div id="year_select">
+        <i class="fas fa-angle-left" @click="prevYear()"></i>
+        <div id="list_title">{{roster_year}} Roster</div>
+        <i class="fas fa-angle-right" @click="nextYear()"></i>
+      </div>
+
+      <div v-if="nodata" id="nodata">
+        <i class="fa-solid fa-signal"></i>       
+      
+        No data for this year
+      </div>
+      
+      <table v-if="!nodata" class="roster_table">
+        <thead>
+          <tr>
+            <th>Callsign</th>
+            <th>Name</th>
+            <th>ARRL Membership</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(member, key) in active_list" :key="key">
+            <!-- <th scope="row">{ sale.Month  }</th>   -->
+            <td> {{ member.callsign }}</td> 
+            <td> {{ member.name }}</td> 
+            <td class="arrl"> 
+              <i v-if="member.ARRL_membership" class="fa-solid fa-check"></i>
+              <i v-if="!member.ARRL_membership" class="fa-solid fa-x"></i>
+            </td> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </template>
   
 <script>
+import roster from '../roster2016.json';
 
 export default {
   name: 'RosterPage',
   components: {
-    
+
   },
   data(){
     return{
@@ -58,9 +94,32 @@ export default {
       single: 'single_on',
       family: 'family_off',
       card_side: 'membership_card_side_front',
+      roster_year: 2016,
+      rost_list: [],
+      active_list: {},
+      nodata: false
     }
   },
   methods:{
+    nextYear(){
+      this.roster_year+=1;
+      this.updateRosterList();
+    },
+    prevYear(){
+      this.roster_year-=1;
+      this.updateRosterList();
+    },
+    updateRosterList(){
+      for(let i = 0; i < this.rost_list.length; i++){
+        if(this.rost_list[i].year == this.roster_year){
+          this.active_list = this.rost_list[i].roster_list;
+          this.nodata = false;
+        }else{
+          this.active_list = '';
+          this.nodata = true;
+        }
+      }
+    },
     scrollToTop() {document.body.scrollTop = 0;},
     scrollToRoster(){
 
@@ -83,13 +142,69 @@ export default {
     },
   },
   mounted(){
-    this.scrollToTop();
-    
+    // this.scrollToTop();
+    this.rost_list.push(roster);
+    this.active_list = this.rost_list[0].roster_list;
+    this.roster_year = roster.year;
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.arrl{text-align: center;}
+.fa-check{color: rgb(129, 189, 129);}
+.fa-x{color: rgb(189, 129, 129);}
+#nodata{
+  padding-top: 150px;
+  font-size: 2.5em;
+  font-family: 'Montserrat';
+}
+table{
+  width: 50%;
+  font-family: 'Montserrat';
+}
+tbody{
+  width: 100%;
+}
+th{
+  font-size: 1.5em;
+  text-align: center;
+  border: 3px solid #43414b;
+}
+tr{
+}
+td{
+  border: 3px solid #43414b;
+  padding: 5px 3px;
+}
+#roster_list{
+  height: fit-content;
+  min-height: 90vh; width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  padding-bottom: 10vh;
+}
+#year_select{
+  display: flex;
+  align-items: center; justify-content: center;
+}
+#year_select > i{
+  font-size: 1.7em;
+  cursor: pointer;
+  padding: 20px;
+  transition: 0.2s ease;
+  color: rgba(255,255,255,0.5);
+}
+#year_select > i:hover{
+  color: white;
+}
+#list_title{
+  font-size: 2em;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  padding: 20px;
+}
+
 a,a:hover{color: inherit; cursor: pointer;}
 #roster_link{text-decoration: underline;}
 #roster_desc{
@@ -201,7 +316,6 @@ a,a:hover{color: inherit; cursor: pointer;}
   -moz-osx-font-smoothing: grayscale;
   color: rgb(208, 213, 239);
   height: fit-content; width: 100%;
-  min-height: 110vh;
   background: linear-gradient(#131123,#0f0e19 40%);
 }
 #membership_parent{
