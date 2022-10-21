@@ -72,6 +72,9 @@
       <img class="page_background" src="../assets/home/contactus.png" alt="">
       <div id="home_page3">
         <div id="contact_form">
+          <!-- temp -->
+          <div id="work_div"></div>
+
           <div id="form_inner">
             <form id="form">
               <div id="form_title_parent">
@@ -282,7 +285,31 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+/* temp */
+#work_div{
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  background-image: url('https://www.pngall.com/wp-content/uploads/4/Keep-Out-Tape-PNG-Free-Image.png');
+  background-position: center;
+  background-size: cover;
+  filter: brightness(0.8);
+}
+#work_div:hover::after{
+  content: "This is under construction!";
+  display: flex;
+  justify-content: center; align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  padding: 10px;
+  position: absolute;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  top: 0; left: 0;
+  cursor: not-allowed;
+}
+/* temp */
 #contact_form {
   position: absolute;
   z-index: 2;
