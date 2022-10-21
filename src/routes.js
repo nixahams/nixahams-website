@@ -2,7 +2,7 @@ import Home from './pages/HomePage.vue';
 import About from './pages/AboutPage.vue';
 import Repeaters from './pages/RepeatersPage.vue';
 import Roster from './pages/RosterPage.vue';
-import Newsletter from './pages/NewsLetterPage.vue';
+import Announcements from './pages/AnnouncePage.vue';
 import Contacts from './pages/ContactPage.vue';
 import Meetings from './pages/MeetingPage.vue';
 import Staff from './pages/StaffPage.vue';
@@ -14,7 +14,7 @@ export default[
     { path: '/repeaters', component: Repeaters},
     { path: '/about', component: About},
     { path: '/roster', component: Roster},
-    { path: '/newsletter', component: Newsletter},
+    { path: '/announcements', component: Announcements},
     { path: '/contacts', component: Contacts},
     { path: '/meetings', component: Meetings},
     { path: '/staff', component: Staff},

@@ -14,8 +14,8 @@
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="repeaters">repeaters</a>
             <a href="#/Roster" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')"
                 id="roster">roster</a>
-            <a href="#/Newsletter" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="newsletter">newsletter</a>
+            <a href="#/Announcements" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="announcements">announcements</a>
             <a href="#/Contacts" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="contacts">contacts</a>
             <a href="#/Meetings" class="header_option_inactive"
@@ -39,8 +39,8 @@
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="repeaters">repeaters</a>
             <a href="#/Roster" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="roster">roster</a>
-            <a href="#/Newsletter" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="newsletter">newsletter</a>
+            <a href="#/Announcements" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="announcements">announcements</a>
             <a href="#/Contacts" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="contacts">contacts</a>
             <a href="#/Meetings" class="header_option_inactive"

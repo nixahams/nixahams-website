@@ -214,7 +214,8 @@ a,a:hover{color: inherit; cursor: pointer;}
 #roster_desc{
   width: 100%; min-height: 30vh;
   height: fit-content;
-  padding-top: 120px; min-height: 150px;
+  padding-top: 200px; min-height: 150px;
+  padding-bottom: 50px;
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
   font-size: 2em; font-family: 'Montserrat';
@@ -224,7 +225,7 @@ a,a:hover{color: inherit; cursor: pointer;}
 #roster_subtext{
   font-size: 0.8em; font-family: 'Montserrat';
   color: #D0D5EF;
-  padding-left: 10%; padding-right: 10%;
+  padding-left: 20%; padding-right: 20%;
   text-align: center;
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div id="news_letter">
     <div id="blog_parent">
-      <div id="blog_title">Blog Posts</div>
+      <div id="blog_title">Announcement Posts</div>
       <BlogPost/>
       <BlogPost/>
       <BlogPost/>
