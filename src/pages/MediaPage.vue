@@ -19,7 +19,7 @@
           </div>
 
           <div class="media_results">
-            here
+            <MediaResult v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
           </div>
 
         </div>
@@ -44,6 +44,11 @@
               <option value="2017">2018</option>
             </select>
           </div>
+
+          <div class="media_results">
+            <MediaResult v-for="(result, index) in results_video" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
+          </div>
+
         </div>
         <div class="media_display">
           <img id="media_video" src="../assets/staff/narcpresidents.jpg" alt="">
@@ -55,28 +60,41 @@
 </template>
   
 <script>
+import MediaResult from '@/components/MediaResult.vue';
+import photo2022 from '../photo2022.json';
+import video2022 from '../video2022.json';
+
 
 export default {
   name: 'MeetingPage',
   components: {
-
-  },
-  methods:{
-    scrollToTop() {document.body.scrollTop = 0;},
-  },
-  mounted(){
-    this.scrollToTop();
+    MediaResult
+},
+data(){
+  return{
+    results_photo: [],
+    results_video: [],
   }
+},
+methods:{
+  scrollToTop() {document.body.scrollTop = 0;},
+},
+mounted(){
+  this.scrollToTop();
+  this.results_photo = photo2022;
+  this.results_video = video2022;
+}
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .media_results{
-  width: 100%; height: 100%;
-  border: 1px solid;
-  padding-top: 5%;
-  
+  width: 100%; height: 88%;
+  padding: 0% 5% 0% 5%;
+  overflow: auto;
 }
+
+
 
 #media{
   min-height: fit-content; width: 100%;
@@ -85,17 +103,18 @@ export default {
   background-color: #15181c;
   display: flex; flex-direction: column;
   gap: 10vh;
+  font-family: 'Montserrat';
 }
 #photo_media{
   width: 100%; min-height: 80vh;
   height: fit-content;
-  background-color: rgba(0, 0, 0, 0.342);
+  max-height: 100vh;
   position: relative;
-
 }
 #video_media{
   width: 100%; min-height: 80vh;
   height: fit-content;
+  max-height: 100vh;
   background-color: rgba(0, 0, 0, 0.342);
 }
 .media_title{
@@ -111,9 +130,11 @@ export default {
   flex-direction: row;
 }
 .media_search{
-  width: 50%;
+  width: 50%; height: 100%;
   position: relative;
   padding: 1%;
+  display: flex;
+  align-items: flex-end;
 }
 .media_display{
   width: 50%;
@@ -158,5 +179,33 @@ option{
   color: black;
 }
 
+
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+  .media_query{
+    flex-direction: column;
+  }
+  .media_search{
+    width: 100%; height: 100%;
+  }
+  .media_display{
+    width: 100%;
+  }
+  .media_results{
+    width: 100%; height: 100%;
+    padding: 20% 5% 0% 5%;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+
+}
 </style>
   
