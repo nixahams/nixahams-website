@@ -1,5 +1,6 @@
 <template>
   <div id="media">
+    <FullScreenPhoto @hide_fullscreen="fullscreen=false" v-if="fullscreen" :image="active_img" :title="active_title" :date="active_date" :desc="active_desc"/>
 
     <div id="photo_media">
       <div class="media_title">Photos</div>
@@ -24,7 +25,7 @@
 
         </div>
         <div class="media_display">
-          <div class="fullscreen_parent">
+          <div @click="show_fullscreen" class="fullscreen_parent">
             <img id="media_img" :src="photo_src" alt="">
             <i class="fa-solid fa-expand media_fullscreen" title="full screen"></i>
           </div>
@@ -69,12 +70,14 @@
 import MediaResult from '@/components/MediaResult.vue';
 import photo2022 from '../photo2022.json';
 import video2022 from '../video2022.json';
+import FullScreenPhoto from '../components/FullScreenPhoto.vue';
 
 
 export default {
   name: 'MeetingPage',
   components: {
-    MediaResult
+    MediaResult,
+    FullScreenPhoto
 },
 data(){
   return{
@@ -82,16 +85,28 @@ data(){
     results_video: [],
     photo_src: 'https://i.imgur.com/yyIICis.jpeg',
     video_src: 'https://i.imgur.com/yyIICis.jpeg',
+    fullscreen: false,
+    active_title: photo2022[0].title,
+    active_desc: photo2022[0].desc,
+    active_img: photo2022[0].image,
+    active_date: photo2022[0].date,
   }
 },
 methods:{
   scrollToTop() {document.body.scrollTop = 0;},
-  photo_selected(selected_src){
+  photo_selected(selected_src, title, desc, date){
     this.photo_src = selected_src;
+    this.active_title = title;
+    this.active_desc = desc;
+    this.active_img = selected_src;
+    this.active_date = date;
   },  
   video_selected(selected_src){
     this.video_src = selected_src;
   },  
+  show_fullscreen(){
+    this.fullscreen = true;
+  }
 },
 mounted(){
   this.scrollToTop();
@@ -204,7 +219,13 @@ option{
   bottom: 0; right: 0;
   padding: 2.5%;
   font-size: 2em;
+  transition: 0.5s ease;
 }
+.media_fullscreen:hover{
+  color: white;
+  transform: scale(1.1);
+}
+
 
 
 /* Slightly Resized Screen Styles */

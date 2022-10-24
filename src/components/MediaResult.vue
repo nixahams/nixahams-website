@@ -1,12 +1,12 @@
 <template>
-    <div class="media_result" @click="$emit('selected',image)">
+    <div class="media_result" @click="$emit('selected',image,title,desc,date)">
         <img class="result_img" :src="image" alt="">
         <div class="result_right">
-        <div class="result_top">
-            <div class="result_title">{{title}}</div>
-            <div class="result_date">{{date}}</div>
-        </div>
-        <div class="result_desc">{{desc}}</div>
+          <div class="result_top">
+              <div class="result_title">{{title}}</div>
+              <div class="result_date">{{date}}</div>
+          </div>
+          <div class="result_desc">{{desc}}</div>
         </div>
     </div>
 </template>
@@ -47,8 +47,10 @@ export default {
 .result_img{
   position: relative;
   height: 100%; width: 20%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
   margin-right: 5%;
+  border-radius: 5px;
 }
 .result_right{
   width: 80%;
