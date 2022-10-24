@@ -1,5 +1,5 @@
 <template>
-    <div class="media_result">
+    <div class="media_result" @click="$emit('selected',image)">
         <img class="result_img" :src="image" alt="">
         <div class="result_right">
         <div class="result_top">

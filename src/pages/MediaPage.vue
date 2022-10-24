@@ -19,12 +19,15 @@
           </div>
 
           <div class="media_results">
-            <MediaResult v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
+            <MediaResult @selected="photo_selected" v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
           </div>
 
         </div>
         <div class="media_display">
-          <img id="media_img" src="../assets/staff/narcpresidents.jpg" alt="">
+          <div class="fullscreen_parent">
+            <img id="media_img" :src="photo_src" alt="">
+            <i class="fa-solid fa-expand media_fullscreen" title="full screen"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -46,12 +49,15 @@
           </div>
 
           <div class="media_results">
-            <MediaResult v-for="(result, index) in results_video" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
+            <MediaResult @selected="video_selected" v-for="(result, index) in results_video" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
           </div>
 
         </div>
         <div class="media_display">
-          <img id="media_video" src="../assets/staff/narcpresidents.jpg" alt="">
+          <div class="fullscreen_parent">
+            <img id="media_video" :src="video_src" alt="">
+            <i class="fa-solid fa-expand media_fullscreen" title="full screen"></i>
+          </div>
         </div>
       </div>  
     </div>
@@ -74,10 +80,18 @@ data(){
   return{
     results_photo: [],
     results_video: [],
+    photo_src: 'https://i.imgur.com/yyIICis.jpeg',
+    video_src: 'https://i.imgur.com/yyIICis.jpeg',
   }
 },
 methods:{
   scrollToTop() {document.body.scrollTop = 0;},
+  photo_selected(selected_src){
+    this.photo_src = selected_src;
+  },  
+  video_selected(selected_src){
+    this.video_src = selected_src;
+  },  
 },
 mounted(){
   this.scrollToTop();
@@ -115,7 +129,6 @@ mounted(){
   width: 100%; min-height: 80vh;
   height: fit-content;
   max-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.342);
 }
 .media_title{
   font-size: 4em;
@@ -136,19 +149,7 @@ mounted(){
   display: flex;
   align-items: flex-end;
 }
-.media_display{
-  width: 50%;
-  display: flex;
-  justify-content: center;align-items: center;
-  padding: 1%;
-}
-#media_img, #media_video{
-  background-color: black;
-  border-radius: 20px;
-  height: 100%; width: 100%;
-  border: none; outline: none;
-  object-fit: cover;
-}
+
 .media_filter{
   position: absolute;
   top: 5%; right: 5%;
@@ -179,6 +180,31 @@ option{
   color: black;
 }
 
+.media_display{
+  width: 50%;
+  display: flex;
+  justify-content: center;align-items: center;
+  padding: 1%;
+  position: relative;
+}
+.fullscreen_parent{
+  height: 80%; width: 80%;
+  position: relative;
+  cursor: pointer;
+}
+#media_img, #media_video{
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  height: 100%; width: 100%;
+  border: none; outline: none;
+  object-fit: contain;
+}
+.media_fullscreen{
+  position: absolute;
+  bottom: 0; right: 0;
+  padding: 2.5%;
+  font-size: 2em;
+}
 
 
 /* Slightly Resized Screen Styles */
