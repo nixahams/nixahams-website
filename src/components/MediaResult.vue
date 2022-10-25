@@ -1,6 +1,7 @@
 <template>
     <div class="media_result" @click="$emit('selected',image,title,desc,date)">
-        <img class="result_img" :src="image" alt="">
+        <img v-if="showImg" @error="setAltImg" class="result_img" :src="image" alt="">
+        <i v-if="showAlt" class="fa-brands fa-youtube" id="altImg"></i>
         <div class="result_right">
           <div class="result_top">
               <div class="result_title">{{title}}</div>
@@ -19,11 +20,16 @@ export default {
     props: ['title','date','image','desc'],
     data() {
         return {
+          showImg: true,
+          showAlt: false,
 
         }   
     },
     methods: {
-
+      setAltImg(){
+        this.showImg = false;
+        this.showAlt = true;
+      }
     },
     mounted() {
     },
@@ -51,6 +57,16 @@ export default {
   object-position: top;
   margin-right: 5%;
   border-radius: 5px;
+}
+#altImg{
+  position: relative;
+  height: 100%; width: 20%;
+  background-color: white;
+  border-radius: 5px;
+  color: red;
+  margin-right: 5%;
+  font-size: 4em;
+  display: flex;justify-content: center; align-items: center;
 }
 .result_right{
   width: 80%;

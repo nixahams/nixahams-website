@@ -1,6 +1,7 @@
 <template>
     <div id="fullscreen" @click="$emit('hide_fullscreen')">
         <div id="fullscreen_parent">
+            <i id="fullscreen_exit" class="fa-solid fa-x"></i>
             <img id="fullscreen_img" :src="image" alt="">
             <div id="fullscreen_text">
                 <div id="fullscreen_title">{{title}}</div>
@@ -21,6 +22,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#fullscreen_exit{
+    position: absolute;
+    top: 0; right: 0;
+    font-size: 2em;
+    color: rgb(203, 68, 61);
+    padding: 1%; cursor: pointer;
+}
 #fullscreen_date{
     width: 100%; height: 5%;
     text-align: right;
@@ -44,7 +52,7 @@ export default {
 #fullscreen_img{
     width: 40%; height: 100%;
     object-fit: contain;
-    background-color: black;
+    background-color: transparent;
 }
 #fullscreen{
     position: fixed;
@@ -62,6 +70,7 @@ export default {
     color: black;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 

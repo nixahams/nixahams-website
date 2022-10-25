@@ -56,8 +56,8 @@
         </div>
         <div class="media_display">
           <div class="fullscreen_parent">
-            <img id="media_video" :src="video_src" alt="">
-            <i class="fa-solid fa-expand media_fullscreen" title="full screen"></i>
+
+            <iframe id="media_video" :src="video_src" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>  
@@ -84,7 +84,7 @@ data(){
     results_photo: [],
     results_video: [],
     photo_src: 'https://i.imgur.com/yyIICis.jpeg',
-    video_src: 'https://i.imgur.com/yyIICis.jpeg',
+    video_src: 'https://www.youtube.com/embed/bvJ2GmgzVwM',
     fullscreen: false,
     active_title: photo2022[0].title,
     active_desc: photo2022[0].desc,
@@ -103,6 +103,7 @@ methods:{
   },  
   video_selected(selected_src){
     this.video_src = selected_src;
+    
   },  
   show_fullscreen(){
     this.fullscreen = true;
