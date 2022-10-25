@@ -86,10 +86,10 @@ export default {
 },
 data(){
   return{
-    results_photo: [],
+    results_photo: {},
     results_video: [],
     photo_src: 'https://i.imgur.com/yyIICis.jpeg',
-    video_src: 'https://www.youtube.com/embed/bvJ2GmgzVwM',
+    video_src: 'https://www.youtube.com/embed/s07vXesMLsk',
     fullscreen: false,
     active_title: totalphotos.p2022[0].title,
     active_desc: totalphotos.p2022[0].desc,
@@ -102,17 +102,16 @@ data(){
 methods:{
   onChange(e){
 
-    let inp = e.target.value;
-    inp; 
-    console.log('inp' in totalphotos)
+    let inpt = e.target.value;
 
-    if(totalphotos.inp){
+    if(inpt in totalphotos){
       //has data
-      console.log('data deteced')
+      this.empty_photo = false;
+      this.results_photo = totalphotos[inpt];
     }else{
       //empty
       this.empty_photo = true;
-      this.results_photo = [];
+      this.results_photo = {};
     }
     
     
