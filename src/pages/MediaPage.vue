@@ -10,17 +10,22 @@
 
           <div class="media_filter">
             <div id="filter_name">Filter Year</div>
-            <select name="photo_filter" id="photo_filter">
-              <option value="2017">2022</option>
-              <option value="2017">2021</option>
-              <option value="2017">2020</option>
-              <option value="2017">2019</option>
-              <option value="2017">2018</option>
+            <select @change="onChange($event)" name="photo_filter" id="photo_filter">
+              <option value="p2022">2022</option>
+              <option value="p2021">2021</option>
+              <option value="p2020">2020</option>
+              <option value="p2019">2019</option>
+              <option value="p2018">2018</option>
             </select>
           </div>
 
           <div class="media_results">
-            <MediaResult @selected="photo_selected" v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
+            <MediaResult :empty="empty_photo" @selected="photo_selected" v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
+
+            <div id="empty_photo" v-if="empty_photo">
+              <i class="fa-solid fa-signal"></i>
+              No data for this year
+            </div>
           </div>
 
         </div>
@@ -41,11 +46,11 @@
           <div class="media_filter">
             <div id="filter_name">Filter Year</div>
             <select name="photo_filter" id="photo_filter">
-              <option value="2017">2022</option>
-              <option value="2017">2021</option>
-              <option value="2017">2020</option>
-              <option value="2017">2019</option>
-              <option value="2017">2018</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
             </select>
           </div>
 
@@ -68,7 +73,7 @@
   
 <script>
 import MediaResult from '@/components/MediaResult.vue';
-import photo2022 from '../photo2022.json';
+import totalphotos from '../total_photos.json';
 import video2022 from '../video2022.json';
 import FullScreenPhoto from '../components/FullScreenPhoto.vue';
 
@@ -86,13 +91,33 @@ data(){
     photo_src: 'https://i.imgur.com/yyIICis.jpeg',
     video_src: 'https://www.youtube.com/embed/bvJ2GmgzVwM',
     fullscreen: false,
-    active_title: photo2022[0].title,
-    active_desc: photo2022[0].desc,
-    active_img: photo2022[0].image,
-    active_date: photo2022[0].date,
+    active_title: totalphotos.p2022[0].title,
+    active_desc: totalphotos.p2022[0].desc,
+    active_img: totalphotos.p2022[0].image,
+    active_date: totalphotos.p2022[0].date,
+    filter_year_video: 2022,
+    empty_photo: false,
   }
 },
 methods:{
+  onChange(e){
+
+    let inp = e.target.value;
+    inp; 
+    console.log('inp' in totalphotos)
+
+    if(totalphotos.inp){
+      //has data
+      console.log('data deteced')
+    }else{
+      //empty
+      this.empty_photo = true;
+      this.results_photo = [];
+    }
+    
+    
+
+  },
   scrollToTop() {document.body.scrollTop = 0;},
   photo_selected(selected_src, title, desc, date){
     this.photo_src = selected_src;
@@ -111,13 +136,21 @@ methods:{
 },
 mounted(){
   this.scrollToTop();
-  this.results_photo = photo2022;
+  this.results_photo = totalphotos.p2022;
   this.results_video = video2022;
 }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#empty_photo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; height: 100%;
+  font-size: 2.5em;
+  gap: 10px;
+}
 .media_results{
   width: 100%; height: 88%;
   padding: 0% 5% 0% 5%;
