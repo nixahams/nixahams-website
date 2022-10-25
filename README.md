@@ -32,7 +32,7 @@
     An in-depth developmental look into how the Nixahams website was created
     <br />
     <br />
-    <a href="https://www.nixahams.net">View Live Site</a>
+    <a href="https://nixahams-website.pages.dev/">View Live Site</a>
     ·
     <a href="https://github.com/joshdejeu/NixaHams-Website/issues">Report Bug</a>
     ·
