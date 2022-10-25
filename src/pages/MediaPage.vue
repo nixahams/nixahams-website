@@ -101,19 +101,27 @@ data(){
 },
 methods:{
   onChange(e){
-
     let inpt = e.target.value;
-
     if(inpt in totalphotos){
       //has data
       this.empty_photo = false;
       this.results_photo = totalphotos[inpt];
+      this.photo_src = totalphotos[inpt][0].image;
+      this.active_title = totalphotos[inpt][0].title;
+      this.active_desc = totalphotos[inpt][0].desc;
+      this.active_img = totalphotos[inpt][0].image;
+      this.active_date = totalphotos[inpt][0].date;
     }else{
       //empty
       this.empty_photo = true;
       this.results_photo = {};
+      this.photo_src = '';
+      this.active_title = '';
+      this.active_desc ='';
+      this.active_img = '';
+      this.active_date = '';
     }
-    
+
     
 
   },
