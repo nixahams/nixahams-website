@@ -72,10 +72,10 @@
 To see more pictures of the progression on the site, check out the [landscape view](https://github.com/joshdejeu/NixaHams-Website/tree/master/images/landscape) folder and the [portrait view](https://github.com/joshdejeu/NixaHams-Website/tree/master/images/portrait) folders [here.](https://github.com/joshdejeu/NixaHams-Website/tree/master/images)
 
 ### Landscape View
-[![Current Screenshot][current-screenshot]](https://www.nixahams.net)
+[![Current Screenshot][current-screenshot]](https://nixahams-website.pages.dev)
 
 ### Portrait view
-[![Current Screenshot][mobile-screenshot]](https://www.nixahams.net)
+[![Current Screenshot][mobile-screenshot]](https://nixahams-website.pages.dev)
 <hr>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
