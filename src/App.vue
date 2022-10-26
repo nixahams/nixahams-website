@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      bg_color: 'blue',
+      bg_color: 'transparent',
       componentKey: 0,
     }
   },
@@ -34,11 +34,12 @@ export default {
     }
   },    
   updated() {
-      // console.log("route:",this.$route.fullPath)
-      // if(this.$route.fullPath == "/Contacts"){
-      //   console.log("color change");
-      //   this.bg_color = "rgba(0,0,0,0.5)";
-      // }
+      if(this.$route.fullPath == "/Contacts"){
+        console.log("color change");
+        // this.bg_color = "rgba(0,0,0,0.5)";
+        this.bg_color = "red";
+        // this.forceRerender(); //creates infinite loop
+      }
   },
   mounted(){
 
