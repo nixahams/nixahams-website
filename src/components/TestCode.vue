@@ -119,8 +119,9 @@ export default {
 </script>
 
 
-<style>
-body{
+<style scoped>
+.stop-scrolling {
+  height: 100%;
   overflow: hidden;
 }
 #tincan {
