@@ -4,7 +4,7 @@ console.log("page loaded");
 // Application variables
 var position = { x: 0, y: window.innerHeight / 2 };
 var counter = 0;
-var minFontSize = 3;
+var minFontSize = 5;
 // var angleDistortion = 0;
 var letters = "1010011001011011010100100011001010001001101001111100100001001011010101011100010110101101100011010100110001000111001011100111001100101101000011100011100100010001";
 
@@ -17,8 +17,8 @@ function init() {
     cnvs = document.getElementById('canvas');
     console.log("canvas is:\n", cnvs)
     context = cnvs.getContext('2d');
-    //   canvas.width = window.innerWidth;
-    //   canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
     cnvs.addEventListener('mousemove', mouseMove, false);
     cnvs.addEventListener('mousedown', mouseDown, false);

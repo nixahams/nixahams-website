@@ -2,7 +2,7 @@
   <div id="tincan">
     <div id="text404">
       <div id="title404">404</div>
-      <div id="sub404">Page Not Foudn</div>
+      <div id="sub404">Page Not Found</div>
     </div>
     <canvas
     @mousemove="mouseMove"
@@ -23,7 +23,7 @@ export default {
   },
   data(){
     return{
-      position: { x: 0, y: 0 / 2},
+      position: { x: 0, y: window.innerHeight / 2 },
       counter: 0,
       minFontSize: 3,
       // var angleDistortion = 0;
@@ -32,29 +32,36 @@ export default {
       // Drawing variables
       cnvs: '',
       context: '',
-      mouse: { x: 0, y: 0, down: false }
+      mouse: { x: 0, y: 0, down: false },
+      r: 69, g: 230, b: 37,
     }
   },
   methods: {
     init() {
       this.context = this.cnvs.getContext('2d');
+      this.cnvs.width = window.innerWidth;
+      this.cnvs.height = window.innerHeight;
     },
     mouseMove(e) {
-      this.mouse.x = e.offsetX;
-      this.mouse.y = e.offsetY;
-
+      this.mouse.x = e.pageX;
+      this.mouse.y = e.pageY;
+      console.log(e);
       this.draw();
     },
     draw() {
       if (this.mouse.down) {
         var d = this.distance(this.position, this.mouse);
-        var fontSize = this.minFontSize + d / 2;
+        var fontSize = this.minFontSize + d / 10;
         var letter = this.letters[this.counter];
         var stepSize = this.textWidth(letter, fontSize);
         if (d > stepSize) {
           var angle = Math.atan2(this.mouse.y - this.position.y, this.mouse.x - this.position.x);
           this.context.font = fontSize + "px Consolas";
-          this.context.fillStyle = "#ffffff"; //<======= here
+
+          if(this.r <= 10){this.r=69}
+          if(this.g <= 66){this.g=230}
+          if(this.b <= 0){this.b=37}
+          this.context.fillStyle = `rgb(${this.r--}, ${this.g--}, ${this.b--})`;
           this.context.save();
           this.context.translate(this.position.x, this.position.y);
           this.context.rotate(angle);
@@ -83,11 +90,10 @@ export default {
     },
     mouseDown(e) {
       this.mouse.down = true;
-      this.mouse.x = e.offsetX;
-      this.mouse.y = e.offsetY;
+      this.mouse.x = e.pageX;
+      this.mouse.y = e.pageY;
       
 
-      console.log(this.mouse.x,"\n",this.mouse.y);
       //   document.getElementById('info').style.display = 'none';
     },
     mouseUp() {
@@ -107,8 +113,8 @@ export default {
   mounted() {
     this.cnvs = document.getElementById('canvas');
     // let can_height = this.cnvs.offsetHeight;
-    this.position = { x: 0, y: window.innerHeight / 2};
-    this.position = { x: 0, y: 0};
+    // this.position = { x: 0, y: window.innerHeight / 2};
+    // this.position = { x: 0, y: 0};
     this.init();
   }
 }
@@ -117,8 +123,7 @@ export default {
 
 <style>
 #tincan {
-  height: 100%;
-  width: 100%;
+  height: 100%; width: 100%;
   background-color: transparent;
 }
 canvas {

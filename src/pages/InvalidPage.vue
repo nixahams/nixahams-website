@@ -52,7 +52,11 @@ span {
   min-height: 100vh;
   width: 100%;
   height: 100%;
-  padding-top: 120px;
+  /* padding-top: 120px; */
+
+  height: 100vh; width: 100vw;
+  position: fixed;
+  z-index: 9999;
 }
 
 
