@@ -70,7 +70,6 @@
 
 export default {
     name: 'ContactPage',
-    props: [],
     data() {
         return {
         }   
@@ -78,12 +77,13 @@ export default {
     methods: {
     },
     mounted() {
-    },
+    }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .full_page {
   width: 100%;
   height: 110vh;
