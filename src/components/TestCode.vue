@@ -1,5 +1,9 @@
 <template>
   <div id="tincan">
+    <div id="text404">
+      <div id="title404">404</div>
+      <div id="sub404">Page Not Foudn</div>
+    </div>
     <canvas
     @mousemove="mouseMove"
     @mousedown="mouseDown"
@@ -19,7 +23,7 @@ export default {
   },
   data(){
     return{
-      position: { x: 0, y: 0 },
+      position: { x: 0, y: 0 / 2},
       counter: 0,
       minFontSize: 3,
       // var angleDistortion = 0;
@@ -33,31 +37,24 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.position)
-      this.cnvs = document.getElementById('canvas');
       this.context = this.cnvs.getContext('2d');
-
-      //   canvas.width = window.innerWidth;
-      //   canvas.height = window.innerHeight;
-      // this.cnvs.addEventListener('mousemove', mouseMove, false);
-      // this.cnvs.addEventListener('mousedown', mouseDown, false);
-      // this.cnvs.addEventListener('mouseup', mouseUp, false);
-      // this.cnvs.addEventListener('mouseout', mouseUp, false);
     },
     mouseMove(e) {
       this.mouse.x = e.offsetX;
       this.mouse.y = e.offsetY;
+
       this.draw();
     },
     draw() {
       if (this.mouse.down) {
         var d = this.distance(this.position, this.mouse);
-        var fontSize = this.minFontSize + d / 10;
+        var fontSize = this.minFontSize + d / 2;
         var letter = this.letters[this.counter];
         var stepSize = this.textWidth(letter, fontSize);
         if (d > stepSize) {
           var angle = Math.atan2(this.mouse.y - this.position.y, this.mouse.x - this.position.x);
           this.context.font = fontSize + "px Consolas";
+          this.context.fillStyle = "#ffffff"; //<======= here
           this.context.save();
           this.context.translate(this.position.x, this.position.y);
           this.context.rotate(angle);
@@ -88,13 +85,16 @@ export default {
       this.mouse.down = true;
       this.mouse.x = e.offsetX;
       this.mouse.y = e.offsetY;
+      
+
+      console.log(this.mouse.x,"\n",this.mouse.y);
       //   document.getElementById('info').style.display = 'none';
     },
     mouseUp() {
       this.mouse.down = false;
     },
     textWidth(string, size) {
-      this.context.font = size + "px Georgia";
+      this.context.font = size + "px Consolas";
 
       if (this.context.fillText) {
         return this.context.measureText(string).width;
@@ -105,6 +105,10 @@ export default {
 
   },
   mounted() {
+    this.cnvs = document.getElementById('canvas');
+    // let can_height = this.cnvs.offsetHeight;
+    this.position = { x: 0, y: window.innerHeight / 2};
+    this.position = { x: 0, y: 0};
     this.init();
   }
 }
@@ -113,15 +117,36 @@ export default {
 
 <style>
 #tincan {
-  height: 80%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   background-color: transparent;
-  border: 1px solid white;
 }
-
 canvas {
   width: 100%;
   height: 100%;
   cursor: crosshair;
 }
+#text404{
+  position: absolute;
+  width: 100%; height: 90%;
+  padding-top: 10%;
+  display: flex; justify-content: flex-start; align-items: center;
+  flex-direction: column;
+  font-size: 5.5em;
+  font-family: 'Montserrat';
+  pointer-events: none;
+  text-shadow: 
+  0px 0px 35px black,
+  3px 3px 0px black,
+  -3px -3px 0px black,
+  -3px 3px 0px black,
+  3px -3px 0px black;
+}
+#title404{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+
 </style>

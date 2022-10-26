@@ -1,11 +1,9 @@
 <template>
   <div id="invalid_page">
-    <div id="invalid_parent">
-      <!-- <img id="invalid_img" src="../assets/404/invalidpage.jpg" alt="Invalid Page"> -->
-      <!-- <canvas id="canvas"></canvas> -->
-      <!-- <span id='info'>Click and drag to draw!</span> -->
-      <test></test>
-    </div>
+    <!-- <img id="invalid_img" src="../assets/404/invalidpage.jpg" alt="Invalid Page"> -->
+    <!-- <canvas id="canvas"></canvas> -->
+    <!-- <span id='info'>Click and drag to draw!</span> -->
+    <test></test>
   </div>
 </template>
   
@@ -52,14 +50,12 @@ span {
   color: white;
   background-color: #1c2023;
   min-height: 100vh;
-}
-
-#invalid_parent {
   width: 100%;
   height: 100%;
   padding-top: 120px;
-  display: flex; justify-content: center; align-items: center;
 }
+
+
 
 #invalid_img {
   width: 100%;
