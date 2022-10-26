@@ -28,24 +28,6 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* canvas {
- cursor: crosshair;
-  height: 500px;
-  width: 600px;
-  background-color: white;
-  color: black;
-}
-span {
-    font-family: 'Georgia', cursive;
-  font-size: 40px;
- position: fixed; 
-  top: 50%;
-  left: 50%;
-  color: #000;
-  margin-top: -40px;
-  margin-left: -200px;
-} */
-
 #invalid_page {
   color: white;
   background-color: #1c2023;
@@ -53,17 +35,6 @@ span {
   width: 100%;
   height: 100%;
   /* padding-top: 120px; */
-
-  height: 100vh; width: 100vw;
-  position: fixed;
-  z-index: 9999;
-}
-
-
-
-#invalid_img {
-  width: 100%;
-  height: 100%;
 }
 </style>
   
