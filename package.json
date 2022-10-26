@@ -1,6 +1,6 @@
 {
   "name": "nixahams",
-  "version": "0.1.0",
+  "version": "1.2.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^2.0.8",
+    "@types/node": "^18.11.1",
     "bootstrap": "^5.2.2",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",

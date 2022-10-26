@@ -1,17 +1,24 @@
 <template>
   <div id="invalid_page">
     <div id="invalid_parent">
-      <img id="invalid_img" src="../assets/404/invalidpage.jpg" alt="Invalid Page">
+      <!-- <img id="invalid_img" src="../assets/404/invalidpage.jpg" alt="Invalid Page"> -->
+      <!-- <canvas id="canvas"></canvas> -->
+      <!-- <span id='info'>Click and drag to draw!</span> -->
+      <test></test>
     </div>
   </div>
 </template>
   
 <script>
+// var drawcode = require('../invalid.js');
+// export default ap;
+import test from '../components/TestCode.vue'
+
 
 export default {
   name: 'InvalidPage',
   components: {
-
+    test
   },
   methods:{
     scrollToTop() {document.body.scrollTop = 0;},
@@ -23,29 +30,35 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+/* canvas {
+ cursor: crosshair;
+  height: 500px;
+  width: 600px;
+  background-color: white;
+  color: black;
 }
-
-body {
-  background-color: #1c2023;
-}
+span {
+    font-family: 'Georgia', cursive;
+  font-size: 40px;
+ position: fixed; 
+  top: 50%;
+  left: 50%;
+  color: #000;
+  margin-top: -40px;
+  margin-left: -200px;
+} */
 
 #invalid_page {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 213, 239);
+  color: white;
+  background-color: #1c2023;
+  min-height: 100vh;
 }
 
 #invalid_parent {
   width: 100%;
   height: 100%;
   padding-top: 120px;
+  display: flex; justify-content: center; align-items: center;
 }
 
 #invalid_img {

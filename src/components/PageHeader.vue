@@ -101,7 +101,7 @@ export default {
                 document.getElementById(this.previousPage).className = "header_option_inactive";
                 document.getElementById(this.activePage).className = "header_option_active";
             } catch {
-                console.log("That page does not exist.")
+                return;
             }
             if (key == "ham") {
                 this.ham_active = false;
