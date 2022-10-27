@@ -20,10 +20,10 @@
       </div>
       <div class="carousel-inner c-inner">
         <div class="carousel-item c-item active">
-          <img src="../assets/carosel-imgs/bg1.jpg" class="d-block w-100 c-img" alt="Slide 1">
+          <img src="https://i.imgur.com/wS0nAgM.jpeg" class="d-block w-100 c-img" alt="Slide 1">
         </div>
         <div class="carousel-item c-item">
-          <img src="../assets/carosel-imgs/bg2.jpg" class="d-block w-100 c-img" alt="Slide 2">
+          <img src="https://i.imgur.com/DMekFMZ.jpeg" class="d-block w-100 c-img" alt="Slide 2">
         </div>
         <div class="carousel-item c-item">
           <img src="../assets/carosel-imgs/bg3.jpg" class="d-block w-100 c-img" alt="Silde 3">

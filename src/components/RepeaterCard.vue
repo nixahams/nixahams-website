@@ -6,7 +6,7 @@
             <div>
                 <div id="break_line">.</div>
             </div>
-            <div id="repeater_desc">{{this.$vnode.key}} - {{short_desc}}</div>
+            <div id="repeater_desc">{{short_desc}}</div>
         </div>
         <img id="repeater_img" :src="img_src" alt="Repeater Image">
     </div>

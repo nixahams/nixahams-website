@@ -31,10 +31,10 @@ export default {
     },
     methods: {
         loadBlogData(){
-            this.title = "Lorem ipsum dolor sit amet cons";
+            this.title = "Nixa 29.680 Receive Antenna Install";
             this.desc = "Lorem ipsum dolor sit amet cons Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sequi dignissimos repellendus nostrum autem unde facere dicta sint facilis sunt, mollitia reiciendis tempore voluptatum dolorum placeat numquam deleniti quidem sed ab iure a! Reiciendis repudiandae hic, voluptatum nostrum unde molestias amet enim! Possimus illo minima ab recusandae inventore sunt architecto?";
             this.date = "10/15/2022";
-            this.image = "https://s3.amazonaws.com/usma-media/inline-images/military/directorate_of_cadet_activities/Club_Pictures/cadet_radio.jpg";
+            this.image = "https://i.imgur.com/DMekFMZ.jpeg";
 
         },
     },
