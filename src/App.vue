@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PageHeader />
+    <PageHeader :key="componentKey" :bgcolor="bg_color"/>
     <router-view></router-view>
     <PageFooter/>
   </div>
@@ -10,6 +10,12 @@
 import PageHeader from './components/PageHeader.vue';
 import PageFooter from './components/PageFooter.vue';
 
+// import { ref } from 'vue';
+// const componentKey = ref(0);
+// const forceRerender = () => {
+//   componentKey.value += 1;
+// };
+
 export default {
   name: 'App',
   components: {
@@ -18,9 +24,25 @@ export default {
   },
   data() {
     return {
+      bg_color: 'transparent',
+      componentKey: 0,
     }
   },
   methods: {
+    forceRerender(){
+      this.componentKey +=1;
+    }
+  },    
+  updated() {
+      if(this.$route.fullPath == "/Contacts"){
+        console.log("color change");
+        // this.bg_color = "rgba(0,0,0,0.5)";
+        this.bg_color = "red";
+        // this.forceRerender(); //creates infinite loop
+      }
+  },
+  mounted(){
+
   }
 
 }

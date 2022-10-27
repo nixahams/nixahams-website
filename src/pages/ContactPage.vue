@@ -1,18 +1,17 @@
 <template>
   <div id="contact_page">
-    email
-    phone
-    myspace
+    <ContactPage/>
 
   </div>
 </template>
   
 <script>
+import ContactPage from '../components/ContactPage.vue'
 
 export default {
   name: 'ContactPage.vue',
   components: {
-
+    ContactPage
   },
   methods:{
     scrollToTop() {document.body.scrollTop = 0;},

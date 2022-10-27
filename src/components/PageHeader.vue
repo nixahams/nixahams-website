@@ -78,9 +78,7 @@
 
 export default {
     name: 'PageHeader',
-    props: {
-
-    },
+    props: ['bgcolor'],
     data() {
         return {
             activePage: "Home",
@@ -122,12 +120,18 @@ export default {
         }
     },
     mounted() {
+        if(this.$route.fullPath == "/Contacts"){
+            console.log("in contact page");
+            let hed = document.getElementById('header_parent');
+            hed.style.backgroundColor = this.bgcolor;
+        }
+
         this.updateActivePage(this.$route.path.toLowerCase().substring(1), "normal");
         window.addEventListener("scroll", this.onScroll, true);
     },
     beforeDestroy() {
         window.removeEventListener("scroll", this.onScroll, true);
-    },
+    }
 
 }
 </script>
@@ -137,6 +141,8 @@ export default {
 a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
+    /* color: rgba(0,0,0,0.1); */
+    /* filter: invert(100%); */
     font-size: 1.0em;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -144,14 +150,18 @@ a {
     padding: 5px 10px;
     text-transform: uppercase;
 }
-
 a:hover {
     color: rgba(255, 255, 255, 1);
     transition: 0.2s ease;
 }
+.header_option_active {
+    position: relative;
+    color: white;
+}
+
 
 #header_parent {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #header_parent_scroll {
@@ -210,10 +220,6 @@ a:hover {
     font-size: 1em;
 }
 
-.header_option_active {
-    position: relative;
-    color: white
-}
 
 .header_option_inactive {
     position: relative;
