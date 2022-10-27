@@ -2,7 +2,7 @@
   <div id="about_page">
 
     <div id="about_bg_parent">
-      <img id="about_bg" src="../assets/carosel-imgs/bg5.jpg" alt="Background">
+      <img id="about_bg" src="https://i.imgur.com/a4vsV5J.jpeg" alt="Background">
     </div>
 
     <div id="about_p1">
@@ -112,6 +112,15 @@ body {
 
 #about_bg {
   filter: brightness(30%);
+  object-fit: cover;
+  width: 100%; height: 100%;
+}
+#about_bg_parent::after{
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, transparent 30%)
 }
 
 #about_p1 {
