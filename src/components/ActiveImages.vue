@@ -1,0 +1,55 @@
+<template>
+    <div id="image_component">
+        <img :src="image" alt="Repeater Images" id="component_image">
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'ActiveImages',
+    props: ['image','index'],
+    data(){
+        return{
+        }
+    },
+    mounted(){
+    },
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+#image_component{
+    position: relative;
+    height: 90%;
+    min-width: 300px;
+    /* aspect-ratio: 5 / 4; */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+#image_component:hover{
+    filter: brightness(50%);
+}
+#component_image{
+    width: 100%; height: 100%;
+    object-fit: contain;
+}
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+
+}
+</style>

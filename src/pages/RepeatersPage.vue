@@ -4,6 +4,10 @@
     <CardArrow @displayinfo="showinfo"/>
     <div :class="desc_class" id="descriptive_parent">
 
+      <div id="more_images">
+        <ActiveImages v-for="(result, index) in image_array" :key="index" :index="index" :image="result"/>
+      </div>
+
       <div id="repeater_filter">
         <div id="filter_img_parent">
           <i id="filter_img" class="fa-solid fa-magnifying-glass"></i>
@@ -15,7 +19,6 @@
             <option value="location">Location</option>
             <option value="frequency">Frequency</option>
           </select>
-
         </div>
         <div v-if="result_visible" id="search_results">
           <ResultOption @option_selected="op_selected" v-for="res in result_list" :key="res.key" :res="res" :filter="filter_by"/>
@@ -34,7 +37,8 @@
 ResultOption
 import CardArrow from '../components/CardArrow.vue';
 import ResultOption from '../components/ResultOption.vue';
-import repeaters from "../repeaters.json";
+import repeaters from '../repeaters.json';
+import ActiveImages from '../components/ActiveImages.vue';
 
 export default {
   props: {parallax: {
@@ -44,7 +48,8 @@ export default {
   name: 'RepeatersPage',
   components: {
     CardArrow,
-    ResultOption
+    ResultOption,
+    ActiveImages
   },
   data(){
     return{
@@ -59,7 +64,8 @@ export default {
       long_desc: "No data to provide",
       result_visible: false,
       result_list: [],
-      filter_by: 'all'
+      filter_by: 'all',
+      image_array: []
     }
   },
   methods: {
@@ -79,6 +85,7 @@ export default {
       this.date=obj.date;
       this.long_desc=obj.long_desc;
       this.result_visible = false;
+      this.image_array = obj.img_arr;
     },
     user_typing(text){
       text=text.toLowerCase();
@@ -129,6 +136,7 @@ export default {
       this.long_title=obj.long_title;
       this.date=obj.date;
       this.long_desc=obj.long_desc;
+      this.image_array = obj.img_arr;
       this.count++;
     }
   },
@@ -140,11 +148,35 @@ export default {
     this.long_title=this.rep_arr[0].long_title;
     this.date=this.rep_arr[0].date;
     this.long_desc=this.rep_arr[0].long_desc;
+    this.image_array = this.rep_arr[0].img_arr;
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#more_images{
+  width: 80%; height: 30vh;
+  margin-top: 10vh;
+  margin-bottom: 5vh;  
+  display: flex; gap: 20px;
+  position: relative; justify-content: center;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+/* width */
+#more_images::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+#more_images::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+/* Handle */
+#more_images::-webkit-scrollbar-thumb {
+  background: #cdcdcd;
+  box-shadow: inset 3px 3px 3px 0px #ffffff;
+}
+
 .desc_fade1{animation: desc1 0.6s forwards;}
 .desc_fade2{animation: desc2 0.6s forwards;}
 @keyframes desc1{
@@ -167,17 +199,18 @@ export default {
   position: relative;
 }
 #descriptive_parent{
-  width: 100%; min-height: 90vh;
+  width: 100%; min-height: 100vh;
   height: fit-content;
   position: relative;
   display: flex;  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 25vh;
+  padding-top: 8vh;
 }
 #desc_info_title1{
   color: #db7b32a9;
   font-size: 3.5em;
+  text-align: center;
 }
 #desc_info_title2{
   color: white;
@@ -195,7 +228,7 @@ export default {
 }
 #repeater_filter{
   position: absolute;
-  top: 10vh;
+  top: 5vh;
   right: 0; left: 0;
   border-radius: 100px;
   border: 3px solid #DB7B32;

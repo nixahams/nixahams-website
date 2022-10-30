@@ -18,7 +18,7 @@
                     <div id="topg">
                         <RepeaterCard 
                         :key="rep1.key" 
-                        :img_src="rep1.img_arr.img1"
+                        :img_src="rep1.img_arr[0]"
                         :name="rep1.name"
                         :short_desc="rep1.short_desc" 
                         :location="rep1.location" />
@@ -30,7 +30,7 @@
                     <div id="topg">
                         <RepeaterCard 
                         :key="rep2.key" 
-                        :img_src="rep2.img_arr.img1"
+                        :img_src="rep2.img_arr[0]"
                         :name="rep2.name"
                         :short_desc="rep2.short_desc" 
                         :location="rep2.location" />
@@ -42,7 +42,7 @@
                     <div id="topg">
                         <RepeaterCard 
                         :key="rep3.key" 
-                        :img_src="rep3.img_arr.img1"
+                        :img_src="rep3.img_arr[0]"
                         :name="rep3.name"
                         :short_desc="rep3.short_desc" 
                         :location="rep3.location" />
@@ -86,21 +86,21 @@ export default {
             toggleLeft: 0,
             rep1: {
                 key: 0,
-                img_arr: [{img1: ''}],
+                img_arr: [],
                 name: '',
                 short_desc: '',
                 location: ''
             },
             rep2: {
                 key: 0,
-                img_arr: [{img1: ''}],
+                img_arr: [],
                 name: '',
                 short_desc: '',
                 location: ''
             },
             rep3: {
                 key: 0,
-                img_arr: [{img1: ''}],
+                img_arr: [],
                 name: '',
                 short_desc: '',
                 location: ''
@@ -150,11 +150,11 @@ export default {
             this.imgid3 = "hide";
             this.imgid4 = "hide";
             if(this.toggleRight%2==0){
-                this.imgsrc2 = this.repeater_array[this.i].img_arr.img1;
+                this.imgsrc2 = this.repeater_array[this.i].img_arr[0];
                 this.imgid1 = "goOutR";
                 this.imgid2 = "goInR";
             }else{
-                this.imgsrc1 = this.repeater_array[this.i].img_arr.img1;
+                this.imgsrc1 = this.repeater_array[this.i].img_arr[0];
                 this.imgid1 = "goInR";
                 this.imgid2 = "goOutR";
             }
@@ -164,11 +164,11 @@ export default {
             this.imgid1 = "hide";
             this.imgid2 = "hide";
             if(this.toggleLeft%2==0){
-                this.imgsrc4 = this.repeater_array[this.i].img_arr.img1;
+                this.imgsrc4 = this.repeater_array[this.i].img_arr[0];
                 this.imgid3 = "goOutL";
                 this.imgid4 = "goInL";
             }else{
-                this.imgsrc3 = this.repeater_array[this.i].img_arr.img1;
+                this.imgsrc3 = this.repeater_array[this.i].img_arr[0];
                 this.imgid3 = "goInL";
                 this.imgid4 = "goOutL";
             }
@@ -275,7 +275,7 @@ export default {
     },
     mounted(){
         this.repeater_array = repeaters.repeater_list;
-        this.imgsrc1 = this.repeater_array[0].img_arr.img1;
+        this.imgsrc1 = this.repeater_array[0].img_arr[0];
         this.rep1 = this.repeater_array[this.repeater_array.length-1];
         this.rep2 = this.repeater_array[0];
         this.rep3 = this.repeater_array[1];

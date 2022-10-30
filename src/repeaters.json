@@ -2,10 +2,24 @@
     "repeater_list": [
         { 
             "name": "444.775",
-            "img_arr": {
-                "img1": "https://i.imgur.com/Yqc5OBw.jpeg",
-                "img2": "https://i.imgur.com/yyIICis.jpeg"
-            },
+            "img_arr": [
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/Yqc5OBw.jpeg",
+                "https://i.imgur.com/yyIICis.jpeg"
+            ],
             "short_desc": "Repeater equipment",
             "location": "Bendavis, MO",
             "key" : 1,
@@ -15,10 +29,16 @@
         },
         { 
             "name": "444.975",
-            "img_arr": {
-                "img1": "https://i.imgur.com/iiQqZXD.jpeg",
-                "img2": "willow_prings_146.985(1).jpg"
-            },
+            "img_arr": [
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg",
+                "https://i.imgur.com/iiQqZXD.jpeg"
+            ],
             "short_desc": "Repeater equipment",
             "location": "Stockton Lake, MO",
             "key" : 2,
@@ -28,10 +48,17 @@
         },
         { 
             "name": "443.400",
-            "img_arr": {
-                "img1": "https://i.imgur.com/i0OATDE.jpg",
-                "img2": "rolla_146.820(1).jpg"
-            },
+            "img_arr": [
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg",
+                "https://i.imgur.com/i0OATDE.jpg"
+            ],
             "short_desc": "Repeater and Antenna",
             "location": "Springfield, MO",
             "key" : 3,
@@ -41,10 +68,10 @@
         },
         { 
             "name": "145.290",
-            "img_arr": {
-                "img1": "https://i.imgur.com/wUmeRVq.jpeg",
-                "img2": ""
-            },
+            "img_arr": [
+                "https://i.imgur.com/wUmeRVq.jpeg",
+                "https://i.imgur.com/wUmeRVq.jpeg"
+            ],
             "short_desc": "Site antenna",
             "location": "Taum Sauk, MO",
             "key" : 4,
@@ -54,10 +81,11 @@
         },
         { 
             "name": "443.675",
-            "img_arr": {
-                "img1": "https://i.imgur.com/ofUdDRW.jpeg",
-                "img2": ""
-            },
+            "img_arr": [
+                "https://i.imgur.com/ofUdDRW.jpeg",
+                "https://i.imgur.com/ofUdDRW.jpeg",
+                "https://i.imgur.com/ofUdDRW.jpeg"
+            ],
             "short_desc": "Repeater install",
             "location": "Bolivar, MO",
             "key" : 5,
@@ -67,10 +95,31 @@
         },
         { 
             "name": "224.280",
-            "img_arr": {
-                "img1": "https://i.imgur.com/O1IxsOL.jpeg",
-                "img2": ""
-            },
+            "img_arr": [
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg",
+                "https://i.imgur.com/O1IxsOL.jpeg"
+            ],
             "short_desc": "Repeater",
             "location": "Clever, MO",
             "key" : 6,
