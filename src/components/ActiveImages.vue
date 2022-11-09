@@ -24,12 +24,10 @@ export default {
     position: relative;
     height: 90%;
     min-width: 300px;
-    /* aspect-ratio: 5 / 4; */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
     transition: 0.2s ease;
+    background-color: white;
 }
 #image_component:hover{
     filter: brightness(50%);
@@ -37,6 +35,7 @@ export default {
 #component_image{
     width: 100%; height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0px 0px 10px black);
 }
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {

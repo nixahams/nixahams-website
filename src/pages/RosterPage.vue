@@ -55,7 +55,7 @@
             <div class="card_img_parent">
               <img id="front_img" src="https://assets.codepen.io/1462889/sea.png" alt="">
             </div>
-            <div class="card_title">Single</div>
+            <div class="card_title sin_card">Single</div>
             <div class="card_price">$15 / Year</div>
             <div class="card_button_parent">
               <a class="card_ref" href="https://paypal.com/" target="_blank">
@@ -67,7 +67,7 @@
             <div class="card_img_parent">
               <img id="back_img" src="https://assets.codepen.io/1462889/grass.png" alt="">
             </div>
-            <div class="card_title">Family</div>
+            <div class="card_title fam_card">Family</div>
             <div class="card_price">$20 / Year</div>
             <div class="card_button_parent">
               <a class="card_ref" href="https://paypal.com/" target="_blank">
@@ -397,6 +397,33 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.sin_card::before{
+  content: '';
+  width: 50%; height: 100%;
+  top: 0;
+  left: auto; right: auto;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8, %3Csvg width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 %3E %3Cdefs%3E %3CclipPath id=%22shape%22%3E %3Cpath fill=%22currentColor%22 d=%22M850.5%2C640.5Q835%2C781%2C693%2C784Q551%2C787%2C411%2C841.5Q271%2C896%2C157%2C781Q43%2C666%2C144%2C536.5Q245%2C407%2C265.5%2C268.5Q286%2C130%2C417%2C179Q548%2C228%2C638%2C268Q728%2C308%2C797%2C404Q866%2C500%2C850.5%2C640.5Z%22%3E%3C%2Fpath%3E %3C%2FclipPath%3E %3C%2Fdefs%3E %3Cg clip-path=%22url(%23shape)%22%3E %3Cpath fill=%22%239bd4e6%22 d=%22M850.5%2C640.5Q835%2C781%2C693%2C784Q551%2C787%2C411%2C841.5Q271%2C896%2C157%2C781Q43%2C666%2C144%2C536.5Q245%2C407%2C265.5%2C268.5Q286%2C130%2C417%2C179Q548%2C228%2C638%2C268Q728%2C308%2C797%2C404Q866%2C500%2C850.5%2C640.5Z%22 %2F%3E %3C%2Fg%3E %3C%2Fsvg%3E");
+  background-position: center;
+  background-size: 90%;
+  z-index: -1;
+}
+.fam_card::before{
+  content: '';
+  width: 50%; height: 100%;
+  top: 0;
+  left: auto; right: auto;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8, %3Csvg width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 %3E %3Cdefs%3E %3CclipPath id=%22shape%22%3E %3Cpath fill=%22currentColor%22 d=%22M818.5%2C591Q717%2C682%2C644%2C792.5Q571%2C903%2C469.5%2C816Q368%2C729%2C247.5%2C682.5Q127%2C636%2C176%2C518Q225%2C400%2C265%2C281.5Q305%2C163%2C435%2C148Q565%2C133%2C709%2C168.5Q853%2C204%2C886.5%2C352Q920%2C500%2C818.5%2C591Z%22%3E%3C%2Fpath%3E %3C%2FclipPath%3E %3C%2Fdefs%3E %3Cg clip-path=%22url(%23shape)%22%3E %3Cpath fill=%22%2387c783%22 d=%22M818.5%2C591Q717%2C682%2C644%2C792.5Q571%2C903%2C469.5%2C816Q368%2C729%2C247.5%2C682.5Q127%2C636%2C176%2C518Q225%2C400%2C265%2C281.5Q305%2C163%2C435%2C148Q565%2C133%2C709%2C168.5Q853%2C204%2C886.5%2C352Q920%2C500%2C818.5%2C591Z%22 %2F%3E %3C%2Fg%3E %3C%2Fsvg%3E");
+  background-position: center;
+  background-size: 90%;
+  z-index: -1;
 }
 
 .card_price {
