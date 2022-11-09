@@ -156,9 +156,7 @@ mounted(){
   margin-top: 15%;
   padding: 0% 5% 0% 5%;
   overflow: auto;
-  background-color: blue;
 }
-
 
 
 #media{
@@ -200,7 +198,7 @@ mounted(){
   width: 100%; height: calc(100% - 100px);
   display: flex;
   flex-direction: row;
-  background-color: green;
+  /* background-color: indianred; */
 }
 .media_search{
   width: 50%; height: 100%;
@@ -208,7 +206,6 @@ mounted(){
   padding: 1%;
   display: flex;
   align-items: flex-start;
-  background-color: brown;
 }
 
 .media_filter{
@@ -219,7 +216,6 @@ mounted(){
   font-family: 'Montserrat';
   display: flex;
   font-size: 1.5em;
-  background-color: purple;
 }
 #filter_name{
   color: white;
@@ -230,12 +226,14 @@ mounted(){
 }
 #photo_filter{
   height: 100%; width: 40%;
+  padding-left: 10px;
   min-width: fit-content;
-  background-color: transparent;
   border: none;
-  color: white;
-  border: 2px solid gray;
+  color: black;
   border-radius: 10px;
+  background-color: white;
+  font-family: 'Dropstyle';
+  font-weight: bold;
 }
 option{
   color: black;
@@ -290,8 +288,7 @@ option{
     height: 5%;
   }
   #photo_media{
-    width: 100%; min-height: 220vh;
-    background-color: red;
+    width: 100%; min-height: 160vh;
     height: fit-content;
     /* max-height: 100vh; */
     position: relative;

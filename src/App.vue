@@ -51,6 +51,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 @font-face {
+  font-family: 'Dropstyle';
+  src: url('./assets/fonts/RobotoCondensed-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: sans-serif;
+}
+
+
+@font-face {
   font-family: 'Montserrat';
   src: url('./assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');
   font-weight: 100;
