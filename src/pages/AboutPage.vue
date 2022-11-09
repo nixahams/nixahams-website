@@ -5,7 +5,7 @@
       <img id="about_bg" src="https://i.imgur.com/a4vsV5J.jpeg" alt="Background">
     </div>
 
-    <div id="about_p1">
+    <div class="about_section">
       <div class="about_text left">
         <div class="title">About Us</div>
         <div class="subtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit suscipit aperiam
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div id="about_p1">
+    <div class="about_section ntop">
       <div class="about_text left">
         <div class="title">About Us</div>
         <div class="subtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit suscipit aperiam
@@ -32,7 +32,7 @@
           nulla at officiis. Fuga, beatae natus reprehenderit aspernatur dolore atque doloremque.</div>
       </div>
 
-      <div class="about_text right">
+      <div class="about_text right ntop">
         <div class="title">About Us</div>
         <div class="subtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit suscipit aperiam
           necessitatibus ducimus. Dignissimos placeat est quia ipsam similique officia asperiores distinctio autem earum
@@ -41,8 +41,8 @@
       </div>
     </div>
 
-    <div id="about_p1">
-      <div class="about_text left">
+    <div class="about_section ntop">
+      <div class="about_text left ntop">
         <div class="title">About Us</div>
         <div class="subtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit suscipit aperiam
           necessitatibus ducimus. Dignissimos placeat est quia ipsam similique officia asperiores distinctio autem earum
@@ -50,7 +50,7 @@
           nulla at officiis. Fuga, beatae natus reprehenderit aspernatur dolore atque doloremque.</div>
       </div>
 
-      <div class="about_text right">
+      <div class="about_text right ntop">
         <div class="title">About Us</div>
         <div class="subtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit suscipit aperiam
           necessitatibus ducimus. Dignissimos placeat est quia ipsam similique officia asperiores distinctio autem earum
@@ -92,14 +92,12 @@ body {
 }
 
 #about_page {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 213, 239);
   display: flex;
   flex-direction: column;
   background-color: black;
   padding-top: 120px;
+  height: fit-content;
+  min-height: 100vh;
 }
 
 #about_bg_parent {
@@ -109,21 +107,22 @@ body {
   width: 100%;
   height: 100%;
 }
+#about_bg_parent::after{
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  bottom: -20px; left: 0;
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, transparent 30%);
+}
 
 #about_bg {
   filter: brightness(30%);
   object-fit: cover;
   width: 100%; height: 100%;
-}
-#about_bg_parent::after{
-  content: '';
-  position: absolute;
-  width: 100%; height: 100%;
-  top: 0; left: 0;
-  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, transparent 30%)
+  position: fixed;
 }
 
-#about_p1 {
+.about_section{
   /* border: 1px solid greenyellow; */
   width: 100%;
   height: fit-content;
@@ -137,18 +136,19 @@ body {
 
 /* #about_p1>div{border: 1px solid red} */
 .about_text {
-  width: 100%;
-  height: 100%;
+  width: 100%;height: fit-content;
 }
-
 .left {
   padding-right: 50%;
   text-align: left;
 }
-
 .right {
   padding-left: 50%;
   text-align: right;
+}
+.ntop{
+  background-color: black;
+  background-clip: padding-box;
 }
 
 .title {
@@ -169,20 +169,29 @@ body {
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   .about_text {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: fit-content;
+    padding: 5% 0;
+    display: flex; justify-content: center; align-items: center;
+    flex-direction: column;
   }
-
   .left {
-    padding-right: 10%;
-    padding-left: 10%;
-    text-align: center;
+    padding-right: 0%;
+    text-align: left;
   }
-
   .right {
-    padding-right: 10%;
-    padding-left: 10%;
-    text-align: center;
+    padding-left: 0%;
+    text-align: right;
+  }
+  .about_section{
+    /* border: 1px solid greenyellow; */
+    width: 100%;
+    height: fit-content;
+    padding: 0 100px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 1;
   }
 }
 

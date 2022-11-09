@@ -161,9 +161,11 @@ a:hover {
 
 
 #header_parent {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0,0,0,0);
 }
-
+#header_parent:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 #header_parent_scroll {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -184,9 +186,7 @@ a:hover {
     grid-template-columns: 1fr 2fr 1fr;
 }
 
-#header_parent:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
+
 
 /* don't display responsive styles on normal view */
 #header_hamburger,
