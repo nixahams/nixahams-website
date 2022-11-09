@@ -1,7 +1,8 @@
 <template>
-    <div id="fullscreen" @click="$emit('hide_fullscreen')">
+    <div id="fullscreen">
+        <div id="faded_background" @click="$emit('hide_fullscreen')"></div>
         <div id="fullscreen_parent">
-            <i id="fullscreen_exit" class="fa-solid fa-x"></i>
+            <i id="fullscreen_exit" class="fa-solid fa-x" @click="$emit('hide_fullscreen')"></i>
             <img id="fullscreen_img" :src="image" alt="">
             <div id="fullscreen_text">
                 <div id="fullscreen_title">{{title}}</div>
@@ -59,18 +60,21 @@ export default {
     z-index: 999;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
     top: 0; left: 0;
     display: flex; justify-content: center; align-items: center;
 }
+#faded_background{
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
 #fullscreen_parent{
-    width: 80%; height: 80%;
-    background-color: rgb(203, 203, 203);
+    width: 80%; height: 90%;
+    background-color: white;
     border-radius: 5px;
     color: black;
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: absolute;
 }
 
 

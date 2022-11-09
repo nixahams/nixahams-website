@@ -39,15 +39,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .media_result{
-  border: 1px solid gray;
-  border-radius: 20px;
   height: 25%; width: 100%;
+  max-height: 15vh;
   margin-bottom: 2%;
   cursor: pointer;
   transition: 0.2s ease;
   position: relative;
   padding: 3% 5%;
   display: flex;
+  background-color: white;
 }
 .media_result:hover{filter: brightness(80%);}
 .result_img{
@@ -84,18 +84,18 @@ export default {
     white-space: nowrap;
   display: flex; justify-content: flex-start; align-items: center;
   font-size: 2em;
-  color: rgba(255,255,255,1)
+  color: black;
 }
 .result_date{
   width: 50%;
   display: flex; justify-content: flex-end; align-items: center;
   font-size: 1.3em;
-  color: rgba(186, 129, 30, 0.9)
+  color: black;
 }
 .result_desc{
   width: 100%;
   overflow: hidden;
-  color: rgba(255,255,255,0.7)
+  color: black;
 }
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {

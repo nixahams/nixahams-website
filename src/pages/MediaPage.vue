@@ -4,10 +4,8 @@
 
     <div id="photo_media">
       <div class="media_title">Photos</div>
-
       <div class="media_query">
         <div class="media_search">
-
           <div class="media_filter">
             <div id="filter_name">Filter Year</div>
             <select @change="onChange($event)" name="photo_filter" id="photo_filter">
@@ -18,18 +16,15 @@
               <option value="p2018">2018</option>
             </select>
           </div>
-
           <div class="media_results">
             <MediaResult :empty="empty_photo" @selected="photo_selected" v-for="(result, index) in results_photo" :key="index" :image="result.image" :title="result.title" :date="result.date" :desc="result.desc"/>
-
             <div id="empty_photo" v-if="empty_photo">
               <i class="fa-solid fa-signal"></i>
               No data for this year
             </div>
           </div>
-
         </div>
-        <div class="media_display">
+        <div class="img_media_display">
           <div @click="show_fullscreen" class="fullscreen_parent">
             <img id="media_img" :src="photo_src" alt="">
             <i class="fa-solid fa-expand media_fullscreen" title="full screen"></i>
@@ -59,7 +54,7 @@
           </div>
 
         </div>
-        <div class="media_display">
+        <div class="img_media_display">
           <div class="fullscreen_parent">
 
             <iframe id="media_video" :src="video_src" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -121,9 +116,6 @@ methods:{
       this.active_img = '';
       this.active_date = '';
     }
-
-    
-
   },
   scrollToTop() {document.body.scrollTop = 0;},
   photo_selected(selected_src, title, desc, date){
@@ -160,14 +152,17 @@ mounted(){
 }
 .media_results{
   width: 100%; height: 88%;
+  max-height: 90vh;
+  margin-top: 15%;
   padding: 0% 5% 0% 5%;
   overflow: auto;
+  background-color: blue;
 }
 
 
 
 #media{
-  min-height: fit-content; width: 100%;
+  height: fit-content; width: 100%;
   padding-top: 200px;
   padding-bottom: 50px;
   background-color: #15181c;
@@ -175,16 +170,24 @@ mounted(){
   gap: 10vh;
   font-family: 'Montserrat';
 }
+/* Handle */
+.media_results::-webkit-scrollbar-thumb {
+  background: white;
+  background-clip: content-box;
+  box-shadow: inset 3px 3px 3px 0px #bbbbbb;
+  border-radius: 10px;
+}
 #photo_media{
   width: 100%; min-height: 80vh;
   height: fit-content;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   position: relative;
 }
 #video_media{
   width: 100%; min-height: 80vh;
   height: fit-content;
-  max-height: 100vh;
+  /* max-height: 100vh; */
+  position: relative;
 }
 .media_title{
   font-size: 4em;
@@ -197,13 +200,15 @@ mounted(){
   width: 100%; height: calc(100% - 100px);
   display: flex;
   flex-direction: row;
+  background-color: green;
 }
 .media_search{
   width: 50%; height: 100%;
   position: relative;
   padding: 1%;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  background-color: brown;
 }
 
 .media_filter{
@@ -214,7 +219,7 @@ mounted(){
   font-family: 'Montserrat';
   display: flex;
   font-size: 1.5em;
-
+  background-color: purple;
 }
 #filter_name{
   color: white;
@@ -236,12 +241,13 @@ option{
   color: black;
 }
 
-.media_display{
-  width: 50%;
+.img_media_display{
+  width: 50%; aspect-ratio: 2 / 1;
   display: flex;
   justify-content: center;align-items: center;
   padding: 1%;
   position: relative;
+
 }
 .fullscreen_parent{
   height: 80%; width: 80%;
@@ -271,29 +277,47 @@ option{
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-
+  .media_filter{
+    top: 1.5%;
+    height: 5%;
+  }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
+  .media_filter{
+    top: 0%;
+    height: 5%;
+  }
+  #photo_media{
+    width: 100%; min-height: 220vh;
+    background-color: red;
+    height: fit-content;
+    /* max-height: 100vh; */
+    position: relative;
+  }
   .media_query{
     flex-direction: column;
   }
   .media_search{
     width: 100%; height: 100%;
   }
-  .media_display{
-    width: 100%;
+  .img_media_display{
+    width: 100%; height: 50vh;
   }
   .media_results{
     width: 100%; height: 100%;
-    padding: 20% 5% 0% 5%;
+    padding: 0% 5% 0% 5%;
   }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
+  .media_results{
+    width: 100%; height: 100%;
+    margin-bottom: -30%;
+    padding: 0% 5% 0% 5%;
+  }
 }
 </style>
   
