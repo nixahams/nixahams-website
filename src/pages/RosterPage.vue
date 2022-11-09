@@ -398,6 +398,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   position: relative;
+  color: rgb(25, 21, 41);
 }
 .sin_card::before{
   content: '';
