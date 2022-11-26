@@ -1,11 +1,18 @@
 <template>
   <div id="repeaters_page">
+    <div v-if="showFullScreenImage" @click="exitFullScreenImage" id="fullScreen_clickOut"></div>
+    <div v-if="showFullScreenImage" id="fullScreenImage_parent">
+      <div>
+        <i @click="exitFullScreenImage" class="fa-solid fa-x" id="fullScreenImage_exit"></i>
+        <img id="fullScreenImage_child" :src="fullScreenImage_src">
+      </div>
+    </div>
 
     <CardArrow @displayinfo="showinfo"/>
     <div :class="desc_class" id="descriptive_parent">
 
       <div id="more_images">
-        <ActiveImages v-for="(result, index) in image_array" :key="index" :index="index" :image="result"/>
+        <ActiveImages @emitFullScreenImage="fullScreenImage(result)" v-for="(result, index) in image_array" :key="index" :index="index" :image="result"/>
       </div>
 
       <div id="repeater_filter">
@@ -53,6 +60,8 @@ export default {
   },
   data(){
     return{
+      showFullScreenImage: false,
+      fullScreenImage_src: '',
       rep_arr: {},
       search_by: "Search by all",
       count: 0,
@@ -69,6 +78,14 @@ export default {
     }
   },
   methods: {
+    fullScreenImage(img){
+      this.showFullScreenImage=true;
+      this.fullScreenImage_src = img;
+    },
+    exitFullScreenImage(){
+      this.showFullScreenImage=false;
+      this.fullScreenImage_src = '';
+    },
     scrollToTop() {document.body.scrollTop = 0;},
     onChange(e){
       this.result_visible = false;
@@ -154,6 +171,46 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#fullScreen_clickOut{
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  height: 100vh; width: 100vw;
+  z-index: 9999;
+  top: 0;
+}
+#fullScreenImage_parent{
+  position: fixed;
+  z-index: 9999;
+  width: 100vw; height: 100vh;
+  top: 0;
+  display: flex; justify-content: center; align-items: center;
+  pointer-events: none;
+}
+#fullScreenImage_parent>div{
+  display: flex; justify-content: center; align-items: center;
+  width: 90%; height: 90%;
+  position: relative;
+  pointer-events: fill;
+}
+#fullScreenImage_exit{
+  position: absolute;
+  width: 20px; height: 20px;
+  color: rgb(210, 90, 90);
+  right:40px; top: 30px;
+  font-size: 2.5em;
+  z-index: 9999;
+  cursor: pointer;
+}
+#fullScreenImage_child{
+  width: 100%; height: 100%;
+  object-fit: contain;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 10px;
+  pointer-events: none;
+}
 #more_images{
   width: 80%; height: 30vh;
   margin-top: 10vh;
@@ -194,8 +251,8 @@ export default {
   color: rgb(208, 213, 239);
   /* multiple sections of various VH height */
   width: 100%; height: fit-content;
-  padding-top: 120px;
-  background-color: #1c2023;
+  /* padding-top: 120px; */
+  background-color: #0d0c18;
   position: relative;
 }
 #descriptive_parent{
@@ -208,7 +265,7 @@ export default {
   padding-top: 8vh;
 }
 #desc_info_title1{
-  color: #db7b32a9;
+  color: #E08136;
   font-size: 3.5em;
   text-align: center;
 }
@@ -301,13 +358,30 @@ option{
   #repeater_filter{
     width: 60%; height: 8vh;
   }
-
+  #desc_info_desc{
+    font-size: 1.5em;
+  }
+  #desc_info_title2{
+    font-size: 3em;
+  }
+  #desc_info_title1{
+    font-size: 3em;
+  }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
   #repeater_filter{
     width: 60%; height: 8vh;
+  }
+  #desc_info_desc{
+    font-size: 1.3em;
+  }
+  #desc_info_title2{
+    font-size: 2.5em;
+  }
+  #desc_info_title1{
+    font-size: 2em;
   }
 }
 
@@ -316,6 +390,15 @@ option{
   #repeater_filter{
     width: 80%; height: 8vh;
     font-size: 0.8em;
+  }
+  #desc_info_desc{
+    font-size: 1.1em;
+  }
+  #desc_info_title2{
+    font-size: 2em;
+  }
+  #desc_info_title1{
+    font-size: 1.7em;
   }
 }
 </style>

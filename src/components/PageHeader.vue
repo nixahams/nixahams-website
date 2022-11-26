@@ -16,8 +16,8 @@
                 id="roster">roster</a>
             <a href="#/Announcements" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="announcements">announcements</a>
-            <a href="#/Contacts" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="contacts">contacts</a>
+            <a href="#/Contact" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="contacts">contact</a>
             <a href="#/Media" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'ham')" id="media">media</a>
             <a href="#/Staff" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'ham')"
@@ -26,7 +26,7 @@
 
         <div id="header_p1">
             <a href="#/" @click="updateActivePage($event.path[0].innerHTML, 'normal')">
-                <img src="../assets/logo1.png" alt="Logo" height="90">
+                <img id="header_p1_img" src="../assets/logo1.png" alt="Logo" height="90">
             </a>
         </div>
 
@@ -41,8 +41,8 @@
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="roster">roster</a>
             <a href="#/Announcements" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="announcements">announcements</a>
-            <a href="#/Contacts" class="header_option_inactive"
-                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="contacts">contacts</a>
+            <a href="#/Contact" class="header_option_inactive"
+                @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="contacts">contact</a>
             <a href="#/Media" class="header_option_inactive"
                 @click="updateActivePage($event.path[0].innerHTML, 'normal')" id="media">media</a>
             <a href="#/Staff" class="header_option_inactive" @click="updateActivePage($event.path[0].innerHTML, 'normal')"
@@ -120,7 +120,7 @@ export default {
         }
     },
     mounted() {
-        if(this.$route.fullPath == "/Contacts"){
+        if(this.$route.fullPath == "/Contact"){
             console.log("in contact page");
             let hed = document.getElementById('header_parent');
             hed.style.backgroundColor = this.bgcolor;

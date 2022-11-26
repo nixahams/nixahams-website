@@ -54,11 +54,21 @@
           <div class="full_card" id="card_front">
             <div class="card_img_parent">
               <img id="front_img" src="https://assets.codepen.io/1462889/sea.png" alt="">
+              <img class="moveRadio" id="front_img2" src="../assets/roster/radio_transparent.png">
             </div>
             <div class="card_title sin_card">Single</div>
             <div class="card_price">$15 / Year</div>
             <div class="card_button_parent">
-              <a class="card_ref" href="https://paypal.com/" target="_blank">
+              <a class="card_ref" @click="submitSinglePayment" target="_blank">
+                <StripeCheckout
+                ref="checkoutRef1"
+                mode="subscription"
+                :pk="publishableKey"
+                :line-items="singleItem"
+                :success-url="successURL"
+                :cancel-url="cancelURL"
+                @loading="v => loading = v"
+                />
                 <button id="card_btn_front" class="card_btn">Select</button>
               </a>
             </div>
@@ -66,12 +76,27 @@
           <div class="full_card" id="card_back">
             <div class="card_img_parent">
               <img id="back_img" src="https://assets.codepen.io/1462889/grass.png" alt="">
+              <div id="back_img_collection">
+                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
+                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
+                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
+                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
+              </div>
             </div>
             <div class="card_title fam_card">Family</div>
             <div class="card_price">$20 / Year</div>
             <div class="card_button_parent">
-              <a class="card_ref" href="https://paypal.com/" target="_blank">
-                <button id="card_btn_back" class="card_btn">Select</button>
+              <a class="card_ref" @click="submitFamilyPayment" target="_blank">
+                <StripeCheckout
+                ref="checkoutRef2"
+                mode="subscription"
+                :pk="publishableKey"
+                :line-items="familyItem"
+                :success-url="successURL"
+                :cancel-url="cancelURL"
+                @loading="v => loading = v"
+                />
+                <button id="card_btn_back" class="card_btn" >Select</button>
               </a>
             </div>
           </div>
@@ -118,14 +143,34 @@
   
 <script>
 import roster from '../roster2016.json';
+import {StripeCheckout} from '@vue-stripe/vue-stripe';
 
 export default {
   name: 'RosterPage',
   components: {
-
+    StripeCheckout
   },
   data() {
+    this.publishableKey = "pk_test_51M7q0mEaEcKb49YvpOXJaUFcoSeai4kzQAbTuyMOnluttgeFt3TlfroZLc5lOMaNWLP32jMYlmvCeU74DuEyhNw700DJEdLves";
     return {
+      familyItem:
+      [
+        {
+          price: 'price_1M7uJqEaEcKb49YvDRB95xqH',
+          quantity: 1
+        }
+      ],
+      singleItem:
+      [
+        {
+          price: 'price_1M88uIEaEcKb49Yvp0QNUjFp',
+          quantity: 1
+        }
+      ],
+      successURL:'http://localhost:8080/#/Success',
+      cancelURL:'http://localhost:8080/#/Roster',
+
+
       membership_selected: "single_side",
       single: 'single_on',
       family: 'family_off',
@@ -137,6 +182,12 @@ export default {
     }
   },
   methods: {
+    submitSinglePayment(){
+      this.$refs.checkoutRef1.redirectToCheckout();
+    },
+    submitFamilyPayment(){
+      this.$refs.checkoutRef2.redirectToCheckout();
+    },
     nextYear() {
       this.roster_year += 1;
       this.updateRosterList();
@@ -163,6 +214,13 @@ export default {
     membership_select(id) {
       if (id == "single_on" || id == "single_off") {
         /* single */
+        document.getElementById('front_img2').className = "moveRadio";
+        let j=0;
+        Array.from(document.getElementsByClassName('back_imgs')).forEach(radio => {
+          radio.style.animation = "";
+          radio.style.animationDelay = `${((j++)*100)-50}ms`;
+          radio.className = "back_imgs shrinkRadioL";
+        });
         this.membership_selected = "single_side";
         this.single = "single_on";
         this.family = "family_off";
@@ -170,6 +228,12 @@ export default {
       }
       else {
         /* family */
+        document.getElementById('front_img2').className = "shrinkRadioR";
+        let j=0;
+        Array.from(document.getElementsByClassName('back_imgs')).forEach(radio => {
+          radio.style.animationDelay = `${(j++)*250}ms`;
+          radio.className = "back_imgs moveRadioBackSide";
+        });
         this.membership_selected = "family_side";
         this.single = "single_off";
         this.family = "family_on";
@@ -178,7 +242,7 @@ export default {
     },
   },
   mounted() {
-    // this.scrollToTop();
+    this.scrollToTop();
     this.rost_list.push(roster);
     this.active_list = this.rost_list[0].roster_list;
     this.roster_year = roster.year;
@@ -376,6 +440,16 @@ a:hover {
   margin-left: 2.9%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  position: absolute;
+}
+#front_img2{
+  transform: translateZ(30px);
+  height: 60%; width: 100%;
+  margin-top: 3.5%;
+  position: absolute; top: 15px;
+  object-fit: contain;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
 #back_img {
@@ -385,8 +459,55 @@ a:hover {
   margin-left: 0.5%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  position: absolute;
+}
+#back_img_collection{
+  transform: translateZ(30px);
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 60%;
+  display: flex; justify-content: space-around; align-items: center;
+  position: relative;
+}
+#back_img2{
+  object-fit: contain;
+  width: 25%;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+  transition: 0.2s ease;
+}
+#back_img2:hover{
+  transform: rotateY(180deg);
 }
 
+.moveRadio{
+  animation: moveRadio 1.5s 0.5s forwards;
+}
+@keyframes moveRadio{
+  0%{margin-top: 20%;opacity: 0;}
+  100%{margin-top: 3.5%;opacity: 1;}
+}
+.moveRadioBackSide{
+  animation: moveRadioBack 1.5s forwards;
+}
+@keyframes moveRadioBack{
+  0%{width: 10%;opacity: 0;}
+  100%{width: 25%;opacity:1;}
+}
+.shrinkRadioR{
+  animation: scaleRadioR 0.5s 0.2s forwards;
+}
+
+.shrinkRadioL{
+  animation: scaleRadioL 0.3s 0s forwards;
+}
+@keyframes scaleRadioR{
+  0%{right: 0; opacity: 1;}
+  100%{right: -50px;opacity: 0;}
+}
+@keyframes scaleRadioL{
+  0%{width: 25%;opacity:1;}
+  100%{width: 10%;opacity: 0;}
+}
 .card_title {
   width: 100%;
   height: 100%;
@@ -465,6 +586,7 @@ a:hover {
 
 #card_btn_front {
   background-color: #102770;
+  color: white;
 }
 
 #card_btn_back {
@@ -489,11 +611,11 @@ a:hover {
   color: rgb(208, 213, 239);
   height: fit-content;
   width: 100%;
-  background: linear-gradient(#131123, #0f0e19 40%);
+  background: linear-gradient(#0d0c18, #131123 40%);
 }
 
 #membership_parent {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -505,7 +627,7 @@ a:hover {
   order: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -552,7 +674,7 @@ a:hover {
 
 .ease {
   /* width: 20%; height: 550px; */
-  width: 40%;
+  height: calc(80% - 50px);
   aspect-ratio: 1 / 1.5;
   margin-top: 50px;
   transform-style: preserve-3d;
@@ -677,8 +799,8 @@ a:hover {
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   #membership_parent {
-    min-height: 100vh;
-    height: fit-content;
+    height: 100vh;
+    /* height: fit-content; */
     flex-direction: column;
     justify-content: center;
   }
@@ -692,14 +814,12 @@ a:hover {
     justify-content: center;
   }
   .ease {
-    width: 40%;
-
+    height: 60%;
     /* height: 55%; */
   }
 
   .full_card {
     font-size: 0.7em;
-    height: 450px;
   }
 
   table {
@@ -711,7 +831,7 @@ a:hover {
 @media screen and (max-width: 900px) {
 
   .ease {
-    width: 50%;
+    height: 50%;
     /* height: 55%; */
   }
 
@@ -724,13 +844,15 @@ a:hover {
   }
 
   .full_card {
-    font-size: 1em;
-    height: 550px;
-    width: 100%;
+    font-size: 0.6em;
   }
 
   table {
     width: 70%;
+  }
+  
+  #membership_parent {
+    height: 90vh;
   }
 
 }
@@ -738,18 +860,19 @@ a:hover {
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
   .ease {
-    width: 60%;
+    height: 60%;
     /* height: 55%; */
-  }
 
+  }
+  #membership_parent {
+    height: 90vh;
+  }
   #nodata {
     font-size: 1.5em;
   }
 
   .full_card {
-    font-size: 0.7em;
-    min-height: 50vh;
-    height: 350px;
+    font-size: 0.5em;
   }
 
   table {

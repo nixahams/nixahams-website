@@ -86,7 +86,7 @@ export default {
 
 .full_page {
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   position: relative;
 }
 .page_background {
@@ -308,7 +308,19 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-
+  .full_page {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  #contact_top {
+    /* top | right | bottom | left */
+    padding: 0vh 45% 10vh 15%;
+  }
+  #contact_form {
+    width: 40%;
+    right: 5%;
+  }
 }
 
 /* Half-Screen Styles */
@@ -320,7 +332,27 @@ export default {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
+  .full_page {
+    width: 100%;
+    height: 150vh;
+    position: relative;
+  }
+  #contact_top {
+    /* top | right | bottom | left */
+    padding: 0vh 15% 10vh 15%;
+    height: 50%;
 
-
+  }
+  #contact_form {
+    width: 80%;
+    height: 45%;
+    left: 10%;
+    bottom: 10%;
+    font-size: 0.8em;
+    padding: 5%;
+  }
+  #contact_bottom {
+    height: 50%;
+  }
 }
 </style>

@@ -3,25 +3,44 @@
         <div id="footer_block_parent">
             <div class="footer_block">
                 <div id="footer_logo">
-                    <img src="../assets/logo1.png" alt="" id="footer_logo_img">
+                    <img src="@/assets/logo1.png" id="footer_logo_img">
+                </div>
+                <div id="footer_logo">
+                    <img src="@/assets/south.png" id="footer_logo_img">
                 </div>
             </div>
             <div class="footer_block">
                 <div class="footer_title">Links</div>
                 <div class="footer_link">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Roster</a>
-                    <a href="#">Repeaters</a>
+                    <a href="#/">
+                        <i class="fa-solid fa-house icon"></i>
+                        - Home</a>
+                    <a href="#/About">
+                        <i class="fa-solid fa-circle-question icon"></i>
+                        - About</a>
+                    <a href="#/Donate">
+                        <i class="fa-solid fa-hand-holding-dollar icon"></i>
+                        - Donate</a>
+                    <a href="#/Repeaters">
+                        <i class="fa-solid fa-tower-cell icon"></i>
+                        - Repeaters</a>
                 </div>
             </div>
             <div class="footer_block">
                 <div class="footer_title">Services</div>
                 <div class="footer_link">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Roster</a>
-                    <a href="#">Repeaters</a>
+                    <a href="#/Announcements">
+                        <i class="fa-solid fa-comment icon"></i>
+                        - Announcements</a>
+                    <a href="#/About">
+                        <i class="fa-solid fa-user icon"></i>
+                        - About</a>
+                    <a href="#/Roster">
+                        <i class="fa-solid fa-table-cells icon"></i>
+                        - Roster</a>
+                    <a href="#/Contact">
+                        <i class="fa-solid fa-envelope icon"></i>
+                        - Contact Us</a>
                 </div>
             </div>
             <div class="footer_block">
@@ -46,8 +65,11 @@
             <div id="copyright">
                 Copyright {{year}} &#169; All rights Reserved. The Nixa Amateur Radio Club, Inc.
             </div>
-            <div id="created">Made by: <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
-                    Dejeu</a></div>
+            <div id="created">Website Created by: 
+                <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
+                    Dejeu
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -94,10 +116,11 @@ a:hover {
     text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
     color: white;
 }
-
+.icon{
+    color: #E08136;
+}
 #copyright {
     width: 100%;
-    margin-left: 20%;
     text-align: center;
     padding: 10px;
     font-size: 0.8em;
@@ -105,17 +128,18 @@ a:hover {
 }
 
 #created {
-    position: relative;
+    position: absolute;
     width: 20%;
-    bottom: 0;
+    bottom: 0; right: 0;
     font-size: 0.8em;
     padding: 10px;
-    text-align: center;
+    text-align: right;
 }
 
 #copyright_block {
     display: flex;
     background-color: rgb(0, 0, 0);
+    flex-direction: row;
 }
 
 #footer_parent {
@@ -170,15 +194,66 @@ a:hover {
     font-size: 1.3em;
 }
 
-#footer_logo {
+
+#footer_logo{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
 #footer_logo_img {
     position: relative;
-    width: 80%;
+    width: 40%;
     margin-top: 10px;
+}
+
+
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+    #copyright_block {
+        flex-direction: column;
+    }
+    #copyright {
+        background-color: rgb(18, 18, 18);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: rgba(255,255,255,0.5)
+    }
+    #created {
+        position: relative;
+        width: 100%;
+        bottom: 0;
+        font-size: 0.8em;
+        padding: 10px;
+        text-align: center;
+    }
+    .footer_block:nth-child(1){
+        width: 100%;
+        margin: 0;
+        padding-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+    }
+    #footer_logo_img {
+        position: relative;
+    }
+    #footer_logo {
+        justify-content: center;
+        height: 100%; width: 50%;
+    }   
+
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+
 }
 </style>

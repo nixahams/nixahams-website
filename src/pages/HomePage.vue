@@ -139,6 +139,8 @@
 </template>
   
 <script>
+import apiJS from "../../api.js";
+
 export default {
   name: 'HomePage',
   components: {
@@ -153,6 +155,9 @@ export default {
   },
   mounted(){
     this.scrollToTop();
+    console.log("Main Page says -\n");
+    apiJS;
+
   }
 }
 </script>
