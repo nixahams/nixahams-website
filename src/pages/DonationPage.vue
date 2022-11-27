@@ -167,7 +167,8 @@ export default {
 
     box-shadow: 
     inset 0px 0px 0px 7px rgb(195, 177, 106),
-    inset 0px 0px 0px 10px black;
+    inset 0px 0px 0px 10px black,
+    0px 0px 30px rgba(0, 0, 0, 0.4);
     border-radius: 20px;
     width: 40vw;
     aspect-ratio: 2 / 1;
@@ -231,6 +232,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    background-color: rgb(241, 239, 239);
 }
 #donate{
     width: 100%;
@@ -249,7 +251,7 @@ export default {
 }
 #bg_img{
     height: 100%; width: 100%;
-    filter: brightness(30%);
+    filter: brightness(50%);
     object-fit: cover;
 }
 #bg_img_text{
@@ -263,6 +265,7 @@ export default {
     width: 100%; height: 70vh;
     display: flex;
     justify-content: center; align-items: center;
+    background-color: rgb(241, 239, 239);
 }
 #donate_grid_parent{
     width: 60%; height: 90%;
@@ -272,25 +275,27 @@ export default {
     gap: 20px;
 }
 #donate_grid_parent>div{
-    /* background-color: #1b1b1b; */
-    background-color: rgba(255, 255, 255, 0.5);
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    background-color: #1b1b1b;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center; justify-content: center;
     cursor: pointer;
     transition:all 0.2s ease;
-
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
 }
 /* each donation card */
 #donate_grid_parent>div::before{
     /* background: radial-gradient(
         800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.3),
         transparent 40%
     ); */
     background: radial-gradient(
         800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.2),
         transparent 40%
     );
     content: '';
@@ -318,11 +323,12 @@ export default {
     font-size: 3em;
     font-family: 'Montserrat';
     font-weight: bold;
-    color: black;
+    color: rgb(213, 213, 213);
     transition: 0.1s ease;
 }
 .predefined:hover{
     font-size: 4em;
+    color: white;
 }
 
 .span-2{
@@ -335,13 +341,14 @@ export default {
     width: 100; height: fit-content;
     padding: 50px 0;
     text-align: center;
-    color: white;
+    color: black;
     font-family: 'Montserrat';
     font-size: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(241, 239, 239);
 }
 #donate_instruction{
     /* font-size: 0.7em; */
@@ -375,8 +382,6 @@ export default {
         margin-bottom: 100px;
     }
     #donate_grid_parent>div{
-        /* background-color: #1b1b1b; */
-        background-color: rgba(255, 255, 255, 0.5);
         display: flex;
         flex-direction: column;
         align-items: center; justify-content: center;
