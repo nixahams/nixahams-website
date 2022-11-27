@@ -31,10 +31,11 @@
         </div>
         <div id="customAmount">
             <StripeCheckout
-                ref="checkoutRef2"
-                mode="subscription"
+                ref="refCustomPrice"
+                mode="payment"
+                submit_type="donate"
                 :pk="publishableKey"
-                :line-items="dollar1"
+                :line-items="customPrice"
                 :success-url="successURL"
                 :cancel-url="cancelURL"
                 @loading="v => loading = v"
@@ -44,7 +45,8 @@
                 <div id="custom_header">I wish to donate</div>
                 <div id="custom_input_field">
                     <input type="text" id="custom_input_prefix" value="$" readonly>
-                        <input type="text" name="custom_input" id="custom_input" placeholder="0.00">
+                    <input type="number" name="custom_input" id="custom_input" placeholder="0.00" @input="inputCustom">
+                    <h1 v-if="showCustomError" id="donoError">Amount can not be less than $0</h1>
                 </div>
                 <button id="custom_btn" @click="customAmountChosen">Confirm</button>
             </div>
@@ -71,12 +73,17 @@ export default {
             dollar10:[{price: 'price_1M7uJqEaEcKb49YvDRB95xqH',quantity: 1}],
             dollar50:[{price: 'price_1M7uJqEaEcKb49YvDRB95xqH',quantity: 1}],
             dollar100:[{price: 'price_1M7uJqEaEcKb49YvDRB95xqH',quantity: 1}],
-
+            customPrice:[{price: 'price_1M8Gu5EaEcKb49YvPlhYd91T',quantity: 1}],
+            
             successURL:'http://localhost:8080/#/Success',
             cancelURL:'http://localhost:8080/#/Donate',
+            showCustomError: false,
         }
     },
     methods:{
+        customPriceSelect(){
+            this.$refs.refCustomPrice.redirectToCheckout();
+        },
         scrollToTop() {document.body.scrollTop = 0;},
         updateRadial(e){
             const { currentTarget: target } = e;
@@ -93,21 +100,42 @@ export default {
         customAmountChosen(){
             let custAmt = document.getElementById('custom_input');
             let prefix = document.getElementById('custom_input_prefix');
-            if(custAmt.value==0 || custAmt.value==''){
-                custAmt.style.borderTop= '3px solid red';
-                custAmt.style.borderBottom= '3px solid red';
-                custAmt.style.borderRight= '3px solid red';
-                prefix.style.borderTop= '3px solid red';
-                prefix.style.borderBottom= '3px solid red';
-                prefix.style.borderLeft= '3px solid red';
+            if(custAmt.value<=0 || custAmt.value==''){
+                custAmt.style.borderTop= '4px solid rgb(222, 81, 81)';
+                custAmt.style.borderBottom= '4px solid rgb(222, 81, 81)';
+                custAmt.style.borderRight= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderTop= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderBottom= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderLeft= '4px solid rgb(222, 81, 81)';
+                this.showCustomError = true;
             }else{
                 custAmt.style.border = '';
+                prefix.style.border = '';
+                this.showCustomError = false;
+                this.customPriceSelect();
             }
-        }
+        },
+        inputCustom(){
+            let custAmt = document.getElementById('custom_input');
+            let prefix = document.getElementById('custom_input_prefix');
+            if(custAmt.value>0){
+                custAmt.style.border = '';
+                prefix.style.border = '';
+                this.showCustomError = false;
+            }else{
+                custAmt.style.borderTop= '4px solid rgb(222, 81, 81)';
+                custAmt.style.borderBottom= '4px solid rgb(222, 81, 81)';
+                custAmt.style.borderRight= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderTop= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderBottom= '4px solid rgb(222, 81, 81)';
+                prefix.style.borderLeft= '4px solid rgb(222, 81, 81)';
+                this.showCustomError = true;
+            }
+        },
+
     },
     mounted(){
         this.scrollToTop();
-        document.body.scrollTop = 1250;
     }
 }
 </script>
@@ -130,18 +158,13 @@ export default {
     transform: scale(1.05);
 }
 #donate_custom_card{
-    /* background: linear-gradient(
-        45deg,
-        rgb(207, 184, 40) 10%,
-        rgb(233, 239, 58) 30%,
-        rgb(205, 182, 36) 60%
-    ); */
     background: linear-gradient(
         45deg,
         rgb(195, 177, 106) 10%,
         rgb(245, 228, 156) 30%,
         rgb(195, 177, 106) 60%
     );
+
     box-shadow: 
     inset 0px 0px 0px 7px rgb(195, 177, 106),
     inset 0px 0px 0px 10px black;
@@ -155,6 +178,7 @@ export default {
     gap: 2em;
     color: black;
 }
+
 @import url('https://fonts.cdnfonts.com/css/credit-card');
 
 #custom_header{
@@ -168,19 +192,39 @@ export default {
     padding: 10px;
     justify-content: center;
     font-size: 2em;
+    position: relative;
 }
 #custom_input_prefix{
-    width: 1.2em;
+    width: 1.3em;
     border: none; outline: none;
     padding: 0 10px;
     transition: 0.1s ease;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgb(48, 48, 48);
+    color: white;
+}
+#donoError{
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.5em;
+    color:  rgb(219, 24, 24);
+    font-weight: bold;
+}
+#custom_input:focus{
+    box-shadow: inset 0px 0px 0px 3px black;
 }
 #custom_input{
+    box-shadow: inset 0px 0px 0px 0px black;
+    transition: 0.2s ease;
     width: 50%;
     border: none; outline: none;
     padding-left: 10px;
     color: black;
     transition: 0.1s ease;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgb(223, 219, 201);
 }
 #customAmount{
     height: 60vh; width: 100%;
@@ -275,8 +319,11 @@ export default {
     font-family: 'Montserrat';
     font-weight: bold;
     color: black;
+    transition: 0.1s ease;
 }
-
+.predefined:hover{
+    font-size: 4em;
+}
 
 .span-2{
     grid-column: span 2;
@@ -313,16 +360,47 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-
+    #donate_custom_card{
+        width: 60vw;
+        gap: 1.3em;
+    }
+    #donate_grid_parent{
+        width: 70%; 
+        height: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        /* grid-template-columns: repeat(6, 1fr); */
+        /* grid-template-rows: 1fr 1fr; */
+        /* gap: 20px; */
+        margin-bottom: 100px;
+    }
+    #donate_grid_parent>div{
+        /* background-color: #1b1b1b; */
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center; justify-content: center;
+        cursor: pointer;
+        transition:all 0.2s ease;
+        width: 100%;
+        height: 20%;
+    }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-
+    #donate_custom_card{
+        width: 70vw;
+        font-size: 0.8em;
+    }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
+    #donate_custom_card{
+        width: 90vw;
+        gap: 1.2em;
+        aspect-ratio: 2 / 1;
+    }
 }
 </style>
