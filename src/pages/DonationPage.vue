@@ -4,6 +4,40 @@
             <img id="bg_img" src="@/assets/carosel-imgs/bg4.jpg">
             <h1 id="bg_img_text">Donate</h1>
         </div>
+        <div id="membership_level_parent">
+            <div id="membership_level_text">We are a 
+                <a target="_blank" id="membership_level_link" href="https://www.irs.gov/charities-non-profits/charitable-organizations/exemption-requirements-501c3-organizations#:~:text=Organizations%20described%20in%20section%20501,accordance%20with%20Code%20section%20170.">
+                    not-for-profit 501c3
+                </a>
+                organization dedicated to helping the community. We are located at {location}.</div>
+            <div id="membership_level_text">To show our appreciation to donors we have created 4 levels of recognition. Donors also receive exclusive access to hidden parts of the website!
+                <div id="membership_level_mini">
+                    (We automatically keep track of repeat donations)
+                </div>
+            </div>
+            <div id="membership_level_card_parent">
+                <div id="membership_level">
+                    <img class="membership_level_img" src="@/assets/donate/bronze.png" alt="">
+                    <div class="membership_level_amount">$50 - $149</div>
+                    <div class="membership_level_type">Bronze</div>
+                </div>
+                <div id="membership_level">
+                    <img class="membership_level_img" src="@/assets/donate/silver.png" alt="">
+                    <div class="membership_level_type">Silver</div>
+                    <div class="membership_level_amount">$150 - $249</div>
+                </div>
+                <div id="membership_level">
+                    <img class="membership_level_img" src="@/assets/donate/gold.png" alt="">
+                    <div class="membership_level_type">Gold</div>
+                    <div class="membership_level_amount">$250 - $499</div>
+                </div>
+                <div id="membership_level">
+                    <img class="membership_level_img" src="@/assets/donate/diamond.png" alt="">
+                    <div class="membership_level_type">Diamond</div>
+                    <div class="membership_level_amount">$499+</div>
+                </div>
+            </div>
+        </div>
         <div id="donate_text">
             Choose a predfined amout
         </div>
@@ -136,12 +170,86 @@ export default {
     },
     mounted(){
         this.scrollToTop();
+        document.body.scrollTop = 810;
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.membership_level_amount{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+}
+.membership_level_type{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 3.5em;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+}
+.membership_level_img{
+    object-fit: cover;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0;
+}
+#membership_level{
+    position: relative;
+    width: 17%;
+    aspect-ratio: 4 / 5;
+    border-radius: 15px;
+    overflow: hidden;
+    background-clip: content-box;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease;
+}
+#membership_level:hover{
+    width: 16.5%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+#membership_level_card_parent{
+    min-height: 70vh; width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#membership_level_parent{
+    min-height: 100vh;
+    height: fit-content; width: 100%;
+    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
+    color: black;
+}
+#membership_level_mini{
+    font-size: 0.9em;
+    color: rgba(0,0,0,0.7);
+}
+#membership_level_text{
+    width: 100%;
+    text-align: center;
+    padding-left: 20%; padding-right: 20%;
+    background-clip: content-box;
+    font-size: 2.5em;
+    padding-top: 70px;
+    font-family: 'Montserrat';
+}
+#membership_level_link{
+    color: black;
+    font-weight: bold;
+}
 #custom_btn{
     border: none; outline: none;
     border-radius: 20px;
@@ -232,7 +340,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background-color: rgb(241, 239, 239);
+    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
 }
 #donate{
     width: 100%;
@@ -265,7 +373,7 @@ export default {
     width: 100%; height: 70vh;
     display: flex;
     justify-content: center; align-items: center;
-    background-color: rgb(241, 239, 239);
+    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
 }
 #donate_grid_parent{
     width: 60%; height: 90%;
@@ -348,7 +456,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(241, 239, 239);
+    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
 }
 #donate_instruction{
     /* font-size: 0.7em; */
@@ -357,11 +465,26 @@ export default {
 
 
 
+/* Weird size */
+@media screen and (max-width: 1600px) {
+    #membership_level_card_parent{
+        font-size: 0.9em;
+        margin-top: 50px;
+    }
+
+}
 
 
 
-
-
+/* Weird size */
+@media screen and (max-width: 1500px) {
+    #membership_level_card_parent{
+        margin-top: 50px;
+    }
+    #membership_level{
+        width: 25%;
+    }
+}
 
 
 
@@ -390,6 +513,16 @@ export default {
         width: 100%;
         height: 20%;
     }
+    #donate_text{
+        font-size: 2.5em;
+    }
+    #membership_level_card_parent{
+        font-size: 0.8em;
+        margin-top: 50px;
+    }
+    #membership_level{
+        width: 35%;
+    }
 }
 
 /* Half-Screen Styles */
@@ -397,6 +530,16 @@ export default {
     #donate_custom_card{
         width: 70vw;
         font-size: 0.8em;
+    }
+    #donate_text{
+        font-size: 2em;
+    }
+    #membership_level_card_parent{
+        font-size: 0.8em;
+        margin-top: 50px;
+    }
+    #membership_level{
+        width: 40%;
     }
 }
 
@@ -406,6 +549,17 @@ export default {
         width: 90vw;
         gap: 1.2em;
         aspect-ratio: 2 / 1;
+    }
+    #donate_text{
+        font-size: 1.5em;
+        text-decoration: underline;
+    }
+    #membership_level_card_parent{
+        font-size: 1em;
+        margin-top: 50px;
+    }
+    #membership_level{
+        width: 55%;
     }
 }
 </style>
