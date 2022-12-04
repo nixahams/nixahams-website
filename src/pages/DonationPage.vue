@@ -215,7 +215,6 @@ export default {
     transition: 0.2s ease;
 }
 #membership_level:hover{
-    width: 16.5%;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 #membership_level_card_parent{
