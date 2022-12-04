@@ -170,7 +170,6 @@ export default {
     },
     mounted(){
         this.scrollToTop();
-        document.body.scrollTop = 810;
     }
 }
 </script>
@@ -522,6 +521,12 @@ export default {
     #membership_level{
         width: 35%;
     }
+    #membership_level_parent{
+        font-size: 0.9em;
+    }
+    .membership_level_amount{
+        font-size: 3em;
+    }
 }
 
 /* Half-Screen Styles */
@@ -539,6 +544,12 @@ export default {
     }
     #membership_level{
         width: 40%;
+    }
+    #membership_level_parent{
+        font-size: 0.8em;
+    }
+    .membership_level_amount{
+        font-size: 4em;
     }
 }
 
@@ -559,6 +570,12 @@ export default {
     }
     #membership_level{
         width: 55%;
+    }
+    #membership_level_parent{
+        font-size: 0.5em;
+    }
+    .membership_level_amount{
+        font-size: 5em;
     }
 }
 </style>
