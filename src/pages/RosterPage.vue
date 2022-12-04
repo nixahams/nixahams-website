@@ -124,7 +124,7 @@
             <th id="thr">ARRL Membership</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <tr v-for="(member, key) in active_list" :key="key">
             <!-- <th scope="row">{ sale.Month  }</th>   -->
             <td> {{ member.callsign }}</td>
@@ -142,8 +142,8 @@
 </template>
   
 <script>
-import roster from '../roster2016.json';
 import {StripeCheckout} from '@vue-stripe/vue-stripe';
+import axios from 'axios';
 
 export default {
   name: 'RosterPage',
@@ -175,10 +175,10 @@ export default {
       single: 'single_on',
       family: 'family_off',
       card_side: 'membership_card_side_front',
-      roster_year: 2016,
-      rost_list: [],
-      active_list: {},
-      nodata: false
+      roster_year: 2022,
+      active_year_table: [],
+      active_list: [],
+      nodata: false,
     }
   },
   methods: {
@@ -188,24 +188,16 @@ export default {
     submitFamilyPayment(){
       this.$refs.checkoutRef2.redirectToCheckout();
     },
-    nextYear() {
+    async nextYear() {
       this.roster_year += 1;
-      this.updateRosterList();
+      await this.updateRosterList();
     },
-    prevYear() {
+    async prevYear() {
       this.roster_year -= 1;
-      this.updateRosterList();
+      await this.updateRosterList();
     },
-    updateRosterList() {
-      for (let i = 0; i < this.rost_list.length; i++) {
-        if (this.rost_list[i].year == this.roster_year) {
-          this.active_list = this.rost_list[i].roster_list;
-          this.nodata = false;
-        } else {
-          this.active_list = '';
-          this.nodata = true;
-        }
-      }
+    async updateRosterList() {
+      await this.getRoster(this);
     },
     scrollToTop() { document.body.scrollTop = 0; },
     scrollToRoster() {
@@ -240,12 +232,33 @@ export default {
         this.card_side = "membership_card_side_back";
       }
     },
+    getRoster(VueObj){
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/roster?year=${VueObj.roster_year}`;
+      axios.get(URL)
+      .then(function (response) {
+          // handle success
+          if(!response.data){
+            VueObj.nodata = true;
+            return;
+          }
+          VueObj.nodata = false;
+          VueObj.active_year_table = response.data.roster;
+          VueObj.active_list = VueObj.active_year_table;
+      })
+      .catch(function (error) {
+          // handle error
+          VueObj.repeaters = {};
+          VueObj.nodata = true;
+          error;
+      })
+      .finally(function () {
+          // always executed
+      });
+    },
   },
-  mounted() {
+  async mounted() {
     this.scrollToTop();
-    this.rost_list.push(roster);
-    this.active_list = this.rost_list[0].roster_list;
-    this.roster_year = roster.year;
+    await this.getRoster(this);
   }
 }
 </script>
@@ -790,7 +803,9 @@ a:hover {
   #membership_right {
     justify-content: center;
   }
-
+  .roster_table{
+    font-size: 0.9em;
+  }
 }
 
 
@@ -825,6 +840,9 @@ a:hover {
   table {
     width: 60%;
   }
+  .roster_table{
+    font-size: 0.8em;
+  }
 }
 
 /* Half-Screen Styles */
@@ -852,9 +870,11 @@ a:hover {
   }
   
   #membership_parent {
-    height: 90vh;
+    height: 100vh;
   }
-
+  .roster_table{
+    font-size: 0.7em;
+  }
 }
 
 /* Mobile Styles */
@@ -865,7 +885,7 @@ a:hover {
 
   }
   #membership_parent {
-    height: 90vh;
+    height: 110vh;
   }
   #nodata {
     font-size: 1.5em;
@@ -877,6 +897,9 @@ a:hover {
 
   table {
     width: 80%;
+  }
+  .roster_table{
+    font-size: 0.65em;
   }
 }
 </style>

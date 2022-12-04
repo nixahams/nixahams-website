@@ -4,7 +4,7 @@
             <div id="blog_left">
                 <div id="blog_title">{{title}}</div>
                 <div id="blog_desc">{{desc}}</div>
-                <div id="blog_date">Posted on: {{date}}</div>
+                <div id="blog_date">Posted on: {{newDate}}</div>
             </div>
             <div id="blog_right">
                 <img id="blog_img" :src="image" alt="Blog Image">
@@ -18,28 +18,19 @@
 
 export default {
     name: 'BlogPost',
-    props: {
-
-    },
+    props:['title', 'desc', 'date','image'],
     data() {
         return {
-            title: "",
-            desc: "",
-            date: "",
-            image: "",
+            newDate: this.date
         }   
     },
     methods: {
-        loadBlogData(){
-            this.title = "Nixa 29.680 Receive Antenna Install";
-            this.desc = "Lorem ipsum dolor sit amet cons Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sequi dignissimos repellendus nostrum autem unde facere dicta sint facilis sunt, mollitia reiciendis tempore voluptatum dolorum placeat numquam deleniti quidem sed ab iure a! Reiciendis repudiandae hic, voluptatum nostrum unde molestias amet enim! Possimus illo minima ab recusandae inventore sunt architecto?";
-            this.date = "10/15/2022";
-            this.image = "https://i.imgur.com/DMekFMZ.jpeg";
 
-        },
     },
     mounted() {
-        this.loadBlogData();
+        let date = new Date(parseInt(this.newDate));
+        let fdate = (date.getMonth() + 1)+'/'+ date.getDate()  +'/'+date.getFullYear()
+        this.newDate = fdate;
     },
 }
 </script>
@@ -88,6 +79,7 @@ export default {
     background-color: gray;
     object-fit: cover;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    background: linear-gradient(335deg, gray 20%, rgb(175, 175, 175) 40%,rgb(177, 177, 177) 50%, gray 70%);
 }
 #blog_title{
     width: 100%; height: 100%;

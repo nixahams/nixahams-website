@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <CardArrow @displayinfo="showinfo"/>
+    <CardArrow @displayinfo="showinfo" v-if="asyncProp" :repeater_list="passList"/>
     <div :class="desc_class" id="descriptive_parent">
 
       <div id="more_images">
@@ -44,7 +44,7 @@
 ResultOption
 import CardArrow from '../components/CardArrow.vue';
 import ResultOption from '../components/ResultOption.vue';
-import repeaters from '../repeaters.json';
+import axios from 'axios';
 import ActiveImages from '../components/ActiveImages.vue';
 
 export default {
@@ -63,6 +63,8 @@ export default {
       showFullScreenImage: false,
       fullScreenImage_src: '',
       rep_arr: {},
+      passList: {},
+      asyncProp: false,
       search_by: "Search by all",
       count: 0,
       desc_class: "desc_fade2",
@@ -155,17 +157,35 @@ export default {
       this.long_desc=obj.long_desc;
       this.image_array = obj.img_arr;
       this.count++;
-    }
+    },
+    getRepeaters(VueObj){
+      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/repeaters';
+      axios.get(URL)
+      .then(function (response) {
+          // handle success
+          VueObj.rep_arr = response.data[0].repeater_list;
+          VueObj.long_name=VueObj.rep_arr[0].name;
+          VueObj.long_location=VueObj.rep_arr[0].location;
+          VueObj.long_title=VueObj.rep_arr[0].long_title;
+          VueObj.date=VueObj.rep_arr[0].date;
+          VueObj.long_desc=VueObj.rep_arr[0].long_desc;
+          VueObj.image_array = VueObj.rep_arr[0].img_arr;
+          VueObj.passList = VueObj.rep_arr;
+          VueObj.asyncProp = true;
+      })
+      .catch(function (error) {
+          // handle error
+          this.repeaters = {};
+          console.log(error);
+      })
+      .finally(function () {
+          // always executed
+      });
+    },
   },
-  mounted(){
+  async mounted(){
     this.scrollToTop();
-    this.rep_arr = repeaters.repeater_list;
-    this.long_name=this.rep_arr[0].name;
-    this.long_location=this.rep_arr[0].location;
-    this.long_title=this.rep_arr[0].long_title;
-    this.date=this.rep_arr[0].date;
-    this.long_desc=this.rep_arr[0].long_desc;
-    this.image_array = this.rep_arr[0].img_arr;
+    await this.getRepeaters(this);
   }
 }
 </script>

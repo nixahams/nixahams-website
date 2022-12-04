@@ -2,9 +2,21 @@
   <div id="news_letter">
     <div id="blog_parent">
       <div id="blog_title">Announcement Posts</div>
-      <BlogPost/>
-      <BlogPost/>
-      <BlogPost/>
+      <!-- <BlogPost
+      v-for="(msg, index) in announcement_list" 
+      :title="msg.announcement.title"
+      :desc="msg.announcement.body"
+      :date="msg.date"
+      :image="msg.announcement.img"
+      :key="index"/> -->
+      <BlogPost
+      v-for="(msg, index) in announcement_list" 
+      :title="msg.annoucement.title"
+      :desc="msg.annoucement.body"
+      :image="msg.annoucement.image"
+      :date="msg.date"
+      :key="index"/>
+      
     </div>
 
   </div>
@@ -12,17 +24,40 @@
   
 <script>
 import BlogPost from "../components/BlogPost.vue";
+import axios from 'axios';
 
 export default {
   name: 'NewsletterPage',
   components: {
     BlogPost
   },
+  data() {
+    return {
+      announcement_list: [],
+    }
+  },
   methods:{
     scrollToTop() {document.body.scrollTop = 0;},
+    getAnnouncement(VueObj){
+      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/announce';
+      axios.get(URL)
+      .then(function (response) {
+          // handle success
+          VueObj.announcement_list = response.data;
+      })
+      .catch(function (error) {
+          // handle error
+          error;
+      })
+      .finally(function () {
+          // always executed
+      });
+    }
   },
-  mounted(){
+  async mounted(){
     this.scrollToTop();
+    await this.getAnnouncement(this);
+
   }
 }
 </script>

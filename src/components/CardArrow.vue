@@ -57,14 +57,13 @@
 <script>
 import Tilt from 'vanilla-tilt-vue'
 import RepeaterCard from '../components/RepeaterCard.vue';
-import repeaters from "../repeaters.json";
-
 
 export default {
-    props: {parallax: {
-        type: Boolean,
-        default: true
-    }},
+    // props: {parallax: {
+    //     type: Boolean,
+    //     default: true
+    // }},
+    props:['repeater_list'],
     name: 'CardArrow',
     components: {
         RepeaterCard,
@@ -136,6 +135,7 @@ export default {
         }
     },
     methods: {
+
         shiftRight(left, center, right){
             left.id = "right";
             center.id = "left";
@@ -273,8 +273,9 @@ export default {
             }
         }
     },
-    mounted(){
-        this.repeater_array = repeaters.repeater_list;
+    async mounted(){
+        // this.repeater_array = repeaters.repeater_list;
+        this.repeater_array = this.repeater_list;
         this.imgsrc1 = this.repeater_array[0].img_arr[0];
         this.rep1 = this.repeater_array[this.repeater_array.length-1];
         this.rep2 = this.repeater_array[0];
