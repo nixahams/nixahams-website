@@ -111,6 +111,7 @@ export default {
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
+                    if (!response.data.allow) return;
                     /*remove duplicate html*/
                     let a = document.getElementsByClassName('server_page');
                     for (let i = 0; i < a.length; i++) {
