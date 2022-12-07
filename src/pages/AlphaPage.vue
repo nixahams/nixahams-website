@@ -118,7 +118,7 @@ export default {
                         a[i].remove();
                     }
                     /*construct placeholder for server html*/
-                    let txt = response.data;
+                    let txt = response.data.html;
                     var htmlObject = document.createElement('div');
                     htmlObject.innerHTML = txt;
                     htmlObject.className = "server_page";
