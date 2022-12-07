@@ -303,6 +303,7 @@ body {
 #server_title{
   color: white;
   font-size: 2em;
+  position: relative;
 }
 #load_text{
   font-size: 0.6em;
