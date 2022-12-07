@@ -1,67 +1,78 @@
 <template>
   <div id="app">
     <PageHeader :key="componentKey" :bgcolor="bg_color"/>
-    <div v-if="false" class="server_page">
+    <div v-if="false" class="server_page_container">
       <div id="server_container">
-       
-        <div id="server_panel">
-          <div class="server_panel_parent">
-            <div class="server_panel_title">
-            <i class="fa-solid fa-chart-simple"></i>
-            Stats
-            </div>
+          <div id="server_panel">
+              <div class="server_panel_parent">
+                <a class="aTag" href="#" onclick="onNavigate('/stats'); return false;">
+                  <div class="server_panel_title">
+                          <i class="fa-solid fa-chart-simple"></i>
+                          Stats
+                  </div>
+                </a>
 
-            <div class="server_panel_expand">
-              <div class="server_panel_exp_title">Subscriptions</div>
-              <div class="server_panel_exp_title">Donations</div>
-              <div class="server_panel_exp_title">Site Vistitors</div>
-            </div>
+                  <div class="server_panel_expand">
+                      <div class="server_panel_exp_title">Subscriptions</div>
+                      <div class="server_panel_exp_title">Donations</div>
+                      <div class="server_panel_exp_title">Site Vistitors</div>
+                  </div>
+              </div>
+
+              <div class="server_panel_parent">
+                  <a class="aTag" href="#" onclick="onNavigate('/edit-announcement'); return false;">
+                    <div class="server_panel_title">
+                          <i class="fa-solid fa-envelopes-bulk"></i>
+                          Announcements
+                    </div>
+                  </a>
+
+                  <div class="server_panel_expand">
+                      <div class="server_panel_exp_title">Post</div>
+                      <div class="server_panel_exp_title">Delete</div>
+                      <div class="server_panel_exp_title">Edit</div>
+                  </div>
+              </div>
+
+              <div class="server_panel_parent">
+                  <a class="aTag" href="#" onclick="onNavigate('/edit-page'); return false;">
+                    <div class="server_panel_title">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                          Edit Pages
+                    </div>
+                  </a>
+
+                  <div class="server_panel_expand">
+                      <div class="server_panel_exp_title">Upload Repeater Info</div>
+                      <div class="server_panel_exp_title">Change Page Image</div>
+                  </div>
+              </div>
+
+              <div class="server_panel_parent">
+                  <a class="aTag" href="#" onclick="onNavigate('/settings'); return false;">
+                    <div class="server_panel_title">
+                          <i class="fa-solid fa-gear"></i>
+                          Settings
+                    </div>
+                  </a>
+
+                  <div class="server_panel_expand">
+                      <div class="server_panel_exp_title">Change Colors</div>
+                      <div class="server_panel_exp_title">Update Password</div>
+                  </div>
+              </div>
           </div>
 
-          <div class="server_panel_parent">
-            <div class="server_panel_title">
-              <i class="fa-solid fa-envelopes-bulk"></i>
-              Announcements
-            </div>
-
-            <div class="server_panel_expand">
-              <div class="server_panel_exp_title">Post</div>
-              <div class="server_panel_exp_title">Delete</div>
-              <div class="server_panel_exp_title">Edit</div>
-            </div>
+          <div id="server_dom">
+              <div id="server_body">
+                  <div id="server_title">Admin Dashbord</div>
+                  Welcome back ${u}!
+                  
+                  <div id="root">
+                      ____
+                  </div>
+              </div>
           </div>
-
-          <div class="server_panel_parent">
-            <div class="server_panel_title">
-              <i class="fa-solid fa-pen-to-square"></i>
-              Edit Pages
-            </div>
-
-            <div class="server_panel_expand">
-              <div class="server_panel_exp_title">Upload Repeater Info</div>
-              <div class="server_panel_exp_title">Change Page Image</div>
-            </div>
-          </div>
-
-          <div class="server_panel_parent">
-            <div class="server_panel_title">
-              <i class="fa-solid fa-gear"></i>
-              Settings
-            </div>
-
-            <div class="server_panel_expand">
-              <div class="server_panel_exp_title">Change Colors</div>
-              <div class="server_panel_exp_title">Update Password</div>
-            </div>
-          </div>
-        </div>
-        
-        <div id="server_body">
-          <div id="server_title">Admin Dashbord</div>
-          Welcome back ${u}!
-        </div>
-        
-        
       </div>
     </div>
     
@@ -205,29 +216,57 @@ body {
 <style>
 /* start: server style */
 
-.server_page {
+.server_page_container {
     height: fit-content;
     min-height: 100vh;
     width: 100vw;
-    background-color: gray;
+    background-color: #151a28;
 }
-
+.aTag{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.aTag:hover{
+  position: relative;
+  transition: 0.2s ease;
+  color: rgb(255,255,255);
+}
+.aTag:hover::after{
+  content: '';
+  position: absolute;
+  top: -5px; left: -10px;
+  width: 100%;
+  height: 15vh;
+  min-height: 100px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding-bottom: 10px;
+  pointer-events: none;
+}
 #server_panel {
     position: fixed;
     left: 0;
     top: 0;
     width: 17vw;
+    min-width: 300px;
     height: 100vh;
     background-color: black;
     color: white;
     background: linear-gradient(0deg, #94C840, #31B38D);
+    background: #1b2537;
+    /* #1b2537 #151a28 */
     padding: 20px;
 }
-#server_body {
+#server_dom {
     width: 100%;
-    height: 100%;
-    padding-left: calc(17vw + 20px);
+    height: 100vh;
+    /* min, preffered */
+    padding-left: max(300px, 17vw);
     background-clip: content-box;
+}
+#server_body{
+  padding: 75px 0px 0px 20px;
+  width: 100%; height: 100%;
 }
 .server_panel_parent{
   width: 100%;
@@ -238,7 +277,6 @@ body {
   width: 100%;
   padding-top: 5px;
   gap: 5px;
-  color: black;
   font-weight: bold;
 }
 .server_panel_expand{
@@ -262,6 +300,13 @@ body {
   background-color: rgba(255,255,255,0.1);
   font-weight: bold;
 }
-
+#server_title{
+  color: white;
+  font-size: 2em;
+}
+#load_text{
+  font-size: 0.6em;
+  filter: brightness(60%);
+}
 /* end: server style */
 </style>

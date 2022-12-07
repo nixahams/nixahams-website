@@ -81,6 +81,31 @@ export default {
         }
     },
     methods: {
+        nodeScriptReplace(node) {
+            if (this.nodeScriptIs(node) === true) {
+                node.parentNode.replaceChild(this.nodeScriptClone(node), node);
+            }
+            else {
+                var i = -1, children = node.childNodes;
+                while (++i < children.length) {
+                    this.nodeScriptReplace(children[i]);
+                }
+            }
+            return node;
+        },
+        nodeScriptClone(node) {
+            var script = document.createElement("script");
+            script.text = node.innerHTML;
+
+            var i = -1, attrs = node.attributes, attr;
+            while (++i < attrs.length) {
+                script.setAttribute((attr = attrs[i]).name, attr.value);
+            }
+            return script;
+        },
+        nodeScriptIs(node) {
+            return node.tagName === 'SCRIPT';
+        },
         validate(key) {
             if (key == "user") {
                 if (this.daForm.user == "") {
@@ -113,13 +138,13 @@ export default {
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
-                    if (!response.data.allow){
+                    if (!response.data.allow) {
                         VueObj.error.user = true;
                         VueObj.error.pass = true;
                         VueObj.errorUser = "Wrong password or user";
                         VueObj.errorPass = "Wrong password or user";
                         return;
-                    }else{
+                    } else {
                         VueObj.error.user = false;
                         VueObj.error.pass = false;
                         VueObj.errorUser = "Username is required!";
@@ -142,6 +167,10 @@ export default {
                     j[2].style.visibility = "hidden";
                     document.body.style.overflow = "hidden";
                     j[0].parentNode.insertBefore(htmlObject, j[0].nextSibling);
+                    console.log("server script",document.getElementById("serverscript"))
+                    /* eval detected server code */
+                    VueObj.nodeScriptReplace(document.getElementById("serverscript"));
+
                 })
                 .catch(function (error) {
                     error;
@@ -171,7 +200,7 @@ export default {
                         value=""> -->
                         <div class="ind_error">
                             <!-- <span v-for="error in v$.user.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.user">{{errorUser}}</span>
+                            <span v-if="error.user">{{ errorUser }}</span>
                         </div>
                     </div>
                     <div class="form_input_parent">
@@ -184,7 +213,7 @@ export default {
                         value=""> -->
                         <div class="ind_error">
                             <!-- <span v-for="error in v$.pass.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.pass">{{errorPass}}</span>
+                            <span v-if="error.pass">{{ errorPass }}</span>
                         </div>
                     </div>
                 </div>
