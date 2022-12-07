@@ -75,7 +75,9 @@ export default {
             error: {
                 user: false,
                 pass: false,
-            }
+            },
+            errorUser: "Username is required!",
+            errorPass: "Password is required!"
         }
     },
     methods: {
@@ -111,7 +113,18 @@ export default {
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
-                    if (!response.data.allow) return;
+                    if (!response.data.allow){
+                        VueObj.error.user = true;
+                        VueObj.error.pass = true;
+                        VueObj.errorUser = "Wrong password or user";
+                        VueObj.errorPass = "Wrong password or user";
+                        return;
+                    }else{
+                        VueObj.error.user = false;
+                        VueObj.error.pass = false;
+                        VueObj.errorUser = "Username is required!";
+                        VueObj.errorPass = "Password is required!";
+                    }
                     /*remove duplicate html*/
                     let a = document.getElementsByClassName('server_page');
                     for (let i = 0; i < a.length; i++) {
@@ -158,7 +171,7 @@ export default {
                         value=""> -->
                         <div class="ind_error">
                             <!-- <span v-for="error in v$.user.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.user">Username is required!</span>
+                            <span v-if="error.user">{{errorUser}}</span>
                         </div>
                     </div>
                     <div class="form_input_parent">
@@ -171,7 +184,7 @@ export default {
                         value=""> -->
                         <div class="ind_error">
                             <!-- <span v-for="error in v$.pass.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.pass">Password is required!</span>
+                            <span v-if="error.pass">{{errorPass}}</span>
                         </div>
                     </div>
                 </div>

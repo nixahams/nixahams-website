@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       announcement_list: [],
+      inject: false
     }
   },
   methods:{
