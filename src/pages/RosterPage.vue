@@ -167,8 +167,8 @@ export default {
           quantity: 1
         }
       ],
-      successURL:'http://localhost:8080/#/Success',
-      cancelURL:'http://localhost:8080/#/Roster',
+      successURL:'https://nixahams-website.pages.dev/#/Success',
+      cancelURL:'https://nixahams-website.pages.dev/#/Roster',
 
 
       membership_selected: "single_side",

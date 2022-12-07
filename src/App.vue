@@ -1,6 +1,70 @@
 <template>
   <div id="app">
     <PageHeader :key="componentKey" :bgcolor="bg_color"/>
+    <div v-if="false" class="server_page">
+      <div id="server_container">
+       
+        <div id="server_panel">
+          <div class="server_panel_parent">
+            <div class="server_panel_title">
+            <i class="fa-solid fa-chart-simple"></i>
+            Stats
+            </div>
+
+            <div class="server_panel_expand">
+              <div class="server_panel_exp_title">Subscriptions</div>
+              <div class="server_panel_exp_title">Donations</div>
+              <div class="server_panel_exp_title">Site Vistitors</div>
+            </div>
+          </div>
+
+          <div class="server_panel_parent">
+            <div class="server_panel_title">
+              <i class="fa-solid fa-envelopes-bulk"></i>
+              Announcements
+            </div>
+
+            <div class="server_panel_expand">
+              <div class="server_panel_exp_title">Post</div>
+              <div class="server_panel_exp_title">Delete</div>
+              <div class="server_panel_exp_title">Edit</div>
+            </div>
+          </div>
+
+          <div class="server_panel_parent">
+            <div class="server_panel_title">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Edit Pages
+            </div>
+
+            <div class="server_panel_expand">
+              <div class="server_panel_exp_title">Upload Repeater Info</div>
+              <div class="server_panel_exp_title">Change Page Image</div>
+            </div>
+          </div>
+
+          <div class="server_panel_parent">
+            <div class="server_panel_title">
+              <i class="fa-solid fa-gear"></i>
+              Settings
+            </div>
+
+            <div class="server_panel_expand">
+              <div class="server_panel_exp_title">Change Colors</div>
+              <div class="server_panel_exp_title">Update Password</div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="server_body">
+          <div id="server_title">Admin Dashbord</div>
+          Welcome back ${u}!
+        </div>
+        
+        
+      </div>
+    </div>
+    
     <router-view></router-view>
     <PageFooter/>
   </div>
@@ -136,4 +200,68 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   /* background: #555; */
 }
+</style>
+
+<style>
+/* start: server style */
+body{overflow: hidden;}
+.server_page {
+    height: fit-content;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: gray;
+}
+
+#server_panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 17vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    background: linear-gradient(0deg, #94C840, #31B38D);
+    padding: 20px;
+}
+#server_body {
+    width: 100%;
+    height: 100%;
+    padding-left: 17vw;
+    background-clip: content-box;
+}
+.server_panel_parent{
+  width: 100%;
+}
+.server_panel_title{
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  padding-top: 5px;
+  gap: 5px;
+  color: black;
+  font-weight: bold;
+}
+.server_panel_expand{
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  height: 15vh;
+  min-height: 100px;
+  overflow: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+.server_panel_exp_title{
+  cursor: pointer;
+  transition: 0.1s ease;
+  background-color: rgba(255,255,255,0);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.server_panel_exp_title:hover{
+  background-color: rgba(255,255,255,0.1);
+  font-weight: bold;
+}
+
+/* end: server style */
 </style>

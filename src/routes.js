@@ -7,6 +7,7 @@ import Contact from './pages/ContactPage.vue';
 import Media from './pages/MediaPage.vue';
 import Staff from './pages/StaffPage.vue';
 import Donate from './pages/DonationPage.vue';
+import Alpha from './pages/AlphaPage.vue';
 import Invalid from './pages/InvalidPage.vue';
 
 import Success from './pages/SuccessPage.vue';
@@ -23,6 +24,7 @@ export default[
     { path: '/media', component: Media},
     { path: '/staff', component: Staff},
     { path: '/donate', component: Donate},
+    { path: '/alpha', component: Alpha},
     { path: '*', component: Invalid},
 
     { path: '/success', component: Success},

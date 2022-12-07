@@ -28,7 +28,7 @@
           </select>
         </div>
         <div v-if="result_visible" id="search_results">
-          <ResultOption @option_selected="op_selected" v-for="res in result_list" :key="res.key" :res="res" :filter="filter_by"/>
+          <ResultOption @option_selected="op_selected" v-for="(res,index) in result_list" :key="index" :res="res" :filter="filter_by"/>
         </div>
       </div>
 
