@@ -204,7 +204,7 @@ body {
 
 <style>
 /* start: server style */
-body{overflow: hidden;}
+
 .server_page {
     height: fit-content;
     min-height: 100vh;
@@ -226,7 +226,7 @@ body{overflow: hidden;}
 #server_body {
     width: 100%;
     height: 100%;
-    padding-left: 17vw;
+    padding-left: calc(17vw + 20px);
     background-clip: content-box;
 }
 .server_panel_parent{
