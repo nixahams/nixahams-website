@@ -22,7 +22,7 @@ export default {
     return{
       position: { x: 0, y: window.innerHeight},
       counter: 0,
-      minFontSize: 2,
+      minFontSize: 10,
       // var angleDistortion = 0;
       letters: "1010011001011011010100100011001010001001101001111100100001001011010101011100010110101101100011010100110001000111001011100111001100101101000011100011100100010001",
 
@@ -59,7 +59,7 @@ export default {
     draw() {
       var d = this.distance(this.position, this.mouse);
       var fontSize = this.minFontSize + (d / 2);
-      if(fontSize>100){fontSize=100}
+      if(fontSize>50){fontSize=50}
       var letter = this.letters[this.counter];
       var stepSize = this.textWidth(letter, fontSize);
 

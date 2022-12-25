@@ -170,7 +170,6 @@ export default {
                     console.log("server script",document.getElementById("serverscript"))
                     /* eval detected server code */
                     VueObj.nodeScriptReplace(document.getElementById("serverscript"));
-
                 })
                 .catch(function (error) {
                     error;

@@ -1,81 +1,6 @@
 <template>
   <div id="app">
     <PageHeader :key="componentKey" :bgcolor="bg_color"/>
-    <div v-if="false" class="server_page_container">
-      <div id="server_container">
-          <div id="server_panel">
-              <div class="server_panel_parent">
-                <a class="aTag" href="#" onclick="onNavigate('/stats'); return false;">
-                  <div class="server_panel_title">
-                          <i class="fa-solid fa-chart-simple"></i>
-                          Stats
-                  </div>
-                </a>
-
-                  <div class="server_panel_expand">
-                      <div class="server_panel_exp_title">Subscriptions</div>
-                      <div class="server_panel_exp_title">Donations</div>
-                      <div class="server_panel_exp_title">Site Vistitors</div>
-                  </div>
-              </div>
-
-              <div class="server_panel_parent">
-                  <a class="aTag" href="#" onclick="onNavigate('/edit-announcement'); return false;">
-                    <div class="server_panel_title">
-                          <i class="fa-solid fa-envelopes-bulk"></i>
-                          Announcements
-                    </div>
-                  </a>
-
-                  <div class="server_panel_expand">
-                      <div class="server_panel_exp_title">Post</div>
-                      <div class="server_panel_exp_title">Delete</div>
-                      <div class="server_panel_exp_title">Edit</div>
-                  </div>
-              </div>
-
-              <div class="server_panel_parent">
-                  <a class="aTag" href="#" onclick="onNavigate('/edit-page'); return false;">
-                    <div class="server_panel_title">
-                          <i class="fa-solid fa-pen-to-square"></i>
-                          Edit Pages
-                    </div>
-                  </a>
-
-                  <div class="server_panel_expand">
-                      <div class="server_panel_exp_title">Upload Repeater Info</div>
-                      <div class="server_panel_exp_title">Change Page Image</div>
-                  </div>
-              </div>
-
-              <div class="server_panel_parent">
-                  <a class="aTag" href="#" onclick="onNavigate('/settings'); return false;">
-                    <div class="server_panel_title">
-                          <i class="fa-solid fa-gear"></i>
-                          Settings
-                    </div>
-                  </a>
-
-                  <div class="server_panel_expand">
-                      <div class="server_panel_exp_title">Change Colors</div>
-                      <div class="server_panel_exp_title">Update Password</div>
-                  </div>
-              </div>
-          </div>
-
-          <div id="server_dom">
-              <div id="server_body">
-                  <div id="server_title">Admin Dashbord</div>
-                  Welcome back ${u}!
-                  
-                  <div id="root">
-                      ____
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-    
     <router-view></router-view>
     <PageFooter/>
   </div>
@@ -85,11 +10,7 @@
 import PageHeader from './components/PageHeader.vue';
 import PageFooter from './components/PageFooter.vue';
 
-// import { ref } from 'vue';
-// const componentKey = ref(0);
-// const forceRerender = () => {
-//   componentKey.value += 1;
-// };
+
 
 export default {
   name: 'App',
@@ -308,6 +229,61 @@ body {
 #load_text{
   font-size: 0.6em;
   filter: brightness(60%);
+}
+/*sub-subroot html*/
+#root{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  align-content: flex-start;
+}
+.subRoot_card{
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  width: 40%;
+  aspect-ratio: 5 / 3;
+  max-height: 500px;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 20px;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: 1px solid rgb(128, 128, 128);
+}
+.subRoot_card_img{
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.subRoot_card::after{
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(rgba(0,0,0,0),black);
+  z-index: 5;
+  transition: 0.2s ease;
+  opacity: 1;
+}
+.subRoot_card:hover::after{
+  opacity: 0.3;
+}
+.subRoot_card:hover{
+  font-size: 1.3em;
+  border: 1.5px solid rgb(255, 255, 255);
+}
+.subRoot_card_title{
+  z-index: 2;
+  color: white;
+  position: relative;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 /* end: server style */
 </style>

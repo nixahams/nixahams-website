@@ -1,15 +1,10 @@
 <template>
   <div id="invalid_page">
-    <!-- <img id="invalid_img" src="../assets/404/invalidpage.jpg" alt="Invalid Page"> -->
-    <!-- <canvas id="canvas"></canvas> -->
-    <!-- <span id='info'>Click and drag to draw!</span> -->
     <test></test>
   </div>
 </template>
   
 <script>
-// var drawcode = require('../invalid.js');
-// export default ap;
 import test from '../components/TestCode.vue'
 
 

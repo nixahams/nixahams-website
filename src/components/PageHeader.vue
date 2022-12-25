@@ -1,5 +1,5 @@
 <template>
-    <div v-if="true" :id="changeHeader">
+    <div :id="changeHeader">
         <div id="header_hamburger" @click="ham_header()">
             <div></div>
             <div></div>
