@@ -163,7 +163,7 @@ export default {
       axios.get(URL)
       .then(function (response) {
           // handle success
-          VueObj.rep_arr = response.data[0].repeater_list;
+          VueObj.rep_arr = response.data;
           VueObj.long_name=VueObj.rep_arr[0].name;
           VueObj.long_location=VueObj.rep_arr[0].location;
           VueObj.long_title=VueObj.rep_arr[0].long_title;

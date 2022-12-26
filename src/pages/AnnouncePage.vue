@@ -11,9 +11,9 @@
       :key="index"/> -->
       <BlogPost
       v-for="(msg, index) in announcement_list" 
-      :title="msg.annoucement.title"
-      :desc="msg.annoucement.body"
-      :image="msg.annoucement.image"
+      :title="msg.name"
+      :desc="msg.body"
+      :image="msg.image"
       :date="msg.date"
       :key="index"/>
       

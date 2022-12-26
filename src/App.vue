@@ -245,7 +245,7 @@ body {
   color: white;
   font-size: 2em;
   position: relative;
-  height: 10%;
+  height: 10vh;
 }
 #load_text{
   font-size: 0.6em;
@@ -262,7 +262,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.subRoot_card{
+.subRoot_card,.subRoot_card2{
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -296,13 +296,27 @@ body {
   transition: 0.2s ease;
   opacity: 1;
 }
+.subRoot_card2::after{
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(rgba(0,0,0,0) 50%,rgba(0, 0, 0, 0.2));
+  z-index: 5;
+  transition: 0.2s ease;
+  opacity: 1;
+}
 .subRoot_card:hover::after{
   opacity: 0.3;
 }
-.subRoot_card:hover{
-  font-size: 1.3em;
+.subRoot_card2:hover{
+  background: linear-gradient(rgba(0,0,0,0) 50%,rgba(0, 0, 0, 0.0));
+}
+.subRoot_card:hover,.subRoot_card2:hover{
+  font-size: 1.15em;
   border: 1.5px solid rgb(255, 255, 255);
 }
+
 .subRoot_card_title{
   z-index: 2;
   color: white;
@@ -318,40 +332,99 @@ body {
   padding-right: 20px;
   padding-bottom: 20px;
   position: relative;
-  background-color: rgb(83, 80, 86);
+  background-color: transparent;
   background-clip: content-box;
   position: relative;
 }
 #api_page_num_parent{
   position: absolute;
-  bottom: 0;
-  width: 100%; height: 80px;
+  bottom: 25px;
+  width: 100%; height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding-bottom: 20px;
+  z-index: 2;
 }
 .api_page_num{
   position: relative;
   height: 90%;
   aspect-ratio: 1 / 1;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   font-size: 1.3em;
   cursor: pointer;
   font-weight: normal;
 }
 .activePageNum{
-  background-color: rgba(0,0,0,1);
-  color: rgba(255, 255, 255, 1);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   user-select: none;
   cursor: pointer;
   font-weight: bold;
+}
+/* apiResponse cards */
+#apiOverflowDiv{
+  width: 100%; height: calc(100% - 70px);
+  position: relative;
+  overflow-y: auto;
+  background-clip: content-box;
+  padding-bottom: 40px;
+}
+.apiResponse_parent{
+  width: 100%;
+  height: 150px;
+  padding: 10px 20px;
+  background-clip: content-box;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  border: 3px;
+}
+#apiTxtContainer_parent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+}
+#apiAnnounceBtn_parent{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+#apiAnnounceEdit,#apiAnnounceDelete{
+  max-height: 90%;
+  cursor: pointer;
+  width: 120px; height: 50px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  gap: 10px;
+  transition: 0.2s ease;
+}
+#apiAnnounceEdit{
+  color: black;
+  border: 1px solid black;
+  background-color: white;
+}
+#apiAnnounceEdit:hover{
+  color: white;
+  border: 0px solid black;
+  background-color: black;}
+#apiAnnounceDelete{
+  background-color: #eb5456;
+}
+#apiAnnounceDelete:hover{
+  background-color: #e6171a;
 }
 /* end: server style */
 </style>
