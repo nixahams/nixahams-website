@@ -164,6 +164,25 @@ body {
   padding-bottom: 10px;
   pointer-events: none;
 }
+.aTag2{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.aTag2:hover{
+  position: relative;
+  transition: 0.2s ease;
+  color: rgb(255,255,255);
+}
+.aTag2:hover::after{
+  content: '';
+  position: absolute;
+  top: -5px; left: -10px;
+  width: 100%; height: 100%;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  pointer-events: none;
+}
+
 #server_panel {
     position: fixed;
     left: 0;
@@ -216,6 +235,7 @@ body {
   background-color: rgba(255,255,255,0);
   padding: 5px 10px;
   border-radius: 10px;
+  color: white;
 }
 .server_panel_exp_title:hover{
   background-color: rgba(255,255,255,0.1);
@@ -225,6 +245,7 @@ body {
   color: white;
   font-size: 2em;
   position: relative;
+  height: 10%;
 }
 #load_text{
   font-size: 0.6em;
@@ -238,6 +259,8 @@ body {
   height: 100%;
   gap: 20px;
   align-content: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .subRoot_card{
   border-radius: 20px;
@@ -254,12 +277,14 @@ body {
   transition: 0.2s ease;
   border: 1px solid rgb(128, 128, 128);
 }
+
 .subRoot_card_img{
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  user-select: none;
 }
 .subRoot_card::after{
   content: '';
@@ -284,6 +309,49 @@ body {
   position: relative;
   font-weight: bold;
   font-size: 1.3em;
+  user-select: none;
+}
+/*table for api response of announcements/repeaters*/
+#api_table_display{
+  width: 100%;
+  height: 90%;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  background-color: rgb(83, 80, 86);
+  background-clip: content-box;
+  position: relative;
+}
+#api_page_num_parent{
+  position: absolute;
+  bottom: 0;
+  width: 100%; height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+.api_page_num{
+  position: relative;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.3em;
+  cursor: pointer;
+  font-weight: normal;
+}
+.activePageNum{
+  background-color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 /* end: server style */
 </style>

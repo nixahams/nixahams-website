@@ -80,6 +80,9 @@ export default {
             errorPass: "Password is required!"
         }
     },
+    mounted(){
+
+    },
     methods: {
         nodeScriptReplace(node) {
             if (this.nodeScriptIs(node) === true) {
@@ -133,6 +136,18 @@ export default {
         async attemptLogIn(VueObj) {
             let user = this.daForm.user;
             let pass = this.daForm.pass;
+
+            //check if server html is already on page
+            let checkHTML = document.getElementsByClassName('server_page_container');
+            if (checkHTML!==null){
+                let j;
+                for(j = 0; j<checkHTML.length; j++)
+                {
+                    console.log(checkHTML[j])
+                    checkHTML[j].remove();
+                }
+                console.log('removed ', j, ' instances')
+            }
 
             const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/auth?user=${user}&pass=${pass}`;
             axios.post(URL)
