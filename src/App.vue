@@ -256,8 +256,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 100%;
-  gap: 20px;
+  height: 100%; 
+  gap: 10px;
   align-content: flex-start;
   overflow-x: hidden;
   overflow-y: auto;
@@ -338,7 +338,7 @@ body {
 }
 #api_page_num_parent{
   position: absolute;
-  bottom: 25px;
+  bottom: 70px;
   width: 100%; height: 60px;
   display: flex;
   justify-content: center;
@@ -348,20 +348,28 @@ body {
 }
 .api_page_num{
   position: relative;
-  height: 90%;
+  height: 70%;
   aspect-ratio: 1 / 1;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(0, 0, 0, 0.8);
+  color: white;
   font-size: 1.3em;
   cursor: pointer;
   font-weight: normal;
+  transition: 0.2s ease;
 }
-.activePageNum{
-  background-color: rgb(255, 255, 255);
+.api_page_num:hover{
+  background-color: rgba(255, 255, 255,0.5);
+  color: rgb(0, 0, 0);
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.activePageNum,.activePageNum:hover{
+  background-color: rgba(255, 255, 255,1);
   color: rgb(0, 0, 0);
   user-select: none;
   cursor: pointer;
@@ -369,7 +377,8 @@ body {
 }
 /* apiResponse cards */
 #apiOverflowDiv{
-  width: 100%; height: calc(100% - 70px);
+  /* 70px for page num height, 50px for new height*/
+  width: 100%; height: calc(100% - 120px);
   position: relative;
   overflow-y: auto;
   background-clip: content-box;
@@ -378,26 +387,33 @@ body {
 .apiResponse_parent{
   width: 100%;
   height: 150px;
-  padding: 10px 20px;
   background-clip: content-box;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 5px;
+  padding: 5px 0px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   border: 3px;
+  position: relative;
 }
-#apiTxtContainer_parent{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#apiInfoContainer_parent{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   font-size: 1.4em;
+  position: relative;
+  height: 100%; width: 100%;
+}
+#apiInfoContainer_parent>div{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 #apiAnnounceBtn_parent{
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: white;
+  user-select: none;
 }
 #apiAnnounceEdit,#apiAnnounceDelete{
   max-height: 90%;
@@ -425,6 +441,73 @@ body {
 }
 #apiAnnounceDelete:hover{
   background-color: #e6171a;
+}
+.green{
+  color: rgb(100, 225, 86);
+  padding-left: 3px;
+}
+.apiImgParent{
+  position: relative;
+  width: 100%; height: 100%;
+  max-height: 150px;
+  padding-left: 50px;
+  background-clip: content-box;
+}
+.apiTxtParent{
+  position: relative;
+  width: 100%; height: 100%;
+}
+.apiImage{
+  height: 80%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+#topRowApiBtn{
+  width: 100%; height: 50px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+#uploadApiBtn_Parent{
+  width: fit-content; height: 100%;
+  min-width: 50px;
+  border-radius: 5px;
+  background-color: #45822f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: bold;
+}
+#uploadApiBtn_Parent:hover{
+  background-color: #6ec94d;
+}
+#uploadApiBtn{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#apiMaxSize{
+  border-radius: 5px;
+  width: fit-content; height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+.apiMaxSizeSelect{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
 }
 /* end: server style */
 </style>
