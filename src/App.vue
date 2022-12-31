@@ -493,8 +493,8 @@ body {
 #apiMaxSize{
   border-radius: 5px;
   width: fit-content; height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
@@ -505,9 +505,14 @@ body {
   font-weight: bold;
 }
 .apiMaxSizeSelect{
-  padding-left: 10px;
-  padding-right: 10px;
+  /* tb rl */
   background-color: white;
+  color: black;
+}
+select{
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 /* end: server style */
 </style>
