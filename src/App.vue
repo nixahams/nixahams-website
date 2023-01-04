@@ -514,5 +514,84 @@ select{
   border-radius: 5px;
   font-weight: bold;
 }
+#editInputHtml{
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#editCenter{
+  width: 70%;
+  height: 90%;
+  background-color: white;
+  border-radius: 5px;
+  position: relative;
+}
+#editInputs{
+  height: 90%;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+#editSubmitParent{
+  height: 10%; width: 100%;
+  display: flex; justify-content: center; align-items: center;
+}
+#editSubmit{
+  width: 120px;
+  height: 80%;
+  border: none; outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgb(253, 176, 33);
+  color: black;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+#editSubmit:hover{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+#editTop{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+#editBottom{
+  height: 100%;
+  width: 100%;
+}
+.editLabelParent2{
+  width: 100%; height: 100%;
+}
+.editLabel{
+  color: black;
+}
+#editTextAreaContainer{
+  width: 100%; height: 100%;
+}
+#editTextArea{
+  width: 100%; height: 80%;
+  max-height: 50vh;
+  min-height: 10%;
+}
+#editExit{
+  position: absolute;
+  top: 10px; right: 10px;
+  color: red;
+  font-size: 2em;
+  padding: 0; margin: 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+  height: fit-content; width: fit-content;
+}
+#editExit:hover{
+  transform: scale(1.1);
+}
 /* end: server style */
 </style>

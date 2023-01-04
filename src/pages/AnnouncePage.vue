@@ -13,7 +13,7 @@
       v-for="(msg, index) in announcement_list" 
       :title="msg.name"
       :desc="msg.body"
-      :image="msg.image"
+      :image="msg.img"
       :date="msg.date"
       :key="index"/>
       
