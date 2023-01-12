@@ -9,67 +9,67 @@
         </div>
         <div id="burgerLine"></div>
         <div id="burgerOptionContainer">
-            <a href="#/">
+            <a class="burgerA" href="#/">
                 <div class="burgerOption">
                     <i class="fa-solid fa-house"></i>
                     <span class="burgerTitle">Home</span>
                 </div>
             </a>
-            <a href="#/nets">
+            <a class="burgerA" href="#/nets">
                 <div class="burgerOption">
                     <i class="fas fa-walkie-talkie"></i>
                     <span class="burgerTitle">Nets</span>
                 </div>
             </a>
-            <a href="#/repeaters">
+            <a class="burgerA" href="#/repeaters">
                 <div class="burgerOption">
                     <i class="fa-solid fa-tower-broadcast"></i>
                     <span class="burgerTitle">Repeaters</span>
                 </div>
             </a>
-            <a href="#/meetings">
+            <a class="burgerA" href="#/meetings">
                 <div class="burgerOption">
                 <i class="fa-solid fa-people-group"></i>
                     <span class="burgerTitle">Meetings</span>
                 </div>
             </a>
-            <a href="#/roster">
+            <a class="burgerA" href="#/roster">
                 <div class="burgerOption">
                     <i class="fa-solid fa-list"></i>
                     <span class="burgerTitle">Join Narc | Roster</span>
                 </div>
             </a>
-            <a href="#/media">
+            <a class="burgerA" href="#/history">
                 <div class="burgerOption">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span class="burgerTitle">History</span>
                 </div>
             </a>
-            <a href="#/dmr">
+            <a class="burgerA" href="#/dmr">
                 <div class="burgerOption">
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="burgerTitle">SWMO DMR Info</span>
                 </div>
             </a>
-            <a href="#/bylaws">
+            <a class="burgerA" href="#/bylaws">
                 <div class="burgerOption">
                     <i class="fa-solid fa-gavel"></i>
                     <span class="burgerTitle">Constitution & Bylaws</span>
                 </div>
             </a>
-            <a href="#/staff">
+            <a class="burgerA" href="#/officers">
                 <div class="burgerOption">
                     <i class="fa-solid fa-person"></i>
                     <span class="burgerTitle">Officers</span>
                 </div>
             </a>
-            <a href="#/donate">
+            <a class="burgerA" href="#/donate">
                 <div class="burgerOption">
                     <i class="fa-solid fa-credit-card"></i>
                     <span class="burgerTitle">Donate</span>
                 </div>
             </a>
-            <a href="#/contact">
+            <a class="burgerA" href="#/contact">
                 <div class="burgerOption">
                     <i class="fa-solid fa-phone"></i>
                     <span class="burgerTitle">Contact</span>
@@ -93,7 +93,21 @@ export default {
         return {
             class: false,
             ham_active: false,
-            headerMode: false
+            headerMode: false,
+            burgerOptionArray: [],
+            routeArray: [
+                '/',
+                '/nets',
+                '/repeaters',
+                '/meetings',
+                '/roster',
+                '/media',
+                '/dmr',
+                '/bylaws',
+                '/staff',
+                '/donate',
+                '/contact'
+            ],
         }
     },
     methods: {
@@ -142,9 +156,23 @@ export default {
 
     },
     mounted() {
-
+        this.burgerOptionArray = document.getElementsByClassName('burgerA');
+        console.log(this.$route.path)
+        let pth = this.$route.path;
+        let i = this.routeArray.indexOf(pth);
+        this.burgerOptionArray[i].id = "activeBurger";
+    },
+    watch: {
+        $route(to, from) {
+            from;
+            let i = this.routeArray.indexOf(to.path);
+            for(let j = 0; j < this.burgerOptionArray.length; j++)
+            {
+                this.burgerOptionArray[j].id = "inactiveBurger"; 
+            }
+            this.burgerOptionArray[i].id = "activeBurger";
+        }
     }
-
 }
 </script>
 
@@ -173,6 +201,15 @@ export default {
     padding: 10px;
     align-items: center;
     transition: 0.4s ease;
+}
+#header_expand::after{
+    content: '';
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: linear-gradient(90deg, transparent 40%, white);
 }
 #header_compress>#burgerOptionContainer>a{
     justify-content: center;
@@ -211,6 +248,7 @@ a{
     width: 100%;
     display: grid;
     grid-template-rows: repeat(12,1fr);
+    position: relative;
 }
 #burgerOptionContainer>a{
     margin-top: 10px;
@@ -218,9 +256,15 @@ a{
     cursor: pointer;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255,0); 
     transition: 0.2s ease;
+}
+#inactiveBurger{
+    background-color: rgba(255, 255, 255,0); 
     color: white;
+}
+#activeBurger{
+    background-color: rgba(255, 255, 255,1); 
+    color: black;
 }
 #burgerOptionContainer>a:hover{
     background-color: rgba(255, 255, 255,1); 
