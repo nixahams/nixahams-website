@@ -63,7 +63,6 @@
     margin-top: 100px;
 } 
 #staffpage{
-    padding-top: 120px;
     height: fit-content;
     width: 100%;
     background-color: #15181C;

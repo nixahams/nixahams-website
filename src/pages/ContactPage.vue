@@ -24,7 +24,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #contact_page {
-  padding-top: 120px;
   background-color: #1c2023;
 }
 </style>

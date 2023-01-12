@@ -1,13 +1,13 @@
 <template>
-    <div id="cancel">
-        You canncelled
+    <div>
+
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'CancelPage',
+    name: 'BylawPage',
     props: {
 
     },
@@ -16,15 +16,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#cancel{
-    padding-top: 120px;
-    position: relative;
-    width: 100vw; height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-}
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {

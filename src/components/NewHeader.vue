@@ -101,10 +101,10 @@ export default {
                 '/repeaters',
                 '/meetings',
                 '/roster',
-                '/media',
+                '/history',
                 '/dmr',
                 '/bylaws',
-                '/staff',
+                '/officers',
                 '/donate',
                 '/contact'
             ],
@@ -188,7 +188,6 @@ export default {
     flex-direction: column;
     padding: 10px;
     align-items: center;
-    transition: 0.2s ease;
 }
 #header_expand{
     background-color: #101022;
@@ -305,7 +304,7 @@ a{
     flex-direction: column;
     margin-top: 20px;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.4s ease;
 }
 #burgerOpen:hover,#burgerClose:hover{
     transform: scale(1.1);
@@ -352,7 +351,7 @@ a,a:hover,a:active,a:visited{
     height: 2px;
     background-color: white;
     border-radius: 50px;
-    transition: 0.1s ease;
+    transition: 0.4s ease;
 }
 #header_compress>div>#header_logo_container{
     visibility: hidden;

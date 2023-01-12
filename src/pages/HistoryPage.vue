@@ -161,7 +161,7 @@ mounted(){
 
 #media{
   height: fit-content; width: 100%;
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 50px;
   background-color: #15181c;
   display: flex; flex-direction: column;

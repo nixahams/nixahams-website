@@ -344,10 +344,7 @@ export default {
     width: 100%;
     /* min-height: 100vh; */
     background-color: #0d0c18;
-    padding-top: 120px;
-
     position: relative;
-
 }
 #bg_img_parent{
     height: 40vh; width: 100%;
