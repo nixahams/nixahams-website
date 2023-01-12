@@ -1,7 +1,7 @@
 <template>
   <div id="news_letter">
     <div id="blog_parent">
-      <div id="blog_title">Announcement Posts</div>
+      <div id="blog_title">Nets Posts</div>
       <!-- <BlogPost
       v-for="(msg, index) in announcement_list" 
       :title="msg.announcement.title"

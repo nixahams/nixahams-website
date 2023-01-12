@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <PageHeader :key="componentKey" :bgcolor="bg_color"/>
+    <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
+    <NewHeader/>
     <router-view></router-view>
     <PageFooter/>
   </div>
 </template>
 
 <script>
-import PageHeader from './components/PageHeader.vue';
+// import PageHeader from './components/PageHeader.vue';
+import NewHeader from './components/NewHeader.vue';
 import PageFooter from './components/PageFooter.vue';
 
 
@@ -15,8 +17,9 @@ import PageFooter from './components/PageFooter.vue';
 export default {
   name: 'App',
   components: {
-    PageHeader,
-    PageFooter
+    // PageHeader,
+    PageFooter,
+    NewHeader
   },
   data() {
     return {
@@ -544,7 +547,7 @@ select{
 }
 #editSubmit{
   width: 120px;
-  height: 80%;
+  height: 60%;
   border: none; outline: none;
   cursor: pointer;
   border-radius: 5px;
