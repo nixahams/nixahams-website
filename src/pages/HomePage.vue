@@ -4,9 +4,8 @@
     <div id="home_top">
       <div id="text_image">
         <div id="title">Welcome To Our <br> New Website!</div>
-        <div id="subtext">You might have noticed some drastic changes to our website</div>
-        <div>
-          <input id="top_btn" type="button" value="Take a Tour">
+        <div id="subtext">
+          Scroll to find more info about our meetings!
         </div>
       </div>
     </div>
@@ -42,10 +41,11 @@
     </div>
 
     <div id="home_text_image">
-      <img id="home_image" src="../assets/carosel-imgs/bg6.png" alt="">
+      <img id="home_image" src="../assets/home/fieldday.jpg" alt="">
       <div id="home_text_parent">
         <div id="this_container">
-          <div id="home_text">Join us for our monthly meetings, click the link below to join our live stream!</div>
+          <div id="home_title">Meetings</div>
+          <div id="home_text">Join us for our monthly meetings, click to join our live stream!</div>
           <div id="home_info">
             <div id="home_info_left">
               <div id="info_big_left">12 - 14</div>
@@ -73,8 +73,8 @@
       <div id="home_page3">
         <div id="contact_form">
           <!-- temp -->
-          <div id="work_div"></div>
-
+          <!-- <div id="work_div"></div> -->
+          <!-- temp -->
           <div id="form_inner">
             <form id="form">
               <div id="form_title_parent">
@@ -160,26 +160,6 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#top_btn {
-  outline: none;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
-  width: 150px;
-  height: 60px;
-  color: white;
-  border: 2px solid white;
-  transition: 0.2s ease;
-}
-
-#top_btn:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.8);
-}
-
-#top_btn:active {
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 1);
-}
 
 .input {
   height: 100%;
@@ -288,16 +268,15 @@ export default {
   height: 100%;
 }
 /* temp */
-#work_div{
+/* #work_div{
   width: 100%; height: 100%;
   position: absolute;
   top: 0; left: 0;
-  background-image: url('https://www.pngall.com/wp-content/uploads/4/Keep-Out-Tape-PNG-Free-Image.png');
   background-position: center;
   background-size: cover;
   filter: brightness(0.8);
-}
-#work_div:hover::after{
+} */
+/* #work_div:hover::after{
   content: "This is under construction!";
   display: flex;
   justify-content: center; align-items: center;
@@ -310,7 +289,7 @@ export default {
   background-color: rgba(0,0,0,0.7);
   top: 0; left: 0;
   cursor: not-allowed;
-}
+} */
 /* temp */
 #contact_form {
   position: absolute;
@@ -514,6 +493,7 @@ export default {
   top: 0;
   left: 0;
   object-fit: cover;
+  filter: brightness(30%);
 }
 
 #home_text_parent {
@@ -535,10 +515,15 @@ export default {
   align-items: flex-start;
   flex-direction: column;
 }
-
+#home_title{
+  font-size: 3em;
+  color: white;
+  font-weight: bold;
+}
 #home_text {
   font-weight: normal;
   font-size: 2em;
+  color: white;
 }
 
 #home_info {
@@ -566,6 +551,7 @@ export default {
   line-height: 50px;
   height: 100%;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #info_big_left,

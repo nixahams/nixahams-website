@@ -1,7 +1,7 @@
 <template>
     <div class="repeatercard">
         <div id="repeater_text">
-            <div id="repeater_name">{{name}}</div>
+            <div id="repeater_freq">{{freq}}</div>
             <div id="repeater_loc">⎯ {{location}}</div>
             <div>
                 <div id="break_line">.</div>
@@ -16,7 +16,7 @@
 
 export default {
     name: 'RepeaterCard',
-    props: ['img_src','name','location','short_desc'],
+    props: ['img_src','freq','location','short_desc'],
     data() {
         return {
         }   
@@ -25,7 +25,6 @@ export default {
 
     },
     mounted(){
-
     }
 }
 </script>
@@ -55,7 +54,7 @@ export default {
     left: -20%;
     top: 45%;
 }
-#repeater_name{
+#repeater_freq{
     position: relative;
     width: 100%;
     font-size: 4em; font-weight: bold;

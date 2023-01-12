@@ -200,6 +200,7 @@ export default {
     width: 100%; height: 100%;
     position: absolute;
     top: 0;
+    filter: brightness(90%) grayscale(30%) saturate(130%);
 }
 #membership_level{
     position: relative;
@@ -240,7 +241,7 @@ export default {
     text-align: center;
     padding-left: 20%; padding-right: 20%;
     background-clip: content-box;
-    font-size: 2.5em;
+    font-size: 1.5em;
     padding-top: 70px;
     font-family: 'Montserrat';
 }
@@ -341,6 +342,7 @@ export default {
     background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
 }
 #donate{
+    padding-left: 70px;
     width: 100%;
     /* min-height: 100vh; */
     background-color: #0d0c18;
@@ -478,6 +480,9 @@ export default {
     }
     #membership_level{
         width: 25%;
+    }
+    #membership_level_text{
+        font-size: 2em;
     }
 }
 

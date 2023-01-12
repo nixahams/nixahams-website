@@ -17,9 +17,8 @@
                 <Tilt :options="options">
                     <div id="topg">
                         <RepeaterCard 
-                        :key="rep1.key" 
                         :img_src="rep1.img_arr[0]"
-                        :name="rep1.name"
+                        :freq="rep1.freq"
                         :short_desc="rep1.short_desc" 
                         :location="rep1.location" />
                     </div>
@@ -29,9 +28,8 @@
                 <Tilt :options="options">
                     <div id="topg">
                         <RepeaterCard 
-                        :key="rep2.key" 
                         :img_src="rep2.img_arr[0]"
-                        :name="rep2.name"
+                        :freq="rep2.freq"
                         :short_desc="rep2.short_desc" 
                         :location="rep2.location" />
                     </div>
@@ -41,9 +39,8 @@
                 <Tilt :options="options">
                     <div id="topg">
                         <RepeaterCard 
-                        :key="rep3.key" 
                         :img_src="rep3.img_arr[0]"
-                        :name="rep3.name"
+                        :freq="rep3.freq"
                         :short_desc="rep3.short_desc" 
                         :location="rep3.location" />
                     </div>
@@ -84,23 +81,20 @@ export default {
             toggleRight: 0,
             toggleLeft: 0,
             rep1: {
-                key: 0,
                 img_arr: [],
-                name: '',
+                freq: '',
                 short_desc: '',
                 location: ''
             },
             rep2: {
-                key: 0,
                 img_arr: [],
-                name: '',
+                freq: '',
                 short_desc: '',
                 location: ''
             },
             rep3: {
-                key: 0,
                 img_arr: [],
-                name: '',
+                freq: '',
                 short_desc: '',
                 location: ''
             },
@@ -278,7 +272,7 @@ export default {
         this.repeater_array = this.repeater_list;
         this.imgsrc1 = this.repeater_array[0].img_arr[0];
         this.rep1 = this.repeater_array[this.repeater_array.length-1];
-        this.rep2 = this.repeater_array[0];
+        this.rep2 = this.repeater_array[0]; 
         this.rep3 = this.repeater_array[1];
     }
 }
@@ -313,7 +307,7 @@ export default {
 
 
 
-#center > * > * > div > div > #repeater_name{animation: textup 0.6s 0s ease forwards;}
+#center > * > * > div > div > #repeater_freq{animation: textup 0.6s 0s ease forwards;}
 #center > * > * > div > div > #repeater_loc{animation: textup 0.6s 0.1s ease forwards;}
 #center > * > * > div > div > div > div{animation: textup 0.6s 0.2s ease forwards;}
 #center > * > * > div > div > #repeater_desc{animation: textup 0.6s 0.25s ease forwards;}
@@ -324,7 +318,7 @@ export default {
     100%{transform: translateY(0%); opacity: 1;}
 }
 /* center text */
-#center > * > * > div > div > #repeater_name{opacity: 0;}
+#center > * > * > div > div > #repeater_freq{opacity: 0;}
 #center > * > * > div > div > #repeater_loc{opacity: 0;}
 #center > * > * > div > div > div > div{opacity: 0;}
 #center > * > * > div > div > #repeater_desc{opacity: 0;}
@@ -352,11 +346,11 @@ export default {
     font-size: 1em;
 }
 
-#left > * > * > div > div > #repeater_name,
+#left > * > * > div > div > #repeater_freq,
 #left > * > * > div > div > #repeater_loc,
 #left > * > * > div > div > div > div,
 #left > * > * > div > div > #repeater_desc,
-#right > * > * > div > div > #repeater_name,
+#right > * > * > div > div > #repeater_freq,
 #right > * > * > div > div > #repeater_loc,
 #right > * > * > div > div > div > div,
 #right > * > * > div > div > #repeater_desc

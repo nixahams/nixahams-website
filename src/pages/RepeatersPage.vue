@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div id="desc_info_title1">{{long_name}} - {{long_location}}</div>
+      <div id="desc_info_title1">{{freq}} - {{long_location}}</div>
       <div id="desc_info_title2">{{long_title}}</div>
       <div id="desc_info_date">{{date}}</div>
       <div id="desc_info_desc">{{long_desc}}</div>
@@ -68,7 +68,7 @@ export default {
       search_by: "Search by all",
       count: 0,
       desc_class: "desc_fade2",
-      long_name: '000.000',
+      freq: '000.000',
       long_location: 'No data to provide',
       long_title: "No data to provide",
       date: "00/00/0000",
@@ -98,7 +98,7 @@ export default {
       if(text!=''){this.result_visible=true;}
     },
     op_selected(obj){
-      this.long_name=obj.name;
+      this.freq=obj.freq;
       this.long_location=obj.location;
       this.long_title=obj.long_title;
       this.date=obj.date;
@@ -150,7 +150,7 @@ export default {
       }else{
         this.desc_class="desc_fade2";
       }
-      this.long_name=obj.name;
+      this.freq=obj.freq;
       this.long_location=obj.location;
       this.long_title=obj.long_title;
       this.date=obj.date;
@@ -164,13 +164,13 @@ export default {
       .then(function (response) {
           // handle success
           VueObj.rep_arr = response.data;
-          VueObj.long_name=VueObj.rep_arr[0].name;
-          VueObj.long_location=VueObj.rep_arr[0].location;
-          VueObj.long_title=VueObj.rep_arr[0].long_title;
-          VueObj.date=VueObj.rep_arr[0].date;
-          VueObj.long_desc=VueObj.rep_arr[0].long_desc;
-          VueObj.image_array = VueObj.rep_arr[0].img_arr;
-          VueObj.passList = VueObj.rep_arr;
+          VueObj.freq=response.data[0].freq;
+          VueObj.long_location=response.data[0].location;
+          VueObj.long_title=response.data[0].long_title;
+          VueObj.date=response.data[0].date;
+          VueObj.long_desc=response.data[0].long_desc;
+          VueObj.image_array = response.data[0].img_arr;
+          VueObj.passList = response.data;
           VueObj.asyncProp = true;
       })
       .catch(function (error) {
@@ -295,7 +295,7 @@ export default {
 }
 #desc_info_desc{
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 1% 10% 10% 10%;
   text-indent: 4em;
 }
@@ -379,7 +379,7 @@ option{
     width: 60%; height: 8vh;
   }
   #desc_info_desc{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
   #desc_info_title2{
     font-size: 3em;
@@ -395,7 +395,7 @@ option{
     width: 60%; height: 8vh;
   }
   #desc_info_desc{
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   #desc_info_title2{
     font-size: 2.5em;

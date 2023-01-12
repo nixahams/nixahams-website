@@ -15,13 +15,13 @@
                     <a href="#/">
                         <i class="fa-solid fa-house icon"></i>
                         - Home</a>
-                    <a href="#/About">
+                    <a href="#/bylaws">
                         <i class="fa-solid fa-circle-question icon"></i>
-                        - About</a>
-                    <a href="#/Donate">
+                        - Constitution & Bylaws</a>
+                    <a href="#/donate">
                         <i class="fa-solid fa-hand-holding-dollar icon"></i>
                         - Donate</a>
-                    <a href="#/Repeaters">
+                    <a href="#/repeaters">
                         <i class="fa-solid fa-tower-cell icon"></i>
                         - Repeaters</a>
                 </div>
@@ -29,16 +29,16 @@
             <div class="footer_block">
                 <div class="footer_title">Services</div>
                 <div class="footer_link">
-                    <a href="#/Announcements">
+                    <a href="#/nets">
                         <i class="fa-solid fa-comment icon"></i>
-                        - Announcements</a>
-                    <a href="#/About">
+                        - Nets</a>
+                    <a href="#/dmr">
                         <i class="fa-solid fa-user icon"></i>
-                        - About</a>
-                    <a href="#/Roster">
+                        - SWMO DMR Info</a>
+                    <a href="#/roster">
                         <i class="fa-solid fa-table-cells icon"></i>
                         - Roster</a>
-                    <a href="#/Contact">
+                    <a href="#/contact">
                         <i class="fa-solid fa-envelope icon"></i>
                         - Contact Us</a>
                 </div>

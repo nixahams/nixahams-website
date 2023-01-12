@@ -108,7 +108,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 213, 239);
+  color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
 }

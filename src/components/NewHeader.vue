@@ -10,66 +10,77 @@
         <div id="burgerLine"></div>
         <div id="burgerOptionContainer">
             <a class="burgerA" href="#/">
+                <div class="hoverOpt">Home</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-house"></i>
                     <span class="burgerTitle">Home</span>
                 </div>
             </a>
             <a class="burgerA" href="#/nets">
+                <div class="hoverOpt">Nets</div>
                 <div class="burgerOption">
                     <i class="fas fa-walkie-talkie"></i>
                     <span class="burgerTitle">Nets</span>
                 </div>
             </a>
             <a class="burgerA" href="#/repeaters">
+                <div class="hoverOpt">Repeaters</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-tower-broadcast"></i>
                     <span class="burgerTitle">Repeaters</span>
                 </div>
             </a>
             <a class="burgerA" href="#/meetings">
+                <div class="hoverOpt">Meetings</div>
                 <div class="burgerOption">
                 <i class="fa-solid fa-people-group"></i>
                     <span class="burgerTitle">Meetings</span>
                 </div>
             </a>
             <a class="burgerA" href="#/roster">
+                <div class="hoverOpt">Join Narc | Roster</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-list"></i>
                     <span class="burgerTitle">Join Narc | Roster</span>
                 </div>
             </a>
             <a class="burgerA" href="#/history">
+                <div class="hoverOpt">History</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span class="burgerTitle">History</span>
                 </div>
             </a>
             <a class="burgerA" href="#/dmr">
+                <div class="hoverOpt">SWMO DMR Info</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="burgerTitle">SWMO DMR Info</span>
                 </div>
             </a>
             <a class="burgerA" href="#/bylaws">
+                <div class="hoverOpt">Constitution & Bylaws</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-gavel"></i>
                     <span class="burgerTitle">Constitution & Bylaws</span>
                 </div>
             </a>
             <a class="burgerA" href="#/officers">
+                <div class="hoverOpt">Officers</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-person"></i>
                     <span class="burgerTitle">Officers</span>
                 </div>
             </a>
             <a class="burgerA" href="#/donate">
+                <div class="hoverOpt">Donate</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-credit-card"></i>
                     <span class="burgerTitle">Donate</span>
                 </div>
             </a>
             <a class="burgerA" href="#/contact">
+                <div class="hoverOpt">Contact</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-phone"></i>
                     <span class="burgerTitle">Contact</span>
@@ -157,7 +168,6 @@ export default {
     },
     mounted() {
         this.burgerOptionArray = document.getElementsByClassName('burgerA');
-        console.log(this.$route.path)
         let pth = this.$route.path;
         let i = this.routeArray.indexOf(pth);
         this.burgerOptionArray[i].id = "activeBurger";
@@ -178,6 +188,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.burgerA{position: relative;}
+.burgerA:hover>.hoverOpt{
+    background-color: inherit;
+    color: inherit;
+    visibility: visible;
+}
+.hoverOpt,#header_expand>#burgerOptionContainer>a>.hoverOpt:hover,#header_expand>#burgerOptionContainer>a>.hoverOpt{
+    visibility: hidden;
+    color: transparent;
+    position: absolute;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content; height: 60%;
+    background-color: transparent;
+    left: 72px;
+    display: flex;
+    white-space: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
 #header_compress{
     background-color: #101022;
     width: 90px;
@@ -375,6 +407,7 @@ a,a:hover,a:active,a:visited{
     object-fit: cover;
     width: 100%;
 }
+
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {

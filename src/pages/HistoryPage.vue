@@ -160,6 +160,7 @@ mounted(){
 
 
 #media{
+  margin-left: 80px;
   height: fit-content; width: 100%;
   padding-top: 100px;
   padding-bottom: 50px;
