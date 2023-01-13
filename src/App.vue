@@ -328,7 +328,7 @@ body {
   font-size: 1.3em;
   user-select: none;
 }
-/*table for api response of announcements/repeaters*/
+/*table for api response of nets/repeaters*/
 #api_table_display{
   width: 100%;
   height: 90%;
@@ -387,6 +387,7 @@ body {
   background-clip: content-box;
   padding-bottom: 40px;
 }
+
 .apiResponse_parent{
   width: 100%;
   height: 150px;
@@ -406,19 +407,24 @@ body {
   position: relative;
   height: 100%; width: 100%;
 }
-#apiInfoContainer_parent>div{
+.apiTxtParent{
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-#apiAnnounceBtn_parent{
+.replaceText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#apiNetBtn_parent{
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: white;
   user-select: none;
 }
-#apiAnnounceEdit,#apiAnnounceDelete{
+#apiNetEdit,#apiNetDelete{
   max-height: 90%;
   cursor: pointer;
   width: 120px; height: 50px;
@@ -430,19 +436,19 @@ body {
   gap: 10px;
   transition: 0.2s ease;
 }
-#apiAnnounceEdit{
+#apiNetEdit{
   color: black;
   border: 1px solid black;
   background-color: white;
 }
-#apiAnnounceEdit:hover{
+#apiNetEdit:hover{
   color: white;
   border: 0px solid black;
   background-color: black;}
-#apiAnnounceDelete{
+#apiNetDelete{
   background-color: #eb5456;
 }
-#apiAnnounceDelete:hover{
+#apiNetDelete:hover{
   background-color: #e6171a;
 }
 .green{

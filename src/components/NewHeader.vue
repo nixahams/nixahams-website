@@ -222,6 +222,7 @@ export default {
     flex-direction: column;
     padding: 10px;
     align-items: center;
+    border-right: 1px solid white;
 }
 #header_expand{
     background-color: #101022;
@@ -234,15 +235,7 @@ export default {
     padding: 10px;
     align-items: center;
     transition: 0.4s ease;
-}
-#header_expand::after{
-    content: '';
-    width: 5px;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: linear-gradient(90deg, transparent 40%, white);
+    border-right: 1px solid white;
 }
 #header_compress>#burgerOptionContainer>a{
     justify-content: center;

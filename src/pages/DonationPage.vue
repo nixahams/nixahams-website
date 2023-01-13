@@ -39,7 +39,7 @@
             </div>
         </div>
         <div id="donate_text">
-            Choose a predfined amout
+            Choose a predefined amout
         </div>
         <div id="donate_grid_container">
             <div id="donate_grid_parent">
