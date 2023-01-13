@@ -202,13 +202,15 @@ export default {
     border-radius: 5px;
     width: fit-content; height: 60%;
     background-color: transparent;
-    left: 72px;
+    left: 70px;
     display: flex;
     white-space: nowrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    border: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 }
 #header_compress{
     background-color: #101022;

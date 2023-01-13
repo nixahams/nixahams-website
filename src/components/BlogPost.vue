@@ -1,36 +1,31 @@
 <template>
     <div id="blog">
         <div id="blog_parent">
-            <div id="blog_left">
-                <div id="blog_title">{{title}}</div>
-                <div id="blog_desc">{{desc}}</div>
-                <div id="blog_date">Posted on: {{newDate}}</div>
-            </div>
-            <div id="blog_right">
-                <img id="blog_img" :src="image" alt="Blog Image">
-            </div>
+            <div class="blog_text">{{title}}</div>
+            <div class="blog_text">{{desc}}</div>
+            <div class="blog_text">freq</div>
+            <div class="blog_text">pl</div>
+            <div class="blog_text">rep loc</div>
+            <div class="blog_text">net sponsor</div>
+            <div id="blog_date">Posted on: {{date}}</div>
         </div>
     </div>
 </template>
 
 <script>
 
-
 export default {
     name: 'BlogPost',
     props:['title', 'desc', 'date','image'],
     data() {
         return {
-            newDate: this.date
         }   
     },
     methods: {
 
     },
     mounted() {
-        let date = new Date(parseInt(this.newDate));
-        let fdate = (date.getMonth() + 1)+'/'+ date.getDate()  +'/'+date.getFullYear()
-        this.newDate = fdate;
+
     },
 }
 </script>
@@ -39,7 +34,7 @@ export default {
 <style scoped>
 #blog {
     width: 100%; height: fit-content;
-    padding: 4% 10%;
+    padding: 15px 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,56 +44,18 @@ export default {
 #blog_parent {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 70px;
     max-height: 100%;
     background-color: rgb(247, 247, 247);
-    border-radius: 20px;
-    display: flex; flex-direction: row;
-    box-shadow: -20px 20px 30px rgba(179, 179, 179, 0.3);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr) 2fr;
     transition: 0.2s ease;
 }
-#blog_parent:hover{
-    box-shadow: 0px 0px 10px rgba(179, 179, 179, 0.5);
-    transform: translateX(-10px) translateY(10px);
-}
-#blog_left{
-    position: relative;
-    width: 60%;height: 100%;
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-}
-#blog_right{
-    width: 40%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
-    padding: 5%;
-}
-#blog_img{
-    width: 100%; height: 100%;
-    border-radius: 25px;
-    background-position: center;
-    background-color: gray;
-    object-fit: cover;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-    background: linear-gradient(335deg, gray 20%, rgb(175, 175, 175) 40%,rgb(177, 177, 177) 50%, gray 70%);
-}
-#blog_title{
-    width: 100%; height: 100%;
-    padding: 40px;
-    font-weight: bold;
-    font-size: 2em;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    display: flex; align-items: center;
-    justify-content: flex-start;
-}
-#blog_desc{
-    width: 100%; height: calc(90% - 10px);
-    padding: 15px 40px;
-    font-size: 1.5em;
-    font-weight: normal;
-    overflow: auto;
-    position: relative;
+.blog_text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #blog_desc::-webkit-scrollbar,#blog_title::-webkit-scrollbar{
@@ -115,11 +72,19 @@ export default {
 
 #blog_date{
     position: absolute;
-    bottom: 0; left: 0;
-    height: 10%;
-    padding: 10px 40px;
-    color: rgba(0,0,0,0.5);
+    bottom: -20px; left: 0;
+    height: fit-content;
+    padding: 0px 20px;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
+    font-size: 0.7em;
+}
+#blog_date::before{
+    content: '∟';
+    width: 10px;
+    position: absolute;
+    left: 5px;
+    top: -3px;
 }
 
 
@@ -144,7 +109,7 @@ export default {
     }
     #blog_title{
         padding: 10px 40px;
-        font-size: 1.6em;
+        font-size: 1.4em;
     }
     #blog_desc{
         font-size: 1.2em;
@@ -165,7 +130,7 @@ export default {
     }
     #blog_title{
         padding: 5px 40px;
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     #blog_desc{
         font-size: 1em;

@@ -4,8 +4,8 @@
       <div id="home_page3">
         <div id="contact_form">
           <!-- temp -->
-          <div id="work_div"></div>
-
+          <!-- <div id="work_div"></div> -->
+          <!-- temp -->
           <div id="form_inner">
             <form id="form">
               <div id="form_title_parent">
@@ -282,7 +282,7 @@ export default {
 
 
 /* rmv when email sending works */
-#work_div{
+/* #work_div{
   width: 100%; height: 100%;
   position: absolute;
   top: 0; left: 0;
@@ -304,7 +304,7 @@ export default {
   background-color: rgba(0,0,0,0.7);
   top: 0; left: 0;
   cursor: not-allowed;
-}
+} */
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {

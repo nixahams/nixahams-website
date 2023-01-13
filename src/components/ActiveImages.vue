@@ -1,16 +1,22 @@
 <template>
     <div id="image_component" @click="$emit('emitFullScreenImage',image)">
-        <img :src="image" alt="Repeater Images" id="component_image">
+        <img @error="replaceByDefault" :src="image" alt="Repeater Images" id="component_image">
     </div>
 </template>
 
 <script>
+import img from '@/assets/default.png';
 
 export default {
     name: 'ActiveImages',
     props: ['image','index'],
     data(){
         return{
+        }
+    },
+    methods: {
+        replaceByDefault(e) {
+            e.target.src = img;
         }
     },
     mounted(){

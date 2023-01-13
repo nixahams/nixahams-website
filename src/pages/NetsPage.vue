@@ -1,19 +1,21 @@
 <template>
   <div id="news_letter">
     <div id="blog_parent">
-      <div id="blog_title">Nets Posts</div>
-      <!-- <BlogPost
-      v-for="(msg, index) in announcement_list" 
-      :title="msg.announcement.title"
-      :desc="msg.announcement.body"
-      :date="msg.date"
-      :image="msg.announcement.img"
-      :key="index"/> -->
+      <div id="blog_title">Regional Amateur Radio Nets</div>
+      <div id="blog_key">
+        <div id="blog_text_parent">
+            <div class="blog_txt">Day</div>
+            <div class="blog_txt">Time</div>
+            <div class="blog_txt">Frequency</div>
+            <div class="blog_txt">PL</div>
+            <div class="blog_txt">Repeater Location</div>
+            <div class="blog_txt">Net Sponsor</div>
+        </div>
+    </div>
       <BlogPost
       v-for="(msg, index) in announcement_list" 
       :title="msg.name"
       :desc="msg.body"
-      :image="msg.img"
       :date="msg.date"
       :key="index"/>
       
@@ -64,18 +66,39 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+#blog_key{
+    width: 100%; height: fit-content;
+    padding: 0 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+#blog_text_parent {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: #DB7B32;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr) 1.5fr 1.5fr;
+    transition: 0.2s ease;
+}
+.blog_txt{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid white;
+}
+.blog_txt:nth-child(6){
+  border-right: 0px solid white;
 }
 
-body {
-  background-color: #1c2023;
-  position: relative;
-}
 #news_letter {
   color: rgb(208, 213, 239);
   padding-top: 120px;
@@ -94,21 +117,21 @@ body {
   font-weight: bold;
   color: rgb(247, 247, 247);
   padding: 2% 10% 0% 10%;
-  font-size: 5em;
+  font-size: 4em;
 }
 
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   #blog_title{
-    font-size: 4em;
+    font-size: 3em;
   }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
   #blog_title{
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
 

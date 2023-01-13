@@ -8,12 +8,12 @@
             </div>
             <div id="repeater_desc">{{short_desc}}</div>
         </div>
-        <img id="repeater_img" :src="img_src" alt="Repeater Image">
+        <img @error="replaceByDefault" id="repeater_img" :src="img_src" alt="Repeater Image">
     </div>
 </template>
 
 <script>
-
+import img from '@/assets/default.png';
 export default {
     name: 'RepeaterCard',
     props: ['img_src','freq','location','short_desc'],
@@ -22,7 +22,9 @@ export default {
         }   
     },
     methods: {
-
+        replaceByDefault(e) {
+            e.target.src = img;
+        }
     },
     mounted(){
     }
@@ -42,7 +44,7 @@ export default {
     width: 100%; height: 100%;
     position: absolute;
     top: 0; left: 0;
-    
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     z-index: -1;
     object-fit: cover;
     object-position: center;
