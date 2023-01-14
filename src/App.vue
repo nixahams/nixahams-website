@@ -23,23 +23,11 @@ export default {
   },
   data() {
     return {
-      bg_color: 'transparent',
-      componentKey: 0,
     }
   },
   methods: {
-    forceRerender(){
-      this.componentKey +=1;
-    }
+
   },    
-  updated() {
-      if(this.$route.fullPath == "/Contacts"){
-        console.log("color change");
-        // this.bg_color = "rgba(0,0,0,0.5)";
-        this.bg_color = "red";
-        // this.forceRerender(); //creates infinite loop
-      }
-  },
   mounted(){
 
   }

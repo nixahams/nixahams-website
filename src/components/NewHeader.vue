@@ -119,6 +119,7 @@ export default {
                 '/donate',
                 '/contact'
             ],
+            viewTypeMobile: false,
         }
     },
     methods: {
@@ -129,9 +130,16 @@ export default {
             if(!this.headerMode)
             {
                 try {
-                    document.getElementById('burgerOpen').id = "burgerClose";
-                    document.getElementById('header_compress').id = "header_expand";
-                    document.getElementById('burgerParentCompress').id = "burgerParentExpand";
+                    if(this.viewTypeMobile){
+                        document.getElementById('burgerOpen').id = "burgerClose";
+                        document.getElementById('mobileBuger').id = "header_expand";
+                        document.getElementById('burgerParentCompress').id = "burgerParentExpand";
+                    }
+                    else{
+                        document.getElementById('burgerOpen').id = "burgerClose";
+                        document.getElementById('header_compress').id = "header_expand";
+                        document.getElementById('burgerParentCompress').id = "burgerParentExpand";
+                    }
                 } catch (e) {
                     console.warn(e)
                 }
@@ -140,9 +148,17 @@ export default {
             else if(this.headerMode)
             {
                 try {
-                    document.getElementById('burgerClose').id = "burgerOpen";
-                    document.getElementById('header_expand').id = "header_compress";
-                    document.getElementById('burgerParentExpand').id = "burgerParentCompress";
+                    if(this.viewTypeMobile)
+                    {
+                        document.getElementById('burgerClose').id = "burgerOpen";
+                        document.getElementById('header_expand').id = "mobileBuger";
+                        document.getElementById('burgerParentExpand').id = "burgerParentCompress";
+                    }
+                    else{
+                        document.getElementById('burgerClose').id = "burgerOpen";
+                        document.getElementById('header_expand').id = "header_compress";
+                        document.getElementById('burgerParentExpand').id = "burgerParentCompress";
+                    }
                 } catch (e) {
                     console.warn(e)
                 }
@@ -163,14 +179,36 @@ export default {
             } catch (e) {
                 console.warn(e)
             }
+        },
+        test(){
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                // true for mobile device
+                let header;
+                try {
+                    header = document.getElementById('header_compress');
+                } catch (error) {
+                    error;
+                    header = document.getElementById('header_expand'); 
+                }
+                header.id = 'mobileBuger';
+                this.viewTypeMobile = true;
+                return "mobile device";
+            }else{
+            // false for not mobile device
+                this.viewTypeMobile = false;
+                return "not mobile device";
+            }
         }
-
     },
     mounted() {
         this.burgerOptionArray = document.getElementsByClassName('burgerA');
         let pth = this.$route.path;
         let i = this.routeArray.indexOf(pth);
         this.burgerOptionArray[i].id = "activeBurger";
+        
+        this.test()
+    },
+    created(){
     },
     watch: {
         $route(to, from) {
@@ -188,13 +226,35 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#mobileBuger{
+    background-color: #101022;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 10px;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#mobileBuger>#burgerOptionContainer{
+    /* background-color: red; */
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+}
 .burgerA{position: relative;}
 .burgerA:hover>.hoverOpt{
     background-color: inherit;
     color: inherit;
     visibility: visible;
 }
-.hoverOpt,#header_expand>#burgerOptionContainer>a>.hoverOpt:hover,#header_expand>#burgerOptionContainer>a>.hoverOpt{
+.hoverOpt,#header_#burgerOptionContainer>a>.hoverOpt:hover,#header_expand>#burgerOptionContainer>a>.hoverOpt{
     visibility: hidden;
     color: transparent;
     position: absolute;
@@ -247,6 +307,8 @@ export default {
 #header_expand>#burgerOptionContainer>a{
     justify-content: flex-start;
     padding: 0 10px 0 15px;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 
 #header_compress>#burgerOptionContainer>a>.burgerOption>span{
@@ -273,7 +335,7 @@ a{
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-rows: repeat(12,1fr);
+    grid-template-rows: repeat(12,1fr) 4fr;
     position: relative;
 }
 #burgerOptionContainer>a{

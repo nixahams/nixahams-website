@@ -17,7 +17,7 @@
             <div class="blog_txt">Repeater Location</div>
             <div class="blog_txt">Net Sponsor</div>
         </div>
-    </div>
+      </div>
       <BlogPost
       v-for="(msg, index) in announcement_list" 
       :day="msg.day"
@@ -49,6 +49,24 @@ export default {
     }
   },
   methods:{
+    scrl(){
+      let elem = document.querySelector('#blog_key');
+      // let bounding = elem.getBoundingClientRect();
+      // if (bounding.top < 0) {
+      //   // Top is out of viewport
+      //   elem.style.position = 'fixed';
+      // }else{
+      //   //in viewport
+      //   elem.style.position = 'relative';
+      // }
+      if(document.body.scrollTop > 350)
+      {
+        elem.style.position = 'fixed';
+      }
+      else{
+        elem.style.position = 'relative';
+      }
+    },
     scrollToTop() {document.body.scrollTop = 0;},
     getAnnouncement(VueObj){
       const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/net';
@@ -69,8 +87,11 @@ export default {
   async mounted(){
     this.scrollToTop();
     await this.getAnnouncement(this);
-
-  }
+    document.addEventListener('scroll', this.scrl, true)
+  },
+  destroyed () {
+    document.removeEventListener('scroll', this.scrl, true)
+  },
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -82,7 +103,12 @@ export default {
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
 }
+
+
 #blog_key{
+    left: -5px;
+    top: 0;
+    z-index: 99;
     width: 100%; height: fit-content;
     padding: 0 10%;
     display: flex;

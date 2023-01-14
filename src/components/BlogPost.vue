@@ -91,7 +91,7 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-    #blog_parent {
+    /* #blog_parent {
         position: relative;
         width: 100%; height: 110vh;
         display: flex; flex-direction: column;
@@ -114,12 +114,12 @@ export default {
     }
     #blog_desc{
         font-size: 1.2em;
-    }
+    } */
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-    #blog_parent {
+    /* #blog_parent {
         width: 100%; height: 100vh;
     }
     #blog_left{
@@ -135,18 +135,18 @@ export default {
     }
     #blog_desc{
         font-size: 1em;
-    }
+    } */
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-    #blog_left{
+    /* #blog_left{
         width: 100%;height: 60%;
         grid-template-rows: 1fr 5fr;
     }
     #blog_right{
         width: 100%; height: 40%;
-    }
+    } */
 
 }
 </style>

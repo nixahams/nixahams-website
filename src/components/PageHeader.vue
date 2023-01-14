@@ -120,17 +120,12 @@ export default {
         }
     },
     mounted() {
-        if(this.$route.fullPath == "/Contact"){
-            console.log("in contact page");
-            let hed = document.getElementById('header_parent');
-            hed.style.backgroundColor = this.bgcolor;
-        }
-
+        // console.log(this.$route.fullPath);
         this.updateActivePage(this.$route.path.toLowerCase().substring(1), "normal");
-        window.addEventListener("scroll", this.onScroll, true);
+        // window.addEventListener("scroll", this.onScroll, true);
     },
     beforeDestroy() {
-        window.removeEventListener("scroll", this.onScroll, true);
+        // window.removeEventListener("scroll", this.onScroll, true);
     }
 
 }
