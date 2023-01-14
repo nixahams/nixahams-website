@@ -34,8 +34,11 @@
 
       <div id="desc_info_title1">{{freq}} - {{long_location}}</div>
       <div id="desc_info_title2">{{long_title}}</div>
-      <div id="desc_info_date">{{date}}</div>
-      <div id="desc_info_desc">{{long_desc}}</div>
+      <div id="desc_info_date">Last Updated: {{date}}</div>
+      <div id="desc_info_desc">
+        <span 
+        :key="lineNumber" 
+        v-for="(line,lineNumber) of long_desc.split('<br/>')" >{{line}}</span></div>
     </div>
   </div>
 </template>
@@ -168,7 +171,10 @@ export default {
           VueObj.long_location=response.data[0].location;
           VueObj.long_title=response.data[0].long_title;
           VueObj.date=response.data[0].date;
-          VueObj.long_desc=response.data[0].long_desc;
+          let newStr = response.data[0].long_desc;
+          // newStr = newStr.replace("<br/>", ("<br>"));
+          VueObj.long_desc= newStr;
+          
           VueObj.image_array = response.data[0].img_arr;
           VueObj.passList = response.data;
           VueObj.asyncProp = true;
@@ -298,9 +304,17 @@ export default {
   font-size: 1.5em;
   padding: 1% 10% 10% 10%;
   text-indent: 4em;
+  display: flex;
+  flex-direction: column;
+}
+#desc_info_desc>span{
+  /* white-space: pre-line;
+  word-wrap: break-word;
+  font-family: inherit; */
+  min-height: 1em;
 }
 #desc_info_date{
-  font-size: 2em;
+  font-size: 1em;
   color: rgba(255,255,255,0.5);
 }
 #repeater_filter{

@@ -449,17 +449,23 @@ body {
   max-height: 150px;
   padding-left: 50px;
   background-clip: content-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.apiImage{
+  width: 90%;
+  aspect-ratio: 4 / 3;
+  max-height: 70%;
+  min-width: 50%;
+  min-height: 30%;
+  object-fit: cover;
+  border: 1px solid white;
+  border-radius: 3px;
 }
 .apiTxtParent{
   position: relative;
   width: 100%; height: 100%;
-}
-.apiImage{
-  height: 80%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border: 1px solid white;
-  border-radius: 3px;
 }
 #topRowApiBtn{
   width: 100%; height: 50px;
