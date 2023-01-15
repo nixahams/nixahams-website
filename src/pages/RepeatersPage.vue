@@ -133,7 +133,7 @@ export default {
                 search_criteria = this.rep_arr[i].location.toLowerCase(); 
                 break;
               case("frequency"):
-                search_criteria = this.rep_arr[i].name.toLowerCase(); 
+                search_criteria = this.rep_arr[i].freq.toLowerCase(); 
                 break;
             }
             if(search_criteria.includes(stringArray[j])){

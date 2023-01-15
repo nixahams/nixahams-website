@@ -28,7 +28,7 @@
           this.title = this.res.location.toLowerCase(); 
           break;
         case("frequency"):
-          this.title = this.res.name.toLowerCase(); 
+          this.title = this.res.freq.toLowerCase(); 
           break;
       }
     }

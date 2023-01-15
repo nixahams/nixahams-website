@@ -292,6 +292,7 @@ export default {
     width: 20vw; height: 100%;
     top: 0; 
     background-color: transparent;
+    position: fixed;
 }
 #arr_right{right: 0;}
 #arr_left{left: 0}
