@@ -344,7 +344,7 @@ a{
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: 0.2s ease;
+    /* transition: 0.2s ease; */
 }
 #inactiveBurger{
     background-color: rgba(255, 255, 255,0); 
