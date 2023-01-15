@@ -284,7 +284,7 @@ export default {
     z-index: 6;
     cursor: pointer;
     display: flex;
-    color: white;
+    color: rgba(255, 255, 255, 0.6);
     justify-content: center;
     align-items: center;
     font-size: 4em;
@@ -293,6 +293,11 @@ export default {
     top: 0; 
     background-color: transparent;
     position: fixed;
+    transition: 0.1s ease;
+}
+.arrs:hover{
+    font-size: 4.3em;
+    color: rgba(255, 255, 255, 1);
 }
 #arr_right{right: 0;}
 #arr_left{left: 0}
@@ -486,7 +491,20 @@ export default {
         width: 60vw; height: 80vh;
     }
     .arrs{
-        width: 35vw; height: 70%;
+        width: 8%;
+        min-width: 50px;
+        height: 150px;
+        top: 50%;
+        transform: translate(0%, -50%);
+        font-size: 3em;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        color: black;
+        border: 1px solid rgb(0, 0, 0);
+    }
+    .arrs:hover{
+        font-size: 3.5em;
+        color: black;
     }
 }
 
@@ -495,8 +513,6 @@ export default {
     #topg{
         width: 80vw; height: 80vh;
     }
-    .arrs{
-        width: 40vw; height: 70%;
-    }
+
 }
 </style>

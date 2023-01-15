@@ -260,8 +260,8 @@ export default {
   box-shadow: inset 3px 3px 3px 0px #ffffff;
 }
 
-.desc_fade1{animation: desc1 0.6s forwards;}
-.desc_fade2{animation: desc2 0.6s forwards;}
+/* .desc_fade1{animation: desc1 0.6s forwards;} */
+/* .desc_fade2{animation: desc2 0.6s forwards;} */
 @keyframes desc1{
   0%{transform: translateY(5%); opacity: 0.2;}
   100%{transform: translateY(0%); opacity: 1;}
