@@ -182,13 +182,19 @@ export default {
 }
 #buttom_btn{
     border-radius: 60px;
-    padding: 20px;
+    padding: 15px;
     border: none;
     outline: none;
     cursor: pointer;
     background-color: white;
     color: black;
     font-weight: bold;
+    font-size: 0.85em;
+    transition: 0.2s ease;
+}
+
+#buttom_btn:hover{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
 }
 
 
