@@ -278,6 +278,7 @@ export default {
     flex-direction: column;
     gap: 1em;
     width: 90%;
+    margin-top: 50px;
     color: rgba(255, 255, 255, 0.792)
 }
 .table_data_left{
