@@ -235,7 +235,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: 10px;
+    top: 2em;
     border-top: 1px solid white;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
