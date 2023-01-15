@@ -34,6 +34,12 @@ export default {
     props: {
 
     },
+    methods:{
+        scrollToTop() {document.body.scrollTop = 0;},
+    },
+    mounted(){
+        this.scrollToTop();
+    },
     data()
     {
         return{

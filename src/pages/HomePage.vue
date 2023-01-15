@@ -44,21 +44,20 @@
       <img id="home_image" src="../assets/home/fieldday.jpg" alt="">
       <div id="home_text_parent">
         <div id="this_container">
-          <div id="home_title">Meetings</div>
+          <div id="home_title">Group Meetings</div>
           <div id="home_text">Join us for our monthly meetings, click to join our live stream!</div>
           <div id="home_info">
             <div id="home_info_left">
-              <div id="info_big_left">12 - 14</div>
-              <div id="info_small_left">Dec 2022</div>
+              <div id="info_big_left">{{date}}</div>
+              <div id="info_small_left">{{ month }} {{ year }}</div>
             </div>
             <div id="home_info_right">
-              <div id="info_big_right">Radio Night</div>
-              <div id="info_small_right">Nixa, MO</div>
+              <div id="info_big_right">Meeting</div>
+              <div id="info_small_right">{{location}}</div>
             </div>
           </div>
           <div id="home_btn">
-            <a target="_blank"
-              href="https://teams.microsoft.com/registration/lkJMZdqi6ECZM7f-j6_kKQ,Lhkin-1Z6EqhacQ2vUrL5w,96DOEte9fEetRDePEi5HiQ,amKMf19nQ0Swpve7AGkZag,0Ut6HB5_cEKs2mYNDKnf6g,-npWuWzEJ0iENk3_3CnVsQ?mode=read&tenantId=654c4296-a2da-40e8-9933-b7fe8fafe429">
+            <a href="/#/meetings">
               <button id="info_btn">Webinar Link 
                 <i class="fa-solid fa-arrow-right"></i>
               </button>
@@ -146,7 +145,10 @@ export default {
   },
   data() {
     return {
-
+      date: 14,
+      month: 'Jan',
+      year: 2023,
+      location: 'Springfield',
     }
   },
   methods:{
