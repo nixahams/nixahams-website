@@ -168,21 +168,46 @@ export default {
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   #blog_title{
-    font-size: 3em;
+    font-size: 2em;
+  }
+  #blog_text_parent{
+    font-size: 0.8em;
+  }
+    #table_key_parent{
+    font-size: 0.9em;
   }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
   #blog_title{
-    font-size: 2.5em;
+    font-size: 1.6em;
+    padding: 2% 5% 0% 5%;
+  }
+  #blog_text_parent{
+    font-size: 0.7em;
+  }
+  #blog_key{
+      padding: 0 0%;
+  }
+  #table_key_parent{
+    padding: 0px 5% 10px 5%;
+    font-size: 0.8em;
   }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
   #blog_title{
-    font-size: 2em;
+    font-size: 1.3em;
+    padding: 2% 1% 0% 1%;
+  }
+  #blog_text_parent{
+    font-size: 0.6em;
+  }
+  #table_key_parent{
+    padding: 0px 1% 10px 1%;
+    font-size: 0.6em;
   }
 }
 </style>

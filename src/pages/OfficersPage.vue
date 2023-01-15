@@ -1,60 +1,67 @@
 <template>
     <div id="staffpage">
         <div id="staff_title">
-            Meet the team!
+            Meet the officers!
         </div>
         <div id="staff_parent">
-            <StaffCard v-for="(staff, index) in staff_list" :key="index" :name="staff.name" :callsign="staff.callsign" :image="staff.image" :position="staff.position"/>
-        </div>
-
-        <div id="staff_img_parent">
-            <img id="staff_img" src="../assets/staff/narcpresidents.jpg" alt="">
+            <OfficerCard v-for="(staff, index) in officer_list" :key="index" :name="staff.name" :callsign="staff.callsign" :image="staff.image" :position="staff.position"/>
         </div>
 
     </div>
   </template>
     
   <script>
-  import staff from '../staff.json'
-  import StaffCard from '../components/StaffPage.vue'
+  import OfficerCard from '../components/OfficersPage.vue'
+  import axios from 'axios';
 
   export default {
     props: {parallax: {
       type: Boolean,
       default: true
     }},
-    name: 'StaffPage',
+    name: 'OfficerPage',
     components: {
-        StaffCard
+      OfficerCard
     },
     data(){
       return{
-        staff_list: [],
+        officer_list: [],
+        nodata: true,
       }
     },
     methods: {
-      scrollToTop() {document.body.scrollTop = 0;}
+      scrollToTop() {document.body.scrollTop = 0;},
+      getOfficers(VueOBJ){
+      //call API to load officers from database
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/officer`;
+      axios.get(URL)
+      .then(function (response) {
+          // handle success
+          if(!response.data){
+            VueOBJ.nodata = true;
+            return;
+          }
+          VueOBJ.officer_list = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          error;
+        })
+        .finally(function () {
+          // always executed
+        });
+      }
     },
-    mounted(){
+    async mounted(){
       this.scrollToTop();
-      this.staff_list = staff;
+      await this.getOfficers(this);
     }
   }
   </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#staff_img_parent{
-    width: 100%; height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-#staff_img{
-    width: 50%; height: 90%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 10px;
-}
+
+
 #staff_title{
     font-size: 4em;
     font-family: 'Montserrat';
@@ -66,6 +73,7 @@
     height: fit-content;
     width: 100%;
     background-color: #15181C;
+    padding-left: 90px;
 }
 #staff_parent{
     display: flex;
@@ -73,19 +81,24 @@
     padding-top: 10vh;
     padding-bottom: 20vh;
     height: fit-content;
-    justify-content: space-around; align-items: flex-start;
+    justify-content: space-around;
+    align-items: flex-start;
     min-height: 80vh;
 }
   
   
   /* Slightly Resized Screen Styles */
   @media screen and (max-width: 1200px) {
-
+    #staffpage{
+      padding-left: 50px;
+    }
   }
   
   /* Half-Screen Styles */
   @media screen and (max-width: 900px) {
-
+    #staffpage{
+      padding-left: 0px;
+    }
   }
   
   /* Mobile Styles */

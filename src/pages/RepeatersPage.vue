@@ -303,7 +303,7 @@ export default {
   color: white;
   font-size: 1.5em;
   padding: 1% 10% 10% 10%;
-  text-indent: 4em;
+  /* text-indent: 4em; */
   display: flex;
   flex-direction: column;
 }

@@ -1,7 +1,7 @@
 <template>
     <div id="member">
         <div id="member_img_parent">
-            <img id="member_img" :src="image" alt="">
+            <img id="member_img" @error="replaceByDefault" :src="image" alt="">
         </div>
         <div id="member_name">{{name}}</div>
         <div id="member_position">{{position}}</div>
@@ -10,10 +10,16 @@
 </template>
 
 <script>
+import img from '@/assets/default.png';
 
 export default {
-    name: 'StaffPage',
+    name: 'OfficerPage',
     props: ['name','image','position','callsign'],
+    methods:{
+        replaceByDefault(e) {
+            e.target.src = img;
+        }
+    }
 }
 </script>
 

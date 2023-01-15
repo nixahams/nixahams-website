@@ -91,62 +91,24 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-    /* #blog_parent {
-        position: relative;
-        width: 100%; height: 110vh;
-        display: flex; flex-direction: column;
+    #blog {
+        font-size: 0.8em;
     }
-    #blog_left{
-        position: relative;
-        width: 100%;height: 50%;
-        display: grid;
-        grid-template-rows: 1fr 3fr;
-        font-size: 1.2em;
-    }
-    #blog_right{
-        width: 100%; height: 40%;
-        display: flex; justify-content: center; align-items: center;
-        padding: 5%;
-    }
-    #blog_title{
-        padding: 10px 40px;
-        font-size: 1.4em;
-    }
-    #blog_desc{
-        font-size: 1.2em;
-    } */
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-    /* #blog_parent {
-        width: 100%; height: 100vh;
+    #blog {
+        padding: 1px 0%;
+        font-size: 0.7em;
     }
-    #blog_left{
-        width: 100%;height: 60%;
-        grid-template-rows: 1fr 3fr;
-    }
-    #blog_right{
-        width: 100%; height: 40%;
-    }
-    #blog_title{
-        padding: 5px 40px;
-        font-size: 1.3em;
-    }
-    #blog_desc{
-        font-size: 1em;
-    } */
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-    /* #blog_left{
-        width: 100%;height: 60%;
-        grid-template-rows: 1fr 5fr;
+    #blog {
+        font-size: 0.6em;
     }
-    #blog_right{
-        width: 100%; height: 40%;
-    } */
 
 }
 </style>

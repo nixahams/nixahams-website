@@ -160,7 +160,7 @@ mounted(){
 
 
 #media{
-  margin-left: 80px;
+  padding-left: 50px;
   height: fit-content; width: 100%;
   padding-top: 100px;
   padding-bottom: 50px;
@@ -284,6 +284,9 @@ option{
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
+  #media{
+    padding-left: 10px;
+  }
   .media_filter{
     top: 0%;
     height: 5%;
@@ -311,6 +314,9 @@ option{
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
+  #media{
+    padding-left: 0px;
+  }
   .media_results{
     width: 100%; height: 100%;
     margin-bottom: -30%;

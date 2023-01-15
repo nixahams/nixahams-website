@@ -294,7 +294,7 @@ export default {
     flex-direction: column;
     padding: 10px;
     align-items: center;
-    transition: 0.4s ease;
+    /* transition: 0.4s ease; */
     border-right: 1px solid white;
 }
 #header_compress>#burgerOptionContainer>a{
@@ -375,7 +375,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.2s ease;
+    /* transition: 0.2s ease; */
 }
 #burgerParentExpand{
     width: 80%;
