@@ -18,7 +18,11 @@ export default {
     methods:{
         replaceByDefault(e) {
             e.target.src = img;
-        }
+        },
+        scrollToTop() {document.body.scrollTop = 0;},
+    },
+    mounted(){
+        this.scrollToTop();
     }
 }
 </script>

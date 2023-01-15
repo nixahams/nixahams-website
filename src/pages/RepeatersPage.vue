@@ -278,7 +278,7 @@ export default {
   /* multiple sections of various VH height */
   width: 100%; height: fit-content;
   /* padding-top: 120px; */
-  background-color: #0d0c18;
+  background-color: #15181C;
   position: relative;
 }
 #descriptive_parent{
