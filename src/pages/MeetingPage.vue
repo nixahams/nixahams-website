@@ -131,6 +131,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 3px solid #f3af41;
+    border: 3px solid #1f190f;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     display: flex;
@@ -154,6 +155,7 @@ export default {
     border-left: 28px solid transparent;
     border-right: 28px solid transparent;
     border-bottom: 28px solid #f3af41;
+    border-bottom: 28px solid #1f190f;
 }
 #map{
     width: 100%;
@@ -167,7 +169,7 @@ export default {
 #bottom{
     height: 55%;
     width: 100%;
-    background-color: #de931b;
+    background-color: #1f190f;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

@@ -148,7 +148,7 @@ body {
   position: absolute;
   top: -5px; left: -10px;
   width: 100%;
-  height: 15vh;
+  height: 20vh;
   min-height: 100px;
   background-color: rgba(255,255,255,0.2);
   border-radius: 10px;
@@ -174,6 +174,38 @@ body {
   pointer-events: none;
 }
 
+
+#server_dom_collapse{
+  width: 100%;
+  height: 100vh;
+  /* min, preffered */
+  background-clip: content-box;
+}
+#server_panel_collapse{
+  position: fixed;
+  left: 0;
+  top: 15px;
+  width: 70px;
+  height: 70px;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: black;
+  color: white;
+  background: linear-gradient(0deg, #94C840, #31B38D);
+  background: #1b2537;
+  /* #1b2537 #151a28 */
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#server_panel_collapse>.server_panel_parent{
+  visibility: hidden;
+}
+
 #server_panel {
     position: fixed;
     left: 0;
@@ -186,7 +218,18 @@ body {
     background: linear-gradient(0deg, #94C840, #31B38D);
     background: #1b2537;
     /* #1b2537 #151a28 */
-    padding: 20px;
+    padding: 90px 20px 20px 20px;
+    z-index: 9999;
+}
+#server_panel::before{
+  content: '';
+  width: 80%; height: 3px;
+  margin-left: 10%;
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.3);
+  position: absolute;
+  top: 70px;
+  left: 0;
 }
 #server_dom {
     width: 100%;
@@ -201,6 +244,8 @@ body {
 }
 .server_panel_parent{
   width: 100%;
+  margin-bottom: 20px;
+  min-height: 20vh;
 }
 .server_panel_title{
   display: flex;
@@ -219,6 +264,7 @@ body {
   min-height: 100px;
   overflow: auto;
   font-family: 'Montserrat', sans-serif;
+  height: fit-content;
 }
 .server_panel_exp_title{
   cursor: pointer;
@@ -263,19 +309,20 @@ body {
   min-width: 300px;
   max-width: 500px;
   padding: 20px;
-  background-color: rgb(0, 0, 0);
+  background-color: #242424;
   cursor: pointer;
   transition: 0.2s ease;
   border: 1px solid rgb(128, 128, 128);
 }
-
 .subRoot_card_img{
   position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 100%; */
+  height: 85%;
   object-fit: cover;
   user-select: none;
+  background-color: red;
 }
 .subRoot_card::after{
   content: '';
@@ -300,8 +347,11 @@ body {
 .subRoot_card:hover::after{
   opacity: 0.3;
 }
+.subRoot_card2{
+  background: linear-gradient(135deg, #1B2537 50%, #151A28 50%)
+}
 .subRoot_card2:hover{
-  background: linear-gradient(rgba(0,0,0,0) 50%,rgba(0, 0, 0, 0.0));
+  background: linear-gradient(135deg, #222e45 50%, #1c2335 50%)
 }
 .subRoot_card:hover,.subRoot_card2:hover{
   font-size: 1.15em;
@@ -595,6 +645,88 @@ select{
 }
 #editExit:hover{
   transform: scale(1.1);
+}
+#server_panel_burger{
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 30px; height: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+#server_panel_burger:hover{
+  transform: scale(1.1);
+}
+#server_panel_burger>span{
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 999;
+  display: block;
+}
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+  #server_dom {
+      font-size: 0.9em;
+  }
+  #apiNetEdit,#apiNetDelete{
+    width: 100px; height: 50px;
+  }
+  .apiImgParent{
+    max-height: 150px;
+    padding-left: 40px;
+  }
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+  #server_dom {
+      font-size: 0.8em;
+  }
+  #apiNetEdit,#apiNetDelete{
+    width: 90px; height: 50px;
+  }
+  #apiNetBtn_parent{
+    flex-direction: column;
+    font-size: 0.9em;
+  }
+  .apiTxtParent,.replaceText{
+    font-size: 0.7em;
+  }
+  .apiImgParent{
+    height: 100%;
+    padding-left: 0px;
+  }
+  #apiInfoContainer_parent{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    font-size: 1.4em;
+    position: relative;
+    height: 100%; width: 100%;
+    max-height: 150px;
+    padding-left: 10px;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  #server_dom {
+      font-size: 0.7em;
+  }
+  .apiTxtParent,.replaceText{
+    font-size: 0.6em;
+  }
+  #apiNetEdit,#apiNetDelete{
+    width: 80px; height: 40px;
+  }
+  .apiImgParent{
+    padding-left: 10px;
+  }
 }
 /* end: server style */
 </style>
