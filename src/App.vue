@@ -225,7 +225,7 @@ body {
     background: #1b2537;
     /* #1b2537 #151a28 */
     padding: 90px 20px 20px 20px;
-    z-index: 9999;
+    z-index: 9998;
 }
 #server_panel::before{
   content: '';
@@ -575,7 +575,7 @@ select{
   font-weight: bold;
 }
 #editInputHtml{
-  z-index: 99;
+  z-index: 9999;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
@@ -591,13 +591,13 @@ select{
   background-color: white;
   border-radius: 5px;
   position: relative;
+  /* z-index: 9999; */
 }
 #editInputs{
   height: 90%;
   padding: 10px;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  z-index: 99999;
 }
 #editSubmitParent{
   height: 10%; width: 100%;
