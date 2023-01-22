@@ -677,6 +677,38 @@ select{
   display: block;
 }
 
+
+/* styles not loading because javascript renders page */
+#calendarMonthContainer,#calendarYearContainer{
+  width: 100%; height: 100%;
+  padding-top: 4.5em;
+  background-clip: content-box;
+  gap: 10px;
+  display: flex;
+  /* transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1); */
+  flex-wrap: wrap;
+  align-content: flex-start;
+  transition: 5.2s ease;
+
+}
+#calendarBlock{
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  height: 35%;
+  aspect-ratio: 1 / 1;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+#calendarBlock:hover{
+  background-color: rgba(255,255,255,0.2);
+}
+/* styles not loading because javascript renders page */
+
+
+
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   #server_dom {

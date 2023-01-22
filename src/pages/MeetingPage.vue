@@ -24,6 +24,14 @@
                 </a>
             </div>
         </div>
+        <div id="topics">
+            <div id="calendarContainer">
+                <div id="calendarTitle" @click="changeViewMode($event)">{{ currentMonth }} {{ currentYear }}</div>
+                <div id="calendarMonth">
+                    <span :key="lineNumber" v-for="(line,lineNumber) of currentDesc.split('<br/>')" >{{line}}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,6 +64,96 @@ export default {
                 // always executed
             });
         },
+        spawnBlocks(){
+            let VueObj = this;
+            let parent = document.getElementById('calendarContainer');
+            let blockParent = document.createElement('div');
+            blockParent.id = "calendarMonthContainer";
+            parent.appendChild(blockParent);
+
+            let monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            document.getElementById('calendarTitle').innerHTML = this.currentYear;
+            for(let i = 0; i < 12; i++)
+            {
+                let blockChild = document.createElement('div');
+                blockChild.id = "calendarBlock";
+                blockChild.addEventListener('click', function(){
+                    VueObj.changeTitle("month",this);
+                })
+                blockChild.innerHTML = monthArr[i];
+                blockParent.appendChild(blockChild);
+            }
+        },
+        changeTitle(key, element){
+            let titleHolder = document.getElementById('calendarTitle');
+            switch(key){
+                case "month":
+                    document.getElementById('calendarMonthContainer').remove();
+                    document.getElementById('hideCalendar').id = 'calendarMonth';
+                    this.currentMonth = element.innerHTML;
+                    titleHolder.innerHTML = this.currentMonth + " " + this.currentYear;
+                    this.viewMode="Month";
+
+                    break;
+                case "year":
+                    this.currentYear = element.innerHTML;
+                    titleHolder.innerHTML = this.currentYear;
+                    document.getElementById('calendarYearContainer').remove();
+                    this.spawnBlocks();
+                    this.viewMode="Year";
+                    break;
+
+            }
+        },
+        changeViewMode(e){
+            let VueObj = this;
+            switch(this.viewMode){
+                case "Month": {
+                    //going to year mode
+                    document.getElementById('calendarMonth').id = 'hideCalendar';
+
+                    this.spawnBlocks(e);
+
+
+                    this.viewMode="Year";
+                }
+                    break;
+                case "Year": {
+
+                    document.getElementById('calendarMonthContainer').remove();
+ 
+                    let parent = document.getElementById('calendarContainer');
+                    let blockParent = document.createElement('div');
+                    blockParent.id = "calendarYearContainer";
+                    parent.appendChild(blockParent);
+
+                    let yearArr = [2018,2019,2020,2021,2022,2023,2024,2025];
+
+                    e.target.innerHTML = this.currentDecade;
+
+                    for(let i = 0; i < yearArr.length; i++)
+                    {
+                        let blockChild = document.createElement('div');
+                        blockChild.id = "calendarBlock";
+                        blockChild.addEventListener('click', function(){
+                            VueObj.changeTitle("year",this);
+                        })
+                        blockChild.innerHTML = yearArr[i];
+                        blockParent.appendChild(blockChild);
+                    }
+                    
+                    this.viewMode="Decade";
+                }
+                    break;
+                case "Decade":
+                    document.getElementById('calendarYearContainer').remove();
+                    document.getElementById('hideCalendar').id = 'calendarMonth';
+
+                    this.viewMode="Month";
+                    break;
+            }
+        }
     },
     mounted(){
         this.scrollToTop();
@@ -64,13 +162,18 @@ export default {
     data()
     {
         return{
+            viewMode: "Month",
             meetingData: {
                 day: '..',
                 month: '...',
                 city: 'Loading...',
                 address: 'Loading...',
                 link: '/#/meetings'
-            }
+            },
+            currentMonth: "January",
+            currentYear: "2023",
+            currentDecade: "2018 - 2025",
+            currentDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui hic magni repellendus labore recusandae numquam ab consequuntur pariatur id cupiditate quas, vel quod deleniti, eaque distinctio sequi at possimus vitae nihil dolorum, reprehenderit accusamus excepturi! Aspernatur corrupti porro ratione tempore.<br/>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br/>Quia laboriosam ducimus nam ex repudiandae praesentium illo. Ipsum vero laboriosam consectetur ut perspiciatis asperiores officia rem, sint laborum. Laborum, veritatis. Distinctio minima quibusdam est qui, laudantium nisi recusandae commodi in eligendi?"
         }
     }
 }
@@ -78,6 +181,50 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#hideCalendar{
+    transition: 0.2s ease;
+    transform: scale(0);
+    width: 0;
+    height: 0;
+}
+#calendarMonth{
+    width: 100%; height: 100%;
+    padding-top: 4.5em;
+    background-clip: content-box;
+    gap: 1.5em;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s ease;
+
+}
+#calendarTitle:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+#calendarTitle{
+    font-weight: bold;
+    font-size: 2em;
+    position: absolute;
+    height: fit-content; width: 100%;
+    padding: 5px 10px;
+    transition: 0.2s ease;
+}
+#calendarContainer{
+    position: relative;
+    height: 60%;
+    width: 90%;
+}
+#topics{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: #1f190f;
+    padding: 0 10%;
+    font-family: 'Montserrat';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #target::before,#target::after {
   position: absolute;
   width: 40%;
@@ -140,8 +287,7 @@ export default {
 }
 #meeting{
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -186,12 +332,12 @@ export default {
     height: 100%;
 }
 #top{
-    height: 45%;
+    height: 45vh;
     width: 100%;
     background-color: rgb(255, 255, 255);
 }
 #bottom{
-    height: 55%;
+    height: 55vh;
     width: 100%;
     background-color: #1f190f;
     display: flex;
