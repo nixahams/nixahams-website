@@ -3,12 +3,12 @@
         <div id="absol">
             <div id="absol_date">
                 <div id="target"></div>
-                <span>{{ month }}</span>
-                <span>{{ date }}</span>
+                <span>{{ meetingData.month }}</span>
+                <span>{{ meetingData.day }}</span>
             </div>
             <div id="absol_loc">
-                <span>{{ location }}</span>
-                <span id="loc_address">{{ address }}</span>
+                <span>{{ meetingData.city }}</span>
+                <span id="loc_address">{{ meetingData.address }}</span>
             </div>
         </div>
         <div id="top">
@@ -19,7 +19,7 @@
                 Join Us
             </div>
             <div id="buttom_btn_parent">
-                <a href="/#/meetings">
+                <a :href="meetingData.link">
                     <button id="buttom_btn">View Livestream</button>
                 </a>
             </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     name: 'MeetingPage',
     props: {
@@ -36,17 +36,41 @@ export default {
     },
     methods:{
         scrollToTop() {document.body.scrollTop = 0;},
+        getMeeting(VueObj){
+            const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/meeting`;
+            axios.get(URL)
+            .then(function (response) {
+                // handle success
+                if(!response.data){
+                    VueObj.meetingData = {};
+                    return;
+                }
+                VueObj.meetingData = response.data[0];
+            })
+            .catch(function (error) {
+                // handle error
+                VueObj.meetingData = {};
+                error;
+            })
+            .finally(function () {
+                // always executed
+            });
+        },
     },
     mounted(){
         this.scrollToTop();
+        this.getMeeting(this);
     },
     data()
     {
         return{
-            date: 14,
-            month: 'Jan',
-            location: 'Springfield',
-            address: '123 Blueberry',
+            meetingData: {
+                day: '..',
+                month: '...',
+                city: 'Loading...',
+                address: 'Loading...',
+                link: '/#/meetings'
+            }
         }
     }
 }

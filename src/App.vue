@@ -137,6 +137,10 @@ body {
 .aTag{
   text-decoration: none;
   color: rgb(255, 255, 255);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
 }
 .aTag:hover{
   position: relative;
@@ -148,13 +152,15 @@ body {
   position: absolute;
   top: -5px; left: -10px;
   width: 100%;
-  height: 20vh;
+  height: 23vh;
   min-height: 100px;
   background-color: rgba(255,255,255,0.2);
   border-radius: 10px;
   padding-bottom: 10px;
   pointer-events: none;
 }
+
+
 .aTag2{
   text-decoration: none;
   color: rgb(255, 255, 255);
@@ -245,7 +251,8 @@ body {
 .server_panel_parent{
   width: 100%;
   margin-bottom: 20px;
-  min-height: 20vh;
+  min-height: 23vh;
+  position: relative;
 }
 .server_panel_title{
   display: flex;

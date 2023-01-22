@@ -175,7 +175,7 @@ export default {
       single: 'single_on',
       family: 'family_off',
       card_side: 'membership_card_side_front',
-      roster_year: 2022,
+      roster_year: 2023,
       active_year_table: [],
       active_list: [],
       nodata: false,
@@ -257,6 +257,7 @@ export default {
     },
   },
   async mounted() {
+    this.roster_year = new Date().getFullYear()
     this.scrollToTop();
     await this.getRoster(this);
   }

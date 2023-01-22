@@ -42,6 +42,16 @@
             Choose a predefined amout
         </div>
         <div id="donate_grid_container">
+            <StripeCheckout
+                ref="refPredefinedAmt"
+                mode="payment"
+                submit_type="donate"
+                :pk="publishableKey"
+                :line-items="customPrice"
+                :success-url="successURL"
+                :cancel-url="cancelURL"
+                @loading="v => loading = v"
+                />
             <div id="donate_grid_parent">
                 <div class="span span-2" @mousemove="updateRadial" @click="predefinedChosen(0)">
                     <div class="predefined">$1</div>
