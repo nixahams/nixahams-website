@@ -597,6 +597,7 @@ select{
   padding: 10px;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  z-index: 99999;
 }
 #editSubmitParent{
   height: 10%; width: 100%;

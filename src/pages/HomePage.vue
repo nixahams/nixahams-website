@@ -53,7 +53,7 @@
             </div>
             <div id="home_info_right">
               <div id="info_big_right">Meeting</div>
-              <div id="info_small_right">{{location}}</div>
+              <div id="info_small_right">{{city}}</div>
             </div>
           </div>
           <div id="home_btn">
@@ -138,7 +138,7 @@
 </template>
   
 <script>
-
+import axios from 'axios'
 export default {
   name: 'HomePage',
   components: {
@@ -148,15 +148,39 @@ export default {
       date: 14,
       month: 'Jan',
       year: 2023,
-      location: 'Springfield',
+      city: 'Springfield',
     }
   },
   methods:{
     scrollToTop() {document.body.scrollTop = 0;},
+    getMeetingInfo(VueObj)
+    {
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/meeting`;
+            axios.get(URL)
+            .then(function (response) {
+                // handle success
+                if(!response.data){
+                    VueObj.meetingData = {};
+                    return;
+                }
+                VueObj.date = response.data[0].day;
+                VueObj.month = response.data[0].month;
+                VueObj.year = response.data[0].year;
+                VueObj.city = response.data[0].city;
+            })
+            .catch(function (error) {
+                // handle error
+                VueObj.meetingData = {};
+                error;
+            })
+            .finally(function () {
+                // always executed
+            });
+    }
   },
   mounted(){
     this.scrollToTop();
-
+    this.getMeetingInfo(this);
   }
 }
 </script>
@@ -692,6 +716,23 @@ export default {
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
+
+  #contact_subtext {
+    font-size: 1.3em;
+  }
+  #home_info_left,
+  #home_info_right {
+    font-size: 0.8em;
+  }
+  #subtext,#home_text {
+    font-size: 1.2em;
+  }
+  #contact_title {
+    font-size: 1.5em;
+  }
+  #title,#home_title{
+    font-size: 2em;
+  }
   #this_container {
     height: 50%;
     width: 100%;
@@ -741,7 +782,15 @@ export default {
 
   #contact_form {
     bottom: 2%;
-    height: 60%;
+    height: 50%;
+  }
+  #textarea_parent{
+    font-size: 0.8em;
+  }
+  .input_parent {
+    width: 100%;
+    height: 15%;
+    font-size: 0.8em;
   }
   .full_page {
     height: 160vh;
@@ -751,6 +800,19 @@ export default {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
+  #contact_subtext {
+    font-size: 1.1em;
+  }
+  #contact_title {
+    font-size: 1.3em;
+  }
+  #subtext,#home_text {
+    font-size: 1em;
+    text-shadow: 2px 2px 3px black;
+  }
+  #title,#home_title {
+    font-size: 1.5em;
+  }
   #this_container {
     height: 80%;
   }
@@ -790,7 +852,16 @@ export default {
     padding: 0vh 10% 5vh 10%;
   }
   #contact_form {
-    height: 50%;
+    bottom: 2%;
+    height: 35%;
+  }
+  #textarea_parent{
+    font-size: 0.65em;
+  }
+  .input_parent {
+    width: 100%;
+    height: 13%;
+    font-size: 0.65em;
   }
 }
 </style>

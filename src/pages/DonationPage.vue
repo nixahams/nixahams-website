@@ -500,6 +500,10 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
+    #donate{
+        padding-left: 0px;
+
+    }
     #donate_custom_card{
         width: 60vw;
         gap: 1.3em;
@@ -531,7 +535,7 @@ export default {
         margin-top: 50px;
     }
     #membership_level{
-        width: 35%;
+        width: 25%;
     }
     #membership_level_parent{
         font-size: 0.9em;
@@ -555,7 +559,8 @@ export default {
         margin-top: 50px;
     }
     #membership_level{
-        width: 40%;
+        width: 25%;
+        font-size: 0.8em;
     }
     #membership_level_parent{
         font-size: 0.8em;
@@ -581,13 +586,13 @@ export default {
         margin-top: 50px;
     }
     #membership_level{
-        width: 55%;
+        width: 26%;
     }
     #membership_level_parent{
         font-size: 0.5em;
     }
     .membership_level_amount{
-        font-size: 5em;
+        font-size: 3.5em;
     }
 }
 </style>

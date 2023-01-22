@@ -16,7 +16,7 @@
         </div>
         <div id="bottom">
             <div id="bottom_title">
-                Join Us
+                Join Us For The Next Meeting
             </div>
             <div id="buttom_btn_parent">
                 <a :href="meetingData.link">
@@ -230,19 +230,42 @@ export default {
     #target::before,#target::after {
         width: 45%;
     }
+    #bottom_title{
+        font-size: 2.5em;
+    }
+    #absol{
+        width: 50%;
+        font-size: 0.9em;
+    }
+
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
     #target::before,#target::after {
         width: 50%;
+    }    
+    #bottom_title{
+        font-size: 1.5em;
     }
+    #absol{
+        width: 80%;
+        font-size: 0.7em;
+    }
+
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
     #target::before,#target::after {
         width: 70%;
+    }
+    #bottom_title{
+        font-size: 1.3em;
+    }
+    #absol{
+        width: 95%;
+        font-size: 0.6em;
     }
 }
 </style>

@@ -3,7 +3,7 @@
     <div id="roster_desc">
       Want to join the roster?
       <div id="roster_subtext">
-        You will instantly get access to all exclusive content on the website and be posted on the offical
+        You will automatically be added to this years roster when subscribing!
         <a id="roster_link" @click="scrollToRoster()">NixaHams Roster!</a>
       </div>
     </div>
@@ -167,7 +167,7 @@ export default {
           quantity: 1
         }
       ],
-      successURL:'https://nixahams-website.pages.dev/#/success',
+      successURL:'https://nixahams-website.pages.dev/#/roster',
       cancelURL:'https://nixahams-website.pages.dev/#/roster',
 
 

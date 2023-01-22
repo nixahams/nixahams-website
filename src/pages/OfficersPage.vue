@@ -4,14 +4,14 @@
             Meet the officers!
         </div>
         <div id="staff_parent">
-            <OfficerCard v-for="(staff, index) in officer_list" :key="index" :name="staff.name" :callsign="staff.callsign" :image="staff.image" :position="staff.position"/>
+            <OfficerCard v-for="(staff, index) in officer_list" :key="index" :name="staff.name" :callsign="staff.callsign" :image="staff.image" :position="staff.position" :info="staff.info"/>
         </div>
 
     </div>
   </template>
     
   <script>
-  import OfficerCard from '../components/OfficersPage.vue'
+  import OfficerCard from '../components/OfficersCard.vue'
   import axios from 'axios';
 
   export default {
