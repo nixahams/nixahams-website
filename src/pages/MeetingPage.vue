@@ -149,6 +149,7 @@ export default {
                 case "Decade":
                     document.getElementById('calendarYearContainer').remove();
                     document.getElementById('hideCalendar').id = 'calendarMonth';
+                    document.getElementById('calendarTitle').innerHTML = this.currentMonth + " " +this.currentYear;
 
                     this.viewMode="Month";
                     break;
@@ -208,6 +209,7 @@ export default {
     height: fit-content; width: 100%;
     padding: 5px 10px;
     transition: 0.2s ease;
+    user-select: none;
 }
 #calendarContainer{
     position: relative;
@@ -217,13 +219,14 @@ export default {
 #topics{
     position: relative;
     height: 100vh;
+    /* height: fit-content; */
     width: 100%;
     background-color: #1f190f;
     padding: 0 10%;
     font-family: 'Montserrat';
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 #target::before,#target::after {
   position: absolute;

@@ -374,6 +374,21 @@ body {
   user-select: none;
 }
 /*table for api response of nets/repeaters*/
+#api_dmr_display{
+  width: 100%;
+  height: calc(85vh - 125px);
+  overflow-y: auto;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: transparent;
+  background-clip: content-box;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 #api_table_display{
   width: 100%;
   height: 90%;
@@ -382,7 +397,6 @@ body {
   position: relative;
   background-color: transparent;
   background-clip: content-box;
-  position: relative;
 }
 #api_page_num_parent{
   position: absolute;
@@ -709,6 +723,76 @@ select{
 
 
 
+
+
+#server_dmr_table_parent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.server_table_container{
+    border: 1px solid white;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transition: 0.2s ease;
+    position: relative;
+    width: 50vw;
+}
+.server_table_container::after{
+  content: '';
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.2s ease;
+  background-color: rgba(255, 255, 255, 0);
+}
+.server_table_container:hover::after{
+  content: 'Click To Edit';
+  cursor: pointer;
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.1s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  font-weight: bold;
+  display: flex; justify-content: center; align-items: center;
+}
+
+.table_left{
+}
+.table_right{
+}
+.table_data_left{
+    margin: 10px;
+    background-color: rgb(151, 0, 0);
+    padding: 5px;
+}
+.table_data_right{
+    margin: 10px;
+    background-color: rgb(0, 0, 151);
+    padding: 5px;
+}
+.table_data_center{
+    background-color: orange;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+}
+.table_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
   #server_dom {
@@ -751,6 +835,9 @@ select{
     max-height: 150px;
     padding-left: 10px;
   }
+  #calendarBlock{
+    height: 25%;
+  }
 }
 
 /* Mobile Styles */
@@ -766,6 +853,9 @@ select{
   }
   .apiImgParent{
     padding-left: 10px;
+  }
+  #calendarBlock{
+    height: 20%;
   }
 }
 /* end: server style */

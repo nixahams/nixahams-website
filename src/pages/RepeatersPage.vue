@@ -181,7 +181,7 @@ export default {
       })
       .catch(function (error) {
           // handle error
-          this.repeaters = {};
+          VueObj.repeaters = {};
           console.log(error);
       })
       .finally(function () {

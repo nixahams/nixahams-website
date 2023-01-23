@@ -13,6 +13,8 @@
             </span>
             <span>
                 443.400 +            Color Code 5       Located in South Central Springfield atop Cox South Hospital
+            </span>
+            <span>
                 146.775 -             Color Code 5       Located in Northeast Ozark
             </span>
             <span>
@@ -20,8 +22,14 @@
             </span>
             <span>
                 TS 1        31291     SWMO (Southwest Missouri) Talkgroup
+            </span>
+            <span>
                 TS 1        3129       MO Statewide
+            </span>
+            <span>
                 TS 1         2              Local 2
+            </span>
+            <span>
                 TS 1         9              Local 9
             </span>
             <span>
@@ -35,8 +43,14 @@
             </span>
             <span>
                 443.675+              Color Code 5       Bolivar, MO
+            </span>
+            <span>
                 443.975+              Color Code 5       Nevada, MO
+            </span>
+            <span>
                 444.675+              Color Code 5       North Springfield
+            </span>
+            <span>
                 444.525+              Color Code 5       Neosho 
             </span>
             <span>
@@ -55,175 +69,10 @@
             <div>Timeslot 2</div>
         </div>
 
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31293 - Branson Area</div>
-                    <div class="table_data_left">3180 - Missouri Lakes</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Bolivar 145.290 - CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">3180 - Missouri Lakes</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Bolivar 442.675 + CC55</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                    <div class="table_data_left">31293 - Branson Area</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Branson 147.150 + CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
+        <DmrBlock :data="item" v-for="(item, index) in dmrList" :key="index"/>
 
 
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                    <div class="table_data_left">31291 - SWMO</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Branson 444.450 + CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31293 - Branson Area</div>
-                </div>
-           </div>
-        </div>
 
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                    <div class="table_data_left">31291 - SWMO</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Conway 145.470 - CC12</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                    <div class="table_data_right">31293 - Branson Area</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Cox South 443.400 + CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                    <div class="table_data_left">31201 - BYRG</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Missouri State 444.675 + CC5</div>
-                </div>
-                <div class="table_right">
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Neosho 444.525 + CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                    <div class="table_data_left">3129 - Missouri Statewide</div>
-                    <div class="table_data_left">3120 - Kansas Statewide</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Nevada 443.975 + CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31291 - SWMO</div>
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Ozark 146.775 - CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31201 - BYRG</div>
-                </div>
-           </div>
-        </div>
-
-        <div id="dmr_table_parent">
-           <div class="table_container">
-                <div class="table_left">
-                    <div class="table_data_left">31297 - SW MO Skywarn</div>
-                </div>
-                <div class="table_center">
-                    <div class="table_data_center">Springfield 146.685 - CC5</div>
-                </div>
-                <div class="table_right">
-                    <div class="table_data_right">31293 - Branson Area</div>
-                </div>
-           </div>
-        </div>
 
         <div id="timeslot_parent2">
             <div>All other Brandmeister talkgroups use Timeslot 1</div>
@@ -239,10 +88,21 @@
 
 <script>
 
+import DmrBlock from '../components/DmrBlock.vue'
+import axios from 'axios';
+
 export default {
     name: 'DMRPage',
+    components:{
+        DmrBlock
+    },
     props: {
 
+    },
+    data(){
+        return{
+            dmrList: [],
+        }
     },
     methods:{
         scrollToTop() {document.body.scrollTop = 0;},
@@ -250,7 +110,7 @@ export default {
             let elem = document.querySelector('#timeslot_parent');
             let px = document.body.clientHeight;
 
-            if(document.body.scrollTop > px)
+            if(document.body.scrollTop > px*1.2)
             {
                 elem.style.position = 'fixed';
                 elem.style.marginTop = '0px';
@@ -260,10 +120,27 @@ export default {
                 elem.style.marginTop = '70px';
             }
         },
+        getDmr(VueObj){
+            const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/dmr';
+            axios.get(URL)
+            .then(function (response) {
+                // handle success
+                VueObj.dmrList = response.data;
+            })
+            .catch(function (error) {
+                // handle error
+                VueObj.repeaters = {};
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+        },
     },
     mounted(){
         this.scrollToTop();
         document.addEventListener('scroll', this.scrl, true)
+        this.getDmr(this);
     },
     destroyed () {
         document.removeEventListener('scroll', this.scrl, true)
@@ -281,33 +158,8 @@ export default {
     margin-top: 50px;
     color: rgba(255, 255, 255, 0.792)
 }
-.table_data_left{
-    margin: 10px;
-    background-color: rgb(151, 0, 0);
-    padding: 5px;
-}
-.table_data_right{
-    margin: 10px;
-    background-color: rgb(0, 0, 151);
-    padding: 5px;
-}
-.table_data_center{
-    background-color: orange;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    font-weight: bold;
-}
-.table_center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-.table_left{
-}
-.table_right{
-}
+
+
 #timeslot_parent>div:nth-child(1),#timeslot_parent2>div:nth-child(1){
     color: rgb(192, 0, 0);
     text-decoration: underline;
@@ -342,13 +194,7 @@ export default {
     top: 0;
     border: 1px solid  black;
 }
-.table_container{
-    margin-top: 50px;
-    border: 1px solid white;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
+
 #dmr{
     width: 100%;
     /* min-height: 100vh; */
@@ -374,9 +220,7 @@ export default {
     font-weight: bold;
     color: rgb(250, 45, 45);
 }
-#dmr_table_parent{
-    width: 50vw;
-}
+
 #timeslot{
     color: yellow;
     border: none;
