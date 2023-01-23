@@ -456,31 +456,26 @@ select:-webkit-autofill:focus {
 /* Odd Size */
 @media screen and (max-width: 1400px) {
     #form_border {
-        width: 45vw;
+        height: 45vh;
     }
 }
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
     #form_border {
-        width: 65vw;
-        aspect-ratio: 7 / 6;
     }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
     #form_border {
-        width: 75vw;
-        aspect-ratio: 6 / 5;
     }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
     #form_border {
-        width: 95vw;
-        height: 70vh;
+        height: 55vh;
     }
 }
 </style>

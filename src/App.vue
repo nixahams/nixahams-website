@@ -388,6 +388,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 #api_table_display{
   width: 100%;
@@ -724,6 +725,27 @@ select{
 
 
 
+/* edit for DMR from server */
+.edit_table_container{
+  border: 2px solid black;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transition: 0.2s ease;
+    position: relative;
+    width: 85%;
+}
+.edit_table_container:focus{
+  border: 1px solid black;
+}
+#edit_dmr_center{
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+}
+
 
 #server_dmr_table_parent{
     width: 100%;
@@ -764,19 +786,80 @@ select{
   display: flex; justify-content: center; align-items: center;
 }
 
-.table_left{
+.newLeftFreqLoc,.newRightFreqLoc{
+  display: flex;  margin: 10px;
+  gap: 5px;
+  background-color: rgba(27, 25, 25, 0.3);
+  border-radius: 5px;
 }
-.table_right{
+.table_data_new_left_freq,
+.table_data_new_left_loc,
+.table_data_new_right_freq,
+.table_data_new_right_loc{
+  background-color: rgba(27, 25, 25);
+  padding: 5px;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
 }
-.table_data_left{
-    margin: 10px;
+#table_data_new_right{
+  margin: 10px;
+  background-color: rgb(27, 25, 25);
+  padding: 5px;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.table_data_new_right_freq::placeholder,
+.table_data_new_right_loc::placeholder,
+.table_data_new_left_freq::placeholder,
+.table_data_new_left_loc::placeholder{
+  color: rgba(255, 255, 255, 0.7); 
+}
+.leftFreqLoc{
+  display: flex;
+  margin: 10px;
+  gap: 5px;
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 5px;
+  background-clip: content-box;
+  border-radius: 5px;
+}
+.table_data_left_freq,
+.table_data_left_loc,
+.table_data_right_freq,
+.table_data_right_loc{
+  width: 50%;
+  height: 100%;
+  padding: 5px;
+}
+.table_data_left_freq,.table_data_left_loc,.table_data_left{
     background-color: rgb(151, 0, 0);
-    padding: 5px;
+    color: white;
+    outline: none;
+    border: none;
 }
-.table_data_right{
-    margin: 10px;
+.table_data_left,.table_data_right{
+  padding: 5px;
+  margin: 10px;
+}
+.table_data_right_freq,.table_data_right_loc,.table_data_right{
     background-color: rgb(0, 0, 151);
-    padding: 5px;
+    color: white;
+    outline: none;
+    border: none;
+}
+.rightFreqLoc{
+  display: flex;
+  margin: 10px;
+  gap: 5px;
+  background-color: rgba(0, 0, 151,0.3);
+  border-radius: 5px;
+  background-clip: content-box;
+  border-radius: 5px;
 }
 .table_data_center{
     background-color: orange;
@@ -791,7 +874,23 @@ select{
     align-items: center;
     padding: 10px;
 }
-
+#dmr_timeslot_header{
+  width: 50%;
+  height: fit-content;
+  padding: 10px;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  top: calc(10vh + 125px);
+  z-index: 4;
+  border: 1px solid white;
+  font-weight: bold;
+}
+#dmr_timeslot1
+{color: #970000;}
+#dmr_timeslot2
+{color: #000097;}
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
@@ -804,6 +903,12 @@ select{
   .apiImgParent{
     max-height: 150px;
     padding-left: 40px;
+  }
+  #editCenter{
+    width: 80%;
+  }
+  .edit_table_container{
+      width: 90%;
   }
 }
 
@@ -838,6 +943,12 @@ select{
   #calendarBlock{
     height: 25%;
   }
+  #editCenter{
+    width: 90%;
+  }
+  .edit_table_container{
+      width: 95%;
+  }
 }
 
 /* Mobile Styles */
@@ -856,6 +967,9 @@ select{
   }
   #calendarBlock{
     height: 20%;
+  }
+  #editCenter{
+    width: 95%;
   }
 }
 /* end: server style */
