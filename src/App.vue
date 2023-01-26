@@ -152,12 +152,20 @@ body {
   position: absolute;
   top: -5px; left: -10px;
   width: 100%;
-  height: 23vh;
   min-height: 100px;
   background-color: rgba(255,255,255,0.2);
   border-radius: 10px;
   padding-bottom: 10px;
   pointer-events: none;
+}
+.aTagOne:hover::after{
+  height: 16vh;
+}
+.aTagTwo:hover::after{
+  height: 23vh;
+}
+.aTagThree:hover::after{
+  height: 13vh;
 }
 
 
@@ -251,9 +259,14 @@ body {
 .server_panel_parent{
   width: 100%;
   margin-bottom: 20px;
-  min-height: 23vh;
   position: relative;
 }
+.server_panel_parent:nth-child(0)
+{min-height: 16vh;}
+.server_panel_parent:nth-child(1)
+{min-height: 23vh;}
+.server_panel_parent:nth-child(2)
+{min-height: 13vh;}
 .server_panel_title{
   display: flex;
   cursor: pointer;
@@ -329,7 +342,6 @@ body {
   height: 85%;
   object-fit: cover;
   user-select: none;
-  background-color: red;
 }
 .subRoot_card::after{
   content: '';
@@ -617,6 +629,21 @@ select{
 #editSubmitParent{
   height: 10%; width: 100%;
   display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+#deleteDmr{
+  position: absolute;
+  right: 10px;
+  width: 120px;
+  height: 60%;
+  background-color: #eb5456;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none; outline: none;
+  color: white; font-weight: bold;
+}
+#deleteDmr:hover{
+  background-color: #e6171a;
 }
 #editSubmit{
   width: 120px;
@@ -751,7 +778,7 @@ select{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 50px;
 }
 .server_table_container{
@@ -882,7 +909,7 @@ select{
   position: fixed;
   display: flex;
   justify-content: space-between;
-  top: calc(10vh + 125px);
+  top: calc(10vh + 135px);
   z-index: 4;
   border: 1px solid white;
   font-weight: bold;

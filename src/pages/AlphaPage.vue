@@ -137,22 +137,21 @@ export default {
             let user = this.daForm.user;
             let pass = this.daForm.pass;
 
-            //check if server html is already on page
-            let checkHTML = document.getElementsByClassName('server_page_container');
-            if (checkHTML!==null){
-                let j;
-                for(j = 0; j<checkHTML.length; j++)
-                {
-                    console.log(checkHTML[j])
-                    checkHTML[j].remove();
-                }
-                console.log('removed ', j, ' instances')
-            }
-
             const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/auth?user=${user}&pass=${pass}`;
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
+                    
+                    //check if server html is already on page
+                    let checkHTML = document.getElementsByClassName('server_page');
+                    if (checkHTML!==null){
+                        let j;
+                        for(j = 0; j<checkHTML.length; j++)
+                        {
+                            console.log('pages', checkHTML[j])
+                            checkHTML[j].remove();
+                        }
+                    }
                     if (!response.data.allow) {
                         VueObj.error.user = true;
                         VueObj.error.pass = true;
@@ -182,7 +181,6 @@ export default {
                     j[2].style.visibility = "hidden";
                     document.body.style.overflow = "hidden";
                     j[0].parentNode.insertBefore(htmlObject, j[0].nextSibling);
-                    console.log("server script",document.getElementById("serverscript"))
                     /* eval detected server code */
                     VueObj.nodeScriptReplace(document.getElementById("serverscript"));
                 })
@@ -202,7 +200,7 @@ export default {
         <img id="alpha_bg" src="@/assets/part.jpg">
         <form @submit.prevent="submitForm">
             <div id="form_border">
-                <div id="form_header">Log In</div>
+                <div id="form_header">LOG IN</div>
                 <div id="form_input_container">
                     <div class="form_input_parent">
                         <div class="input_pre">
@@ -232,7 +230,7 @@ export default {
                     </div>
                 </div>
                 <div id="form_btn_parent">
-                    <button type="submit" id="form_btn" value="Login">Login</button>
+                    <button type="submit" id="form_btn" value="Login">LOGIN</button>
                 </div>
             </div>
         </form>
@@ -287,7 +285,7 @@ export default {
     object-fit: cover;
     z-index: -1;
     /* Object.assign(eventdetails, response.data) */
-    filter: brightness(50%) blur(20px) hue-rotate(320deg);
+    filter: brightness(50%) blur(20px) hue-rotate(60deg) grayscale(70%);
     transform: scale(2) translate(25%, 25%);
     animation: 60s movebg infinite linear;
 }
@@ -295,22 +293,27 @@ export default {
 @keyframes movebg {
     0% {
         transform: scale(2) translate(24%, 24%);
+        filter: brightness(50%) blur(20px) hue-rotate(60deg) grayscale(80%);
     }
 
     25% {
+        filter: brightness(50%) blur(20px) hue-rotate(100deg) grayscale(85%);
         transform: scale(2) translate(-24%, 24%);
     }
 
     50% {
         transform: scale(2) translate(-24%, -24%);
+        filter: brightness(50%) blur(20px) hue-rotate(130deg) grayscale(85%);
     }
 
     75% {
         transform: scale(2) translate(24%, -24%);
+        filter: brightness(50%) blur(20px) hue-rotate(100deg) grayscale(80%);
     }
 
     100% {
         transform: scale(2) translate(24%, 24%);
+        filter: brightness(50%) blur(20px) hue-rotate(60deg) grayscale(80%);
     }
 }
 
@@ -323,6 +326,8 @@ export default {
     grid-template-rows: 1fr 2.5fr 1.5fr;
     z-index: 2;
     backdrop-filter: blur(20px);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 #form_border>div {
@@ -331,7 +336,7 @@ export default {
 }
 
 #form_header {
-    background-color: rgba(227, 119, 18, 0.8);
+    background-color: #C20114;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,7 +355,7 @@ export default {
     height: 100%;
     padding-left: 10%;
     padding-right: 10%;
-    background-color: rgba(198, 198, 198, 0.2);
+    background-color: #87878752;
 }
 
 .form_input_parent {
@@ -403,7 +408,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     -webkit-text-fill-color: white;
     -webkit-font-size: 3em;
-    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 123, 0, 0.5) inset;
+    -webkit-box-shadow: 0 0 0px 1000px #0C120C inset;
     transition: background-color 300s ease-in-out 0s;
 }
 
@@ -427,7 +432,7 @@ select:-webkit-autofill:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(198, 198, 198, 0.2);
+    background-color: #87878752;
 }
 
 #form_btn {
@@ -438,15 +443,16 @@ select:-webkit-autofill:focus {
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    background-color: rgba(255, 123, 0, 0.4);
+    background-color: #C20114;
     font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     transition: 0.2s ease;
     color: white;
 }
 
 #form_btn:hover {
-    background-color: rgb(204, 105, 34);
+    background-color: #a80111;
 }
 
 

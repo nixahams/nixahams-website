@@ -7,7 +7,7 @@
           <!-- <div id="work_div"></div> -->
           <!-- temp -->
           <div id="form_inner">
-            <form id="form">
+            <form id="form" action="https://formsubmit.co/e336eb51f9e4626428995b774e7c0b14" method="POST">
               <div id="form_title_parent">
                 <div id="form_title">Send us a message</div>
               </div>
@@ -18,7 +18,7 @@
                 <input required placeholder="Your email..." class="input" type="text" id="email" name="email">
               </div>
               <div id="textarea_parent">
-                <textarea required placeholder="Your message..." class="textarea" name="message" id="message" cols="20"
+                <textarea required placeholder="Your message..." class="textarea" id="message" name="message" cols="20"
                   rows="5"></textarea>
               </div>
               <div id="form_btn_parent">
