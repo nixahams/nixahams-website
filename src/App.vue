@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
-    test
     <NewHeader/>
     <router-view></router-view>
     <PageFooter/>
