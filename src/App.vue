@@ -932,11 +932,12 @@ select{
     padding: 5px 10px;
     transition: 0.2s ease;
     user-select: none;
+    position: relative;
 }
 #server_meeting_title::after{
   content: '';
   position: absolute;
-  width: calc(100% - 20px); height: 2px;
+  width: 100%; height: 2px;
   top: 0; left: 0;
   background-color: rgba(255, 255, 255, 0.315);
 }

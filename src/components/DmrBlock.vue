@@ -9,7 +9,7 @@
             </div>
             <div class="table_center">
                 <div class="table_data_center">
-                    {{ data.center }}
+                    {{ data.center }} test
                 </div>
             </div>
             <div class="table_right">
