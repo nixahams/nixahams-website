@@ -318,15 +318,15 @@ body {
   align-content: flex-start;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 .subRoot_card,.subRoot_card2{
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  width: 40%;
+  width: 25%;
   aspect-ratio: 5 / 3;
   max-height: 500px;
-  min-width: 300px;
   max-width: 500px;
   padding: 20px;
   background-color: #242424;
@@ -918,6 +918,55 @@ select{
 {color: #970000;}
 #dmr_timeslot2
 {color: #000097;}
+/* dmr end */
+
+/* server meeting page */
+#server_meeting_title:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+#server_meeting_title{
+    font-weight: bold;
+    font-size: 2em;
+    height: fit-content; width: calc(100% - 20px);
+    padding: 5px 10px;
+    transition: 0.2s ease;
+    user-select: none;
+}
+#server_meeting_title::after{
+  content: '';
+  position: absolute;
+  width: calc(100% - 20px); height: 2px;
+  top: 0; left: 0;
+  background-color: rgba(255, 255, 255, 0.315);
+}
+#server_meeting_parent{
+  position: relative;
+}
+#server_desc{
+  width: calc(100% - 20px);
+  position: relative;
+  padding: 10px;
+}
+#server_desc::after{
+  background-color: rgba(255,255,255,0);
+  width: 100%;height: 100%;
+  position: absolute;
+  content: '';
+  transition: 0.2s ease;
+  top: 0; left: 0;
+  color: black;
+}
+#server_desc:hover::after{
+  background-color: white;
+  content: 'Click to Edit';
+  display: flex;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+/* meeting end */
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
@@ -936,6 +985,9 @@ select{
   }
   .edit_table_container{
       width: 90%;
+  }
+  .subRoot_card,.subRoot_card2{
+    width: 20%;
   }
 }
 
@@ -976,6 +1028,11 @@ select{
   .edit_table_container{
       width: 95%;
   }
+  .subRoot_card,.subRoot_card2{
+    width: 43%;
+    aspect-ratio: 3 / 5;
+
+  }
 }
 
 /* Mobile Styles */
@@ -998,6 +1055,7 @@ select{
   #editCenter{
     width: 95%;
   }
+
 }
 /* end: server style */
 </style>
