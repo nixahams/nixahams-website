@@ -75,7 +75,7 @@
           <!-- <div id="work_div"></div> -->
           <!-- temp -->
           <div id="form_inner">
-            <form id="form" action="https://formsubmit.co/e4c167007ea7c33974102dc99c63aeb1" method="POST">
+            <form id="form" action="https://formsubmit.co/el/bulixe" method="POST">
               <div id="form_title_parent">
                 <div id="form_title">Send us a message</div>
               </div>
