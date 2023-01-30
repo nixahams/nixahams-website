@@ -274,7 +274,7 @@ export default {
 }
 
 .fa-x {
-  color: rgb(188, 129, 129);
+  color: rgb(189, 129, 129);
 }
 
 #nodata {
