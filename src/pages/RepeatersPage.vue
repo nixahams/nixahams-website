@@ -162,7 +162,7 @@ export default {
       this.count++;
     },
     getRepeaters(VueObj){
-      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/repeaters';
+      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/repeaters';
       axios.get(URL)
       .then(function (response) {
           // handle success

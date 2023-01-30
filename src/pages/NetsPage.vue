@@ -69,7 +69,7 @@ export default {
     },
     scrollToTop() {document.body.scrollTop = 0;},
     getAnnouncement(VueObj){
-      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/net';
+      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net';
       axios.get(URL)
       .then(function (response) {
           // handle success

@@ -33,7 +33,7 @@
       scrollToTop() {document.body.scrollTop = 0;},
       getOfficers(VueOBJ){
       //call API to load officers from database
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/officer`;
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/officer`;
       axios.get(URL)
       .then(function (response) {
           // handle success

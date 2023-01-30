@@ -34,7 +34,7 @@ const submitForm = async () => {
 function attemptLogIn(res){
     let user = res.user;
     let pass = res.pass;
-    const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/auth?user=${user}&pass=${pass}`;
+    const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
 
     axios.post(URL)
     .then(function (response) {
@@ -137,7 +137,7 @@ export default {
             let user = this.daForm.user;
             let pass = this.daForm.pass;
 
-            const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/auth?user=${user}&pass=${pass}`;
+            const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;

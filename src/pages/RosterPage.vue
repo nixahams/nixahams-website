@@ -151,19 +151,19 @@ export default {
     StripeCheckout
   },
   data() {
-    this.publishableKey = "pk_test_51M7q0mEaEcKb49YvpOXJaUFcoSeai4kzQAbTuyMOnluttgeFt3TlfroZLc5lOMaNWLP32jMYlmvCeU74DuEyhNw700DJEdLves";
+    this.publishableKey = "pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
     return {
       familyItem:
       [
         {
-          price: 'price_1M7uJqEaEcKb49YvDRB95xqH',
+          price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
           quantity: 1
         }
       ],
       singleItem:
       [
         {
-          price: 'price_1M88uIEaEcKb49Yvp0QNUjFp',
+          price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
           quantity: 1
         }
       ],
@@ -233,7 +233,7 @@ export default {
       }
     },
     getRoster(VueObj){
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/application-0-aqiyx/endpoint/roster?year=${VueObj.roster_year}`;
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/roster?year=${VueObj.roster_year}`;
       axios.get(URL)
       .then(function (response) {
           // handle success
