@@ -167,8 +167,8 @@ export default {
           quantity: 1
         }
       ],
-      successURL:'https://nixahams-website.pages.dev/#/roster',
-      cancelURL:'https://nixahams-website.pages.dev/#/roster',
+      successURL:'https://nixahams-website-cg9.pages.dev/#/roster',
+      cancelURL:'https://nixahams-website-cg9.pages.dev/#/roster',
 
 
       membership_selected: "single_side",

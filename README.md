@@ -25,31 +25,6 @@
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Viewing The Website</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## Legacy Website
 
@@ -67,11 +42,11 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Prerequisites
+### JavaScript Engine & Frameworks
 
 This website uses Node.js version 16.18.0 LTS for Windows (x64).
 * [![Node][Node.js]][Node-url]
-`
+
 
 The framework skeleton for this site is Vue.js
 * [![Vue][Vue.js]][Vue-url]
