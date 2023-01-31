@@ -25,13 +25,13 @@ export default {
     },
     data() {
     return {
-        bannerShow: true,
+        bannerShow: false,
         message: {
-            type: 'NOTICE',
-            text: 'The donations page is currently down',
+            type: '',
+            text: '',
             // icon: 'fa-solid fa-triangle-exclamation',
-            icon: 'fa-solid fa-circle-info',
-            color: 'blue'
+            icon: '',
+            color: ''
         }
     }
     },
@@ -42,11 +42,11 @@ export default {
         },
         getBannerInfo(VueObj)
         {
-            const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/message';
+            const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message';
             axios.get(URL)
             .then(function (response) {
                 // handle success
-                let message = response.data;
+                let message = response.data[0];
                 if(message.show)
                 {
                     VueObj.bannerShow = true;

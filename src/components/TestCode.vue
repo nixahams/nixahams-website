@@ -3,6 +3,7 @@
     <div id="text404">
       <div id="title404">404</div>
       <div id="sub404">Page Not Found</div>
+
     </div>
     <canvas
     @mousemove="mouseMove"

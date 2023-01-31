@@ -45,6 +45,7 @@ export default {
     methods:{
         scrollToTop() {document.body.scrollTop = 0;},
         getMeeting(VueObj){
+            // const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meeting?year=${this.currentYear}&month=${this.currentMonth.slice(0, 3)}`;
             const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meeting`;
             axios.get(URL)
             .then(function (response) {
