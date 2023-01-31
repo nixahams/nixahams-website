@@ -273,7 +273,7 @@ export default {
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 }
 #header_compress{
-    background-color: #101022;
+    background-color: #15181C;
     width: 90px;
     height: 100%;
     position: fixed;
@@ -285,7 +285,7 @@ export default {
     border-right: 1px solid white;
 }
 #header_expand{
-    background-color: #101022;
+    background-color: #15181C;
     width: 300px;
     height: 100%;
     position: fixed;

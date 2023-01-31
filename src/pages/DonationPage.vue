@@ -18,22 +18,22 @@
             <div id="membership_level_card_parent">
                 <div id="membership_level">
                     <img class="membership_level_img" src="@/assets/donate/bronze.png" alt="">
+                    <div class="membership_level_type" id="type1">Bronze</div>
                     <div class="membership_level_amount">$50 - $149</div>
-                    <div class="membership_level_type">Bronze</div>
                 </div>
                 <div id="membership_level">
                     <img class="membership_level_img" src="@/assets/donate/silver.png" alt="">
-                    <div class="membership_level_type">Silver</div>
+                    <div class="membership_level_type" id="type2">Silver</div>
                     <div class="membership_level_amount">$150 - $249</div>
                 </div>
                 <div id="membership_level">
                     <img class="membership_level_img" src="@/assets/donate/gold.png" alt="">
-                    <div class="membership_level_type">Gold</div>
+                    <div class="membership_level_type" id="type3">Gold</div>
                     <div class="membership_level_amount">$250 - $499</div>
                 </div>
                 <div id="membership_level">
                     <img class="membership_level_img" src="@/assets/donate/diamond.png" alt="">
-                    <div class="membership_level_type">Diamond</div>
+                    <div class="membership_level_type" id="type4">Diamond</div>
                     <div class="membership_level_amount">$499+</div>
                 </div>
             </div>
@@ -195,6 +195,19 @@ export default {
     font-weight: bold;
     color: rgba(0,0,0,0.7);
 }
+#type1{
+    color: rgb(167, 66, 8);
+}
+#type2{
+    color: rgb(94, 87, 87);
+}
+#type3{
+    color: rgb(255, 228, 72);
+}
+#type4{
+    color: rgb(60, 154, 231);
+}
+
 .membership_level_type{
     display: flex;
     justify-content: center;
@@ -239,12 +252,13 @@ export default {
 #membership_level_parent{
     min-height: 100vh;
     height: fit-content; width: 100%;
-    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
-    color: black;
+    /* background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg); */
+    background-color: #15181C;
+    color: rgba(255,255,255,0.9);
 }
 #membership_level_mini{
     font-size: 0.9em;
-    color: rgba(0,0,0,0.7);
+    color: rgba(255,255,255,0.5);
 }
 #membership_level_text{
     width: 100%;
@@ -256,7 +270,7 @@ export default {
     font-family: 'Montserrat';
 }
 #membership_level_link{
-    color: black;
+    color: white;
     font-weight: bold;
 }
 #custom_btn{
@@ -349,7 +363,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
+    /* background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg); */
+    background-color: #15181C;
 }
 #donate{
     padding-left: 70px;
@@ -380,7 +395,8 @@ export default {
     width: 100%; height: 70vh;
     display: flex;
     justify-content: center; align-items: center;
-    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
+    /* background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg); */
+    background-color: #15181C;
 }
 #donate_grid_parent{
     width: 60%; height: 90%;
@@ -399,18 +415,22 @@ export default {
     cursor: pointer;
     transition:all 0.2s ease;
     border: 3px solid rgb(0, 0, 0);
+
+    color: #1b1b1b;
+    background-color: white;
+    border: 3px solid white;
     border-radius: 5px;
 }
 /* each donation card */
 #donate_grid_parent>div::before{
     /* background: radial-gradient(
         800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255,255,255,0.3),
+        rgba(255, 255, 255, 0.2),
         transparent 40%
     ); */
     background: radial-gradient(
-        800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255, 255, 255, 0.2),
+        500px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(150, 150, 150, 0.3),
         transparent 40%
     );
     content: '';
@@ -438,12 +458,11 @@ export default {
     font-size: 3em;
     font-family: 'Montserrat';
     font-weight: bold;
-    color: rgb(213, 213, 213);
     transition: 0.1s ease;
 }
 .predefined:hover{
     font-size: 4em;
-    color: white;
+    color: black;
 }
 
 .span-2{
@@ -456,14 +475,15 @@ export default {
     width: 100; height: fit-content;
     padding: 50px 0;
     text-align: center;
-    color: black;
+    color: white;
     font-family: 'Montserrat';
     font-size: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg);
+    /* background: radial-gradient(rgb(231, 229, 229), rgb(204, 201, 223)), url(https://grainy-gradients.vercel.app/noise.svg); */
+    background-color: #15181C;
 }
 #donate_instruction{
     /* font-size: 0.7em; */

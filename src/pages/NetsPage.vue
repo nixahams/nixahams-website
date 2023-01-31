@@ -97,7 +97,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #table_key_parent{
-  color: rgb(31, 163, 26);
+  color: #DB7B32;
   width: 100%;
   padding: 0px 10% 10px 10%;
   font-family: 'Montserrat', sans-serif;
