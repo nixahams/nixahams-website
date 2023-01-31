@@ -44,7 +44,7 @@
 </template>
   
 <script>
-ResultOption
+
 import CardArrow from '../components/CardArrow.vue';
 import ResultOption from '../components/ResultOption.vue';
 import axios from 'axios';

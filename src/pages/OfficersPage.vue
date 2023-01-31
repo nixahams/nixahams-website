@@ -4,7 +4,7 @@
             Meet the officers!
         </div>
         <div id="staff_parent">
-            <OfficerCard v-for="(staff, index) in officer_list" :key="index" :name="staff.name" :callsign="staff.callsign" :image="staff.image" :position="staff.position" :info="staff.info"/>
+            <OfficerCard v-for="(staff, index) in officer_list" :key="index" :name="staff.name" :callsign="staff.callsign"  :position="staff.position" :info="staff.info"/>
         </div>
 
     </div>
@@ -77,12 +77,13 @@
 }
 #staff_parent{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     padding-top: 10vh;
     padding-bottom: 20vh;
     height: fit-content;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     min-height: 80vh;
 }
   
@@ -92,6 +93,9 @@
     #staffpage{
       padding-left: 50px;
     }
+    #staff_title{
+        font-size: 3em;
+    }
   }
   
   /* Half-Screen Styles */
@@ -99,11 +103,16 @@
     #staffpage{
       padding-left: 0px;
     }
+    #staff_title{
+        font-size: 2em;
+    }
   }
   
   /* Mobile Styles */
   @media screen and (max-width: 768px) {
-
+    #staff_title{
+        font-size: 1.5em;
+    }
   }
   </style>
     

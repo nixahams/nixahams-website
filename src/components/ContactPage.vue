@@ -33,31 +33,19 @@
               <div id="contact_title">Need to contact us? Fill out our message form.</div>
               <div id="contact_subtext">We will get back to you ASAP!</div>
             </div>
-            <div class="contact_visual">
+            <!-- <div class="contact_visual">
               <div class="contact_img_parent">
                 <img class="contact_img" src="../assets/home/phone-call.png" alt="">
               </div>
               <div class="contact_data">000-000-0000</div>
-            </div>
-            <div class="contact_visual">
+            </div> -->
+            <!-- <div class="contact_visual">
               <div class="contact_img_parent">
                 <img class="contact_img" src="../assets/home/email.png" alt="">
               </div>
-              <div class="contact_data">emaple@gmail.com</div>
-            </div>
-            <div class="contact_visual">
-              <div class="contact_img_parent">
-                <img class="contact_img" src="../assets/home/location.png" alt="">
-              </div>
-              <div class="contact_data">123 blueberry st.</div>
-            </div>
-            <div class="contact_visual">
-              <div class="contact_img_parent">
-                <img class="contact_img" src="../assets/home/world.png" alt="">
-              </div>
-              <div class="contact_data">Get in touch!</div>
-            </div>
-          </div>
+              <div class="contact_data">test@test.net</div>
+            </div> -->
+          </div> 
 
         </div>
         <div id="contact_bottom"></div>
@@ -214,7 +202,7 @@ export default {
 #form_title {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
-  font-size: 2em;
+  font-size: 1.7em;
   height: 100%;
   width: 100%;
 }
@@ -239,7 +227,7 @@ export default {
   color: black;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 #textarea_parent {
   height: 25%;
@@ -257,7 +245,7 @@ export default {
   color: black;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 #form_btn_parent {

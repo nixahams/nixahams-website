@@ -310,7 +310,26 @@ export default {
     cursor: pointer;
     z-index: 999;
 }
-
+/* #topg::after{
+    content: '';
+    width: 20%; height: 30%;
+    background-color: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+#topg::before{
+    content: '';
+    width: 20%; height: 30%;
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+} */
 
 
 #center > * > * > div > div > #repeater_freq{animation: textup 0.6s 0s ease forwards;}
@@ -364,7 +383,6 @@ export default {
 
 
 #left{
-
     z-index: 2;
     pointer-events: none; 
     transform: 
@@ -372,7 +390,7 @@ export default {
     perspective(2000px)
     scale(80%) scaleX(130%)
     rotateY(30deg);
-    filter: brightness(75%);
+    filter: brightness(55%);
     user-select: none;
 }
 #right{
@@ -383,7 +401,7 @@ export default {
     perspective(2000px)
     scale(80%) scaleX(130%)
     rotateY(-30deg);
-    filter: brightness(75%);
+    filter: brightness(55%);
     user-select: none;
 }
 .imgInGeneral{
@@ -395,7 +413,7 @@ export default {
     object-fit: cover;
     object-position: top;
     transition: 0.6s ease;
-    filter: brightness(30%) blur(15px);
+    filter: brightness(20%) blur(15px);
     user-select: none;
 }
 

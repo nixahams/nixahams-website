@@ -221,7 +221,7 @@ export default {
     height: 100vh;
     /* height: fit-content; */
     width: 100%;
-    background-color: #1f190f;
+    background-color: inherit;
     padding: 0 10%;
     font-family: 'Montserrat';
     display: flex;
@@ -293,6 +293,7 @@ export default {
     height: fit-content;
     display: flex;
     flex-direction: column;
+    background-color: #15181C;
 }
 #absol{
     font-family: 'Montserrat';
@@ -304,7 +305,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 3px solid #f3af41;
-    border: 3px solid #1f190f;
+    border: 3px solid black;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     display: flex;
@@ -328,7 +329,7 @@ export default {
     border-left: 28px solid transparent;
     border-right: 28px solid transparent;
     border-bottom: 28px solid #f3af41;
-    border-bottom: 28px solid #1f190f;
+    border-bottom: 28px solid black;
 }
 #map{
     width: 100%;
@@ -342,7 +343,7 @@ export default {
 #bottom{
     height: 55vh;
     width: 100%;
-    background-color: #1f190f;
+    background-color: inherit;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

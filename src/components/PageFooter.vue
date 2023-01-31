@@ -18,9 +18,9 @@
                     <a href="#/bylaws">
                         <i class="fa-solid fa-circle-question icon"></i>
                         - Constitution & Bylaws</a>
-                    <a href="#/donate">
-                        <i class="fa-solid fa-hand-holding-dollar icon"></i>
-                        - Donate</a>
+                    <a href="#/roster">
+                        <i class="fa-solid fa-list icon"></i>
+                        - Join This Years Roster</a>
                     <a href="#/repeaters">
                         <i class="fa-solid fa-tower-cell icon"></i>
                         - Repeaters</a>
@@ -30,14 +30,14 @@
                 <div class="footer_title">Services</div>
                 <div class="footer_link">
                     <a href="#/nets">
-                        <i class="fa-solid fa-comment icon"></i>
+                        <i class="fas fa-walkie-talkie icon"></i>
                         - Nets</a>
                     <a href="#/dmr">
-                        <i class="fa-solid fa-user icon"></i>
+                        <i class="fa-solid fa-circle-info icon"></i>
                         - SWMO DMR Info</a>
-                    <a href="#/roster">
-                        <i class="fa-solid fa-table-cells icon"></i>
-                        - Roster</a>
+                    <a href="#/meetings">
+                        <i class="fa-solid fa-people-group icon"></i>
+                        - Monthyl Meetings</a>
                     <a href="#/contact">
                         <i class="fa-solid fa-envelope icon"></i>
                         - Contact Us</a>
@@ -46,17 +46,11 @@
             <div class="footer_block">
                 <div class="footer_title">Social Media</div>
                 <div id="footer_socials">
-                    <a href="https://www.facebook.com" target="_blank" class="footer_social">
+                    <a href="https://www.facebook.com/K0NXA/" target="_blank" class="footer_social">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" class="footer_social">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank" class="footer_social">
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                    <a href="https://www.linkedin.com" target="_blank" class="footer_social">
-                        <i class="fa-brands fa-linkedin"></i>
+                    <a href="https://groups.io/g/nixahams" target="_blank" class="footer_social">
+                        <i class="fa-regular fa-envelope"></i>
                     </a>
                 </div>
             </div>

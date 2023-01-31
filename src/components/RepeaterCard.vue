@@ -48,13 +48,18 @@ export default {
     z-index: -1;
     object-fit: cover;
     object-position: center;
-    filter: brightness(50%);
+    filter: brightness(70%);
 }
 #repeater_text{
     pointer-events: none;
     position: absolute;
     left: -20%;
     top: 45%;
+    text-shadow: 
+    -10px 0px 20px rgba(0, 0, 0, 0.8),
+    10px 0px 20px rgba(0, 0, 0, 0.8),
+    0px -10px 20px rgba(0, 0, 0, 0.8),
+    0px 10px 20px rgba(0, 0, 0, 0.8);
 }
 #repeater_freq{
     position: relative;
