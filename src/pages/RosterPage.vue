@@ -305,7 +305,7 @@ th {
 
 thead {
   overflow: hidden;
-  background-color: rgb(199, 127, 38);
+  background-color: rgb(245, 155, 46);
 }
 
 #thl {
@@ -387,7 +387,8 @@ a:hover {
   flex-direction: column;
   font-size: 3em;
   font-family: 'Montserrat';
-  color: #FFEBA7;
+  color: #fd9947;
+
   text-align: center;
 }
 
@@ -592,14 +593,14 @@ a:hover {
   border: none;
   outline: none;
   border-radius: 5px;
-  color: #FFEBA7;
+  color: #fd9947;
   font-size: 1.2em;
   font-family: 'Montserrat';
   transition: 0.2s ease;
 }
 
 #card_btn_front {
-  background-color: #102770;
+  background-color: #15181C;
   color: white;
 }
 
@@ -608,7 +609,7 @@ a:hover {
 }
 
 #card_btn_front:hover {
-  background-color: #0a1a4b;
+  background-color: #15181C;
 }
 
 #card_btn_back:hover {
@@ -625,7 +626,7 @@ a:hover {
   color: rgb(208, 213, 239);
   height: fit-content;
   width: 100%;
-  background: linear-gradient(#0d0c18, #131123 40%);
+  background-color: #15181C;
 }
 
 #membership_parent {
@@ -648,7 +649,8 @@ a:hover {
 #membership_right_text {
   font-size: 3em;
   font-family: 'Montserrat';
-  color: #FFEBA7;
+  color: #ffdc92;
+  color: white;
   font-weight: lighter;
 }
 
@@ -673,7 +675,7 @@ a:hover {
 #membership_right_subtext {
   font-size: 2em;
   font-family: 'Montserrat';
-  color: #FFEBA7;
+  color: white;
   font-weight: lighter;
 }
 
@@ -712,7 +714,7 @@ a:hover {
   height: 70px;
   border: none;
   outline: none;
-  background-color: #FFEBA7;
+  background-color: white;
   font-size: 1.5em;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -748,7 +750,7 @@ a:hover {
   margin: auto 0;
   width: calc(50% - 30px);
   height: calc(100% - 50px);
-  background-color: #242245;
+  background-color: #15181C;
   box-shadow: inset 0px 0px 15px 5px rgb(0, 0, 0);
   pointer-events: none;
   border-radius: 5px;
@@ -781,15 +783,17 @@ a:hover {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-
+th{
+  color: rgba(255,255,255,0.8);
+}
 #family_on,
 #single_on {
-  color: #FFEBA7;
+  color: white;
 }
 
 #family_off,
 #single_off {
-  color: #102770;
+  color: #15181C;
 }
 
 
