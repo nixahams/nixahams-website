@@ -126,16 +126,31 @@ export default {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-
+    #red,#blue{
+        grid-template-columns: 1fr 10fr 1fr;
+        font-size: 0.9em;
+    }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-
+    #red,#blue{
+        grid-template-columns: 1fr 7fr 1fr;
+        font-size: 0.7em;
+    }
 }
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
+    #red,#blue{
+        z-index: 9999;
+        width: 90vw;
+        left: calc(10vw - 15px);
+        position: fixed;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: 1fr 7fr 1.5fr;
+        font-size: 0.6em;
+    }
 }
 </style>

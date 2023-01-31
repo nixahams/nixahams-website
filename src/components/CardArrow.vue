@@ -299,8 +299,8 @@ export default {
     font-size: 4.3em;
     color: rgba(255, 255, 255, 1);
 }
-#arr_right{right: 0;}
-#arr_left{left: 0}
+#arr_right{right: 15px;}
+#arr_left{left: 15px}
 
 #topg{
     color: white;

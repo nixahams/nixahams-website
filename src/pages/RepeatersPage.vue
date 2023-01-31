@@ -302,7 +302,8 @@ export default {
 #desc_info_desc{
   color: white;
   font-size: 1.5em;
-  padding: 1% 10% 10% 10%;
+  font-size: 1em;
+  padding: 1% 20% 10% 20%;
   /* text-indent: 4em; */
   display: flex;
   flex-direction: column;

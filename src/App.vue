@@ -995,18 +995,12 @@ select{
   .subRoot_card,.subRoot_card2{
     width: 20%;
   }
-  #warning_container,#warninginfo_container{
-    grid-template-columns: 1fr 10fr 1fr;
-    font-size: 0.9em;
-  }
+
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-  #warning_container,#warninginfo_container{
-    grid-template-columns: 1fr 7fr 1fr;
-    font-size: 0.7em;
-  }
+
   #server_dom {
       font-size: 0.8em;
   }
