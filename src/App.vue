@@ -1,19 +1,7 @@
 <template>
   <div id="app">
     <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
-    <div id='warning_container'>
-      <div id='warning_icon'>
-        <i class="fa-solid fa-triangle-exclamation"></i>
-      </div>
-      <div id='warning_text'>
-        WARNING: Network connection error
-      </div>
-      <div id='warning_exit'>
-        <button id='warning_exit_btn'>
-          <i class='fa-sharp fa-solid fa-xmark'></i>
-        </button>
-      </div>
-    </div>
+    <InfoBanner/>
     <NewHeader/>
     <router-view></router-view>
     <PageFooter/>
@@ -24,6 +12,7 @@
 // import PageHeader from './components/PageHeader.vue';
 import NewHeader from './components/NewHeader.vue';
 import PageFooter from './components/PageFooter.vue';
+import InfoBanner from './components/InfoBanner.vue';
 
 
 
@@ -31,6 +20,7 @@ export default {
   name: 'App',
   components: {
     // PageHeader,
+    InfoBanner,
     PageFooter,
     NewHeader
   },
@@ -48,51 +38,6 @@ export default {
 }
 </script>
 
-<style>
-/* styles for warning container */
-#warning_container,#warninginfo_container{
-  z-index: 9999;
-  width: 80vw;
-  left: 10vw;
-  position: fixed;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: 1fr 20fr 1.5fr;
-}
-#warning_container{background-color: #dd1f1f;}
-#warninginfo_container{background-color: #0469E3;}
-#warning_icon,#warning_exit{
-  display: flex;
-  justify-content: center; align-items: center;
-}
-#warning_icon{
-  font-size: 1.5em;
-}
-#warning_exit{
-  font-size: 1.5em;
-  position: relative;
-}
-#warning_exit::after{
-  content: '';
-  height: 60%;
-  top: 20%; left: 0;
-  width: 1px;
-  background-color: rgba(255, 255, 255, 0.35);
-  position: absolute;
-}
-#warning_exit_btn{
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: inherit;
-  color: white;
-}
-#warning_text{
-  padding: 15px 10px;
-  font-family: 'Montserrat';
-}
-/* end styles for warning container */
-</style>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

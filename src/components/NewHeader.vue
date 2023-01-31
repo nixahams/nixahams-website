@@ -44,13 +44,13 @@
                     <span class="burgerTitle">Join Narc | Roster</span>
                 </div>
             </a>
-            <a class="burgerA" href="#/history">
+            <!-- <a class="burgerA" href="#/history">
                 <div class="hoverOpt">History</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span class="burgerTitle">History</span>
                 </div>
-            </a>
+            </a> -->
             <a class="burgerA" href="#/dmr">
                 <div class="hoverOpt">SWMO DMR Info</div>
                 <div class="burgerOption">
@@ -112,7 +112,7 @@ export default {
                 '/repeaters',
                 '/meetings',
                 '/roster',
-                '/history',
+                // '/history',
                 '/dmr',
                 '/bylaws',
                 '/officers',

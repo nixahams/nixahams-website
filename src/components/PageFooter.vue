@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="footer_block">
-                <div class="footer_title">Links</div>
+                <div class="footer_title">Quick Links</div>
                 <div class="footer_link">
                     <a href="#/">
                         <i class="fa-solid fa-house icon"></i>
@@ -21,9 +21,9 @@
                     <a href="#/roster">
                         <i class="fa-solid fa-list icon"></i>
                         - Join This Years Roster</a>
-                    <a href="#/repeaters">
-                        <i class="fa-solid fa-tower-cell icon"></i>
-                        - Repeaters</a>
+                    <a href="#/contact">
+                        <i class="fa-solid fa-envelope icon"></i>
+                        - Contact Us</a>
                 </div>
             </div>
             <div class="footer_block">
@@ -37,10 +37,10 @@
                         - SWMO DMR Info</a>
                     <a href="#/meetings">
                         <i class="fa-solid fa-people-group icon"></i>
-                        - Monthyl Meetings</a>
-                    <a href="#/contact">
-                        <i class="fa-solid fa-envelope icon"></i>
-                        - Contact Us</a>
+                        - Monthly Meetings</a>
+                    <a href="#/repeaters">
+                        <i class="fa-solid fa-tower-cell icon"></i>
+                        - Repeaters</a>
                 </div>
             </div>
             <div class="footer_block">

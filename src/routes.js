@@ -3,7 +3,7 @@ import Nets from './pages/NetsPage.vue';
 import Repeaters from './pages/RepeatersPage.vue';
 import Meetings from './pages/MeetingPage.vue';
 import Roster from './pages/RosterPage.vue';
-import History from './pages/HistoryPage.vue';
+// import History from './pages/HistoryPage.vue';
 import DMR from './pages/DMRPage.vue';
 import Bylaw from './pages/BylawPage.vue';
 import Officers from './pages/OfficersPage.vue';
@@ -21,7 +21,7 @@ export default[
     { path: '/repeaters', component: Repeaters},
     { path: '/meetings', component: Meetings},
     { path: '/roster', component: Roster},
-    { path: '/history', component: History},
+    // { path: '/history', component: History},
     { path: '/dmr', component: DMR},
     { path: '/bylaws', component: Bylaw},
     { path: '/officers', component: Officers},
