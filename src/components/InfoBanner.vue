@@ -72,7 +72,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #red,#blue{
-  z-index: 9999;
+  z-index: 998;
   width: 80vw;
   left: 10vw;
   position: fixed;

@@ -231,7 +231,7 @@ export default {
     width: 70px;
     height: 70px;
     position: fixed;
-    z-index: 999;
+    z-index: 996;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,7 +277,7 @@ export default {
     width: 90px;
     height: 100%;
     position: fixed;
-    z-index: 999;
+    z-index: 996;
     display: flex;
     flex-direction: column;
     padding: 10px;
