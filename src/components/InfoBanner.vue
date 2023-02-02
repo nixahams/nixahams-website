@@ -49,10 +49,12 @@ export default {
             .then(function (response) {
                 // handle success
                 let message = response.data[0];
-                if(message.show)
+                if(message.show == "true" || message.show == true)
                 {
-                    VueObj.bannerShow = true;
-                    VueObj.message = message;
+                  VueObj.bannerShow = true;
+                  VueObj.message = message;
+                }else if(message.show == "false" || message.show == false){
+                  VueObj.bannerShow = false;
                 }
                 if(message.color == '#0469E3')
                 {

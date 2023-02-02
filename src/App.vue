@@ -1157,6 +1157,42 @@ input:checked + .slider:before {
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
+  .server_banner_edit:nth-child(1),
+  .server_banner_edit:nth-child(2),
+  .server_banner_edit:nth-child(3),
+  .server_banner_edit:nth-child(4)
+  {
+    flex-basis: 40%;
+  }
+  .server_banner_edit:nth-child(5){flex-basis: 100%;}
+  #server_banner_preview_container
+  {
+    font-size: 0.7em;
+    width: 100%;
+    margin-left: 0;
+  }
+  #server_banner_edit_container
+  {
+    width: 100%;
+    height: 90%;
+    padding: 0;
+  }
+  #banner_textarea_container
+  {
+    width: 90%
+  }
+	.server_banner_edit>select
+  {
+    height: 40px;
+    width: 60%;
+    font-size: 0.8em;
+  }
+
+  #server_banner_block1,
+  #banner_textarea
+  {
+    font-size: 0.8em;
+  }
 
   #server_dom {
       font-size: 0.8em;
