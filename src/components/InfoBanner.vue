@@ -1,11 +1,12 @@
 <template>
-    <div v-if="bannerShow" :id=message.color>
+    <div v-if="bannerShow" :id=checkColor>
       <div id='warning_icon'>
         <i :class=message.icon></i>
       </div>
       <div id='warning_text'>
         <span>{{ message.type }} :</span>
-        <span>{{ message.text }}</span>
+        <span :key="lineNumber" 
+        v-for="(line,lineNumber) of message.text.split('<br/>')">{{ line }}</span>
       </div>
       <div id='warning_exit'>
         <button id='warning_exit_btn' @click="minimizeBanner">
@@ -32,7 +33,8 @@ export default {
             // icon: 'fa-solid fa-triangle-exclamation',
             icon: '',
             color: ''
-        }
+        },
+        checkColor: '',
     }
     },
     methods: {
@@ -51,6 +53,12 @@ export default {
                 {
                     VueObj.bannerShow = true;
                     VueObj.message = message;
+                }
+                if(message.color == '#0469E3')
+                {
+                  VueObj.checkColor = 'blue'
+                }else{
+                  VueObj.checkColor = 'red'
                 }
             })
             .catch(function (error) {

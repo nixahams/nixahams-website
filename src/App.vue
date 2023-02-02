@@ -653,7 +653,7 @@ select{
 #deleteDmr:hover{
   background-color: #e6171a;
 }
-#editSubmit{
+#editSubmit,#editSubmitV2{
   width: 120px;
   height: 60%;
   border: none; outline: none;
@@ -663,6 +663,10 @@ select{
   color: black;
   font-weight: bold;
   transition: 0.2s ease;
+}
+#editSubmitV2:hover{
+  background-color: rgb(71 149 27);
+  color: rgb(255, 255, 255);
 }
 #editSubmit:hover{
   background-color: rgb(0, 0, 0);
@@ -1071,8 +1075,8 @@ select{
 }
 #server_banner_activity
 {
-  color: red;
   font-weight: bold;
+  text-transform: uppercase;
 }
 #banner_textarea_container{
   width: 70%;
@@ -1114,7 +1118,7 @@ select{
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;}
-input:checked + .slider {}
+input:checked + .slider {  background-color: #2196F3;}
 input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
