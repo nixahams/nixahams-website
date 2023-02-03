@@ -412,7 +412,7 @@ body {
 }
 #api_table_display{
   width: 100%;
-  height: 80%;
+  height: 100%;
   padding-right: 20px;
   padding-bottom: 20px;
   position: relative;
@@ -1133,6 +1133,13 @@ input:checked + .slider:before {
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
+  #dmr_timeslot_header{
+  width: 86%;
+  }
+  #uploadApiBtn{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   #server_dom {
       font-size: 0.9em;
   }
@@ -1152,7 +1159,12 @@ input:checked + .slider:before {
   .subRoot_card,.subRoot_card2{
     width: 20%;
   }
-
+  #server_title{
+    font-size: 1.5em;
+  }
+  .server_table_container{
+    width: 100%;
+  }
 }
 
 /* Half-Screen Styles */
@@ -1232,7 +1244,9 @@ input:checked + .slider:before {
   .subRoot_card,.subRoot_card2{
     width: 43%;
     aspect-ratio: 3 / 5;
-
+  }
+  #server_title{
+    text-align: center;
   }
 }
 

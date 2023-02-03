@@ -410,7 +410,7 @@ option{
     width: 60%; height: 8vh;
   }
   #desc_info_desc{
-    font-size: 1.2em;
+    font-size: 0.9em;
   }
   #desc_info_title2{
     font-size: 2.5em;
@@ -427,7 +427,7 @@ option{
     font-size: 0.8em;
   }
   #desc_info_desc{
-    font-size: 1.1em;
+    font-size: 0.8em;
   }
   #desc_info_title2{
     font-size: 2em;

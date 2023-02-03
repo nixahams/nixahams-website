@@ -110,7 +110,7 @@ export default {
             let elem = document.querySelector('#timeslot_parent');
             let px = document.body.clientHeight;
 
-            if(document.body.scrollTop > px*1.2)
+            if(document.body.scrollTop > px*1.5)
             {
                 elem.style.position = 'fixed';
                 elem.style.marginTop = '0px';

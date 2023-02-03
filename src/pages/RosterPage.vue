@@ -818,6 +818,9 @@ th{
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
+  #roster_list{
+    padding-top: 110px;
+  }
   #membership_parent {
     height: 100vh;
     /* height: fit-content; */
@@ -847,6 +850,9 @@ th{
   }
   .roster_table{
     font-size: 0.8em;
+  }
+  #roster_desc{
+    font-size: 2.5em;
   }
 }
 
@@ -879,6 +885,9 @@ th{
   }
   .roster_table{
     font-size: 0.7em;
+  }
+  #roster_desc{
+    font-size: 2em;
   }
 }
 
