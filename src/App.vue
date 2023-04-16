@@ -598,17 +598,17 @@ body {
   transition: 0.2s ease;
   font-size: 0.8em;
 }
-
 #apiNetEdit {
-  color: black;
-  border: 1px solid black;
-  background-color: white;
+    color: white;
+    border: 1px solid white;
+    background-color: rgba(255,255,255,0.2);
 }
 
+
 #apiNetEdit:hover {
-  color: white;
+  color: black;
   border: 0px solid black;
-  background-color: black;
+  background-color: white;
 }
 
 #apiNetDelete {
@@ -1130,6 +1130,9 @@ select {
     margin-bottom: 20px;
 
 }
+#sl_desc{
+  resize: none;
+}
 #sl_parent{
   height: 100%; width: 100%;
   display: flex;
@@ -1191,7 +1194,31 @@ select {
 }
 .sl_block2{
   flex-grow: 5;
+  width: 50%;
 }
+.sl_block3{
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#sl_helper{
+  font-size: 2em;
+}
+.sl_block > input,.sl_block2 > textarea{
+    background: rgba(255,255,255,0.2);
+    outline: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+}
+
+
+
+
 
 #server_meeting_title:hover {
   background-color: rgba(255, 255, 255, 0.2);
@@ -1358,10 +1385,17 @@ select {
   height: 70%;
 }
 
+
 #banner_textarea {
   width: 100%;
   height: 100%;
   resize: none;
+  background: rgba(255,255,255,0.2);
+    outline: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
 }
 
 /* The switch - the box around the slider */
