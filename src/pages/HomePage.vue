@@ -132,7 +132,7 @@ export default {
     scrollToTop() {document.body.scrollTop = 0;},
     getMeetingInfo(VueObj)
     {
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meeting`;
+      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meetings/all`;
             axios.get(URL)
             .then(function (response) {
                 // handle success
@@ -140,10 +140,12 @@ export default {
                     VueObj.meetingData = {};
                     return;
                 }
-                VueObj.date = response.data[0].day;
-                VueObj.month = response.data[0].month;
+                let indx = response.data[0].months.length-1;
+                let databit = response.data[0].months[indx];
+                VueObj.date = databit.day;
+                VueObj.month = databit.month;
                 VueObj.year = response.data[0].year;
-                VueObj.city = response.data[0].city;
+                VueObj.city = databit.city;
             })
             .catch(function (error) {
                 // handle error

@@ -3,16 +3,37 @@
         <div id="nets_title">What would you like to see?</div>
         <div id="nets_block_container">
             <a href="/#/nets/regional">
+                <!-- <div class="nets_block_header">
+                    <div class="nets_folder_sec1"></div>
+                    <div class="nets_folder_sec2">Regional Amateur Radio Nets</div>
+                    <div class="nets_folder_sec3"></div>
+                </div> -->
                 <div class="nets_block block1">
                     Regional Amateur Radio Nets
                     <div id="nets_popular">Popular!</div>
                 </div>
             </a>
+
             <a href="/#/nets/preamble">
-                <div class="nets_block block2">N.A.R.C. Net Preamble</div>
+                <!-- <div class="nets_block_header">
+                    <div class="nets_folder_sec1"></div>
+                    <div class="nets_folder_sec2">N.A.R.C. Net Preamble</div>
+                    <div class="nets_folder_sec3"></div>
+                </div> -->
+                <div class="nets_block block2">
+                    N.A.R.C. Net Preamble
+                </div>
             </a>
+
             <a href="/#/nets/interest">
-                <div class="nets_block block3">Nets Of Interest</div>
+                <!-- <div class="nets_block_header">
+                    <div class="nets_folder_sec1"></div>
+                    <div class="nets_folder_sec2">Nets Of Interest</div>
+                    <div class="nets_folder_sec3"></div>
+                </div> -->
+                <div class="nets_block block3">
+                    Nets Of Interest
+                </div>
             </a>
         </div>
     </div>
@@ -34,11 +55,84 @@ export default {
 }
 </script>
 
+<style>
+#nets_block_container>a
+{
+    position: relative;
+}
+.nets_folder_sec1,
+.nets_folder_sec3{
+  background-color: #15181C;
+}
+.nets_folder_sec2
+{
+    border-radius: 10px 10px 0px 0px;
+    background-color: white;
+    padding: 5px 10px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nets_block_header{
+    position: absolute;
+    top: calc(-2em - 4px); left: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #15181C;
+    z-index: 2;
+    border-radius: 10px 10px 0px 0px ;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 3fr 20fr 8fr;
+    border: 0px;
+    color: #15181C;
+}
+
+
+.nets_folder_sec1,.nets_folder_sec3{
+  height: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.nets_folder_sec1:before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 100%;
+  width: 150%;
+  border-bottom-right-radius: 15px;
+  background: #15181C;
+}
+.nets_folder_sec3:before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 100%;
+  width: 150%;
+  border-bottom-left-radius: 15px;
+  background: #15181C;
+}
+</style>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.nets_block_header{
+
+}
+.nets_folder_sec1{
+
+}
 #nets {
     height: 100%;
-    min-height: 100vh;
+    min-height: 120vh;
     width: 100%;
     background-color: #15181C;
     padding-right: 90px;
@@ -75,11 +169,15 @@ export default {
 .block1{background: linear-gradient( #15181cd2, #15181cad ), url('https://i.imgur.com/Ok8bR9Q.png');}
 .block2{background: linear-gradient( #15181c63, #15181c8e ), url('https://i.imgur.com/KoDiXX2.png');}
 .block3{background: linear-gradient( #15181c4f, #15181c8e ), url('https://i.imgur.com/RKuZ1f8.png');}
+/* .block1{background: linear-gradient( #15181c42, #15181c13 ), url('https://i.imgur.com/Ok8bR9Q.png');}
+.block2{background: linear-gradient( #15181c2a, #15181c21 ), url('https://i.imgur.com/KoDiXX2.png');}
+.block3{background: linear-gradient( #15181c2a, #15181c44 ), url('https://i.imgur.com/RKuZ1f8.png');} */
 
 .nets_block {
     height: 35vh;
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.7);
     aspect-ratio: 5 / 4;
+    /* border-radius: 0px 0px 20px 20px; */
     border-radius: 20px;
     padding: 0.5em;
     font-size: 2em;
@@ -90,6 +188,9 @@ export default {
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
+    
+    /* background-size: 105%;
+    background-position: 60% -70%; */
 }
 .nets_block:hover {
     cursor: pointer;

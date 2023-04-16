@@ -10,7 +10,7 @@ import Roster from './pages/RosterPage.vue';
 import DMR from './pages/DMRPage.vue';
 import Bylaw from './pages/BylawPage.vue';
 import Officers from './pages/OfficersPage.vue';
-import Donate from './pages/DonationPage.vue';
+// import Donate from './pages/DonationPage.vue';
 import Contact from './pages/ContactPage.vue';
 import Invalid from './pages/InvalidPage.vue';
 
@@ -31,7 +31,7 @@ export default[
     { path: '/dmr', component: DMR},
     { path: '/bylaws', component: Bylaw},
     { path: '/officers', component: Officers},
-    { path: '/donate', component: Donate},
+    // { path: '/donate', component: Donate},
     { path: '/contact', component: Contact},
     { path: '*', component: Invalid},
     

@@ -46,6 +46,13 @@
               </td>
               <td>Insider Announcements</td>
             </tr>
+            <tr>
+              <td>1 Member  </td>
+              <td>
+                <i class="fa-solid fa-check"></i>
+              </td>
+              <td>Up to 4 Members</td>
+            </tr>
           </table>
         </div>
       </div>
@@ -107,7 +114,10 @@
     <div id="roster_list">
       <div id="year_select">
         <i class="fas fa-angle-left" @click="prevYear()"></i>
-        <div id="list_title">{{ roster_year }} Roster</div>
+        <div id="list_title_parent">
+          <div id="list_title">{{ roster_year }} Roster</div>
+          <div id="list_total">{{ active_list.length }} Memebers</div>
+        </div>
         <i class="fas fa-angle-right" @click="nextYear()"></i>
       </div>
 
@@ -238,6 +248,7 @@ export default {
       .then(function (response) {
           // handle success
           if(!response.data){
+            VueObj.active_list = [];
             VueObj.nodata = true;
             return;
           }
@@ -247,7 +258,7 @@ export default {
       })
       .catch(function (error) {
           // handle error
-          VueObj.repeaters = {};
+          VueObj.active_list = [];
           VueObj.nodata = true;
           error;
       })
@@ -361,7 +372,12 @@ td:nth-child(odd) {
   font-size: 2em;
   font-family: 'Montserrat';
   font-weight: bold;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
+}
+#list_total{
+  font-family: 'Montserrat';
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 a,

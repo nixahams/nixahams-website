@@ -72,13 +72,13 @@
                     <span class="burgerTitle">Officers</span>
                 </div>
             </a>
-            <a class="burgerA" href="#/donate">
+            <!-- <a class="burgerA" href="#/donate">
                 <div class="hoverOpt">Donate</div>
                 <div class="burgerOption">
                     <i class="fa-solid fa-credit-card"></i>
                     <span class="burgerTitle">Donate</span>
                 </div>
-            </a>
+            </a> -->
             <a class="burgerA" href="#/contact">
                 <div class="hoverOpt">Contact</div>
                 <div class="burgerOption">
@@ -86,6 +86,7 @@
                     <span class="burgerTitle">Contact</span>
                 </div>
             </a>
+            <div></div>
             <div id="header_logo_container">
                 <a href="#/">
                     <img src="../assets/logobottom.png" alt="">
@@ -227,7 +228,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #mobileBuger{
-    background-color: #101022;
+    background-color: #15181C;
     width: 70px;
     height: 70px;
     position: fixed;

@@ -4,7 +4,7 @@
       <i :class=message.icon></i>
     </div>
     <div id='warning_text'>
-      <span>{{ message.type }} :</span>
+      <span id="tr">{{ message.type }} :</span>
       <span :key="lineNumber" v-for="(line, lineNumber) of message.text.split('<br/>')">{{ line }}</span>
     </div>
     <div id='warning_exit'>
@@ -54,7 +54,10 @@ export default {
           }
           if (message.color == '#0469E3') {
             VueObj.checkColor = 'blue'
-          } else {
+          } else if(message.color == '#de781f'){
+            VueObj.checkColor = 'orange'
+          }
+          else{
             VueObj.checkColor = 'red'
           }
         })
@@ -76,23 +79,60 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#red,
-#blue {
+#tr{white-space: nowrap;display: flex;justify-content: center;align-items: center;}
+#red,#blue,#orange {
   z-index: 998;
   width: 80vw;
   left: 10vw;
+  top: 10px;
   position: fixed;
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr 20fr 1.5fr;
+  animation: 0.7s showBanner forwards;
+  border-radius: 10px;
+}
+@keyframes showBanner {
+  0%{transform: translateY(-20px) scaleY(0.5); opacity: 0;}
+  100%{transform: translateY(0px) scaleY(1); opacity: 1;}
 }
 
+#orange {
+  background: hsla(28, 75%, 50%, 1);
+
+background: linear-gradient(45deg, hsla(28, 75%, 50%, 1) 21%, hsla(41, 100%, 69%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(28, 75%, 50%, 1) 21%, hsla(41, 100%, 69%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(28, 75%, 50%, 1) 21%, hsla(41, 100%, 69%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DE781F", endColorstr="#FFCE63", GradientType=1 );
+}
 #red {
   background-color: #dd1f1f;
+  background: hsla(0, 75%, 49%, 1);
+
+background: linear-gradient(45deg, hsla(0, 75%, 49%, 1) 21%, hsla(0, 100%, 69%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(0, 75%, 49%, 1) 21%, hsla(0, 100%, 69%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(0, 75%, 49%, 1) 21%, hsla(0, 100%, 69%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DD1F1F", endColorstr="#FF6363", GradientType=1 );
+
 }
 
 #blue {
   background-color: #0469E3;
+  background: hsla(213, 97%, 45%, 1);
+
+background: linear-gradient(45deg, hsla(213, 97%, 45%, 1) 21%, hsla(213, 100%, 73%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(213, 97%, 45%, 1) 21%, hsla(213, 100%, 73%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(213, 97%, 45%, 1) 21%, hsla(213, 100%, 73%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0469E3", endColorstr="#76B4FF", GradientType=1 );
 }
 
 #warning_icon,
@@ -127,6 +167,7 @@ export default {
   cursor: pointer;
   background-color: inherit;
   color: white;
+  width: 80%; height: 80%;
 }
 
 #warning_text {
@@ -164,6 +205,15 @@ export default {
     left: 0;
     max-height: 60px;
   }
+  #warning_text {
+    gap: 5px;
+  }
+  #warning_text {
+    padding: 15px 1px;
+  }
+  #warning_icon {
+    font-size: 2em;
+  }
 }
 
 /* Mobile Styles */
@@ -175,7 +225,6 @@ export default {
     position: fixed;
     height: fit-content;
     display: grid;
-    grid-template-columns: 1fr 7fr 1.5fr;
     font-size: 0.6em;
   }
 }

@@ -108,7 +108,7 @@ export default {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: rgb(247, 247, 247);
-    padding: 2% 10% 5% 10%;
+    padding: 2% 10% 0% 10%;
     font-size: 4em;
 }
 #preamble_text
