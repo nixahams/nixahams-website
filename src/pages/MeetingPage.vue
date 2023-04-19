@@ -31,7 +31,8 @@
             <div id="calendarContainer">
                 <div id="calendarTitle" @click="changeViewMode($event)">{{ currentMonth }} {{ currentYear }}</div>
                 <div id="calendarMonth">
-                    <span :key="lineNumber" v-for="(line, lineNumber) of currentDesc.split('<br/>')">{{ line }}</span>
+                    <span :key="lineNumber" v-for="(line, lineNumber) of currentDesc.split('<br/>')">{{ line }}
+                </span>
                 </div>
             </div>
         </div>
@@ -78,7 +79,14 @@ export default {
                     // always executed
                 });
         },
-        spawnBlocks() {
+        spawnBlocks(type) {
+            let nameID = 'calendarBlockM';
+            if(type=="month"||type=="Month")
+            {
+                nameID = 'calendarBlockM';
+            }else{
+                nameID = 'calendarBlockY';
+            }
             this.monthsData = this.yearData[this.yearData[0].year-this.currentYear].months
             let VueObj = this;
             let parent = document.getElementById('calendarContainer');
@@ -103,10 +111,10 @@ export default {
             {
                 if(this.monthArr.includes(this.monthsData[i].month))
                 {
-                    newArr.push({desc: 'true', month: this.monthsData[i].month})
+                    newArr.push({day: this.monthsData[i].day, month: this.monthsData[i].month})
                 }
                 else{
-                    newArr.push({desc: 'false', month: ""})
+                    newArr.push({day: '', month: ""})
                 }
  
             }
@@ -117,8 +125,8 @@ export default {
                 if(this.monthArr.includes(newArr[i].month))
                 {
                     let newIndex = this.monthArr.indexOf(newArr[i].month)
-                    newArr[i] = {desc: 'false', month: ""};
-                    newArr[newIndex] = {desc: 'true', month: this.monthArr[newIndex]};
+                    // newArr[i] = {day: '', month: ""};
+                    newArr[newIndex] = {day: newArr[i].day, month: this.monthArr[newIndex]};
                 }
             }
             //spawn blocks based on months in new array
@@ -128,8 +136,9 @@ export default {
                 if(this.monthArr.includes(newArr[i].month))
                 {                    
                     //active
-                    blockChild.id = "calendarBlock";
-                    blockChild.innerHTML = this.monthArr[i];
+                    blockChild.id = nameID;
+                    blockChild.innerHTML = this.monthArr[i]+`<span id='day'>${newArr[i].day}</span>`;
+                    this.activeDay = newArr[i].day
                     blockChild.addEventListener('click', function () {
                         VueObj.changeTitle("month", this, newArr[i].month);
                     })
@@ -163,7 +172,7 @@ export default {
                     this.currentYear = element.innerHTML;
                     titleHolder.innerHTML = this.currentYear;
                     document.getElementById('calendarYearContainer').remove();
-                    this.spawnBlocks();
+                    this.spawnBlocks("Month");
                     this.viewMode = "Year";
                     // this.getNewDate();
                     break;
@@ -190,17 +199,16 @@ export default {
         },
         changeViewMode(e) {
             let VueObj = this;
-
             switch (this.viewMode) {
-                case "Month": {
+                case "Month":case"month": {
                     //going to year mode
                     document.getElementById('calendarMonth').id = 'hideCalendar';
-                    this.spawnBlocks();
+                    this.spawnBlocks("month");
                     this.viewMode = "Year";
                 }
 
                     break;
-                case "Year": {
+                case "Year":case"year": {
                     document.getElementById('calendarMonthContainer').remove();
                     let parent = document.getElementById('calendarContainer');
                     let blockParent = document.createElement('div');
@@ -209,7 +217,7 @@ export default {
                     e.target.innerHTML = this.currentDecade;
                     for (let i = this.yearsData-this.years+1; i < Number(this.yearsData)+1; i++) {
                         let blockChild = document.createElement('div');
-                        blockChild.id = "calendarBlock";
+                        blockChild.id = "calendarBlockY";
                         blockChild.addEventListener('click', function () {
                             VueObj.changeTitle("year", this);
                         })
@@ -220,7 +228,7 @@ export default {
 
                 }
                     break;
-                case "Decade":
+                case "Decade":case"decade":
                     document.getElementById('calendarYearContainer').remove();
                     document.getElementById('hideCalendar').id = 'calendarMonth';
                     document.getElementById('calendarTitle').innerHTML = this.currentMonth + " " + this.currentYear;
@@ -236,6 +244,7 @@ export default {
     },
     data() {
         return {
+            activeDay: "",
             activeMonth: "",
             viewMode: "Month",
             yearData:[],

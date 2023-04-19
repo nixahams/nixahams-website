@@ -887,7 +887,7 @@ select {
 
 }
 
-#calendarBlock {
+#calendarBlockM,#calendarBlockY{
   border: 1px solid white;
   display: flex;
   justify-content: center;
@@ -897,7 +897,37 @@ select {
   aspect-ratio: 1 / 1;
   transition: 0.2s ease;
   cursor: pointer;
+  position: relative;
   background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+#calendarBlockM::after{
+  content: 'EVENT';
+  font-size: 0.8em;
+  display: flex; justify-content: start; align-content: center;
+  padding-left: 10px;
+  height: 10%;
+  top: 0;
+  width: 100%;
+  position: absolute;
+  font-weight: 600;
+  background-color: #E88F99;
+  transition: 0.2s ease;
+}
+#day{
+  content: '';
+  font-size: 0.8em;
+  display: flex; justify-content: start; align-content: center;
+  padding-left: 10px;
+  bottom: 5px;
+  width: 100%;
+  position: absolute;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+#calendarBlockM:hover::after{
+
+  background-color: #f34358;
 }
 
 #calendarBlock2 {
@@ -912,7 +942,7 @@ select {
   cursor: text;
 }
 
-#calendarBlock:hover {
+#calendarBlockM:hover,#calendarBlockY:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -1606,7 +1636,7 @@ input:checked+.slider:before {
     padding-left: 10px;
   }
 
-  #calendarBlock {
+  #calendarBlockM,#calendarBlockY{
     height: 25%;
   }
 
@@ -1667,7 +1697,7 @@ input:checked+.slider:before {
     padding-left: 10px;
   }
 
-  #calendarBlock {
+  #calendarBlockM,#calendarBlockY{
     height: 20%;
   }
 
