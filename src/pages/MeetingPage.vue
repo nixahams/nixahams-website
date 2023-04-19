@@ -86,28 +86,68 @@ export default {
             blockParent.id = "calendarMonthContainer";
             parent.appendChild(blockParent);
 
-            let monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            for(let i = this.monthsData.length; i < 12; i++)
+            {
+                let obj = {
+                    month: 'N/A',
+                    desc: 'false'
+                }
+                this.monthsData.push(obj);
+            }
 
             document.getElementById('calendarTitle').innerHTML = this.currentYear;
-            for (let i = 0; i < this.monthsData.length; i++) {
-                let blockChild = document.createElement('div');
-                blockChild.id = "calendarBlock";
-                blockChild.addEventListener('click', function () {
-                    var indx = (monthArr.indexOf(this.innerHTML));
-                    VueObj.changeTitle("month", this, indx);
-
-                })
-                blockChild.innerHTML = monthArr[i];
-                blockParent.appendChild(blockChild);
+            let newArr = [];
+            //create array that has months for that year ['Jan','','']
+            for(let i = 0; i < 12; i++)
+            {
+                if(this.monthArr.includes(this.monthsData[i].month))
+                {
+                    newArr.push({desc: 'true', month: this.monthsData[i].month})
+                }
+                else{
+                    newArr.push({desc: 'false', month: ""})
+                }
+ 
             }
-            for (let i = this.monthsData.length; i < 12; i++) {
+
+            //organizing the months to the correct index [Dec = 11]
+            for(let i = 0; i < 12; i++)
+            {
+                if(this.monthArr.includes(newArr[i].month))
+                {
+                    let newIndex = this.monthArr.indexOf(newArr[i].month)
+                    newArr[i] = {desc: 'false', month: ""};
+                    newArr[newIndex] = {desc: 'true', month: this.monthArr[newIndex]};
+                }
+            }
+            //spawn blocks based on months in new array
+            for(let i = 0; i < 12; i++)
+            {
                 let blockChild = document.createElement('div');
-                blockChild.id = "calendarBlock2";
-                blockChild.innerHTML = monthArr[i];
+                if(this.monthArr.includes(newArr[i].month))
+                {                    
+                    //active
+                    blockChild.id = "calendarBlock";
+                    blockChild.innerHTML = this.monthArr[i];
+                    blockChild.addEventListener('click', function () {
+                        VueObj.changeTitle("month", this, newArr[i].month);
+                    })
+                }
+                else{
+                    //inactive
+                    blockChild.id = "calendarBlock2";
+                    blockChild.innerHTML = this.monthArr[i];
+                }
                 blockParent.appendChild(blockChild);
             }
         },
-        changeTitle(key, element, indxM) {
+        changeTitle(key, element, monthX) {
+            if(monthX == undefined)
+            {
+                monthX=0;
+            }
+            // console.log(this.activeMonth, monthX)
             let titleHolder = document.getElementById('calendarTitle');
             switch (key) {
                 case "month":
@@ -116,7 +156,7 @@ export default {
                     this.currentMonth = element.innerHTML;
                     titleHolder.innerHTML = this.currentMonth + " " + this.currentYear;
                     this.viewMode = "Month";
-                    this.getNewDate(indxM);
+                    this.getNewDate(monthX);
                     break;
 
                 case "year":
@@ -125,15 +165,32 @@ export default {
                     document.getElementById('calendarYearContainer').remove();
                     this.spawnBlocks();
                     this.viewMode = "Year";
+                    // this.getNewDate();
                     break;
             }
         },
-        getNewDate(indxM) {
-            let indx = this.yearData[0].year-this.currentYear;
-            this.currentDesc = this.yearData[indx].months[indxM].desc;
+        getNewDate(monthX) {
+            let indxY = this.yearData[0].year-this.currentYear;
+            let indxM;
+
+            for(let i = 0; i < 12; i++)
+            {
+                if(this.yearData[indxY].months[i].month == monthX)
+                {
+                    indxM = i;
+                }
+            }
+            for(let i = 0; i < 12; i++)
+            {
+                if(this.yearData[indxY].months)
+                {
+                    this.currentDesc = this.yearData[indxY].months[indxM].desc
+                }
+            }
         },
         changeViewMode(e) {
             let VueObj = this;
+
             switch (this.viewMode) {
                 case "Month": {
                     //going to year mode
@@ -170,16 +227,19 @@ export default {
                     this.viewMode = "Month";
                     break;
             }
+
         }
     },
     mounted() {
-        this.scrollToTop();
+        // this.scrollToTop();
         this.getMeeting(this);
     },
     data() {
         return {
+            activeMonth: "",
             viewMode: "Month",
             yearData:[],
+            monthArr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             meetingData: {
                 day: '..',
                 month: '...',
