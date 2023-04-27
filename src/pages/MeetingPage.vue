@@ -239,7 +239,7 @@ export default {
         }
     },
     mounted() {
-        // this.scrollToTop();
+        this.scrollToTop();
         this.getMeeting(this);
     },
     data() {

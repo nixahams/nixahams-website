@@ -1639,6 +1639,9 @@ input:checked+.slider:before {
   #calendarBlockM,#calendarBlockY{
     height: 25%;
   }
+  #calendarBlock2{
+    height: 25%;
+  }
 
   #editCenter {
     width: 90%;
@@ -1700,7 +1703,9 @@ input:checked+.slider:before {
   #calendarBlockM,#calendarBlockY{
     height: 20%;
   }
-
+  #calendarBlock2{
+    height: 20%;
+  }
   #editCenter {
     width: 95%;
   }
