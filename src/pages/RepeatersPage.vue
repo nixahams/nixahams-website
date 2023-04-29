@@ -38,7 +38,7 @@
       <div id="desc_info_desc">
         <span 
         :key="lineNumber" 
-        v-for="(line,lineNumber) of long_desc.split('<br/>')" >{{line}}</span></div>
+        v-for="(line,lineNumber) of long_desc.split('<br>')" >{{line}}</span></div>
     </div>
   </div>
 </template>
@@ -172,7 +172,7 @@ export default {
           VueObj.long_title=response.data[0].long_title;
           VueObj.date=response.data[0].date;
           let newStr = response.data[0].long_desc;
-          // newStr = newStr.replace("<br/>", ("<br>"));
+          // newStr = newStr.replace("<br>", ("<br>"));
           VueObj.long_desc= newStr;
           
           VueObj.image_array = response.data[0].img_arr;

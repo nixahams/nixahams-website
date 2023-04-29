@@ -31,7 +31,7 @@
             <div id="calendarContainer">
                 <div id="calendarTitle" @click="changeViewMode($event)">{{ currentMonth }} {{ currentYear }}</div>
                 <div id="calendarMonth">
-                    <span :key="lineNumber" v-for="(line, lineNumber) of currentDesc.split('<br/>')">{{ line }}
+                    <span :key="lineNumber" v-for="(line, lineNumber) of currentDesc.split('<br>')">{{ line }}
                 </span>
                 </div>
             </div>
