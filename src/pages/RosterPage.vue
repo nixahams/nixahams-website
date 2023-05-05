@@ -161,19 +161,22 @@ export default {
     StripeCheckout
   },
   data() {
-    this.publishableKey = "pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
+    // this.publishableKey = "pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
+    this.publishableKey = "pk_live_51MAcptFTeL1911WTgGpXCz4aoNyBqnCIWO6vo3wvAj0hUVu9XkHF7o9smZ0Cd2fqAvFNg30TPjZWJWdjhQMjSTOU00gtGqKmjz";
     return {
       familyItem:
       [
         {
-          price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
+          // price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
+          price: 'price_1N4GFLFTeL1911WTktnsKhwH',
           quantity: 1
         }
       ],
       singleItem:
       [
         {
-          price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
+          // price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
+          price: 'price_1N4GErFTeL1911WTu30JmNer',
           quantity: 1
         }
       ],
@@ -185,7 +188,7 @@ export default {
       single: 'single_on',
       family: 'family_off',
       card_side: 'membership_card_side_front',
-      roster_year: 2023,
+      roster_year: 2024,
       active_year_table: [],
       active_list: [],
       nodata: false,

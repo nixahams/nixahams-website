@@ -132,23 +132,23 @@ export default {
             //spawn blocks based on months in new array
             for(let i = 0; i < 12; i++)
             {
-                let blockChild = document.createElement('div');
+                let spanDay = document.createElement('div');
                 if(this.monthArr.includes(newArr[i].month))
                 {                    
                     //active
-                    blockChild.id = nameID;
-                    blockChild.innerHTML = this.monthArr[i]+`<span id='day'>${newArr[i].day}</span>`;
+                    spanDay.id = nameID;
+                    spanDay.innerHTML = this.monthArr[i]+`<span id='day'>${newArr[i].day}</span>`;
                     this.activeDay = newArr[i].day
-                    blockChild.addEventListener('click', function () {
+                    spanDay.addEventListener('click', function () {
                         VueObj.changeTitle("month", this, newArr[i].month);
                     })
                 }
                 else{
                     //inactive
-                    blockChild.id = "calendarBlock2";
-                    blockChild.innerHTML = this.monthArr[i];
+                    spanDay.id = "calendarBlock2";
+                    spanDay.innerHTML = this.monthArr[i];
                 }
-                blockParent.appendChild(blockChild);
+                blockParent.appendChild(spanDay);
             }
         },
         changeTitle(key, element, monthX) {
@@ -165,6 +165,7 @@ export default {
                     this.currentMonth = element.innerHTML;
                     titleHolder.innerHTML = this.currentMonth + " " + this.currentYear;
                     this.viewMode = "Month";
+                    document.getElementById('day').innerHTML="";
                     this.getNewDate(monthX);
                     break;
 

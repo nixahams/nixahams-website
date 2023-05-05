@@ -939,7 +939,8 @@ select {
   height: 35%;
   aspect-ratio: 1 / 1;
   transition: 0.2s ease;
-  cursor: text;
+  cursor:default;
+  color: rgba(255,255,255,0.5);
 }
 
 #calendarBlockM:hover,#calendarBlockY:hover {
