@@ -4,7 +4,11 @@
         <div id="member_text">
             <div id="member_text_name">{{ name }}</div>
             <div id="member_text_position">{{ position }}</div>
-            <div id="member_text_info">{{ info }}</div>
+            <div id="member_text_info">
+                <span 
+                :key="lineNumber" 
+                v-for="(line,lineNumber) of info.split('<br>')" >{{line}}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -62,6 +66,12 @@ export default {
     height: 50%; width: 2px;
     background-color: rgba(255, 255, 255, 0.2);
 }
+span{
+  /* white-space: pre-line;
+  word-wrap: break-word;
+  font-family: inherit; */
+  min-height: 1em;
+}
 #member_text{
     padding: 20px 20px 20px 35px;
     display: flex;
@@ -77,6 +87,9 @@ export default {
 }
 #member_text_info{
     overflow: auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Slightly Resized Screen Styles */

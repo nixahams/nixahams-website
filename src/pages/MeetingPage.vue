@@ -59,16 +59,18 @@ export default {
                         VueObj.meetingData = {};
                         return;
                     }
-                    VueObj.years = response.data.length;
-                    let indx = response.data[0].months.length - 1;
-                    VueObj.monthsData = response.data[0].months;
-                    VueObj.yearsData = response.data[0].year;
-                    VueObj.meetingData = VueObj.monthsData[indx];
-                    VueObj.currentDecade = `${(VueObj.yearsData - VueObj.years+1)} - ${VueObj.yearsData}`;
-                    VueObj.currentYear = VueObj.yearsData;
+                    VueObj.yearsData = response.data[response.data.length-1].year;
+                    VueObj.monthsData = response.data[response.data.length-1].months;
                     VueObj.currentMonth = VueObj.monthsData[VueObj.monthsData.length-1].month;
+                    VueObj.currentYear = VueObj.yearsData;
                     VueObj.currentDesc = VueObj.monthsData[VueObj.monthsData.length-1].desc;
-                    VueObj.yearData = (response.data)
+                    let indx = response.data[response.data.length-1].months.length - 1;
+                    VueObj.meetingData = VueObj.monthsData[indx];
+                    VueObj.mongoData = response.data;
+                    // VueObj.years = response.data.length;
+                    // // VueObj.yearsData = response.data[response.data.length-1].year;
+
+                    VueObj.currentDecade = `${response.data[0].year} - ${response.data[response.data.length-1].year}`;
                 })
                 .catch(function (error) {
                     // handle error
@@ -87,23 +89,25 @@ export default {
             }else{
                 nameID = 'calendarBlockY';
             }
-            this.monthsData = this.yearData[this.yearData[0].year-this.currentYear].months
+            let year;
+            for(let i = 0; i < this.mongoData.length; i++)
+            {if(this.mongoData[i].year == this.currentYear){year = i;}}
+            this.monthsData = this.mongoData[year].months;
             let VueObj = this;
             let parent = document.getElementById('calendarContainer');
             let blockParent = document.createElement('div');
             blockParent.id = "calendarMonthContainer";
             parent.appendChild(blockParent);
 
-
             for(let i = this.monthsData.length; i < 12; i++)
             {
                 let obj = {
                     month: 'N/A',
-                    desc: 'false'
+                    desc: 'false',
+                    day: ''
                 }
                 this.monthsData.push(obj);
             }
-
             document.getElementById('calendarTitle').innerHTML = this.currentYear;
             let newArr = [];
             //create array that has months for that year ['Jan','','']
@@ -111,14 +115,14 @@ export default {
             {
                 if(this.monthArr.includes(this.monthsData[i].month))
                 {
+                    // newArr[this.monthArr.indexOf(this.monthsData[i].month)] = {day: this.monthsData[i].day, month: this.monthsData[i].month}
+                    
                     newArr.push({day: this.monthsData[i].day, month: this.monthsData[i].month})
                 }
                 else{
                     newArr.push({day: '', month: ""})
                 }
- 
             }
-
             //organizing the months to the correct index [Dec = 11]
             for(let i = 0; i < 12; i++)
             {
@@ -126,7 +130,9 @@ export default {
                 {
                     let newIndex = this.monthArr.indexOf(newArr[i].month)
                     // newArr[i] = {day: '', month: ""};
+                    newArr[i] = {day: newArr[i].day, month: ""};
                     newArr[newIndex] = {day: newArr[i].day, month: this.monthArr[newIndex]};
+                    //deleting the previous incorrect position
                 }
             }
             //spawn blocks based on months in new array
@@ -156,7 +162,6 @@ export default {
             {
                 monthX=0;
             }
-            // console.log(this.activeMonth, monthX)
             let titleHolder = document.getElementById('calendarTitle');
             switch (key) {
                 case "month":
@@ -173,28 +178,32 @@ export default {
                     this.currentYear = element.innerHTML;
                     titleHolder.innerHTML = this.currentYear;
                     document.getElementById('calendarYearContainer').remove();
-                    this.spawnBlocks("Month");
+                    this.spawnBlocks("Month", monthX);
                     this.viewMode = "Year";
                     // this.getNewDate();
                     break;
             }
         },
+        //gets the description based on month and year selected
         getNewDate(monthX) {
-            let indxY = this.yearData[0].year-this.currentYear;
+            let indxY = "";
+            for(let i = 0; i < this.mongoData.length; i++)
+            {if(this.mongoData[i].year == this.currentYear){indxY = i;}}
             let indxM;
-
+            //finding the index of selected month
             for(let i = 0; i < 12; i++)
-            {
-                if(this.yearData[indxY].months[i].month == monthX)
+            {   
+                if(this.mongoData[indxY].months[i] == undefined){continue}
+                if(this.mongoData[indxY].months[i].month == monthX)
                 {
                     indxM = i;
                 }
             }
             for(let i = 0; i < 12; i++)
             {
-                if(this.yearData[indxY].months)
+                if(this.mongoData[indxY].months)
                 {
-                    this.currentDesc = this.yearData[indxY].months[indxM].desc
+                    this.currentDesc = this.mongoData[indxY].months[indxM].desc;
                 }
             }
         },
@@ -216,13 +225,14 @@ export default {
                     blockParent.id = "calendarYearContainer";
                     parent.appendChild(blockParent);
                     e.target.innerHTML = this.currentDecade;
-                    for (let i = this.yearsData-this.years+1; i < Number(this.yearsData)+1; i++) {
+                    for(let i = 0; i < this.mongoData.length; i++)
+                    {
                         let blockChild = document.createElement('div');
                         blockChild.id = "calendarBlockY";
                         blockChild.addEventListener('click', function () {
                             VueObj.changeTitle("year", this);
                         })
-                        blockChild.innerHTML = i;
+                        blockChild.innerHTML = this.mongoData[i].year;
                         blockParent.appendChild(blockChild);
                     }
                     this.viewMode = "Decade";
@@ -233,6 +243,7 @@ export default {
                     document.getElementById('calendarYearContainer').remove();
                     document.getElementById('hideCalendar').id = 'calendarMonth';
                     document.getElementById('calendarTitle').innerHTML = this.currentMonth + " " + this.currentYear;
+
                     this.viewMode = "Month";
                     break;
             }
@@ -240,7 +251,7 @@ export default {
         }
     },
     mounted() {
-        this.scrollToTop();
+        // this.scrollToTop();
         this.getMeeting(this);
     },
     data() {
@@ -248,7 +259,6 @@ export default {
             activeDay: "",
             activeMonth: "",
             viewMode: "Month",
-            yearData:[],
             monthArr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             meetingData: {
                 day: '..',

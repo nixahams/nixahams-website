@@ -140,11 +140,11 @@ export default {
                     VueObj.meetingData = {};
                     return;
                 }
-                let indx = response.data[0].months.length-1;
-                let databit = response.data[0].months[indx];
+                let indx = response.data[response.data.length-1].months.length-1;
+                let databit = response.data[response.data.length-1].months[indx];
                 VueObj.date = databit.day;
                 VueObj.month = databit.month;
-                VueObj.year = response.data[0].year;
+                VueObj.year = response.data[response.data.length-1].year;
                 VueObj.city = databit.city;
             })
             .catch(function (error) {

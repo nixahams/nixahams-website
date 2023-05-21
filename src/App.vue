@@ -884,7 +884,6 @@ select {
   flex-wrap: wrap;
   align-content: flex-start;
   transition: 5.2s ease;
-
 }
 
 #calendarBlockM,#calendarBlockY{
@@ -1562,7 +1561,9 @@ input:checked+.slider:before {
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-
+  #calendarMonthContainer,#calendarYearContainer{
+    justify-content: flex-end;
+  }
   .server_banner_edit:nth-child(1),
   .server_banner_edit:nth-child(2),
   .server_banner_edit:nth-child(3),
