@@ -57,7 +57,7 @@ export default {
     text-indent: 1.5em;
 }
 #interest{
-    background-color: #15181C;
+    background-color: rgb(17, 17, 17);
     height: fit-content;
     width: 100%;
     padding-left: 90px;

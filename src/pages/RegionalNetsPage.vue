@@ -146,7 +146,7 @@ export default {
   color: rgb(208, 213, 239);
   padding-top: 120px;
   padding-bottom: 100px;
-  background-color: rgb(21, 24, 28);
+  background-color: rgb(17, 17, 17);
 }
 
 /* contains components of messages */

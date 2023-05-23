@@ -181,7 +181,8 @@ export default {
 #contact_bottom {
   width: 100%;
   height: 20%;
-  background-color: black;
+  background: linear-gradient(0deg, rgb(17, 17, 17), rgb(39, 39, 39));
+  box-shadow: 0px -15px rgba(0, 0, 0, 1);
   color: white;
 }
 #form_inner {

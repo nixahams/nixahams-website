@@ -118,7 +118,6 @@ a:hover {
     text-align: center;
     padding: 10px;
     font-size: 0.8em;
-    background-color: rgb(0, 0, 0);
 }
 
 #created {
@@ -139,16 +138,18 @@ a:hover {
 #footer_parent {
     /* border: 1px solid; */
     width: 100%;
-    height: fit-content;
     position: relative;
     display: flex;
     flex-direction: column;
+    /* padding-top: 30px; */
+    background-clip: padding-box;
 }
 
 #footer_block_parent {
     width: 100%;
     height: fit-content;
     background-color: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgb(7, 7, 7) 50%, rgb(17, 17, 17));
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -160,7 +161,7 @@ a:hover {
     min-width: 200px;
     height: 300px;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
+    /* background-color: rgba(0, 0, 0, 0.2); */
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 20px;

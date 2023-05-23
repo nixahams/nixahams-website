@@ -1,5 +1,7 @@
 <template>
     <div id="header_compress">
+        <img src="../assets/motherboard.jpg" id="header_bg" alt="">
+        <div id="bg_edit"></div>
         <div id="burgerParentCompress">
             <div id="burgerOpen" @click="clickHeader">
                 <div></div>
@@ -242,6 +244,7 @@ export default {
     border-bottom: 1px solid white;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    overflow: hidden;
 }
 #mobileBuger>#burgerOptionContainer{
     /* background-color: red; */
@@ -272,6 +275,17 @@ export default {
     font-weight: bold;
     border: 1px solid rgba(0,0,0,0.5);
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+#header_bg,#bg_edit{
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0;
+}
+#header_bg{
+    object-fit: cover;
+}
+#bg_edit{
+    backdrop-filter: blur(0px) brightness(0.2) grayscale(1);
 }
 #header_compress{
     background-color: #15181C;
@@ -377,6 +391,7 @@ a{
     justify-content: center;
     align-items: center;
     /* transition: 0.2s ease; */
+    z-index: 2;
 }
 #burgerParentExpand{
     width: 80%;
@@ -384,6 +399,7 @@ a{
     justify-content: flex-end;
     align-items: center;
     transition: 0.2s ease;
+    z-index: 2;
 }
 #burgerOpen{
     width: 25px;

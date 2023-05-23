@@ -199,7 +199,7 @@ export default {
     width: 100%;
     /* min-height: 100vh; */
     height: fit-content;
-    background-color: #15181C;
+    background-color: rgb(17,17,17);
     padding-left: 90px;
     padding-right: 90px;
     display: flex;

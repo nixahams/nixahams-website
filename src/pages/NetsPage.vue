@@ -134,7 +134,7 @@ export default {
     height: 100%;
     min-height: 120vh;
     width: 100%;
-    background-color: #15181C;
+    background-color: rgb(17, 17, 17);
     padding-right: 90px;
     padding-left: 90px;
     padding-top: 120px;

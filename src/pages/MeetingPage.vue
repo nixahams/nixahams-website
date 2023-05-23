@@ -251,7 +251,7 @@ export default {
         }
     },
     mounted() {
-        // this.scrollToTop();
+        this.scrollToTop();
         this.getMeeting(this);
     },
     data() {
@@ -407,7 +407,7 @@ export default {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    background-color: #15181C;
+    background-color: rgb(17,17,17)
 }
 
 #absol {

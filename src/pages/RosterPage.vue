@@ -645,7 +645,7 @@ a:hover {
   color: rgb(208, 213, 239);
   height: fit-content;
   width: 100%;
-  background-color: #15181C;
+  background-color: rgb(17,17,17);
 }
 
 #membership_parent {

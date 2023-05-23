@@ -389,7 +389,9 @@ export default {
 #contact_bottom {
   width: 100%;
   height: 20%;
-  background-color: black;
+  /* background-color: black; */
+  background: linear-gradient(0deg, rgb(17, 17, 17), rgb(39, 39, 39));
+
   color: white;
 }
 
