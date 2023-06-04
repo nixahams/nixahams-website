@@ -749,6 +749,8 @@ select {
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 20px;
+  justify-content: space-around;
 }
 
 #deleteDmr {
@@ -786,6 +788,27 @@ select {
 #editSubmitV2:hover {
   background-color: rgb(71 149 27);
   color: rgb(255, 255, 255);
+}
+#delMon:hover,#delYear:hover{
+  background-color: #681718;
+}
+
+#delMon,#delYear{
+  overflow: hidden;
+  font-size: 0.8em !important;
+  background-color: #d93032;
+  width: 140px;
+  height: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s ease;
+  display: flex; justify-content: center; align-items: center;
+  flex-direction: row;
+  gap: 5px;
 }
 
 #editSubmit:hover {
