@@ -206,8 +206,8 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: "https://nixahams.net/#/roster",
-      cancelURL: "https://nixahams.net/#/roster",
+      successURL: "https://nixahams-website-cg9.pages.dev/#/roster",
+      cancelURL: "https://nixahams-website-cg9.pages.dev/#/roster",
 
       membership_selected: "single_side",
       single: "single_on",
@@ -221,11 +221,7 @@ export default {
   },
   methods: {
     submitSinglePayment() {
-      try {
-        this.$refs.checkoutRef.redirectToCheckout();
-      } catch (error) {
-        console.log(error);
-      }
+      this.$refs.checkoutRef1.redirectToCheckout();
     },
     submitFamilyPayment() {
       this.$refs.checkoutRef2.redirectToCheckout();
