@@ -206,7 +206,7 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: "https:/nixahams.net/#/roster",
+      successURL: "https://nixahams.net/#/roster",
       cancelURL: "https://nixahams.net/#/roster",
 
       membership_selected: "single_side",
