@@ -22,7 +22,7 @@
         </div>
         <div id="membership_right_table">
           <table id="benefits_table">
-            <th>Sinlge</th>
+            <th>Single</th>
             <th>vs</th>
             <th>Family</th>
             <tr>
@@ -47,7 +47,7 @@
               <td>Insider Announcements</td>
             </tr>
             <tr>
-              <td>1 Member  </td>
+              <td>1 Member</td>
               <td>
                 <i class="fa-solid fa-check"></i>
               </td>
@@ -60,21 +60,29 @@
         <div class="ease" :id="card_side">
           <div class="full_card" id="card_front">
             <div class="card_img_parent">
-              <img id="front_img" src="https://assets.codepen.io/1462889/sea.png" alt="">
-              <img class="moveRadio" id="front_img2" src="../assets/roster/radio_transparent.png">
+              <img
+                id="front_img"
+                src="https://assets.codepen.io/1462889/sea.png"
+                alt=""
+              />
+              <img
+                class="moveRadio"
+                id="front_img2"
+                src="../assets/roster/radio_transparent.png"
+              />
             </div>
             <div class="card_title sin_card">Single</div>
             <div class="card_price">$15 / Year</div>
             <div class="card_button_parent">
               <a class="card_ref" @click="submitSinglePayment" target="_blank">
                 <StripeCheckout
-                ref="checkoutRef1"
-                mode="subscription"
-                :pk="publishableKey"
-                :line-items="singleItem"
-                :success-url="successURL"
-                :cancel-url="cancelURL"
-                @loading="v => loading = v"
+                  ref="checkoutRef1"
+                  mode="subscription"
+                  :pk="publishableKey"
+                  :line-items="singleItem"
+                  :success-url="successURL"
+                  :cancel-url="cancelURL"
+                  @loading="(v) => (loading = v)"
                 />
                 <button id="card_btn_front" class="card_btn">Select</button>
               </a>
@@ -82,12 +90,32 @@
           </div>
           <div class="full_card" id="card_back">
             <div class="card_img_parent">
-              <img id="back_img" src="https://assets.codepen.io/1462889/grass.png" alt="">
+              <img
+                id="back_img"
+                src="https://assets.codepen.io/1462889/grass.png"
+                alt=""
+              />
               <div id="back_img_collection">
-                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
-                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
-                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
-                <img class="back_imgs" id="back_img2" src="../assets/roster/radio_transparent.png">
+                <img
+                  class="back_imgs"
+                  id="back_img2"
+                  src="../assets/roster/radio_transparent.png"
+                />
+                <img
+                  class="back_imgs"
+                  id="back_img2"
+                  src="../assets/roster/radio_transparent.png"
+                />
+                <img
+                  class="back_imgs"
+                  id="back_img2"
+                  src="../assets/roster/radio_transparent.png"
+                />
+                <img
+                  class="back_imgs"
+                  id="back_img2"
+                  src="../assets/roster/radio_transparent.png"
+                />
               </div>
             </div>
             <div class="card_title fam_card">Family</div>
@@ -95,15 +123,15 @@
             <div class="card_button_parent">
               <a class="card_ref" @click="submitFamilyPayment" target="_blank">
                 <StripeCheckout
-                ref="checkoutRef2"
-                mode="subscription"
-                :pk="publishableKey"
-                :line-items="familyItem"
-                :success-url="successURL"
-                :cancel-url="cancelURL"
-                @loading="v => loading = v"
+                  ref="checkoutRef2"
+                  mode="subscription"
+                  :pk="publishableKey"
+                  :line-items="familyItem"
+                  :success-url="successURL"
+                  :cancel-url="cancelURL"
+                  @loading="(v) => (loading = v)"
                 />
-                <button id="card_btn_back" class="card_btn" >Select</button>
+                <button id="card_btn_back" class="card_btn">Select</button>
               </a>
             </div>
           </div>
@@ -134,11 +162,11 @@
             <th id="thr">ARRL Membership</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <tr v-for="(member, key) in active_list" :key="key">
             <!-- <th scope="row">{ sale.Month  }</th>   -->
-            <td> {{ member.callsign }}</td>
-            <td> {{ member.name }}</td>
+            <td>{{ member.callsign }}</td>
+            <td>{{ member.name }}</td>
             <td class="arrl">
               <i v-if="member.ARRL_membership" class="fa-solid fa-check"></i>
               <i v-if="!member.ARRL_membership" class="fa-solid fa-x"></i>
@@ -147,58 +175,59 @@
         </tbody>
       </table>
     </div>
-
   </div>
 </template>
-  
+
 <script>
-import {StripeCheckout} from '@vue-stripe/vue-stripe';
-import axios from 'axios';
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
+import axios from "axios";
 
 export default {
-  name: 'RosterPage',
+  name: "RosterPage",
   components: {
-    StripeCheckout
+    StripeCheckout,
   },
   data() {
     // this.publishableKey = "pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
-    this.publishableKey = "pk_live_51MAcptFTeL1911WTgGpXCz4aoNyBqnCIWO6vo3wvAj0hUVu9XkHF7o9smZ0Cd2fqAvFNg30TPjZWJWdjhQMjSTOU00gtGqKmjz";
+    this.publishableKey =
+      "pk_live_51MAcptFTeL1911WTgGpXCz4aoNyBqnCIWO6vo3wvAj0hUVu9XkHF7o9smZ0Cd2fqAvFNg30TPjZWJWdjhQMjSTOU00gtGqKmjz";
     return {
-      familyItem:
-      [
+      familyItem: [
         {
           // price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
-          price: 'price_1N4GFLFTeL1911WTktnsKhwH',
-          quantity: 1
-        }
+          price: "price_1N4GFLFTeL1911WTktnsKhwH",
+          quantity: 1,
+        },
       ],
-      singleItem:
-      [
+      singleItem: [
         {
           // price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
-          price: 'price_1N4GErFTeL1911WTu30JmNer',
-          quantity: 1
-        }
+          price: "price_1N4GErFTeL1911WTu30JmNer",
+          quantity: 1,
+        },
       ],
-      successURL:'https://nixahams-website-cg9.pages.dev/#/roster',
-      cancelURL:'https://nixahams-website-cg9.pages.dev/#/roster',
-
+      successURL: "https:/nixahams.net/#/roster",
+      cancelURL: "https://nixahams.net/#/roster",
 
       membership_selected: "single_side",
-      single: 'single_on',
-      family: 'family_off',
-      card_side: 'membership_card_side_front',
+      single: "single_on",
+      family: "family_off",
+      card_side: "membership_card_side_front",
       roster_year: 2024,
       active_year_table: [],
       active_list: [],
       nodata: false,
-    }
+    };
   },
   methods: {
-    submitSinglePayment(){
-      this.$refs.checkoutRef1.redirectToCheckout();
+    submitSinglePayment() {
+      try {
+        this.$refs.checkoutRef.redirectToCheckout();
+      } catch (error) {
+        console.log(error);
+      }
     },
-    submitFamilyPayment(){
+    submitFamilyPayment() {
       this.$refs.checkoutRef2.redirectToCheckout();
     },
     async nextYear() {
@@ -212,45 +241,49 @@ export default {
     async updateRosterList() {
       await this.getRoster(this);
     },
-    scrollToTop() { document.body.scrollTop = 0; },
-    scrollToRoster() {
-
+    scrollToTop() {
+      document.body.scrollTop = 0;
     },
+    scrollToRoster() {},
     membership_select(id) {
       if (id == "single_on" || id == "single_off") {
         /* single */
-        document.getElementById('front_img2').className = "moveRadio";
-        let j=0;
-        Array.from(document.getElementsByClassName('back_imgs')).forEach(radio => {
-          radio.style.animation = "";
-          radio.style.animationDelay = `${((j++)*100)-50}ms`;
-          radio.className = "back_imgs shrinkRadioL";
-        });
+        document.getElementById("front_img2").className = "moveRadio";
+        let j = 0;
+        Array.from(document.getElementsByClassName("back_imgs")).forEach(
+          (radio) => {
+            radio.style.animation = "";
+            radio.style.animationDelay = `${j++ * 100 - 50}ms`;
+            radio.className = "back_imgs shrinkRadioL";
+          }
+        );
         this.membership_selected = "single_side";
         this.single = "single_on";
         this.family = "family_off";
         this.card_side = "membership_card_side_front";
-      }
-      else {
+      } else {
         /* family */
-        document.getElementById('front_img2').className = "shrinkRadioR";
-        let j=0;
-        Array.from(document.getElementsByClassName('back_imgs')).forEach(radio => {
-          radio.style.animationDelay = `${(j++)*250}ms`;
-          radio.className = "back_imgs moveRadioBackSide";
-        });
+        document.getElementById("front_img2").className = "shrinkRadioR";
+        let j = 0;
+        Array.from(document.getElementsByClassName("back_imgs")).forEach(
+          (radio) => {
+            radio.style.animationDelay = `${j++ * 250}ms`;
+            radio.className = "back_imgs moveRadioBackSide";
+          }
+        );
         this.membership_selected = "family_side";
         this.single = "single_off";
         this.family = "family_on";
         this.card_side = "membership_card_side_back";
       }
     },
-    getRoster(VueObj){
+    getRoster(VueObj) {
       const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/roster?year=${VueObj.roster_year}`;
-      axios.get(URL)
-      .then(function (response) {
+      axios
+        .get(URL)
+        .then(function (response) {
           // handle success
-          if(!response.data){
+          if (!response.data) {
             VueObj.active_list = [];
             VueObj.nodata = true;
             return;
@@ -258,24 +291,24 @@ export default {
           VueObj.nodata = false;
           VueObj.active_year_table = response.data.roster;
           VueObj.active_list = VueObj.active_year_table;
-      })
-      .catch(function (error) {
+        })
+        .catch(function (error) {
           // handle error
           VueObj.active_list = [];
           VueObj.nodata = true;
           error;
-      })
-      .finally(function () {
+        })
+        .finally(function () {
           // always executed
-      });
+        });
     },
   },
   async mounted() {
-    this.roster_year = new Date().getFullYear()
+    this.roster_year = new Date().getFullYear();
     this.scrollToTop();
     await this.getRoster(this);
-  }
-}
+  },
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -294,13 +327,12 @@ export default {
 #nodata {
   padding-top: 150px;
   font-size: 2.5em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 table {
   width: 50%;
-  font-family: 'Montserrat';
-
+  font-family: "Montserrat";
 }
 
 tr {
@@ -359,7 +391,7 @@ td:nth-child(odd) {
   justify-content: center;
 }
 
-#year_select>i {
+#year_select > i {
   font-size: 1.7em;
   cursor: pointer;
   padding: 20px;
@@ -367,18 +399,18 @@ td:nth-child(odd) {
   color: rgba(255, 255, 255, 0.5);
 }
 
-#year_select>i:hover {
+#year_select > i:hover {
   color: white;
 }
 
 #list_title {
   font-size: 2em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: bold;
   padding: 20px 20px 0px 20px;
 }
-#list_total{
-  font-family: 'Montserrat';
+#list_total {
+  font-family: "Montserrat";
   text-align: center;
   padding-bottom: 20px;
 }
@@ -405,7 +437,7 @@ a:hover {
   align-items: center;
   flex-direction: column;
   font-size: 3em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: #fd9947;
 
   text-align: center;
@@ -413,8 +445,8 @@ a:hover {
 
 #roster_subtext {
   font-size: 0.5em;
-  font-family: 'Montserrat';
-  color: #D0D5EF;
+  font-family: "Montserrat";
+  color: #d0d5ef;
   padding-top: 20px;
   padding-left: 20%;
   padding-right: 20%;
@@ -456,7 +488,6 @@ a:hover {
   transform: rotateY(180deg);
 }
 
-
 .card_img_parent {
   position: relative;
   width: 100%;
@@ -476,11 +507,13 @@ a:hover {
   border-top-left-radius: 10px;
   position: absolute;
 }
-#front_img2{
+#front_img2 {
   transform: translateZ(30px);
-  height: 60%; width: 100%;
+  height: 60%;
+  width: 100%;
   margin-top: 3.5%;
-  position: absolute; top: 15px;
+  position: absolute;
+  top: 15px;
   object-fit: contain;
   -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
@@ -495,59 +528,88 @@ a:hover {
   border-top-left-radius: 10px;
   position: absolute;
 }
-#back_img_collection{
+#back_img_collection {
   transform: translateZ(30px);
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 60%;
-  display: flex; justify-content: space-around; align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: relative;
 }
-#back_img2{
+#back_img2 {
   object-fit: contain;
   width: 25%;
   -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
   transition: 0.2s ease;
 }
-#back_img2:hover{
+#back_img2:hover {
   transform: rotateY(180deg);
 }
 
-.moveRadio{
+.moveRadio {
   animation: moveRadio 1.5s 0.5s forwards;
 }
-@keyframes moveRadio{
-  0%{margin-top: 20%;opacity: 0;}
-  100%{margin-top: 3.5%;opacity: 1;}
+@keyframes moveRadio {
+  0% {
+    margin-top: 20%;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 3.5%;
+    opacity: 1;
+  }
 }
-.moveRadioBackSide{
+.moveRadioBackSide {
   animation: moveRadioBack 1.5s forwards;
 }
-@keyframes moveRadioBack{
-  0%{width: 10%;opacity: 0;}
-  100%{width: 25%;opacity:1;}
+@keyframes moveRadioBack {
+  0% {
+    width: 10%;
+    opacity: 0;
+  }
+  100% {
+    width: 25%;
+    opacity: 1;
+  }
 }
-.shrinkRadioR{
+.shrinkRadioR {
   animation: scaleRadioR 0.5s 0.2s forwards;
 }
 
-.shrinkRadioL{
+.shrinkRadioL {
   animation: scaleRadioL 0.3s 0s forwards;
 }
-@keyframes scaleRadioR{
-  0%{right: 0; opacity: 1;}
-  100%{right: -50px;opacity: 0;}
+@keyframes scaleRadioR {
+  0% {
+    right: 0;
+    opacity: 1;
+  }
+  100% {
+    right: -50px;
+    opacity: 0;
+  }
 }
-@keyframes scaleRadioL{
-  0%{width: 25%;opacity:1;}
-  100%{width: 10%;opacity: 0;}
+@keyframes scaleRadioL {
+  0% {
+    width: 25%;
+    opacity: 1;
+  }
+  100% {
+    width: 10%;
+    opacity: 0;
+  }
 }
 .card_title {
   width: 100%;
   height: 100%;
   text-align: center;
   font-size: 2.5em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -555,11 +617,13 @@ a:hover {
   position: relative;
   color: rgb(25, 21, 41);
 }
-.sin_card::before{
-  content: '';
-  width: 50%; height: 100%;
+.sin_card::before {
+  content: "";
+  width: 50%;
+  height: 100%;
   top: 0;
-  left: auto; right: auto;
+  left: auto;
+  right: auto;
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
@@ -568,11 +632,13 @@ a:hover {
   background-size: 90%;
   z-index: -1;
 }
-.fam_card::before{
-  content: '';
-  width: 50%; height: 100%;
+.fam_card::before {
+  content: "";
+  width: 50%;
+  height: 100%;
   top: 0;
-  left: auto; right: auto;
+  left: auto;
+  right: auto;
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
@@ -585,7 +651,7 @@ a:hover {
 .card_price {
   text-align: center;
   font-size: 3em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   height: 100%;
   width: 100%;
   display: flex;
@@ -614,12 +680,12 @@ a:hover {
   border-radius: 5px;
   color: #fd9947;
   font-size: 1.2em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   transition: 0.2s ease;
 }
 
 #card_btn_front {
-  background-color: #15181C;
+  background-color: #15181c;
   color: white;
 }
 
@@ -628,7 +694,7 @@ a:hover {
 }
 
 #card_btn_front:hover {
-  background-color: #15181C;
+  background-color: #15181c;
 }
 
 #card_btn_back:hover {
@@ -637,7 +703,6 @@ a:hover {
 
 /* card end */
 
-
 #roster {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -645,7 +710,7 @@ a:hover {
   color: rgb(208, 213, 239);
   height: fit-content;
   width: 100%;
-  background-color: rgb(17,17,17);
+  background-color: rgb(17, 17, 17);
 }
 
 #membership_parent {
@@ -667,7 +732,7 @@ a:hover {
 
 #membership_right_text {
   font-size: 3em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: #ffdc92;
   color: white;
   font-weight: lighter;
@@ -675,10 +740,9 @@ a:hover {
 
 #benefits_table {
   width: 100%;
-
 }
 
-#benefits_table>*>td {
+#benefits_table > * > td {
   padding: 10px;
   text-align: center;
 }
@@ -693,7 +757,7 @@ a:hover {
 
 #membership_right_subtext {
   font-size: 2em;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: white;
   font-weight: lighter;
 }
@@ -728,19 +792,19 @@ a:hover {
   padding: 20px;
 }
 
-#membership_buttons>button {
+#membership_buttons > button {
   width: 150px;
   height: 70px;
   border: none;
   outline: none;
   background-color: white;
   font-size: 1.5em;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-#membership_buttons>button>div {
+#membership_buttons > button > div {
   pointer-events: none;
   position: absolute;
   display: flex;
@@ -769,7 +833,7 @@ a:hover {
   margin: auto 0;
   width: calc(50% - 30px);
   height: calc(100% - 50px);
-  background-color: #15181C;
+  background-color: #15181c;
   box-shadow: inset 0px 0px 15px 5px rgb(0, 0, 0);
   pointer-events: none;
   border-radius: 5px;
@@ -802,8 +866,8 @@ a:hover {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-th{
-  color: rgba(255,255,255,0.8);
+th {
+  color: rgba(255, 255, 255, 0.8);
 }
 #family_on,
 #single_on {
@@ -812,10 +876,8 @@ th{
 
 #family_off,
 #single_off {
-  color: #15181C;
+  color: #15181c;
 }
-
-
 
 /* Sligth resize */
 @media screen and (max-width: 1400px) {
@@ -827,17 +889,14 @@ th{
   #membership_right {
     justify-content: center;
   }
-  .roster_table{
+  .roster_table {
     font-size: 0.9em;
   }
 }
 
-
-
-
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-  #roster_list{
+  #roster_list {
     padding-top: 110px;
   }
   #membership_parent {
@@ -867,17 +926,16 @@ th{
   table {
     width: 60%;
   }
-  .roster_table{
+  .roster_table {
     font-size: 0.8em;
   }
-  #roster_desc{
+  #roster_desc {
     font-size: 2.5em;
   }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-
   .ease {
     height: 50%;
     /* height: 55%; */
@@ -898,14 +956,14 @@ th{
   table {
     width: 70%;
   }
-  
+
   #membership_parent {
     height: 100vh;
   }
-  .roster_table{
+  .roster_table {
     font-size: 0.7em;
   }
-  #roster_desc{
+  #roster_desc {
     font-size: 2em;
   }
 }
@@ -915,7 +973,6 @@ th{
   .ease {
     height: 60%;
     /* height: 55%; */
-
   }
   #membership_parent {
     height: 110vh;
@@ -931,9 +988,8 @@ th{
   table {
     width: 80%;
   }
-  .roster_table{
+  .roster_table {
     font-size: 0.65em;
   }
 }
 </style>
-  

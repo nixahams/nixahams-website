@@ -10,70 +10,59 @@
 
 <script>
 // import PageHeader from './components/PageHeader.vue';
-import NewHeader from './components/NewHeader.vue';
-import PageFooter from './components/PageFooter.vue';
-import InfoBanner from './components/InfoBanner.vue';
-
-
+import NewHeader from "./components/NewHeader.vue";
+import PageFooter from "./components/PageFooter.vue";
+import InfoBanner from "./components/InfoBanner.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // PageHeader,
     InfoBanner,
     PageFooter,
-    NewHeader
+    NewHeader,
   },
   data() {
-    return {
-    }
+    return {};
   },
-  methods: {
-
-  },
-  mounted() {
-
-  }
-
-}
+  methods: {},
+  mounted() {},
+};
 </script>
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 @font-face {
-  font-family: 'Dropstyle';
-  src: url('./assets/fonts/RobotoCondensed-Light.ttf') format('truetype');
+  font-family: "Dropstyle";
+  src: url("./assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
-
 @font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-ExtraLight.ttf") format("truetype");
   font-weight: 100;
   font-style: sans-serif;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Light.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: sans-serif;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: sans-serif;
 }
@@ -160,7 +149,7 @@ body {
 }
 
 .aTag:hover::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   left: -10px;
@@ -184,7 +173,6 @@ body {
   height: 13vh;
 }
 
-
 .aTag2 {
   text-decoration: none;
   color: rgb(255, 255, 255);
@@ -197,7 +185,7 @@ body {
 }
 
 .aTag2:hover::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   left: -10px;
@@ -207,7 +195,6 @@ body {
   padding-bottom: 10px;
   pointer-events: none;
 }
-
 
 #server_dom_collapse {
   width: 100%;
@@ -230,7 +217,7 @@ body {
   border-bottom-right-radius: 20px;
   background-color: black;
   color: white;
-  background: linear-gradient(0deg, #94C840, #31B38D);
+  background: linear-gradient(0deg, #94c840, #31b38d);
   background: #212121;
   /* #1b2537 #151a28 */
   z-index: 999;
@@ -239,7 +226,7 @@ body {
   align-items: center;
 }
 
-#server_panel_collapse>.server_panel_parent {
+#server_panel_collapse > .server_panel_parent {
   visibility: hidden;
 }
 
@@ -252,7 +239,7 @@ body {
   height: 100vh;
   background-color: black;
   color: white;
-  background: linear-gradient(0deg, #94C840, #31B38D);
+  background: linear-gradient(0deg, #94c840, #31b38d);
   background: #212121;
   /* #1b2537 #151a28 */
   padding: 90px 20px 20px 20px;
@@ -260,7 +247,7 @@ body {
 }
 
 #server_panel::before {
-  content: '';
+  content: "";
   width: 80%;
   height: 3px;
   margin-left: 10%;
@@ -321,7 +308,7 @@ body {
   height: 15vh;
   min-height: 100px;
   overflow: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   height: fit-content;
 }
 
@@ -392,7 +379,7 @@ body {
 }
 
 .subRoot_card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -405,7 +392,7 @@ body {
 }
 
 .subRoot_card2::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -422,11 +409,11 @@ body {
 }
 
 .subRoot_card2 {
-  background: linear-gradient(135deg, #1B2537 50%, #151A28 50%)
+  background: linear-gradient(135deg, #1b2537 50%, #151a28 50%);
 }
 
 .subRoot_card2:hover {
-  background: linear-gradient(135deg, #222e45 50%, #1c2335 50%)
+  background: linear-gradient(135deg, #222e45 50%, #1c2335 50%);
 }
 
 .subRoot_card:hover,
@@ -599,11 +586,10 @@ body {
   font-size: 0.8em;
 }
 #apiNetEdit {
-    color: white;
-    border: 1px solid white;
-    background-color: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.2);
 }
-
 
 #apiNetEdit:hover {
   color: black;
@@ -616,7 +602,7 @@ body {
 }
 
 #apiNetDelete:hover {
-  background-color: #AD2628;
+  background-color: #ad2628;
 }
 
 .green {
@@ -789,11 +775,13 @@ select {
   background-color: rgb(71 149 27);
   color: rgb(255, 255, 255);
 }
-#delMon:hover,#delYear:hover{
+#delMon:hover,
+#delYear:hover {
   background-color: #681718;
 }
 
-#delMon,#delYear{
+#delMon,
+#delYear {
   overflow: hidden;
   font-size: 0.8em !important;
   background-color: #d93032;
@@ -806,7 +794,9 @@ select {
   color: white;
   font-weight: bold;
   transition: 0.2s ease;
-  display: flex; justify-content: center; align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   gap: 5px;
 }
@@ -884,7 +874,7 @@ select {
   transform: scale(1.1);
 }
 
-#server_panel_burger>span {
+#server_panel_burger > span {
   width: 100%;
   height: 3px;
   background-color: white;
@@ -892,7 +882,6 @@ select {
   z-index: 999;
   display: block;
 }
-
 
 /* styles not loading because javascript renders page */
 #calendarMonthContainer,
@@ -909,7 +898,8 @@ select {
   transition: 5.2s ease;
 }
 
-#calendarBlockM,#calendarBlockY{
+#calendarBlockM,
+#calendarBlockY {
   border: 1px solid white;
   display: flex;
   justify-content: center;
@@ -923,23 +913,27 @@ select {
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
-#calendarBlockM::after{
-  content: 'EVENT';
+#calendarBlockM::after {
+  content: "EVENT";
   font-size: 0.8em;
-  display: flex; justify-content: start; align-content: center;
+  display: flex;
+  justify-content: start;
+  align-content: center;
   padding-left: 10px;
   height: 10%;
   top: 0;
   width: 100%;
   position: absolute;
   font-weight: 600;
-  background-color: #E88F99;
+  background-color: #e88f99;
   transition: 0.2s ease;
 }
-#day{
-  content: '';
+#day {
+  content: "";
   font-size: 0.8em;
-  display: flex; justify-content: start; align-content: center;
+  display: flex;
+  justify-content: start;
+  align-content: center;
   padding-left: 10px;
   bottom: 5px;
   width: 100%;
@@ -947,8 +941,7 @@ select {
   font-weight: 600;
   transition: 0.2s ease;
 }
-#calendarBlockM:hover::after{
-
+#calendarBlockM:hover::after {
   background-color: #f34358;
 }
 
@@ -961,18 +954,16 @@ select {
   height: 35%;
   aspect-ratio: 1 / 1;
   transition: 0.2s ease;
-  cursor:default;
-  color: rgba(255,255,255,0.5);
+  cursor: default;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-#calendarBlockM:hover,#calendarBlockY:hover {
+#calendarBlockM:hover,
+#calendarBlockY:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* styles not loading because javascript renders page */
-
-
-
 
 /* edit for DMR from server */
 .edit_table_container {
@@ -997,7 +988,6 @@ select {
   background-color: inherit;
 }
 
-
 #server_dmr_table_parent {
   width: 100%;
   display: flex;
@@ -1017,7 +1007,7 @@ select {
 }
 
 .server_table_container::after {
-  content: '';
+  content: "";
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1028,7 +1018,7 @@ select {
 }
 
 .server_table_container:hover::after {
-  content: 'Click To Edit';
+  content: "Click To Edit";
   cursor: pointer;
   width: 100%;
   height: 100%;
@@ -1177,101 +1167,102 @@ select {
 
 /* server meeting page */
 #sl_form {
-    height: 60vh;
-    width: 100%;
-    margin-right: 20px;
-    margin-bottom: 20px;
-
+  height: 60vh;
+  width: 100%;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
-#sl_desc{
+#sl_desc {
   resize: none;
 }
-#sl_parent{
-  height: 100%; width: 100%;
+#sl_parent {
+  height: 100%;
+  width: 100%;
   display: flex;
-    flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
-#sl_year,#sl_month{
+#sl_year,
+#sl_month {
   height: 20%;
   flex-grow: 1;
   display: flex;
-  justify-content: center; align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-#sl_text, #sl_search {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5%;
-    color: rgba(255,255,255,0.7);
-    font-family: 'Montserrat';
+#sl_text,
+#sl_search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5%;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Montserrat";
 }
-#sl_search{
+#sl_search {
   height: 10%;
 }
 #sl_btn {
-    width: 100px;
-    height: 30px;
-    background: green;
-    color: white;
-    cursor: pointer;
+  width: 100px;
+  height: 30px;
+  background: green;
+  color: white;
+  cursor: pointer;
 }
 #sl_edit {
-    height: 65%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    padding: 20px;
-    background-clip: padding-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
+  height: 65%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  padding: 20px;
+  background-clip: padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
 }
-.sl_block,.sl_block2 {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 15px;
-    border-radius: 10px;
-    text-transform: uppercase;
-    font-family: 'Montserrat';
-    color: rgba(255,255,255,0.7);
+.sl_block,
+.sl_block2 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: "Montserrat";
+  color: rgba(255, 255, 255, 0.7);
 }
-.grow{
+.grow {
   flex-grow: 1;
 }
-.sl_block2{
+.sl_block2 {
   flex-grow: 5;
   width: 50%;
 }
-.sl_block3{
+.sl_block3 {
   height: fit-content;
   width: 100%;
   text-align: center;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: bold;
   text-transform: uppercase;
 }
-#sl_helper{
+#sl_helper {
   font-size: 2em;
 }
-.sl_block > input,.sl_block2 > textarea{
-    background: rgba(255,255,255,0.2);
-    outline: none;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    padding: 5px 10px;
+.sl_block > input,
+.sl_block2 > textarea {
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
 }
-
-
-
-
 
 #server_meeting_title:hover {
   background-color: rgba(255, 255, 255, 0.2);
@@ -1290,7 +1281,7 @@ select {
 }
 
 #server_meeting_title::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -1314,7 +1305,7 @@ select {
   width: 100%;
   height: 100%;
   position: absolute;
-  content: '';
+  content: "";
   transition: 0.2s ease;
   top: 0;
   left: 0;
@@ -1323,7 +1314,7 @@ select {
 
 #server_desc:hover::after {
   background-color: white;
-  content: 'Click to Edit';
+  content: "Click to Edit";
   display: flex;
   font-weight: bold;
   cursor: pointer;
@@ -1333,15 +1324,13 @@ select {
 
 /* meeting end */
 
-
-
 /* banner edit */
 #server_banner_preview_container {
   width: 80%;
   height: -moz-fit-content;
   height: fit-content;
   margin-left: 10%;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 #server_banner_preview {
@@ -1349,10 +1338,9 @@ select {
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr 20fr 1.5fr;
-  background-color: #0469E3;
+  background-color: #0469e3;
   border-radius: 10px;
 }
-
 
 #server_banner_preview_icon,
 #server_banner_preview_exit {
@@ -1371,7 +1359,7 @@ select {
 }
 
 #server_banner_preview_exit::after {
-  content: '';
+  content: "";
   height: 60%;
   top: 20%;
   left: 0;
@@ -1380,7 +1368,7 @@ select {
   position: absolute;
 }
 
-#server_banner_preview_exit>button {
+#server_banner_preview_exit > button {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1438,17 +1426,16 @@ select {
   height: 70%;
 }
 
-
 #banner_textarea {
   width: 100%;
   height: 100%;
   resize: none;
-  background: rgba(255,255,255,0.2);
-    outline: none;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
 }
 
 /* The switch - the box around the slider */
@@ -1475,8 +1462,8 @@ select {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -1487,19 +1474,19 @@ select {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-input:checked+.slider {
-  background-color: #2196F3;
+input:checked + .slider {
+  background-color: #2196f3;
 }
 
-input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -1515,11 +1502,6 @@ input:checked+.slider:before {
 }
 
 /* end banner edit */
-
-
-
-
-
 
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
@@ -1584,7 +1566,8 @@ input:checked+.slider:before {
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-  #calendarMonthContainer,#calendarYearContainer{
+  #calendarMonthContainer,
+  #calendarYearContainer {
     justify-content: flex-end;
   }
   .server_banner_edit:nth-child(1),
@@ -1611,10 +1594,10 @@ input:checked+.slider:before {
   }
 
   #banner_textarea_container {
-    width: 90%
+    width: 90%;
   }
 
-  .server_banner_edit>select {
+  .server_banner_edit > select {
     height: 40px;
     width: 60%;
     font-size: 0.8em;
@@ -1661,10 +1644,11 @@ input:checked+.slider:before {
     padding-left: 10px;
   }
 
-  #calendarBlockM,#calendarBlockY{
+  #calendarBlockM,
+  #calendarBlockY {
     height: 25%;
   }
-  #calendarBlock2{
+  #calendarBlock2 {
     height: 25%;
   }
 
@@ -1693,7 +1677,6 @@ input:checked+.slider:before {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-
   #warning_container,
   #warninginfo_container {
     z-index: 9999;
@@ -1725,16 +1708,17 @@ input:checked+.slider:before {
     padding-left: 10px;
   }
 
-  #calendarBlockM,#calendarBlockY{
+  #calendarBlockM,
+  #calendarBlockY {
     height: 20%;
   }
-  #calendarBlock2{
+  #calendarBlock2 {
     height: 20%;
   }
   #editCenter {
     width: 95%;
   }
-
 }
 
-/* end: server style */</style>
+/* end: server style */
+</style>
