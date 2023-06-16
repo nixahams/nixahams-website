@@ -9,7 +9,7 @@
         <div id="form_inner">
           <form
             id="form"
-            action="https://formsubmit.co/proesslet@gmail.com"
+            action="https://formsubmit.co/el/bulixe"
             method="POST"
           >
             <div id="form_title_parent">
