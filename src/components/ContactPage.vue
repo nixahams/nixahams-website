@@ -1,77 +1,97 @@
 <template>
-<div class="full_page">
-      <img class="page_background" src="../assets/home/contactus.png" alt="">
-      <div id="home_page3">
-        <div id="contact_form">
-          <!-- temp -->
-          <!-- <div id="work_div"></div> -->
-          <!-- temp -->
-          <div id="form_inner">
-            <form id="form" action="https://formsubmit.co/el/bulixe" method="POST">
-              <div id="form_title_parent">
-                <div id="form_title">Send us a message</div>
-              </div>
-              <div class="input_parent">
-                <input required placeholder="Your name..." class="input" type="text" id="name" name="name"><br>
-              </div>
-              <div class="input_parent">
-                <input required placeholder="Your email..." class="input" type="text" id="email" name="email">
-              </div>
-              <div id="textarea_parent">
-                <textarea required placeholder="Your message..." class="textarea" id="message" name="message" cols="20"
-                  rows="5"></textarea>
-              </div>
-              <div id="form_btn_parent">
-                <input id="form_btn" type="submit" value="Submit">
-              </div>
-            </form>
-          </div>
-        </div>
-        <div id="contact_top">
-          <div id="contact_top_inner">
-            <div id="contact_text">
-              <div id="contact_title">Need to contact us? Fill out our message form.</div>
-              <div id="contact_subtext">We will get back to you ASAP!</div>
+  <div class="full_page">
+    <img class="page_background" src="../assets/home/contactus.png" alt="" />
+    <div id="home_page3">
+      <div id="contact_form">
+        <!-- temp -->
+        <!-- <div id="work_div"></div> -->
+        <!-- temp -->
+        <div id="form_inner">
+          <form
+            id="form"
+            action="https://formsubmit.co/proesslet@gmail.com"
+            method="POST"
+          >
+            <div id="form_title_parent">
+              <div id="form_title">Send us a message</div>
             </div>
-            <!-- <div class="contact_visual">
+            <div class="input_parent">
+              <input
+                required
+                placeholder="Your name..."
+                class="input"
+                type="text"
+                id="name"
+                name="name"
+              /><br />
+            </div>
+            <div class="input_parent">
+              <input
+                required
+                placeholder="Your email..."
+                class="input"
+                type="text"
+                id="email"
+                name="email"
+              />
+            </div>
+            <div id="textarea_parent">
+              <textarea
+                required
+                placeholder="Your message..."
+                class="textarea"
+                id="message"
+                name="message"
+                cols="20"
+                rows="5"
+              ></textarea>
+            </div>
+            <div id="form_btn_parent">
+              <input id="form_btn" type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="contact_top">
+        <div id="contact_top_inner">
+          <div id="contact_text">
+            <div id="contact_title">
+              Need to contact us? Fill out our message form.
+            </div>
+            <div id="contact_subtext">We will get back to you ASAP!</div>
+          </div>
+          <!-- <div class="contact_visual">
               <div class="contact_img_parent">
                 <img class="contact_img" src="../assets/home/phone-call.png" alt="">
               </div>
               <div class="contact_data">000-000-0000</div>
             </div> -->
-            <!-- <div class="contact_visual">
+          <!-- <div class="contact_visual">
               <div class="contact_img_parent">
                 <img class="contact_img" src="../assets/home/email.png" alt="">
               </div>
               <div class="contact_data">test@test.net</div>
             </div> -->
-          </div> 
-
         </div>
-        <div id="contact_bottom"></div>
       </div>
+      <div id="contact_bottom"></div>
     </div>
+  </div>
 </template>
 
 <script>
-
-
 export default {
-    name: 'ContactPage',
-    data() {
-        return {
-        }   
-    },
-    methods: {
-    },
-    mounted() {
-    }
-}
+  name: "ContactPage",
+  data() {
+    return {};
+  },
+  methods: {},
+  mounted() {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .full_page {
   width: 100%;
   height: 100vh;
@@ -106,7 +126,7 @@ export default {
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   padding: 4%;
   color: black;
-  background-image: url('../assets/carosel-imgs/bg1.jpg');
+  background-image: url("../assets/carosel-imgs/bg1.jpg");
   background-position: left;
   background-repeat: no-repeat;
 }
@@ -132,7 +152,7 @@ export default {
   justify-content: space-around;
 }
 #contact_text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   height: 50%;
   display: flex;
@@ -201,7 +221,7 @@ export default {
   height: 10%;
 }
 #form_title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: normal;
   font-size: 1.7em;
   height: 100%;
@@ -226,7 +246,7 @@ export default {
   border: 2px dashed black;
   padding: 0px 20px;
   color: black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 1em;
 }
@@ -244,7 +264,7 @@ export default {
   border: 2px dashed black;
   padding: 20px;
   color: black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 1em;
 }
@@ -259,16 +279,12 @@ export default {
   border: 0;
   background-color: black;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: normal;
   font-size: 1.2em;
   height: 100%;
   width: 100%;
 }
-
-
-
-
 
 /* rmv when email sending works */
 /* #work_div{
@@ -314,9 +330,9 @@ export default {
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-    .media_result{
-        font-size: 0.7em;
-    }
+  .media_result {
+    font-size: 0.7em;
+  }
 }
 
 /* Mobile Styles */
@@ -330,7 +346,6 @@ export default {
     /* top | right | bottom | left */
     padding: 0vh 15% 10vh 15%;
     height: 50%;
-
   }
   #contact_form {
     width: 80%;
