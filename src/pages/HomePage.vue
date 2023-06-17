@@ -118,7 +118,7 @@
           <div id="form_inner">
             <form
               id="form"
-              action="https://formsubmit.co/el/bulixe"
+              action="https://formspree.io/f/mjvdnenz"
               method="POST"
             >
               <div id="form_title_parent">
