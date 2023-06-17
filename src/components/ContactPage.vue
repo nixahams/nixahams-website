@@ -9,7 +9,7 @@
         <div id="form_inner">
           <form
             id="form"
-            action="https://formsubmit.co/el/bulixe"
+            action="https://formspree.io/f/mjvdnenz"
             method="POST"
           >
             <div id="form_title_parent">
@@ -30,7 +30,7 @@
                 required
                 placeholder="Your email..."
                 class="input"
-                type="text"
+                type="email"
                 id="email"
                 name="email"
               />
