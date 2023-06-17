@@ -195,17 +195,19 @@ export default {
       familyItem: [
         {
           // price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
-          price: "price_1N4GFLFTeL1911WTktnsKhwH",
+          price: "price_1NK3f8FTeL1911WTb5L1L6Z4",
           quantity: 1,
         },
       ],
       singleItem: [
         {
           // price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
-          price: "price_1N4GErFTeL1911WTu30JmNer",
+          price: "price_1NK3eWFTeL1911WTLaR3w8Az",
           quantity: 1,
         },
       ],
+      // Will want to create a success page that tells the user they've paid, and then from the backend,
+      // add them to the roster and send them a confirmation email
       successURL: "https://nixahams-website-cg9.pages.dev/#/roster",
       cancelURL: "https://nixahams-website-cg9.pages.dev/#/roster",
 
