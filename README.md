@@ -16,7 +16,7 @@
     The code behind the Nixa Hams Amateur Radio Club Website
     <br />
     <br />
-    <a href="https://nixahams-website-cg9.pages.dev/#/">View Live Site</a>
+    <a href="https://nixahams.net/#/">View Live Site</a>
     ·
     <a href="https://github.com/nixahams/nixahams-website/issues">Report Bug</a>
     ·
