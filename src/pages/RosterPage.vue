@@ -74,16 +74,11 @@
             <div class="card_title sin_card">Single</div>
             <div class="card_price">$15 / Year</div>
             <div class="card_button_parent">
-              <a class="card_ref" @click="submitSinglePayment" target="_blank">
-                <StripeCheckout
-                  ref="checkoutRef1"
-                  mode="subscription"
-                  :pk="publishableKey"
-                  :line-items="singleItem"
-                  :success-url="successURL"
-                  :cancel-url="cancelURL"
-                  @loading="(v) => (loading = v)"
-                />
+              <a
+                class="card_ref"
+                href="https://buy.stripe.com/dR6dU0gppg7E6Nq146"
+                target="_blank"
+              >
                 <button id="card_btn_front" class="card_btn">Select</button>
               </a>
             </div>
@@ -121,16 +116,11 @@
             <div class="card_title fam_card">Family</div>
             <div class="card_price">$20 / Year</div>
             <div class="card_button_parent">
-              <a class="card_ref" @click="submitFamilyPayment" target="_blank">
-                <StripeCheckout
-                  ref="checkoutRef2"
-                  mode="subscription"
-                  :pk="publishableKey"
-                  :line-items="familyItem"
-                  :success-url="successURL"
-                  :cancel-url="cancelURL"
-                  @loading="(v) => (loading = v)"
-                />
+              <a
+                class="card_ref"
+                href="https://buy.stripe.com/bIY3fmgpp08G0p25kl"
+                target="_blank"
+              >
                 <button id="card_btn_back" class="card_btn">Select</button>
               </a>
             </div>
@@ -179,33 +169,33 @@
 </template>
 
 <script>
-import { StripeCheckout } from "@vue-stripe/vue-stripe";
 import axios from "axios";
 
 export default {
   name: "RosterPage",
-  components: {
-    StripeCheckout,
-  },
+  components: {},
   data() {
-    // this.publishableKey = "pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
+    //this.publishableKey =
+    //"pk_test_51MAcptFTeL1911WTXKOiHJDTOvhFghiCSyLqLKZhS3sahmumxghagqIRLtRv95h94gZuV4doA03lJTLOEgdb7R3f00hrgHSFWH";
     this.publishableKey =
       "pk_live_51MAcptFTeL1911WTgGpXCz4aoNyBqnCIWO6vo3wvAj0hUVu9XkHF7o9smZ0Cd2fqAvFNg30TPjZWJWdjhQMjSTOU00gtGqKmjz";
     return {
       familyItem: [
         {
           // price: 'price_1MVpYWFTeL1911WTtNoCRbv3',
-          price: "price_1N4GFLFTeL1911WTktnsKhwH",
+          price: "price_1NK5EOFTeL1911WTPHfay8EW",
           quantity: 1,
         },
       ],
       singleItem: [
         {
           // price: 'price_1MVpZ3FTeL1911WT8m1olUC7',
-          price: "price_1N4GErFTeL1911WTu30JmNer",
+          price: "price_1NK5EtFTeL1911WTyfMi7IZy",
           quantity: 1,
         },
       ],
+      // Will want to create a success page that tells the user they've paid, and then from the backend,
+      // add them to the roster and send them a confirmation email
       successURL: "https://nixahams-website-cg9.pages.dev/#/roster",
       cancelURL: "https://nixahams-website-cg9.pages.dev/#/roster",
 
