@@ -12,6 +12,4 @@ app.use(BootstrapVue);
 app.use(IconsPlugin);
 app.use(router);
 
-app.config.productionTip = false;
-
 app.mount("#app");

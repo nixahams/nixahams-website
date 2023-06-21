@@ -11,35 +11,35 @@
     </div>
     <div id="burgerLine"></div>
     <div id="burgerOptionContainer">
-      <a class="burgerA" href="#/">
+      <a class="burgerA" href="/">
         <div class="hoverOpt">Home</div>
         <div class="burgerOption">
           <i class="fa-solid fa-house"></i>
           <span class="burgerTitle">Home</span>
         </div>
       </a>
-      <a class="burgerA" href="#/nets">
+      <a class="burgerA" href="/nets">
         <div class="hoverOpt">Nets</div>
         <div class="burgerOption">
           <i class="fas fa-walkie-talkie"></i>
           <span class="burgerTitle">Nets</span>
         </div>
       </a>
-      <a class="burgerA" href="#/repeaters">
+      <a class="burgerA" href="/repeaters">
         <div class="hoverOpt">Repeaters</div>
         <div class="burgerOption">
           <i class="fa-solid fa-tower-broadcast"></i>
           <span class="burgerTitle">Repeaters</span>
         </div>
       </a>
-      <a class="burgerA" href="#/meetings">
+      <a class="burgerA" href="/meetings">
         <div class="hoverOpt">Meetings</div>
         <div class="burgerOption">
           <i class="fa-solid fa-people-group"></i>
           <span class="burgerTitle">Meetings</span>
         </div>
       </a>
-      <a class="burgerA" href="#/roster">
+      <a class="burgerA" href="/roster">
         <div class="hoverOpt">Join Narc | Roster</div>
         <div class="burgerOption">
           <i class="fa-solid fa-list"></i>
@@ -53,21 +53,21 @@
                     <span class="burgerTitle">History</span>
                 </div>
             </a> -->
-      <a class="burgerA" href="#/dmr">
+      <a class="burgerA" href="/dmr">
         <div class="hoverOpt">SWMO DMR Info</div>
         <div class="burgerOption">
           <i class="fa-solid fa-circle-info"></i>
           <span class="burgerTitle">SWMO DMR Info</span>
         </div>
       </a>
-      <a class="burgerA" href="#/bylaws">
+      <a class="burgerA" href="/bylaws">
         <div class="hoverOpt">Constitution & Bylaws</div>
         <div class="burgerOption">
           <i class="fa-solid fa-gavel"></i>
           <span class="burgerTitle">Constitution & Bylaws</span>
         </div>
       </a>
-      <a class="burgerA" href="#/officers">
+      <a class="burgerA" href="/officers">
         <div class="hoverOpt">Officers</div>
         <div class="burgerOption">
           <i class="fa-solid fa-person"></i>
@@ -81,7 +81,7 @@
                     <span class="burgerTitle">Donate</span>
                 </div>
             </a> -->
-      <a class="burgerA" href="#/contact">
+      <a class="burgerA" href="/contact">
         <div class="hoverOpt">Contact</div>
         <div class="burgerOption">
           <i class="fa-solid fa-phone"></i>

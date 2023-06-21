@@ -3,7 +3,7 @@
     <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
     <InfoBanner />
     <NewHeader />
-    <router-view></router-view>
+    <router-view />
     <PageFooter />
   </div>
 </template>
@@ -13,7 +13,6 @@
 import NewHeader from "./components/NewHeader.vue";
 import PageFooter from "./components/PageFooter.vue";
 import InfoBanner from "./components/InfoBanner.vue";
-// import { RouterView } from "vue-router";
 
 export default {
   name: "App",
