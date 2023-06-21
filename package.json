@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.8",
     "@types/node": "^18.11.1",
     "@vue-stripe/vue-stripe": "^4.4.4",
+    "@vue/compat": "^3.1.0",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
     "axios": "^1.2.0",
@@ -24,8 +25,7 @@
     "vanilla-tilt": "^1.7.2",
     "vanilla-tilt-vue": "^0.1.3",
     "vue": "^3.1.0",
-    "@vue/compat": "^3.1.0",
-    "vue-router": "^3.6.5"
+    "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -33,9 +33,9 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/compiler-sfc": "^3.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "@vue/compiler-sfc": "^3.1.0"
+    "eslint-plugin-vue": "^8.0.3"
   },
   "eslintConfig": {
     "root": true,

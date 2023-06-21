@@ -13,6 +13,7 @@
 import NewHeader from "./components/NewHeader.vue";
 import PageFooter from "./components/PageFooter.vue";
 import InfoBanner from "./components/InfoBanner.vue";
+// import { RouterView } from "vue-router";
 
 export default {
   name: "App",
