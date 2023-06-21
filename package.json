@@ -23,7 +23,8 @@
     "popper.js": "^1.16.1",
     "vanilla-tilt": "^1.7.2",
     "vanilla-tilt-vue": "^0.1.3",
-    "vue": "^2.7.13",
+    "vue": "^3.1.0",
+    "@vue/compat": "^3.1.0",
     "vue-router": "^3.6.5"
   },
   "devDependencies": {
@@ -34,7 +35,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "vue-template-compiler": "^2.6.14"
+    "@vue/compiler-sfc": "^3.1.0"
   },
   "eslintConfig": {
     "root": true,
