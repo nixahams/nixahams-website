@@ -44,6 +44,7 @@ export default {
       const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message';
       axios.get(URL)
         .then(function (response) {
+          console.log(response.data[0])
           // handle success
           let message = response.data[0];
           if (message.show == "true" || message.show == true) {
@@ -59,6 +60,17 @@ export default {
           }
           else{
             VueObj.checkColor = 'red'
+          }
+          switch(message.color){
+            case 1:
+              VueObj.checkColor = 'red'
+              break;
+            case 2:
+              VueObj.checkColor = 'blue'
+              break;
+            case 3:
+            VueObj.checkColor = 'orange'
+              break;
           }
         })
         .catch(function (error) {

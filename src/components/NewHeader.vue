@@ -1,5 +1,6 @@
 <template>
     <div id="header_compress">
+        <div id="sb_new"><i class="fa-solid fa-magnifying-glass"></i></div>
         <img src="../assets/motherboard.jpg" id="header_bg" alt="">
         <div id="bg_edit"></div>
         <div id="burgerParentCompress">
@@ -229,6 +230,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#sb_new
+{
+    position: fixed;
+    width: 50px; height: 50px;
+    z-index: 999;
+    right: 40px;
+    top: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; align-items: center;
+}
 #mobileBuger{
     background-color: #15181C;
     width: 70px;

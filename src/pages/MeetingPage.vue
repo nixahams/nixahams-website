@@ -66,6 +66,7 @@ export default {
                     VueObj.currentDesc = VueObj.monthsData[VueObj.monthsData.length-1].desc;
                     let indx = response.data[response.data.length-1].months.length - 1;
                     VueObj.meetingData = VueObj.monthsData[indx];
+                    // console.log(VueObj.meetingData)
                     VueObj.mongoData = response.data;
                     // VueObj.years = response.data.length;
                     // // VueObj.yearsData = response.data[response.data.length-1].year;
