@@ -60,9 +60,14 @@
                 Copyright {{year}} &#169; All rights Reserved. The Nixa Amateur Radio Club, Inc.
             </div>
             <div id="created">Website Created by: 
-                <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
+                <div>
+                    <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
                     Dejeu
                 </a>
+                <a target="_blank" href="https://www.linkedin.com/in/preston-roesslet">Preston
+                    Roesslet
+                </a>
+                </div>
             </div>
         </div>
     </div>
@@ -125,9 +130,22 @@ a:hover {
     width: 20%;
     bottom: 0; right: 0;
     font-size: 0.8em;
-    padding: 10px;
+    padding: 0 10px;
+    gap: 10px;
     text-align: right;
+    display: flex;
+    align-items: center;
 }
+#created>div{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#created>div>a{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.3);
+}
+
 
 #copyright_block {
     display: flex;

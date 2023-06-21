@@ -1,6 +1,9 @@
 <template>
   <div id="invalid_page">
     <test></test>
+    <router-link to="/" id="goHome">
+      <button>Home Page</button>
+    </router-link>
   </div>
 </template>
   
@@ -30,6 +33,29 @@ export default {
   width: 100%;
   height: 100%;
   /* padding-top: 120px; */
+}
+
+
+#goHome{
+  z-index: 999;
+  position: fixed;
+  top: 50%;
+  left: 50%;  
+  margin-top: 25px;
+  margin-left: -100px;
+}
+#goHome>button{
+  height: 50px !important;
+  width: 200px !important;
+  border-radius: 10px;
+  outline: none; border: none;
+  cursor: pointer;
+  background-color: white;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+#goHome>button:hover{
+  background-color: rgba(255,255,255,0.8);
 }
 </style>
   
