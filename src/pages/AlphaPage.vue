@@ -1,3 +1,45 @@
+<template>
+    <div v-if="showAllElem" id="alpha">
+        <img id="alpha_bg" src="@/assets/part.jpg">
+        <form @submit.prevent="submitForm">
+            <div id="form_border">
+                <div id="form_header">LOG IN</div>
+                <div id="form_input_container">
+                    <div class="form_input_parent">
+                        <div class="input_pre">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <input @input="validate('user')" v-model="daForm.user" label="User" type="text" name="user"
+                            class="form_input" placeholder="Username..." value="">
+                        <!-- <input v-model="formData.user" label="User" type="text" name="user" class="form_input" placeholder="Username..."
+                        value=""> -->
+                        <div class="ind_error">
+                            <!-- <span v-for="error in v$.user.$errors" :key="error.$uid">{{error.$message}}</span> -->
+                            <span v-if="error.user">{{ errorUser }}</span>
+                        </div>
+                    </div>
+                    <div class="form_input_parent">
+                        <div class="input_pre">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <input @input="validate('pass')" v-model="daForm.pass" label="Pass" type="password" name="pass"
+                            class="form_input" placeholder="Password..." value="">
+                        <!-- <input v-model="formData.pass" label="Pass" type="password" name="pass" class="form_input" placeholder="Password..."
+                        value=""> -->
+                        <div class="ind_error">
+                            <!-- <span v-for="error in v$.pass.$errors" :key="error.$uid">{{error.$message}}</span> -->
+                            <span v-if="error.pass">{{ errorPass }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="form_btn_parent">
+                    <button type="submit" id="form_btn" value="Login">LOGIN</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</template>
 <!-- <script setup>
 import useVuelidate from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
@@ -136,107 +178,86 @@ export default {
         async attemptLogIn(VueObj) {
             let user = this.daForm.user;
             let pass = this.daForm.pass;
-
-            const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
-            axios.post(URL)
-                .then(function (response) {
-                    if (response.data == null) return;
+            VueObj;
+            // const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
+            // const herokuURL = `https://strp-wbhk-1234.herokuapp.com`
+            const herokuURL = `http://localhost:4001`
+            // let header = {
+            //     method: "post",
+            //     url: herokuURL+"/users/login",
+            //     data: {
+            //     username: user,
+            //     password: pass
+            //     },
+            //     withCredentials: true,
+            // }
+            axios({
+                method: "post",
+                url: herokuURL+"/users/login",
+                data: {
+                username: user,
+                password: pass
+                },
+                withCredentials: true,
+            }) 
+            // axios.post(header)
+            //     .then(function (response) {
+            //         if (response.data == null) return;
                     
-                    //check if server html is already on page
-                    let checkHTML = document.getElementsByClassName('server_page');
-                    if (checkHTML!==null){
-                        let j;
-                        for(j = 0; j<checkHTML.length; j++)
-                        {
-                            console.log('pages', checkHTML[j])
-                            checkHTML[j].remove();
-                        }
-                    }
-                    if (!response.data.allow) {
-                        VueObj.error.user = true;
-                        VueObj.error.pass = true;
-                        VueObj.errorUser = "Wrong password or user";
-                        VueObj.errorPass = "Wrong password or user";
-                        return;
-                    } else {
-                        VueObj.error.user = false;
-                        VueObj.error.pass = false;
-                        VueObj.errorUser = "Username is required!";
-                        VueObj.errorPass = "Password is required!";
-                    }
-                    /*remove duplicate html*/
-                    let a = document.getElementsByClassName('server_page');
-                    for (let i = 0; i < a.length; i++) {
-                        a[i].remove();
-                    }
-                    /*construct placeholder for server html*/
-                    let txt = response.data.html;
-                    var htmlObject = document.createElement('div');
-                    htmlObject.innerHTML = txt;
-                    htmlObject.className = "server_page";
-                    VueObj.showAllElem = false;
-                    /*insert server html*/
-                    let j = document.getElementById('app').children;
-                    j[0].style.visibility = "hidden";
-                    j[2].style.visibility = "hidden";
-                    document.body.style.overflow = "hidden";
-                    j[0].parentNode.insertBefore(htmlObject, j[0].nextSibling);
-                    /* eval detected server code */
-                    VueObj.nodeScriptReplace(document.getElementById("serverscript"));
-                })
-                .catch(function (error) {
-                    error;
-                    console.log(error);
-                })
-                .finally(function () {
-                });
+            //         //check if server html is already on page
+            //         let checkHTML = document.getElementsByClassName('server_page');
+            //         if (checkHTML!==null){
+            //             let j;
+            //             for(j = 0; j<checkHTML.length; j++)
+            //             {
+            //                 console.log('pages', checkHTML[j])
+            //                 checkHTML[j].remove();
+            //             }
+            //         }
+            //         if (!response.data.allow) {
+            //             VueObj.error.user = true;
+            //             VueObj.error.pass = true;
+            //             VueObj.errorUser = "Wrong password or user";
+            //             VueObj.errorPass = "Wrong password or user";
+            //             return;
+            //         } else {
+            //             VueObj.error.user = false;
+            //             VueObj.error.pass = false;
+            //             VueObj.errorUser = "Username is required!";
+            //             VueObj.errorPass = "Password is required!";
+            //         }
+            //         /*remove duplicate html*/
+            //         let a = document.getElementsByClassName('server_page');
+            //         for (let i = 0; i < a.length; i++) {
+            //             a[i].remove();
+            //         }
+            //         /*construct placeholder for server html*/
+            //         let txt = response.data.html;
+            //         var htmlObject = document.createElement('div');
+            //         htmlObject.innerHTML = txt;
+            //         htmlObject.className = "server_page";
+            //         VueObj.showAllElem = false;
+            //         /*insert server html*/
+            //         let j = document.getElementById('app').children;
+            //         j[0].style.visibility = "hidden";
+            //         j[2].style.visibility = "hidden";
+            //         document.body.style.overflow = "hidden";
+            //         j[0].parentNode.insertBefore(htmlObject, j[0].nextSibling);
+            //         /* eval detected server code */
+            //         VueObj.nodeScriptReplace(document.getElementById("serverscript"));
+            //     })
+            //     .catch(function (error) {
+            //         error;
+            //         console.log(error);
+            //     })
+            //     .finally(function () {
+            //     });
         }
     }
 }
 </script>
 
-<template>
-    <div v-if="showAllElem" id="alpha">
-        <img id="alpha_bg" src="@/assets/part.jpg">
-        <form @submit.prevent="submitForm">
-            <div id="form_border">
-                <div id="form_header">LOG IN</div>
-                <div id="form_input_container">
-                    <div class="form_input_parent">
-                        <div class="input_pre">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <input @input="validate('user')" v-model="daForm.user" label="User" type="text" name="user"
-                            class="form_input" placeholder="Username..." value="">
-                        <!-- <input v-model="formData.user" label="User" type="text" name="user" class="form_input" placeholder="Username..."
-                        value=""> -->
-                        <div class="ind_error">
-                            <!-- <span v-for="error in v$.user.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.user">{{ errorUser }}</span>
-                        </div>
-                    </div>
-                    <div class="form_input_parent">
-                        <div class="input_pre">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <input @input="validate('pass')" v-model="daForm.pass" label="Pass" type="password" name="pass"
-                            class="form_input" placeholder="Password..." value="">
-                        <!-- <input v-model="formData.pass" label="Pass" type="password" name="pass" class="form_input" placeholder="Password..."
-                        value=""> -->
-                        <div class="ind_error">
-                            <!-- <span v-for="error in v$.pass.$errors" :key="error.$uid">{{error.$message}}</span> -->
-                            <span v-if="error.pass">{{ errorPass }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="form_btn_parent">
-                    <button type="submit" id="form_btn" value="Login">LOGIN</button>
-                </div>
-            </div>
-        </form>
 
-    </div>
-</template>
 
 <!-- <script>
 export default {
