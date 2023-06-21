@@ -11,16 +11,16 @@
 <script>
 // import PageHeader from './components/PageHeader.vue';
 import NewHeader from "./components/NewHeader.vue";
-import PageFooter from "./components/PageFooter.vue";
-import InfoBanner from "./components/InfoBanner.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import InfoBanner from "@/components/InfoBanner.vue";
 
 export default {
   name: "App",
   components: {
     // PageHeader,
+    NewHeader,
     InfoBanner,
     PageFooter,
-    NewHeader,
   },
   data() {
     return {};
