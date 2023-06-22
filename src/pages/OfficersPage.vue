@@ -41,6 +41,8 @@
             VueOBJ.nodata = true;
             return;
           }
+          console.log(response.data)
+          response.data.shift()
           VueOBJ.officer_list = response.data;
         })
         .catch(function (error) {

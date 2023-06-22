@@ -6,27 +6,22 @@
             <img src="@/assets/logobottom.png" alt="" />
         </div>
 
-        <!-- :class="{ 'regularState': option.hover==false, 'hoverState': option.hover==true }" -->
-
-
         <div id="headerOption_container">
             <div class="headerOption" :key="index" v-for="(option, index) in navigation">
                 <div 
-                v-if="option.type=='dropdown'" 
-                @mouseover="option.hover=true" 
-                @mouseleave="option.hover=false">
-
+                class="dropdown"
+                v-if="option.type=='dropdown'"
+                @mouseover="option.hover=true"
+                @mouseleave="option.hover=false">                
+                    <div v-if="option.hover" class="suboption_container">
+                        <div :key="index" v-for="(suboption, index) in option.data" class="suboption">
+                            <router-link class="optionLink2" :to="suboption.path">{{ suboption.title }}</router-link>
+                        </div>
+                    </div>
                     <router-link class="optionLink" :to="option.path">
                         {{ option.title }}
                         <font-awesome-icon class="dropIcon" :icon="['fas', 'chevron-down']" />
                     </router-link>
-
-                    <div v-if="option.hover" class="suboption_container">
-                        <div  :key="index" v-for="(suboption, index) in option.data" class="suboption">
-                            <router-link class="optionLink" :to="suboption.path">{{ suboption.title }}</router-link>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div v-else>
@@ -35,7 +30,14 @@
             </div>
         </div>
 
-        <div id="account"></div>
+        <div id="account">
+            <router-link to="/">
+                <button>Sign Up</button>
+            </router-link>
+            <router-link to="/">
+                <button>Log In</button>
+            </router-link>
+        </div>
     </div>
 </template>
     
@@ -47,7 +49,6 @@ export default {
     },
     data() {
         return {
-            show: false,
             navigation:[
                 {type: "regular", path: "/", title: "Home"},
                 {
@@ -88,9 +89,23 @@ export default {
     z-index: 9999;
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr 5fr 100px;
+    grid-template-columns: 1fr 5fr 200px;
     box-shadow: 0px -1px 10px black;
 }   
+#account{
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    padding-right: 20px;
+    align-items: center;
+}
+#account>a>button{
+    border-radius: 5px;
+    border: none; outline: none;
+    background-color: red;
+    color: white;
+    font-size: 0.7em;
+}
 #header>div{
     object-fit: cover;
 }
@@ -103,6 +118,7 @@ export default {
 #headerImage_container>img{
     width: 70%;
     object-fit: contain;
+    box-shadow: 0px 0px 15px black;
 }
 #header_bg,#bg_edit{
     width: 100%;
@@ -122,7 +138,10 @@ export default {
     background-position: center;
 }
 #bg_edit {
-  backdrop-filter: blur(0px) brightness(0.2) grayscale(1);
+  backdrop-filter: blur(0px) brightness(0.13) grayscale(1);
+}
+.headerOption{
+    position: relative;
 }
 #headerOption_container{
     display: flex;
@@ -132,39 +151,44 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-.headerOption{
+.optionLink,.optionLink2{
+    padding: 7px;
     font-weight: bold;
-    transition: 0.2s ease;
-}
-
-.optionLink{
-    padding: 15px;
     text-decoration: none;
+    background-color: transparent;
+    transition: 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
 }
-.dropIcon{
-    padding-right: 5px;
+.optionLink:hover,.optionLink2:hover{
+    color: black;
+    background-color: white !important;
 }
 .suboption_container{
+    overflow: hidden;
     position: absolute;
+    top: 100%;
+    background-color: white !important;
+    color: black !important;
 }
-.suboption{
-    transition: 0.2s ease;
-    color: black;
-    padding: 5px;
-    cursor: pointer;
+.suboption,.optionLink2{
+    width: 100% !important;
+    height: fit-content;
+    display: flex;
 }
 .suboption:hover{
     filter: brightness(0.7);
 }
-
-.headerOption:hover{
+.suboption_container:hover + .optionLink{
+    background-color: rgb(255, 255, 255) !important;
     color: black !important;
-    background-color: white !important;
 }
-.headerOption{
-    color: white !important;
-    background-color: transparent !important;
+.dropIcon{
+    padding-right: 5px;
 }
+
 .headerOption>*,.headerOption>*>*,.headerOption>*>*>*,.headerOption>*>*>*>*{
     color: inherit;
 }
