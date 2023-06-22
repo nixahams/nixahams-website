@@ -14,15 +14,21 @@
             <form @submit.prevent="submitForm">
 
                 <div id="form_title_header" v-if="method!='login'">START FOR FREE</div>
-
-                <div id="form_title">{{ title }}
-                    <span v-if="method=='login'">Log in</span>
-                    <span v-else>Create new account</span>
+                
+                <div id="form_title_login" v-if="method=='login'">
+                    {{ title }}
+                    <span>Log in</span>
                 </div>
+
+                <div id="form_title" v-else>
+                    {{ title }}
+                    <span >Create new account</span>
+                </div>
+
 
                 <div id="form_existing" v-if="method!='login'">
                     Already A Member?
-                    <router-link :to="{ path: '/account', query: { method: 'login' }}">Log In </router-link>
+                    <router-link id="loginFontColor" :to="{ path: '/account', query: { method: 'login' }}">Log In </router-link>
                 </div>
                 <div id="form_existing" v-else>
                     Don't have an account?
@@ -97,9 +103,9 @@
                 <div class="inputSpan1">
                     <div class="form_input">
                         <!-- Login Button -->
-                        <input v-if="method=='login'" type="submit" value="Log in">
+                        <input v-if="method=='login'" id="login" type="submit" value="Log in">
                         <!-- Sign Up Button -->
-                        <input v-else type="submit" value="Create account">
+                        <input v-else type="submit" id="create" value="Create account">
                     </div>
                 </div>
             </form>
@@ -220,13 +226,17 @@ a{
 #form_title_header{
     color: rgba(255,255,255,0.8);
 }
-#form_title{
+#form_title,#form_title_login{
     font-size: 3em;
     font-weight: bold;
 }
 #form_title::after{
     content: '.';
     color: #1D90F4;
+}
+#form_title_login::after{
+    content: '.';
+    color: #f4901d;
 }
 #form_existing{
     display: flex;
@@ -252,10 +262,27 @@ a{
 .inputSpan1>div>input[type=number]{
     width: 100%;
 }
-
+#loginFontColor{
+    color: #f4901d !important;
+}
+#login{
+    background-color: #f4901d;
+    box-shadow: 0px 5px 20px #f4b01d49;
+}
+#create{
+    background-color: #1D90F4;
+    box-shadow: 0px 5px 20px #1d90f449;
+}
+#login:hover
+{
+    box-shadow: 0px 0px 20px #f4a91d9c;
+}
+#create:hover
+{
+    box-shadow: 0px 0px 20px #1d90f49c;
+}
 input[type=submit]
 {
-    background-color: #1D90F4;
     color: white;
     outline: none; border: none;
     cursor: pointer;
@@ -263,14 +290,10 @@ input[type=submit]
     font-size: 0.8em;
     border-radius: 50px;
     height: 50px;
-    box-shadow: 0px 5px 20px #1d90f449;
     margin-top: 20px;
     transition: 0.2s ease;
 }
-input[type=submit]:hover
-{
-    box-shadow: 0px 0px 20px #1d90f49c;
-}
+
 
 input[type=text],input[type=email],input[type=password]
 {
