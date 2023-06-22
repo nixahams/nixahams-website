@@ -1,6 +1,92 @@
 <template>
     <div id="account">
-        {{ method }}
+        <div id="form_container">
+            <form @submit.prevent="submitForm">
+
+                <div id="form_title_header" v-if="method!='login'">START FOR FREE</div>
+
+                <div id="form_title">{{ title }}
+                    <span v-if="method=='login'">Log in</span>
+                    <span v-else>Create new account</span>
+                </div>
+
+                <div id="form_existing" v-if="method!='login'">
+                    Already A Member?
+                    <router-link :to="{ path: '/account', query: { method: 'login' }}">Log In </router-link>
+                </div>
+                <div id="form_existing" v-else>
+                    Don't have an account?
+                    <router-link :to="{ path: '/account', query: { method: 'signup' }}">Sign Up </router-link>
+                </div>
+
+                <div id="form_span_container">
+                    <!-- Create Only -->
+                    <div class="inputSpan2" v-if="method!='login'">
+                        <div class="form_input">
+                            <label for="fname">First Name</label>
+                            <input name="fname" type="text" placeholder="Jane" required value="Josh">
+                        </div>
+                        <div class="form_input">
+                            <label for="lname">Last Name</label>
+                            <input name="lname" type="text" placeholder="Doe" required value="Dejeu">
+                        </div>
+                    </div>
+
+                    <div class="inputSpan1">
+                        <!-- Create : Email -->
+                        <div class="form_input"  v-if="method!='login'">
+                            <label for="email">Email</label>
+                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com">
+                        </div>
+                        <!-- Login : Email -->
+                        <div class="form_input login" v-else>
+                            <label for="email">Email</label>
+                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com">
+                        </div>
+                    </div>
+
+                    <div class="inputSpan2" >
+                        <!-- Create : Password -->
+                        <div class="form_input" v-if="method!='login'">
+                            <label for="password">Password</label>
+                            <input for="password" type="password" placeholder="***" required value="******">
+                        </div>
+                        <!-- Login : Password -->
+                        <div class="form_input login" v-else>
+                            <label for="password">Password</label>
+                            <input for="password" type="password" placeholder="***" required value="******">
+                        </div>
+                        <!-- Create : Confirm Password -->
+                        <div class="form_input" v-if="method!='login'">
+                            <label for="cpassword">Confirm Password</label>
+                            <input for="cpassword" type="password" placeholder="***" required value="******">
+                        </div>
+                    </div>
+
+                    <!-- Create Only -->
+                    <div class="inputSpan1" v-if="method!='login'">
+                        <div class="form_input stubborn">
+                            <label for="member">ARRL Member?</label>
+                            <label class="switch">
+                                <input name="active" type="checkbox" v-on:change="bannerShow = !bannerShow">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="inputSpan1">
+                    <div class="form_input">
+                        <!-- Login Button -->
+                        <input v-if="method=='login'" type="submit" value="Log in">
+                        <!-- Sign Up Button -->
+                        <input v-else type="submit" value="Create account">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
     
@@ -11,21 +97,189 @@ export default {
     props: ['method'],
     components: {
     },
+    data(){
+        return{
+            title: ''
+        }
+    },
     methods: {
+        submitForm(e)
+        {
+            for(let i = 0; i < e.target.length-1; i++)
+            {
+                console.log(e.target[i].value)
+            }
+        }
     },
     mounted() {
-        console.log(this.method)
     }
 }
 </script>
 <style scoped>
+form{
+    min-width: 500px;
+}
+#form_span_container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 100px;
+}
 #account{
     height: 100vh;
     width: 100%;
     background-color: #111111;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    font-family: 'Montserrat';
+}
+a{
+    text-decoration: none;
+    color: #1D90F4 !important;
+}
+#form_container{
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    height: 100%;
+    padding: 30px 30px 30px 60px;
+}
+
+#form_title_header{
+    color: rgba(255,255,255,0.8);
+}
+#form_title{
+    font-size: 3em;
+    font-weight: bold;
+}
+#form_title::after{
+    content: '.';
+    color: #1D90F4;
+}
+#form_existing{
+    display: flex;
+    gap: 10px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 30px;
+}
+.form_input{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputSpan2{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.inputSpan1>div>input[type=text],
+.inputSpan1>div>input[type=password],
+.inputSpan1>div>input[type=email],
+.inputSpan1>div>input[type=number]{
+    width: 100%;
+}
+
+input[type=submit]
+{
+    background-color: #1D90F4;
+    color: white;
+    outline: none; border: none;
+    cursor: pointer;
+    padding: 10px 35px;
+    font-size: 0.8em;
+    border-radius: 50px;
+    height: 50px;
+    box-shadow: 0px 5px 20px #1d90f449;
+    margin-top: 20px;
+    transition: 0.2s ease;
+}
+input[type=submit]:hover
+{
+    box-shadow: 0px 0px 20px #1d90f49c;
+}
+
+input[type=text],input[type=email],input[type=password]
+{
+    height: 50px;
+    padding: 5px 15px 0px 15px;
+    outline: none; border: none;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 15px;
+    transform: 0.2s ease;
+    box-shadow: 0px 0px 0px 0px white;
+}
+input[type=text]:focus,input[type=email]:focus:focus,input[type=password]:focus
+{
+    border: 1px solid #1D90F4;
+    box-shadow: 0px 0px 10px #1d90f450;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.2);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgba(255,255,255,0.6);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: rgba(255,255,255,1);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.stubborn{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 20px;
+    /* align-content: center; */
+}
+.login{
+    width: 100% !important;
 }
 </style>
     
