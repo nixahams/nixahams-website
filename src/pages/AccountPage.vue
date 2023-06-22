@@ -23,43 +23,50 @@
                     <!-- Create Only -->
                     <div class="inputSpan2" v-if="method!='login'">
                         <div class="form_input">
-                            <label for="fname">First Name</label>
-                            <input name="fname" type="text" placeholder="Jane" required value="Josh">
+                            <label for="fname" class="above">First Name</label>
+                            <input name="fname" type="text" placeholder="Jane" required value="Josh" 
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                         <div class="form_input">
-                            <label for="lname">Last Name</label>
-                            <input name="lname" type="text" placeholder="Doe" required value="Dejeu">
+                            <label for="lname" class="above">Last Name</label>
+                            <input name="lname" type="text" placeholder="Doe" required value="Dejeu" 
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
                     <div class="inputSpan1">
                         <!-- Create : Email -->
                         <div class="form_input"  v-if="method!='login'">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com">
+                            <label for="email" class="above">Email</label>
+                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Email -->
                         <div class="form_input login" v-else>
-                            <label for="email">Email</label>
-                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com">
+                            <label for="email" class="above">Email</label>
+                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
                     <div class="inputSpan2" >
                         <!-- Create : Password -->
                         <div class="form_input" v-if="method!='login'">
-                            <label for="password">Password</label>
-                            <input for="password" type="password" placeholder="***" required value="******">
+                            <label for="password" class="above">Password</label>
+                            <input for="password" type="password" placeholder="***" required value="******"
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Password -->
                         <div class="form_input login" v-else>
-                            <label for="password">Password</label>
-                            <input for="password" type="password" placeholder="***" required value="******">
+                            <label for="password" class="above">Password</label>
+                            <input for="password" type="password" placeholder="***" required value="******"
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                         <!-- Create : Confirm Password -->
                         <div class="form_input" v-if="method!='login'">
-                            <label for="cpassword">Confirm Password</label>
-                            <input for="cpassword" type="password" placeholder="***" required value="******">
+                            <label for="cpassword" class="above">Confirm Password</label>
+                            <input for="cpassword" type="password" placeholder="***" required value="******"
+                            @focus="focusLabel($event)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
@@ -103,6 +110,18 @@ export default {
         }
     },
     methods: {
+        focusLabel(e)
+        {
+            let sibling = e.target.previousSibling;
+            sibling.className = "below"
+            console.log(sibling)
+        },
+        blurLabel(e)
+        {
+            let sibling = e.target.previousSibling;
+            sibling.className = "above"
+            console.log(sibling)
+        },
         submitForm(e)
         {
             for(let i = 0; i < e.target.length-1; i++)
@@ -122,7 +141,7 @@ form{
 #form_span_container{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     min-width: 100px;
 }
 #account{
@@ -166,6 +185,7 @@ a{
 .form_input{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .inputSpan2{
@@ -203,7 +223,7 @@ input[type=submit]:hover
 input[type=text],input[type=email],input[type=password]
 {
     height: 50px;
-    padding: 5px 15px 0px 15px;
+    padding: 10px 15px 0px 15px;
     outline: none; border: none;
     background-color: rgba(255,255,255,0.1);
     color: white;
@@ -280,6 +300,25 @@ input:checked + .slider:before {
 }
 .login{
     width: 100% !important;
+}
+.below, .above{
+    position: absolute;
+    font-size: 0.8em;
+}
+.above{
+    bottom: 100%;
+    left: 0em;
+}
+.below{
+    /* transition glitches with "top: 0.5em;" value but is more pixel accurate, change in future if encountering visual glitches */
+    /* top: 0.5em; */
+    bottom: 60%;
+    font-size: 0.6em;
+    left: 1.5em;
+    color: #2196F3;
+}
+label{
+    transition: 0.2s ease !important;
 }
 </style>
     
