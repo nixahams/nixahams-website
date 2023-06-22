@@ -1,8 +1,14 @@
 <template>
     <div id="account">
         <div id="backgroundImg_container">
-            <img src="https://i.imgur.com/b0UKsvD.png" alt="">
+            <img src="https://i.imgur.com/b0UKsvD.png" alt="Background">
             <div id="bgCover"></div>
+        </div>
+        <div id="watermark">
+            <router-link to="/"> 
+                <img src="@/assets/logo1.png" alt="Logo">
+                <img src="@/assets/south.png" alt="Logo">
+            </router-link>
         </div>
         <div id="form_container">
             <form @submit.prevent="submitForm">
@@ -183,7 +189,7 @@ export default {
     /* Img Style 2 : Combine with "Linear Gradient Style 2" */
     height: 100%;
     margin-right: -20%;
-    
+
     object-position: right;
     object-fit: cover;
 }
@@ -365,6 +371,29 @@ input:checked + .slider:before {
 }
 label{
     transition: 0.2s ease !important;
+}
+#watermark{
+    position: absolute;
+    right: 3em;
+    bottom: calc(2em + 70px);
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#watermark>a>img{
+    object-fit: cover;
+    object-position: center;
+    width: 70px;
+    filter: brightness(0) invert(1);
+    transition: 0.2s ease;
+
+}
+#watermark>a>img:hover{
+    filter: brightness(1) invert(0) ;
 }
 </style>
     
