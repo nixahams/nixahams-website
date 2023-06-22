@@ -41,12 +41,12 @@
                         <div class="form_input">
                             <label for="fname" class="above">First Name</label>
                             <input name="fname" type="text" placeholder="Jane" required value="Josh" 
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <div class="form_input">
                             <label for="lname" class="above">Last Name</label>
                             <input name="lname" type="text" placeholder="Doe" required value="Dejeu" 
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
@@ -55,13 +55,13 @@
                         <div class="form_input"  v-if="method!='login'">
                             <label for="email" class="above">Email</label>
                             <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Email -->
                         <div class="form_input login" v-else>
                             <label for="email" class="above">Email</label>
                             <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 2)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
@@ -70,19 +70,19 @@
                         <div class="form_input" v-if="method!='login'">
                             <label for="password" class="above">Password</label>
                             <input for="password" type="password" placeholder="***" required value="******"
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Password -->
                         <div class="form_input login" v-else>
                             <label for="password" class="above">Password</label>
                             <input for="password" type="password" placeholder="***" required value="******"
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 2)" @blur="blurLabel($event)">
                         </div>
                         <!-- Create : Confirm Password -->
                         <div class="form_input" v-if="method!='login'">
                             <label for="cpassword" class="above">Confirm Password</label>
                             <input for="cpassword" type="password" placeholder="***" required value="******"
-                            @focus="focusLabel($event)" @blur="blurLabel($event)">
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
@@ -126,10 +126,15 @@ export default {
         }
     },
     methods: {
-        focusLabel(e)
+        focusLabel(e, page)
         {
             let sibling = e.target.previousSibling;
-            sibling.className = "below"
+            if(page==1)
+            {
+                sibling.className = "below create"
+            }else{
+                sibling.className = "below admin"
+            }
         },
         blurLabel(e)
         {
@@ -306,11 +311,22 @@ input[type=text],input[type=email],input[type=password]
     transform: 0.2s ease;
     box-shadow: 0px 0px 0px 0px white;
 }
-input[type=text]:focus,input[type=email]:focus:focus,input[type=password]:focus
+/* input[type=text]:focus,input[type=email]:focus:focus,input[type=password]:focus
+{
+    border: 1px solid #1D90F4;
+    box-shadow: 0px 0px 10px #1d90f450;
+} */
+.create + *:focus
 {
     border: 1px solid #1D90F4;
     box-shadow: 0px 0px 10px #1d90f450;
 }
+.admin + *:focus
+{
+    border: 1px solid #f4901d;
+    box-shadow: 0px 0px 10px #f4901d8c;
+}
+
 
 
 .switch {
@@ -384,13 +400,18 @@ input:checked + .slider:before {
     bottom: 100%;
     left: 0em;
 }
+.below.admin{
+    color: #f4901d;
+}
+.below.create{
+    color: #2196F3;
+}
 .below{
     /* transition glitches with "top: 0.5em;" value but is more pixel accurate, change in future if encountering visual glitches */
     /* top: 0.5em; */
     bottom: 60%;
     font-size: 0.6em;
     left: 1.5em;
-    color: #2196F3;
 }
 label{
     transition: 0.2s ease !important;
@@ -417,6 +438,10 @@ label{
 }
 #watermark>a>img:hover{
     filter: brightness(1) invert(0) ;
+}
+input[type="submit"]:focus{
+    border: 2px solid white;
+    box-shadow: 0px 0px 0px transparent !important;
 }
 </style>
     
