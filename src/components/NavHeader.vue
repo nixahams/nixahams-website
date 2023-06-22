@@ -31,10 +31,10 @@
         </div>
 
         <div id="account">
-            <router-link to="/">
+            <router-link :to="{ path: '/account', query: { method: 'signup' }}">
                 <button>Sign Up</button>
             </router-link>
-            <router-link to="/">
+            <router-link :to="{ path: '/account', query: { method: 'login' }}">
                 <button>Log In</button>
             </router-link>
         </div>

@@ -13,6 +13,7 @@ import Officers from "../pages/OfficersPage.vue";
 import Invalid from "../pages/InvalidPage.vue";
 import Contact from "../pages/ContactPage.vue";
 import Alpha from "../pages/AlphaPage.vue";
+import Account from "../pages/AccountPage.vue";
 
 // import Donate from '../pages/DonationPage.vue';
 
@@ -32,6 +33,8 @@ const router = createRouter({
     { path: "/officers", component: Officers },
     { path: "/contact", component: Contact },
     { path: "/alpha", component: Alpha },
+    //props method creates a prop from URL query
+    { path: "/account", component: Account, name: "Account",props(route) {return {  method: route.query.method }}},
     // { path: '/donate', component: Donate},
     // { path: "/:pathMatch(.*)*", component: Invalid },
     
