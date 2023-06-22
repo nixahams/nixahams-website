@@ -1,18 +1,23 @@
 <template>
   <div id="app">
+    <NavHeader/>
     <InfoBanner />
-    <router-view />
-    <PageFooter />
+    <div id="test">
+      <router-view />
+      <PageFooter />
+    </div>
   </div>
 </template>
 
 <script>
+import NavHeader from "@/components/NavHeader.vue";
 import PageFooter from "@/components/PageFooter.vue";
 import InfoBanner from "@/components/InfoBanner.vue";
 
 export default {
   name: "App",
   components: {
+    NavHeader,
     InfoBanner,
     PageFooter,
   },
@@ -75,7 +80,13 @@ html {
 body {
   background-color: #1c2023;
 }
-
+#test{
+  margin-top: 70px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
 #app {
   width: 100%;
   height: 100%;

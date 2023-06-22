@@ -12,16 +12,16 @@
             <div class="footer_block">
                 <div class="footer_title">Quick Links</div>
                 <div class="footer_link">
-                    <a href="#/">
+                    <a href="/">
                         <i class="fa-solid fa-house icon"></i>
                         - Home</a>
-                    <a href="#/bylaws">
+                    <a href="/bylaws">
                         <i class="fa-solid fa-circle-question icon"></i>
                         - Constitution & Bylaws</a>
-                    <a href="#/roster">
+                    <a href="/roster">
                         <i class="fa-solid fa-list icon"></i>
                         - Join This Years Roster</a>
-                    <a href="#/contact">
+                    <a href="/contact">
                         <i class="fa-solid fa-envelope icon"></i>
                         - Contact Us</a>
                 </div>
@@ -29,16 +29,16 @@
             <div class="footer_block">
                 <div class="footer_title">Services</div>
                 <div class="footer_link">
-                    <a href="#/nets">
+                    <a href="/nets">
                         <i class="fas fa-walkie-talkie icon"></i>
                         - Nets</a>
-                    <a href="#/dmr">
+                    <a href="/dmr">
                         <i class="fa-solid fa-circle-info icon"></i>
                         - SWMO DMR Info</a>
-                    <a href="#/meetings">
+                    <a href="/meetings">
                         <i class="fa-solid fa-people-group icon"></i>
                         - Monthly Meetings</a>
-                    <a href="#/repeaters">
+                    <a href="/repeaters">
                         <i class="fa-solid fa-tower-cell icon"></i>
                         - Repeaters</a>
                 </div>
