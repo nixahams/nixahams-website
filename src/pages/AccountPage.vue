@@ -1,5 +1,9 @@
 <template>
     <div id="account">
+        <div id="backgroundImg_container">
+            <img src="https://i.imgur.com/b0UKsvD.png" alt="">
+            <div id="bgCover"></div>
+        </div>
         <div id="form_container">
             <form @submit.prevent="submitForm">
 
@@ -114,13 +118,11 @@ export default {
         {
             let sibling = e.target.previousSibling;
             sibling.className = "below"
-            console.log(sibling)
         },
         blurLabel(e)
         {
             let sibling = e.target.previousSibling;
             sibling.className = "above"
-            console.log(sibling)
         },
         submitForm(e)
         {
@@ -135,15 +137,6 @@ export default {
 }
 </script>
 <style scoped>
-form{
-    min-width: 500px;
-}
-#form_span_container{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    min-width: 100px;
-}
 #account{
     height: 100vh;
     width: 100%;
@@ -152,6 +145,58 @@ form{
     justify-content: start;
     align-items: center;
     font-family: 'Montserrat';
+    /* background-image: url('https://i.imgur.com/wrgLqLe.jpeg'); */
+    /* background-position: right; */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
+    /* background-image: radial-gradient(at top right, #0e0c0c00 10%, #1c1d25 40%, #1c1d25), url('https://i.imgur.com/b0UKsvD.png'); */
+    position: relative;
+}
+#backgroundImg_container{
+    background: #1C1E2571;
+    pointer-events: none;
+    user-select: none;
+    /* z-index: -1; */
+}
+#bgCover,#backgroundImg_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex; justify-content: end; align-items: start;
+    overflow: hidden;
+}
+#bgCover{
+    background: #1C1E2571;
+    /* Radial Style 1 : Combine with "Img Gradient Style 1" */
+    /* background: radial-gradient(at right top, #1c1e25bd, #1C1E25 45%); */
+
+    /* Linear Style 2 : Combine with "Img Gradient Style 2" */
+    background: linear-gradient(-110deg, #1c1e25bd 0%, #1C1E25 45%);
+}
+#backgroundImg_container>img{
+    /* Img Style 1 : Combine with "Radial Gradient Style 1" */
+    /* height: 70%;
+    width: 70%; */
+
+    /* Img Style 2 : Combine with "Linear Gradient Style 2" */
+    height: 100%;
+    margin-right: -20%;
+    
+    object-position: right;
+    object-fit: cover;
+}
+
+
+form{
+    min-width: 500px;
+}
+#form_span_container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 100px;
 }
 a{
     text-decoration: none;
@@ -163,6 +208,7 @@ a{
     width: 50vw;
     height: 100%;
     padding: 30px 30px 30px 60px;
+    z-index: 2;
 }
 
 #form_title_header{
