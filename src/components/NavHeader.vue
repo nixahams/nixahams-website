@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg bg-dark text-whiteborder-bottom"
+    class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
     <div class="d-flex justify-content-evenly w-100 align-items-center">
@@ -105,29 +105,7 @@ export default {
     },
   },
   data() {
-    return {
-      navigation: [
-        { type: "regular", path: "/", title: "Home" },
-        {
-          type: "dropdown",
-          path: "/nets",
-          title: "Nets",
-          hover: false,
-          data: [
-            { path: "/nets/regional", title: "Nets_Regional" },
-            { path: "/nets/preamble", title: "Nets_Preamble" },
-            { path: "/nets/interest", title: "Nets_Interest" },
-          ],
-        },
-        { path: "/repeaters", title: "Repeaters" },
-        { path: "/meetings", title: "Meetings" },
-        { path: "/roster", title: "Roster" },
-        { path: "/dmr", title: "DMR" },
-        { path: "/bylaws", title: "Bylaw" },
-        { path: "/officers", title: "Officers" },
-        { path: "/contact", title: "Contact" },
-      ],
-    };
+    return {};
   },
   methods: {
     toggleLoggedIn(newLoggedIn) {
@@ -139,6 +117,10 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this title only -->
 <style scoped>
+.nav-background {
+  background-image: url("../assets/motherboard.jpg");
+  background-size: 25%;
+}
 #header {
   width: 100vw;
   height: 70px;
