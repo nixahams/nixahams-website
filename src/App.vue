@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavHeader/>
+    <NavHeader />
     <InfoBanner />
     <div id="test">
       <router-view />
@@ -80,8 +80,7 @@ html {
 body {
   background-color: #1c2023;
 }
-#test{
-  margin-top: 70px;
+#test {
   width: 100%;
   height: 100%;
   overflow: auto;
