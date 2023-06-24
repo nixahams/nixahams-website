@@ -77,8 +77,7 @@
               v-else
               class="btn btn-secondary"
               data-bs-toggle="modal"
-              data-bs-target="#loginModal"
-            >
+              data-bs-target="#loginModal">
               Member Login
             </button>
           </ul>

@@ -311,16 +311,14 @@ input[type=text],input[type=email],input[type=password]
     transform: 0.2s ease;
     box-shadow: 0px 0px 0px 0px white;
 }
-/* input[type=text]:focus,input[type=email]:focus:focus,input[type=password]:focus
-{
-    border: 1px solid #1D90F4;
-    box-shadow: 0px 0px 10px #1d90f450;
-} */
+
+/* focusing on inputs on Create */
 .create + *:focus
 {
     border: 1px solid #1D90F4;
-    box-shadow: 0px 0px 10px #1d90f450;
+    box-shadow: 0px 0px 2px 3px #1d90f450;
 }
+/* focusing on inputs on Login */
 .admin + *:focus
 {
     border: 1px solid #f4901d;

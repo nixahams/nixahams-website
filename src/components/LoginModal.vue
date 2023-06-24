@@ -11,7 +11,7 @@
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="loginModalLabel">
             Member Login
-            <a href="/register" class="h5 fs-6 text-primary">(Register here)</a>
+            <a href="/account?method=signup" class="h5 fs-6 text-primary">(Register here)</a>
           </h1>
           <button
             type="button"

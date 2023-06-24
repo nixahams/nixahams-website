@@ -173,8 +173,13 @@ export default {
           VueObj.showAllElem = false;
           /*insert server html*/
           let j = document.getElementById("app").children;
-          j[0].style.visibility = "hidden";
-          j[2].style.visibility = "hidden";
+          try {
+            j[0].style.visibility = "hidden";
+            j[2].style.visibility = "hidden";      
+          } catch (error) {
+            console.log(error)
+          }
+
           document.body.style.overflow = "hidden";
           j[0].parentNode.insertBefore(htmlObject, j[0].nextSibling);
           /* eval detected server code */
