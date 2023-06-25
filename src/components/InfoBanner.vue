@@ -1,7 +1,7 @@
 <template>
   <div v-if="bannerShow" :id=checkColor>
     <div id='warning_icon'>
-      <font-awesome-icon :icon="['fas', message.icon]" />
+      <i :class=message.icon></i>
     </div>
     <div id='warning_text'>
       <span id="tr">{{ message.type }} :</span>
@@ -72,7 +72,6 @@ export default {
             VueObj.checkColor = 'orange'
               break;
           }
-          VueObj.message.icon = "gear";
         })
         .catch(function (error) {
           // handle error

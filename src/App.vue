@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <PageHeader/> -->
+    <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
     <InfoBanner />
     <NewHeader />
     <router-view></router-view>
@@ -18,9 +18,9 @@ export default {
   name: "App",
   components: {
     // PageHeader,
-    NewHeader,
     InfoBanner,
     PageFooter,
+    NewHeader,
   },
   data() {
     return {};
