@@ -1,54 +1,59 @@
 <template>
   <div class="" id="testing_page">
-    <div class="test_section">
-      <div>
-        <h1>Testing Information</h1>
-        <p>What to bring:</p>
-        <ul>
-          <li>$35</li>
-          <li>Pen/Pencil</li>
-        </ul>
-
-        <p>Study Resources:</p>
-        <ul>
-          <li>
-            <a href="http://arrlexamreview.appspot.com/" target="_blank"
-              >ARRL Exam Review</a
-            >
-          </li>
-          <li>
-            <a href="https://www.kb6nu.com/study-guides/" target="_blank"
-              >KB6NU's No-Nonsense Study Guides</a
-            >
-          </li>
-          <li>
-            <a href="https://hamstudy.org/" target="_blank">Hamstudy.org</a>
-          </li>
-        </ul>
-      </div>
-      <div class="card text-dark">
-        <div
-          class="card-header d-flex align-items-center justify-content-center"
-        >
-          <img
-            src="../assets/League_diamond_color_high.jpg"
-            class="arrl-img mx-2"
-            alt="ARRL Logo"
-          />
-          <h2 class="align-center m-0">Next Test Session</h2>
-        </div>
-        <div class="card-body">
-          <p>Test Date: {{ test.date }}</p>
-          <p>Test Time: 4:30 PM (Walk-ins allowed)</p>
-          <p>Location: Nixa Fire Station #1</p>
-          <p>Address: 711 N Main St, Nixa, MO 65714</p>
-          <p>Contact: Roberto A. Huelga</p>
-          <p>Email: w3lga@arrl.net</p>
-          <p class="pb-0 m-0">Notes:</p>
-          <ul class="m-0">
-            <li>Do NOT call the fire station</li>
-            <li>FRNs required</li>
+    <div class="container mb-3">
+      <div class="row d-flex flex-row">
+        <div class="col-md-5 m-auto">
+          <h1>License Testing Information</h1>
+          <p>What to bring:</p>
+          <ul>
+            <li>$35</li>
+            <li>Pen/Pencil</li>
           </ul>
+
+          <p>Study Resources:</p>
+          <ul>
+            <li>
+              <a href="http://arrlexamreview.appspot.com/" target="_blank"
+                >ARRL Exam Review</a
+              >
+            </li>
+            <li>
+              <a href="https://www.kb6nu.com/study-guides/" target="_blank"
+                >KB6NU's No-Nonsense Study Guides</a
+              >
+            </li>
+            <li>
+              <a href="https://hamstudy.org/" target="_blank">Hamstudy.org</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 m-auto">
+          <div class="card text-dark">
+            <div
+              class="card-header d-flex align-items-center justify-content-center"
+            >
+              <img
+                src="../assets/League_diamond_color_high.jpg"
+                class="arrl-img mx-2"
+                alt="ARRL Logo"
+              />
+              <h2 class="align-center m-0">Next Test Session</h2>
+            </div>
+            <div class="card-body">
+              <p>Test Date: {{ test.date }}</p>
+              <p>Test Time: 4:30 PM (Walk-ins allowed)</p>
+              <p>Location: Nixa Fire Station #1</p>
+              <p>Address: 711 N Main St, Nixa, MO 65714</p>
+              <p>Contact: Roberto A. Huelga</p>
+              <p>Email: w3lga@arrl.net</p>
+              <p class="pb-0 m-0">Notes:</p>
+              <ul class="m-0">
+                <li>Do NOT call the fire station</li>
+                <li>FRNs required</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -112,7 +117,8 @@ body {
   background-color: black;
   padding-top: 120px;
   height: fit-content;
-  min-height: 100vh;
+  margin-left: 5%;
+  /* min-height: 100vh; */
 }
 
 .test_section {
