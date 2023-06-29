@@ -1,23 +1,26 @@
-import Vue from 'vue';
-import App from './App.vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import App from "./App.vue";
+import VueRouter from "vue-router";
 import routes from "./routes";
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import axios from "axios";
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-Vue.use(VueRouter);//enables routing
+Vue.use(VueRouter); //enables routing
 
 const router = new VueRouter({
-  routes
-});//routes stores in an array of objects
+  routes,
+}); //routes stores in an array of objects
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+// Set up Axios
+axios.defaults.baseURL = "http://localhost:4001";
 
 new Vue({
   router,
-  render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
