@@ -18,7 +18,7 @@ const router = new VueRouter({
 Vue.config.productionTip = false;
 
 // Set up Axios
-axios.defaults.baseURL = "http://localhost:4001";
+axios.defaults.baseURL = "https://strp-wbhk-1234.herokuapp.com";
 
 new Vue({
   router,
