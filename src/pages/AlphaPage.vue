@@ -138,6 +138,18 @@ export default {
             let pass = this.daForm.pass;
 
             const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
+
+            VueObj;
+            // const herokuURL = `http://localhost:4001`
+            // axios({
+            //     method: "post",
+            //     url: herokuURL+"/users/login",
+            //     data: {
+            //     username: user,
+            //     password: pass
+            //     },
+            //     withCredentials: true,
+            // }) 
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
@@ -207,7 +219,7 @@ export default {
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <input @input="validate('user')" v-model="daForm.user" label="User" type="text" name="user"
-                            class="form_input" placeholder="Username..." value="">
+                            class="form_input" placeholder="Username...">
                         <!-- <input v-model="formData.user" label="User" type="text" name="user" class="form_input" placeholder="Username..."
                         value=""> -->
                         <div class="ind_error">
@@ -220,7 +232,7 @@ export default {
                             <i class="fa-solid fa-lock"></i>
                         </div>
                         <input @input="validate('pass')" v-model="daForm.pass" label="Pass" type="password" name="pass"
-                            class="form_input" placeholder="Password..." value="">
+                            class="form_input" placeholder="Password...">
                         <!-- <input v-model="formData.pass" label="Pass" type="password" name="pass" class="form_input" placeholder="Password..."
                         value=""> -->
                         <div class="ind_error">

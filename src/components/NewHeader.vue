@@ -12,6 +12,13 @@
         </div>
         <div id="burgerLine"></div>
         <div id="burgerOptionContainer">
+            <!-- <a class="burgerA" href="#/testlogin">
+                <div class="hoverOpt">Test Admin</div>
+                <div class="burgerOption">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="burgerTitle">Test Admin</span>
+                </div>
+            </a> -->
             <a class="burgerA" href="#/">
                 <div class="hoverOpt">Home</div>
                 <div class="burgerOption">

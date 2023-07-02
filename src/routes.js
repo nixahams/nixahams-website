@@ -17,6 +17,8 @@ import Invalid from "./pages/InvalidPage.vue";
 
 import Alpha from "./pages/AlphaPage.vue";
 import Success from "./pages/SuccessPage.vue";
+
+import adminPage from "./pages/testAdmin.vue";
 // import About from './pages/AboutPage.vue';
 
 export default [
@@ -39,5 +41,29 @@ export default [
 
   { path: "/alpha", component: Alpha },
   { path: "/success", component: Success },
+
+  { path: "/testlogin", component: adminPage,
+    beforeEnter: (to, from, next) => {
+      guard(to, from, next);
+    }
+  },
   // { path: '/about', component: About},
 ];
+
+import axios from 'axios';
+
+//check login status before rendering component
+const guard = function(to, from, next) {
+  // check for valid auth token
+  const herokuURL = `http://localhost:4001`
+
+  axios.get(herokuURL+"/users/isloggedin").then(response => {
+      // Token is valid, so continue
+      console.log(response)
+      next();
+  }).catch(error => {
+      // There was an error so redirect
+      console.log(error)
+      window.location.href = "#/";
+  })
+};
