@@ -50,8 +50,10 @@ export default [
   // { path: '/about', component: About},
 ];
 
-import axios from 'axios';
 
+
+
+import axios from 'axios';
 //check login status before rendering component
 const guard = function(to, from, next) {
   // check for valid auth token

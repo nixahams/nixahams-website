@@ -139,17 +139,24 @@ export default {
 
             const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
 
-            VueObj;
+            // VueObj;
             // const herokuURL = `http://localhost:4001`
             // axios({
             //     method: "post",
             //     url: herokuURL+"/users/login",
             //     data: {
-            //     username: user,
-            //     password: pass
+            //         username: user,
+            //         password: pass
             //     },
             //     withCredentials: true,
-            // }) 
+            // })
+            // .then(function (response) {
+            //     console.log(response.status);
+            //     if(response.status==200)
+            //     {
+            //         window.location = "/#/testlogin";
+            //     }
+            // })
             axios.post(URL)
                 .then(function (response) {
                     if (response.data == null) return;
