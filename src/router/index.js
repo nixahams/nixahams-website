@@ -15,6 +15,11 @@ import Contact from "../pages/ContactPage.vue";
 import Alpha from "../pages/AlphaPage.vue";
 import Account from "../pages/AccountPage.vue";
 
+
+
+import adminPage from "../adminpages/testAdmin.vue";
+import Profile from "../pages/ProfilePage.vue";
+
 // import Donate from '../pages/DonationPage.vue';
 
 const router = createRouter({
@@ -33,10 +38,17 @@ const router = createRouter({
     { path: "/officers", component: Officers },
     { path: "/contact", component: Contact },
     { path: "/alpha", component: Alpha },
+    { path: "/profile", component: Profile },
     //props method creates a prop from URL query
     { path: "/account", component: Account, name: "Account",props(route) {return {  method: route.query.method }}},
     // { path: '/donate', component: Donate},
     // { path: "/:pathMatch(.*)*", component: Invalid },
+
+    { path: "/testlogin", component: adminPage,
+      beforeEnter: (to, from, next) => {
+        guard(to, from, next);
+      }
+    },
     
     { path: "/:catchAll(.*)", redirect: '/404', name: "NotFound",},
     {
@@ -46,5 +58,24 @@ const router = createRouter({
     }
   ],
 });
+
+
+
+//check login status before rendering component
+import axios from 'axios';
+const guard = function(to, from, next) {
+  // check for valid auth token
+  // const herokuURL = `http://localhost:4001`
+
+  axios.get("/users/isloggedin").then(response => {
+      // Token is valid, so continue
+      console.log(response)
+      next();
+  }).catch(error => {
+      // There was an error so redirect
+      console.log(error)
+      window.location.href = "/";
+  })
+};
 
 export default router;

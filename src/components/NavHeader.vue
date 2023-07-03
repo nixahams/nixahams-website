@@ -107,6 +107,9 @@ export default {
     return {};
   },
   methods: {
+    logout(){
+      console.log('logging out')
+    },
     toggleLoggedIn(newLoggedIn) {
       this.$store.commit("changeLoggedIn", newLoggedIn);
     },
