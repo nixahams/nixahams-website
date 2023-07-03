@@ -64,6 +64,14 @@ import axios from "axios";
 
 export default {
   name: "AlphaPage",
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.loggedIn;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+  },
   data() {
     return {
       showAllElem: true,
@@ -79,7 +87,9 @@ export default {
       errorPass: "Password is required!",
     };
   },
-  mounted() {},
+  mounted() {
+    this.submitForm();
+  },
   methods: {
     nodeScriptReplace(node) {
       if (this.nodeScriptIs(node) === true) {
@@ -124,7 +134,7 @@ export default {
       }
     },
     async submitForm() {
-      if (this.daForm.user == "" || this.daForm.pass == "") {
+      if (!this.isLoggedIn) {
         return;
       }
       await this.attemptLogIn(this);
@@ -175,9 +185,9 @@ export default {
           let j = document.getElementById("app").children;
           try {
             j[0].style.visibility = "hidden";
-            j[2].style.visibility = "hidden";      
+            j[2].style.visibility = "hidden";
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
 
           document.body.style.overflow = "hidden";

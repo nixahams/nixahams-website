@@ -59,14 +59,14 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 href="#"
-                >{{ user.username }}</a
+                >{{ user.callsign }}</a
               >
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/profile">Profile</a>
                 </li>
                 <li v-if="user.permissionLevel == 'ADMIN'">
-                  <a class="dropdown-item" href="/admin">Admin</a>
+                  <a class="dropdown-item" href="/alpha">Admin</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#" @click="logout">Logout</a>
