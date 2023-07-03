@@ -65,7 +65,7 @@
                 <li>
                   <a class="dropdown-item" href="/profile">Profile</a>
                 </li>
-                <li v-if="user.permission_level == 3">
+                <li v-if="user.permissionLevel == 'ADMIN'">
                   <a class="dropdown-item" href="/admin">Admin</a>
                 </li>
                 <li>
@@ -129,6 +129,7 @@ export default {
         withCredentials: true,
       }).then((res) => {
         if (res.data.user) {
+          console.log(res.data.user);
           this.$store.commit("changeUser", res.data.user);
           this.$store.commit("changeLoggedIn", true);
         } else {
