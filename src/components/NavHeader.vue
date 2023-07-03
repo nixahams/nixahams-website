@@ -59,7 +59,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 href="#"
-                >{{ user }}</a
+                >{{ user.username }}</a
               >
               <ul class="dropdown-menu">
                 <li>
@@ -77,7 +77,8 @@
               v-else
               class="btn btn-secondary"
               data-bs-toggle="modal"
-              data-bs-target="#loginModal">
+              data-bs-target="#loginModal"
+            >
               Member Login
             </button>
           </ul>
@@ -90,6 +91,7 @@
 
 <script>
 import LoginModal from "@/components/LoginModal.vue";
+import axios from "axios";
 export default {
   name: "ResultOption",
   components: {
@@ -107,14 +109,38 @@ export default {
     return {};
   },
   methods: {
-    logout(){
-      console.log('logging out')
+    logout() {
+      axios({
+        method: "post",
+        url: "/users/logout",
+        withCredentials: true,
+      }).then(() => {
+        this.$store.commit("changeUser", {});
+        this.$store.commit("changeLoggedIn", false);
+      });
     },
     toggleLoggedIn(newLoggedIn) {
       this.$store.commit("changeLoggedIn", newLoggedIn);
     },
+    getUserData() {
+      axios({
+        method: "get",
+        url: "/users",
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.user) {
+          this.$store.commit("changeUser", res.data.user);
+          this.$store.commit("changeLoggedIn", true);
+        } else {
+          this.$store.commit("changeUser", {});
+          this.$store.commit("changeLoggedIn", false);
+        }
+      });
+    },
   },
-  mounted() {},
+  mounted() {
+    this.getUserData();
+  },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this title only -->
