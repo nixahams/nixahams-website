@@ -107,3 +107,10 @@ export default {
   },
 };
 </script>
+
+<style>
+/* removed backdrop bc login form sits behind it unaccesible */
+.modal-backdrop {
+    display: none;    
+}
+</style>

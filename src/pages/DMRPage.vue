@@ -177,7 +177,7 @@ export default {
     background-color: rgb(244, 244, 244);
     border-radius: 5px;
     position: sticky;
-    top: 0;
+    top: 57px;
     border: 1px solid black;
 }
 
@@ -199,6 +199,7 @@ export default {
     font-family: 'Montserrat';
     font-weight: bold;
     height: fit-content;
+    color: #DB7B32;
     padding-top: 100px;
 }
 

@@ -93,7 +93,7 @@ export default {
   font-family: 'Montserrat', sans-serif;
   color: white;
   position: -webkit-sticky !important;
-  top: 0 !important;
+  top: 62px!important;
   position: sticky !important;
 }
 #blog_text_parent {

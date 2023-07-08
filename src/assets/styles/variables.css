@@ -11,4 +11,6 @@
     --bg-color-faded2-DARK: #d6d6d67a;
     --bg-primary-DARK: #121212;
     --bg-secondary-DARK: #212121;
+
+    --bs-backdrop-zindex: 999 !important;
 }

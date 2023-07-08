@@ -1,6 +1,7 @@
 <template>
   <nav
-    :id="colorMode ? 'app_header_dark' : 'app_header_light'"
+    :key="componentKey"
+    :id="userTheme=='dark-theme' ? 'app_header_dark' : 'app_header_light'"
     class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
@@ -54,8 +55,8 @@
           <li class="nav-item">
             <a class="nav-link" :class="activepage=='contact' ? 'active' : ''" href="/contact">Contact</a>
           </li>
-          <li class="nav-item centertoggle" @click="changeColorMode">
-            <font-awesome-icon :key="componentKey" :icon="colorMode ? ['fas', 'sun'] : ['fas', 'moon']" />
+          <li class="nav-item centertoggle" @click="toggleTheme">
+            <font-awesome-icon :key="componentKey" :icon="userTheme=='dark-theme' ? ['fas', 'sun'] : ['fas', 'moon']" />
           </li>
 
           <ul class="navbar-nav">
@@ -99,7 +100,7 @@
 <script>
 import LoginModal from "@/components/LoginModal.vue";
 import axios from "axios";
-import VueCookies from 'vue-cookies'
+// import VueCookies from 'vue-cookies'
 
 
 
@@ -119,18 +120,13 @@ export default {
   data() {
     return {
       activepage: 'home',
-      colorMode: '',
+      userTheme: 'dark-theme',
       componentKey: 0,
     };
   },
   methods: {
     forceRerender() {
       this.componentKey += 1;
-    },
-    changeColorMode(){
-      this.colorMode=!this.colorMode;
-      VueCookies.set('colorMode',this.colorMode);
-      console.log(VueCookies.get('colorMode'))
     },
     logout() {
       axios({
@@ -167,15 +163,45 @@ export default {
         console.log(err)
       });
     },
+    getTheme() {
+      return localStorage.getItem("user-theme");
+    },
+    getMediaPreference() {
+      const hasDarkPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (hasDarkPreference) {
+        return "dark-theme";
+      } else {
+        return "light-theme";
+      }
+    },
+    setTheme(theme) {
+      console.log(theme)
+      localStorage.setItem("colorMode", theme);
+      this.userTheme = theme;
+      this.forceRerender()
+    },
+    toggleTheme(){
+      const activeTheme = localStorage.getItem("user-theme");
+      if (activeTheme === "light-theme") {
+        this.setTheme("dark-theme");
+      } else {
+        this.setTheme("light-theme");
+      }
+    },
   },
   watch:{
     $route (to, from){
+      console.log('terdrt',this.getTheme())
       this.getUserData()
       this.activepage = to.name;
     }
   },
   mounted() {
-    this.colorMode = VueCookies.get('colorMode')
+    const initUserTheme = this.getTheme() || this.getMediaPreference();
+
+    this.setTheme(initUserTheme);
+
+    // this.colorMode = VueCookies.get('colorMode')
     this.forceRerender()
 
   },
