@@ -1,5 +1,5 @@
 <template>
-  <div id="admin_edit">
+  <div :id="true ? 'admin_edit_dark' : 'admin_edit_light'">
     <div id="route_card_container" v-if="$route.name === 'edit'">
       <PageCard 
       :key="index" 
@@ -31,17 +31,29 @@ export default {
         {path: 'edit/roster', title: "Roster", icon: ['fas', 'clipboard-user']},
         {path: 'edit/dmr', title: "DMR", icon: ['fas', 'walkie-talkie']},
         {path: 'edit/officer', title: "Officers", icon: ['fas', 'person-military-pointing']},
-      ]
+      ],
+      colorMode: true,
     }
+  },
+  mounted(){
+    // localStorage.setItem("user-theme", theme);
+    // this.userTheme = theme;
+
   }
 }
 </script>
   
 <style scoped>
-#admin_edit {
-  color: #d6d6d6;
+#admin_edit_dark {
+  color: var(--bg-color-DARK);
   width: 100%;
-  background-color: #121212;
+  background-color: var(--bg-primary-DARK);
+  padding: 20px;
+}
+#admin_edit_light {
+  color: var(--bg-color-LIGHT);
+  width: 100%;
+  background-color: var(--bg-primary-LIGHT);
   padding: 20px;
 }
 

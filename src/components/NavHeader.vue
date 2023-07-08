@@ -1,5 +1,6 @@
 <template>
   <nav
+    :id="colorMode ? 'app_header_dark' : 'app_header_light'"
     class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
@@ -53,6 +54,9 @@
           <li class="nav-item">
             <a class="nav-link" :class="activepage=='contact' ? 'active' : ''" href="/contact">Contact</a>
           </li>
+          <li class="nav-item centertoggle" @click="changeColorMode">
+            <font-awesome-icon :key="componentKey" :icon="colorMode ? ['fas', 'sun'] : ['fas', 'moon']" />
+          </li>
 
           <ul class="navbar-nav">
             <li v-if="isLoggedIn" class="nav-item dropdown">
@@ -95,6 +99,10 @@
 <script>
 import LoginModal from "@/components/LoginModal.vue";
 import axios from "axios";
+import VueCookies from 'vue-cookies'
+
+
+
 export default {
   name: "ResultOption",
   components: {
@@ -109,9 +117,21 @@ export default {
     },
   },
   data() {
-    return {activepage: 'home'};
+    return {
+      activepage: 'home',
+      colorMode: '',
+      componentKey: 0,
+    };
   },
   methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
+    changeColorMode(){
+      this.colorMode=!this.colorMode;
+      VueCookies.set('colorMode',this.colorMode);
+      console.log(VueCookies.get('colorMode'))
+    },
     logout() {
       axios({
         method: "post",
@@ -155,12 +175,26 @@ export default {
     }
   },
   mounted() {
-    this.getUserData();
+    this.colorMode = VueCookies.get('colorMode')
+    this.forceRerender()
+
   },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this title only -->
 <style scoped>
+#app_header_dark{
+  background-color: var(--bg-primary-DARK) !important;
+}
+#app_header_light{
+  background-color: var(--bg-primary-LIGHT) !important;
+  color: black !important;
+}
+.centertoggle{
+  display: flex !important; justify-content: center !important; align-items: center !important;
+  cursor: pointer;
+  padding: 5px;
+}
 nav{
   position: sticky !important;
   top: 0 !important;
@@ -276,14 +310,23 @@ nav{
 .dropIcon {
   padding-right: 5px;
 }
-.nav-link{
-  color: rgba(255, 255, 255, 0.566) !important;
+#app_header_dark>*>*>*.nav-link{
+  color: var(--bg-color-faded1-DARK);
 }
-.nav-link.active{
-  color: rgba(255, 255, 255, 1) !important;
+#app_header_light>*>*>*.nav-link{
+  color: var(--bg-color-faded1-LIGHT);
 }
-.nav-link:hover{
-  color: rgba(255, 255, 255, 0.9) !important;
+#app_header_dark>*>*>*.nav-link.active{
+  color: var(--bg-color-DARK);
+}
+#app_header_light>*>*>*>*>*.active{
+  color: var(--bg-color-LIGHT);
+}
+#app_header_dark>*>*>*.nav-link:hover{
+  color: var(--bg-color-faded2-LIGHT) !important;
+}
+#app_header_dark>*>*>*.nav-link:hover{
+  color: var(--bg-color-faded2-LIGHT) !important;
 }
 
 .headerOption > *,

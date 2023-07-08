@@ -32,6 +32,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@import '@/assets/styles/variables.css';
 @font-face {
   font-family: "Dropstyle";
   src: url("@/assets/fonts/RobotoCondensed-Light.ttf") format("truetype");

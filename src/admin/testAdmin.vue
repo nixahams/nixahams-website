@@ -1,7 +1,7 @@
 <template>
   <div id="admintest">
 
-    <TopNav :year="showYear.year" :show="showYear.show"/>
+    <TopNav :key="colorMode" :year="showYear.year" :show="showYear.show"/>
 
     <div id="siblings">
       <SideNav />
@@ -36,7 +36,8 @@ export default {
       showYear: {year: 0, show: false},
       URL: "",
       newData: [],
-      refresh: true
+      refresh: true,
+      colorMode: true,
     }
   },
   methods: {
@@ -73,6 +74,7 @@ export default {
   },
   mounted() {
     this.scrollToTop();
+    this.colorMode = this.$cookies.get('colorMode');
   },
   watch:{
     $route (to, from){

@@ -40,10 +40,11 @@ const user = createStore({
 });
 
 axios.defaults.baseURL = "http://localhost:4001";
+import VueCookies from 'vue-cookies'
 
 const app = createApp(App);
 app.use(router)
 .use(user)
-.use('vue-cookies')
+.use(VueCookies, { expires: '7d'})
 .component("font-awesome-icon", FontAwesomeIcon)
 .mount("#app")

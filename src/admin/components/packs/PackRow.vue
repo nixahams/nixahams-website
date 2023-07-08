@@ -76,7 +76,7 @@ export default {
     width: 100%;
     height: 50px;
     color: black;
-    background-color: rgba(255, 255, 255, 0.158);
+    /* background-color: rgba(255, 255, 255, 0.158); */
     background-color: rgba(255, 255, 255, 0.849);
     border-radius: 5px;
     display: grid;

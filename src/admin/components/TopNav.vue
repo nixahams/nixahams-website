@@ -1,5 +1,5 @@
 <template>
-  <div id="app_top">
+  <div id="app_top" :id="true ? 'app_top_dark' : 'app_top_light'">
     <div id="top_1">
       <div id="burger" @click="minimizeNav">
         <span></span>
@@ -112,7 +112,6 @@ export default {
   left: 0;
   width: 100vw;
   height: 60px;
-  background-color: #212121;
   box-shadow: 2px 5px 10px rgb(0, 0, 0);
   z-index: 9999;
   display: grid;
@@ -120,6 +119,12 @@ export default {
   color: white;
   font-weight: bold;
   transition: 0.2s ease;
+}
+#app_top_dark{
+  background-color: var(--bg-secondary-DARK) !important;
+}
+#app_top_light{
+  background-color: var(--bg-secondary-LIGHT) !important;
 }
 #top_1{
   display: flex;

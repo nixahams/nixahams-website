@@ -126,10 +126,10 @@ const router = createRouter({
   ],
 });
 
-
+import VueCookies from 'vue-cookies'
 router.beforeEach((to, from, next) => {
   //check if route needs auth
-  console.log(to)
+  console.log(VueCookies.get('colorMode'))
   if(to.meta.needsAuth)
   {
     next();
