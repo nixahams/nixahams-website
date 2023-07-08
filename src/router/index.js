@@ -74,6 +74,7 @@ const router = createRouter({
       name: 'admin',
       meta: { needsAuth: true },
       children: [
+        { path: '404', component: InvalidAdmin},
         { path: '', redirect: 'dashboard'},
         { path: 'dashboard', 
           component: DashBoard,
@@ -82,8 +83,7 @@ const router = createRouter({
             { path: 'email', component: DashBoard_EMAIL},
             { path: 'donations', component: DashBoard_DONATIONS},
             { path: 'visitors', component: DashBoard_VISITORS},
-            // { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
-            // { path: '404', component: InvalidAdmin},
+            { path: "/:catchAll(.*)", redirect: '/test34534553345534345345', name: "NotFound",},
           ]
         },
         { path: 'edit', 
@@ -91,8 +91,8 @@ const router = createRouter({
           name: "edit",
           children: [
             { path: 'banner', component: EditPages_BANNER},
-            { path: 'repeater', component: EditPages_REPEATERS},
             { path: 'net', component: EditPages_NETS},
+            { path: 'repeater', component: EditPages_REPEATERS},
             { path: 'officer', component: EditPages_OFFICERS},
             { path: 'dmr', component: EditPages_DMR},
             { path: 'roster', component: EditPages_ROSTER},
@@ -113,7 +113,7 @@ const router = createRouter({
           ]  
         },
         { path: 'devlogs', component: DevLogs},
-        { path: "/:catchAll(.*)", redirect: 'admin/dashboard'},
+        { path: "/:catchAll(.*)", redirect: 'admin/404'},
       ],
     },
     

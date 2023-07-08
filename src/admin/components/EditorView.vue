@@ -79,7 +79,7 @@
 <script>
 
 // import Vue from 'vue';
-
+import axios from 'axios';
 // onfocus="this.select()"
 // add ^ to input field to autohighlight on focus
 
@@ -147,7 +147,7 @@ export default {
             // {params += (e.target[i].name + "=" + encodeURI(e.target[i].value) + "&")}
             // params = params.replace(/.$/, '');
             // params += "&id="+this.editValues.id;
-            // Vue.axios.post(this.URL+params).then((response) => {
+            // axios.post(this.URL+params).then((response) => {
             //     console.log(response.data)
             //     this.$emit('responseNewData', response.data)
             //     this.$emit('exitEditor')

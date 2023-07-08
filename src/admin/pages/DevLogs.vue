@@ -15,6 +15,7 @@
 </template>
     
 <script>
+import axios from 'axios'
 
 export default {
     name: 'DevLogs',
@@ -28,7 +29,7 @@ export default {
         }
     },
     mounted(){
-        Vue.axios.get(this.getURL).then((response) => {
+        axios.get(this.getURL).then((response) => {
             this.logsReceived = response.data;
         })
     },

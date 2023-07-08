@@ -24,10 +24,10 @@ export default {
 #pageCard {
     color: #d6d6d6;
     width: 150px;
-    height: 70px;
+    height: 90px;
     border-radius: 5px;
     background-color: #1a1a1a;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid;
     font-size: 0.8em;
     position: relative;
@@ -56,6 +56,7 @@ export default {
 #cardTitle{
     font-size: 1;
     z-index: 99;
+    pointer-events: none;
     position: relative;
 }
 /* background-color: #1a1a1a; */

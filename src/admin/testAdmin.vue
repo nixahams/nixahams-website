@@ -19,6 +19,8 @@
 import SideNav from './components/SideNav.vue';
 import TopNav from './components/TopNav.vue';
 import EditorView from './components/EditorView.vue';
+import axios from 'axios'
+
 
 export default {
   name: 'testAdmin',
@@ -43,7 +45,7 @@ export default {
       this.editValues = {id:id, titles: [], values: []};
       this.URL = URL;
 
-      Vue.axios.post(URL+"?id="+id).then((response) => {
+      axios.post(URL+"?id="+id).then((response) => {
         this.responseNewData(response.data)
 
       })
@@ -186,7 +188,10 @@ a{
 #card_container{
   display: flex; flex-wrap: wrap;
   gap: 15px;
-  height: 94%;
+}
+.subroute_area{
+  height: 95%;
+  width: 100%;
 }
 </style>
     

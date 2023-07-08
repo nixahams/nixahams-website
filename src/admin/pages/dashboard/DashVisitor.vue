@@ -1,5 +1,5 @@
 <template>
-    <div id="dash_visitor">
+    <div class="subroute_area">
         visitor
     </div>
   </template>

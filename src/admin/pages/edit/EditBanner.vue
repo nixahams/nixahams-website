@@ -1,5 +1,5 @@
 <template>
-  <div id="edit_banner">
+  <div class="subroute_area">
 
     <div id="bannerPreview_container" :class="colorClass">
       <div id="bannerPreview_icon">
@@ -74,6 +74,7 @@
 </template>
     
 <script>
+import axios from 'axios';
 
 export default {
   name: 'EditBanner',
@@ -92,7 +93,7 @@ export default {
     }
   },
   mounted(){
-    Vue.axios.get(this.getURL).then((response) => {
+    axios.get(this.getURL).then((response) => {
       this.bannerData = response.data[0]
       this.charUsed = this.bannerData.text.length
       if(response.data[0].icon == "fa-solid fa-triangle-exclamation")
@@ -164,7 +165,7 @@ export default {
 <style scoped>
 #bannerMessageInput{
   width: 75%;
-  height: 1em;
+  height: 3em;
   overflow: hidden;
   resize: none;
   background: hsla(0,0%,100%,.2);

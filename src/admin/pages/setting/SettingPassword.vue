@@ -1,5 +1,6 @@
 <template>
-    <div id="setting_password">
+    <div class="subroute_area">
+      password
     </div>
   </template>
     

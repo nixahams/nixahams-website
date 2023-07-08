@@ -1,5 +1,5 @@
 <template>
-  <div id="edit_dmr">
+  <div class="subroute_area">
     <PackHead :showrowoption="false" />
     
   </div>

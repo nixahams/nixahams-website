@@ -4,29 +4,28 @@
     <div 
       class="navFolder"
       v-for="(folder, index) in pageRoutes" :key="index">
-      <router-link :to="folder.route">
+      <a :href="folder.route">
           <div class="folderTitle">
             <font-awesome-icon :icon="['fas', folder.icon]" />
             {{folder.title}}
             <!-- {{ folder.routes }} -->
           </div>
-      </router-link>
+        </a>
       <div class="navFile_container">
-      <router-link 
-        :to="folder.route"
+      <a
         :key="index"
         :href="route.href"
         :class="route.class"
         v-for="(route, index) in folder.routes">
           {{ route.title }}
-      </router-link>
+      </a>
 
       </div>
     </div>
 
     <div id="colorKey">
       <div id="devLog">
-        <a href="devlogs">Developer Logs</a>
+        <a href="/admin/devlogs">Developer Logs</a>
       </div>
       <div class="keyBlock">
         <div class="key" id="key1"></div>
@@ -58,9 +57,9 @@ export default {
       pageRoutes: {
         dashboard: {
           routes: [
-          {href: "dashboard/email", title: "Email Customers", class: "navFile_link underConstruction"},
-          // {href: "dashboard/donations", title: "Donations", class: "navFile_link underConstruction"},
-          // {href: "dashboard/visitors", title: "Site Visitors", class: "navFile_link underConstruction"},
+          {href: "/admin/dashboard/email", title: "Email Customers", class: "navFile_link underConstruction"},
+          {href: "/admin/dashboard/donations", title: "Donations", class: "navFile_link underConstruction"},
+          {href: "/admin/dashboard/visitors", title: "Site Visitors", class: "navFile_link underConstruction"},
           ],
           route: "/admin/dashboard",
           icon: "chart-simple",
@@ -68,14 +67,14 @@ export default {
         },
         edit: {
           routes: [
-            {href: "edit/banner", title: "Info Banner", class: "navFile_link"},
-            {href: "edit/net", title: "Nets", class: "navFile_link"},
-            {href: "admin/edit/repeater", title: "Repeaters", class: "navFile_link"},
-            {href: "edit/meeting", title: "Meeting Info", class: "navFile_link"},
-            {href: "edit/roster", title: "Update Roster", class: "navFile_link"},
-            {href: "edit/dmr", title: "DMR Info", class: "navFile_link workingOnCurrently"},
-            {href: "edit/officer", title: "Officers", class: "navFile_link"},
-            {href: "edit/constitution", title: "Constitution", class: "navFile_link noBackend"}
+            {href: "/admin/edit/banner", title: "Info Banner", class: "navFile_link"},
+            {href: "/admin/edit/net", title: "Nets", class: "navFile_link"},
+            {href: "/admin/edit/repeater", title: "Repeaters", class: "navFile_link"},
+            {href: "/admin/edit/meeting", title: "Meeting Info", class: "navFile_link"},
+            {href: "/admin/edit/roster", title: "Update Roster", class: "navFile_link"},
+            {href: "/admin/edit/dmr", title: "DMR Info", class: "navFile_link workingOnCurrently"},
+            {href: "/admin/edit/officer", title: "Officers", class: "navFile_link"},
+            {href: "/admin/edit/constitution", title: "Constitution", class: "navFile_link noBackend"}
           ],
           route: "/admin/edit",
           icon: "pen-to-square",
@@ -84,7 +83,7 @@ export default {
         settings: {
           routes: [
             {href: "settings/password", title: "Update Password", class: "navFile_link underConstruction"},
-            {href: "settings/color", title: "Change Colors", class: "navFile_link underConstruction"}
+            {href: "/admin/settings/color", title: "Change Colors", class: "navFile_link underConstruction"}
           ],
           route: "/admin/settings",
           icon: "gear",
@@ -190,6 +189,7 @@ export default {
   display: flex; flex-direction: column;
   align-items: flex-end;
   transition: 0.2s ease;
+  max-height: 100vh;
 }
 .navFolder:hover{
   background-color: rgba(255,255,255,0.1);
@@ -199,8 +199,9 @@ export default {
   width: 90%;
   height: fit-content;
   border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 0 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: white;
   transition: 0.2s ease;
   position: relative;
@@ -215,7 +216,6 @@ export default {
   display: flex;
   cursor: pointer;
   width: 100%; height: 100%;
-  padding-top: 5px;
   gap: 5px;
   color: white;
   text-decoration: none !important;
@@ -224,15 +224,15 @@ export default {
 .navFile_container{
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
+  padding-top: 40px;
   align-items: flex-end;
   color: rgba(255, 255, 255, 0.7);
 }
 .navFile_container > a{
   width: 90%;
   margin-bottom: 5px;
-  border-radius: 10px;
-  padding: 8px;
+  border-radius: 5px;
+  padding: 3px 7px;
   font-size: 0.9em;
   text-align: start;
   z-index: 999;

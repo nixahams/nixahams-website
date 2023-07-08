@@ -1,5 +1,5 @@
 <template>
-    <div id="dash_email">
+    <div class="subroute_area">
       email
     </div>
   </template>

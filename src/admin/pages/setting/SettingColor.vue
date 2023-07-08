@@ -1,5 +1,6 @@
 <template>
-    <div id="setting_color">
+    <div class="subroute_area">
+      colors
     </div>
   </template>
     

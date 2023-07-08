@@ -1,5 +1,5 @@
 <template>
-  <div id="edit">
+  <div class="subroute_area">
     <PackHead 
     @userSelectedSort="updateComputedSort" 
     @userAddNew="userAddNew"
@@ -31,6 +31,7 @@
 import PackHead from '../../components/packs/PackHead.vue';
 import PackFooter from '../../components/packs/PackFooter.vue';
 import PackRow from '../../components/packs/PackRow.vue';
+import axios from 'axios';
 
 export default {
   name: 'EditOfficer',
@@ -86,7 +87,7 @@ export default {
   },
   mounted(){
     this.newer = this.newdata
-    Vue.axios.get(this.getURL).then((response) => {
+    axios.get(this.getURL).then((response) => {
       this.rowNum = response.data.length
 
       for(let i = 0; i < response.data.length; i++)

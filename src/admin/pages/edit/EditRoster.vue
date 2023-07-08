@@ -1,5 +1,5 @@
 <template>
-  <div id="edit">
+  <div class="subroute_area">
     <PackHead 
     @userSelectedSort="updateComputedSort" 
     @userAddNew="userAddNew"
@@ -41,6 +41,7 @@
 import PackHead from '../../components/packs/PackHead.vue';
 import PackFooter from '../../components/packs/PackFooter.vue';
 import PackRow from '../../components/packs/PackRow.vue';
+import axios from 'axios';
 
 export default {
   name: 'EditRoster',
@@ -86,7 +87,7 @@ export default {
       this.$emit('userAddNew',genData)
     },
     callAPI(){
-      Vue.axios.get(this.netURL+this.currentYear)
+      axios.get(this.netURL+this.currentYear)
       .then((response) => {
         this.showEmptyYear = false;
         this.$emit('headerShowYear', {show: true, year: this.currentYear})

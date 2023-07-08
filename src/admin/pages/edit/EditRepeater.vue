@@ -1,5 +1,5 @@
 <template>
-  <div id="edit">
+  <div class="subroute_area">
     <PackHead 
     @userSelectedSort="updateComputedSort" 
     @userAddNew="userAddNew"
@@ -75,7 +75,7 @@ export default {
     }
   },
   mounted(){
-    Vue.axios.get(this.netURL).then((response) => {
+    axios.get(this.netURL).then((response) => {
       this.rowNum = response.data.length
 
       for(let i = 0; i < response.data.length; i++)

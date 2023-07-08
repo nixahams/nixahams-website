@@ -10,12 +10,12 @@
             </div>
         </div>
         <div id="qr_container">
-            <a href="/dashboard">
+            <a href="dashboard">
                 <img src="../assets/qr.png" alt="">
             </a>
             <div id="qr_text">
                 <div id="qr_textTop">For dev logs see 
-                    <a href="/devlogs">
+                    <a href="devlogs">
                         {{ devLink }}/devlogs
                     </a>
                 </div>

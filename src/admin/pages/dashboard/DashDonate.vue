@@ -1,5 +1,5 @@
 <template>
-    <div id="dash_donate">
+    <div class="subroute_area">
         donate
     </div>
   </template>
@@ -15,7 +15,7 @@
   </script>
     
   <style scoped>
-  #dash_donate {
+  #subroute_area {
     color: #d6d6d6;
     width: 100%;
     background-color: #1a1a1a;

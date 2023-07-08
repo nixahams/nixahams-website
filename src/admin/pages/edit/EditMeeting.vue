@@ -1,5 +1,5 @@
 <template>
-  <div id="edit_meeting">
+  <div class="subroute_area">
     <div class="pack_head">
       <button class="btnNew" @click="userAddNew">
         <font-awesome-icon :icon="['fas', 'file']" />
@@ -58,6 +58,7 @@
 </template>
     
 <script>
+import axios from 'axios';
 
 export default {
   name: 'EditMeeting',
@@ -81,7 +82,7 @@ export default {
   mounted(){
     let year = new Date;
     this.currentYear = year.getFullYear() 
-    Vue.axios.get(this.getURL).then((response) => {
+    axios.get(this.getURL).then((response) => {
       this.yearData = response.data;
       this.viewTitle = this.yearData[0].year
 
