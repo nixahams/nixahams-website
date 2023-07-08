@@ -11,7 +11,9 @@
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="loginModalLabel">
             Member Login
-            <a href="/account?method=signup" class="h5 fs-6 text-primary">(Register here)</a>
+            <a href="/account?method=signup" class="h5 fs-6 text-primary"
+              >(Register here)</a
+            >
           </h1>
           <button
             type="button"
@@ -98,11 +100,28 @@ export default {
         .then(() => {
           self.allowLogin();
           document.getElementById("closeLoginModal").click();
+          this.getUserInfo();
           self.$router.push("/");
         })
         .catch((error) => {
           self.loginMessage = error;
         });
+    },
+    getUserInfo() {
+      axios({
+        method: "get",
+        url: "/users",
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.user) {
+          console.log(res.data.user);
+          this.$store.commit("changeUser", res.data.user);
+          this.$store.commit("changeLoggedIn", true);
+        } else {
+          this.$store.commit("changeUser", {});
+          this.$store.commit("changeLoggedIn", false);
+        }
+      });
     },
   },
 };
