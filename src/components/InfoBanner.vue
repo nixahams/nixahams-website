@@ -1,7 +1,7 @@
 <template>
   <div v-if="bannerShow" :id=checkColor>
     <div id='warning_icon'>
-      <i :class=message.icon></i>
+      <font-awesome-icon :icon="['fas', message.icon]" />
     </div>
     <div id='warning_text'>
       <span id="tr">{{ message.type }} :</span>
@@ -20,6 +20,8 @@ import axios from 'axios';
 
 export default {
   name: 'InfoBanner',
+  components: {
+  },
   props: {
 
   },
@@ -44,7 +46,6 @@ export default {
       const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message';
       axios.get(URL)
         .then(function (response) {
-          console.log(response.data[0])
           // handle success
           let message = response.data[0];
           if (message.show == "true" || message.show == true) {
