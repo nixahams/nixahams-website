@@ -91,7 +91,7 @@ export default {
       axios({
         method: "post",
         url: "/users/login",
-        data: {
+        params: {
           username: self.email,
           password: self.password,
         },
@@ -126,3 +126,10 @@ export default {
   },
 };
 </script>
+
+<style>
+/* removed backdrop bc login form sits behind it unaccesible */
+.modal-backdrop {
+    display: none;    
+}
+</style>

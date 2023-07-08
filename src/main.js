@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "../App.vue";
 import router from "./router";
 import { createStore } from "vuex";
 import axios from "axios";
@@ -40,9 +40,11 @@ const user = createStore({
 });
 
 axios.defaults.baseURL = "http://localhost:4001";
+import VueCookies from 'vue-cookies'
 
 const app = createApp(App);
-app.use(router);
-app.use(user);
-app.component("font-awesome-icon", FontAwesomeIcon);
-app.mount("#app");
+app.use(router)
+.use(user)
+.use(VueCookies, { expires: '7d'})
+.component("font-awesome-icon", FontAwesomeIcon)
+.mount("#app")

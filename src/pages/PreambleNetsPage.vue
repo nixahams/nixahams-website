@@ -73,6 +73,7 @@ export default {
 .preamble_bold{font-weight: bold;}
 #preamble_text>span{
     position: relative;
+    color: white;
 }
 .preamble_line{
     padding-bottom: 2em;
@@ -90,7 +91,7 @@ export default {
     font-size: 0.9em;
     font-weight: 200;
     font-weight: bold;
-    color: #DB7B32;
+    color: #DB7B32 !important;
 }
 #preamble
 {

@@ -2,7 +2,7 @@
   <div id="app">
     <NavHeader />
     <InfoBanner />
-    <div id="test">
+    <div id="router-footer">
       <router-view />
       <PageFooter />
     </div>
@@ -22,7 +22,8 @@ export default {
     PageFooter,
   },
   data() {
-    return {};
+    return {
+    };
   },
   methods: {},
   mounted() {},
@@ -31,37 +32,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@import '@/assets/styles/variables.css';
 @font-face {
   font-family: "Dropstyle";
-  src: url("./assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
+  src: url("@/assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-ExtraLight.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-ExtraLight.ttf") format("truetype");
   font-weight: 100;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Light.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: sans-serif;
 }
@@ -80,28 +82,17 @@ html {
 body {
   background-color: #1c2023;
 }
-#test {
+#router-footer {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  /* overflow: auto; */
   background-color: black;
-}
-#app {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  /* overflow:scroll;allows scroll event */
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
+
 }
 
 /* Track */

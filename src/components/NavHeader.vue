@@ -1,5 +1,7 @@
 <template>
   <nav
+    :key="componentKey"
+    :id="userTheme=='dark-theme' ? 'app_header_dark' : 'app_header_light'"
     class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
@@ -24,31 +26,37 @@
       >
         <ul class="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" :class="activepage=='admin' ? 'active' : ''" aria-current="page" href="/admin">Admin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/nets">Nets</a>
+            <a class="nav-link" :class="activepage=='home' ? 'active' : ''" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="repeaters">Repeaters</a>
+            <a class="nav-link" :class="activepage=='nets' || activepage=='regional' || activepage=='preamble' || activepage=='interest' ? 'active' : ''" href="/nets">Nets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/meetings">Meetings</a>
+            <a class="nav-link" :class="activepage=='repeaters' ? 'active' : ''" href="repeaters">Repeaters</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/roster">Join Narc</a>
+            <a class="nav-link" :class="activepage=='meetings' ? 'active' : ''" href="/meetings">Meetings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dmr">DMR</a>
+            <a class="nav-link" :class="activepage=='roster' ? 'active' : ''" href="/roster">Join Narc</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/bylaws">Bylaws</a>
+            <a class="nav-link" :class="activepage=='dmr' ? 'active' : ''" href="/dmr">DMR</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/officers">Officers</a>
+            <a class="nav-link" :class="activepage=='bylaws' ? 'active' : ''" href="/bylaws">Bylaws</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" :class="activepage=='officers' ? 'active' : ''" href="/officers">Officers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" :class="activepage=='contact' ? 'active' : ''" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item centertoggle" @click="toggleTheme">
+            <font-awesome-icon :key="componentKey" :icon="userTheme=='dark-theme' ? ['fas', 'sun'] : ['fas', 'moon']" />
           </li>
 
           <ul class="navbar-nav">
@@ -66,7 +74,7 @@
                   <a class="dropdown-item" href="/profile">Profile</a>
                 </li>
                 <li v-if="user.permissionLevel == 'ADMIN'">
-                  <a class="dropdown-item" href="/alpha">Admin</a>
+                  <a class="dropdown-item" href="/admin">Admin</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#" @click="logout">Logout</a>
@@ -92,6 +100,10 @@
 <script>
 import LoginModal from "@/components/LoginModal.vue";
 import axios from "axios";
+// import VueCookies from 'vue-cookies'
+
+
+
 export default {
   name: "ResultOption",
   components: {
@@ -106,9 +118,16 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      activepage: 'home',
+      userTheme: 'dark-theme',
+      componentKey: 0,
+    };
   },
   methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
     logout() {
       axios({
         method: "post",
@@ -126,8 +145,12 @@ export default {
       axios({
         method: "get",
         url: "/users",
+        params: {
+          username: this.$store.getters.user
+        },
         withCredentials: true,
       }).then((res) => {
+        console.log(res.data.message)
         if (res.data.user) {
           console.log(res.data.user);
           this.$store.commit("changeUser", res.data.user);
@@ -136,16 +159,73 @@ export default {
           this.$store.commit("changeUser", {});
           this.$store.commit("changeLoggedIn", false);
         }
+      }).catch((err) => {
+        console.log(err)
       });
     },
+    getTheme() {
+      return localStorage.getItem("user-theme");
+    },
+    getMediaPreference() {
+      const hasDarkPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (hasDarkPreference) {
+        return "dark-theme";
+      } else {
+        return "light-theme";
+      }
+    },
+    setTheme(theme) {
+      console.log(theme)
+      localStorage.setItem("colorMode", theme);
+      this.userTheme = theme;
+      this.forceRerender()
+    },
+    toggleTheme(){
+      const activeTheme = localStorage.getItem("user-theme");
+      if (activeTheme === "light-theme") {
+        this.setTheme("dark-theme");
+      } else {
+        this.setTheme("light-theme");
+      }
+    },
+  },
+  watch:{
+    $route (to, from){
+      console.log('terdrt',this.getTheme())
+      this.getUserData()
+      this.activepage = to.name;
+    }
   },
   mounted() {
-    this.getUserData();
+    const initUserTheme = this.getTheme() || this.getMediaPreference();
+
+    this.setTheme(initUserTheme);
+
+    // this.colorMode = VueCookies.get('colorMode')
+    this.forceRerender()
+
   },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this title only -->
 <style scoped>
+#app_header_dark{
+  background-color: var(--bg-primary-DARK) !important;
+}
+#app_header_light{
+  background-color: var(--bg-primary-LIGHT) !important;
+  color: black !important;
+}
+.centertoggle{
+  display: flex !important; justify-content: center !important; align-items: center !important;
+  cursor: pointer;
+  padding: 5px;
+}
+nav{
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99;
+}
 .nav-background {
   background-image: url("../assets/motherboard.jpg");
   background-size: 25%;
@@ -255,6 +335,24 @@ export default {
 }
 .dropIcon {
   padding-right: 5px;
+}
+#app_header_dark>*>*>*.nav-link{
+  color: var(--bg-color-faded1-DARK);
+}
+#app_header_light>*>*>*.nav-link{
+  color: var(--bg-color-faded1-LIGHT);
+}
+#app_header_dark>*>*>*.nav-link.active{
+  color: var(--bg-color-DARK);
+}
+#app_header_light>*>*>*>*>*.active{
+  color: var(--bg-color-LIGHT);
+}
+#app_header_dark>*>*>*.nav-link:hover{
+  color: var(--bg-color-faded2-LIGHT) !important;
+}
+#app_header_dark>*>*>*.nav-link:hover{
+  color: var(--bg-color-faded2-LIGHT) !important;
 }
 
 .headerOption > *,

@@ -2,7 +2,7 @@
   <div id="nets">
     <div id="nets_title">What would you like to see?</div>
     <div id="nets_block_container">
-      <a href="/#/nets/regional">
+      <a href="/nets/regional">
         <!-- <div class="nets_block_header">
                     <div class="nets_folder_sec1"></div>
                     <div class="nets_folder_sec2">Regional Amateur Radio Nets</div>
