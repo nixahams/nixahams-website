@@ -97,7 +97,7 @@
             </div>
           </div>
           <div id="home_btn">
-            <a href="/#/meetings">
+            <a href="/meetings">
               <button id="info_btn">
                 Webinar Link
                 <i class="fa-solid fa-arrow-right"></i>

@@ -265,7 +265,7 @@ export default {
                 month: '...',
                 city: 'Loading...',
                 address: 'Loading...',
-                link: '/#/meetings'
+                link: '/meetings'
             },
             currentMonth: "...",
             currentYear: "....",
@@ -294,7 +294,7 @@ export default {
     display: flex;
     flex-direction: column;
     transition: 0.2s ease;
-
+    color: rgba(255, 255, 255, 0.6);
 }
 
 #calendarTitle:hover {
@@ -311,6 +311,7 @@ export default {
     padding: 5px 10px;
     transition: 0.2s ease;
     user-select: none;
+    color: white;
 }
 
 #calendarContainer {

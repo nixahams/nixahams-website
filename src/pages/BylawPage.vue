@@ -255,6 +255,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: rgba(255, 255, 255, 0.6);
 }
 #bylaw_title_parent{
     width: 100%;
@@ -279,12 +280,14 @@ export default {
     text-decoration: underline;
     text-transform: capitalize;
     font-weight: bold;
+    color: rgba(236, 201, 46, 0.8) !important;
 }
 .article_subtitle{
     padding: 10px;
-    color: rgba(255,255,255,0.8);
+    color: white;
 }
 .article_text{
+    color: rgba(255, 255, 255, 0.75);
 }
 
 

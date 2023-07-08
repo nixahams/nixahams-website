@@ -24,31 +24,31 @@
       >
         <ul class="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" :class="activepage=='home' ? 'active' : ''" aria-current="page" href="/admin">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/nets">Nets</a>
+            <a class="nav-link" :class="activepage=='nets' || activepage=='regional' || activepage=='preamble' || activepage=='interest' ? 'active' : ''" href="/nets">Nets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="repeaters">Repeaters</a>
+            <a class="nav-link" :class="activepage=='repeaters' ? 'active' : ''" href="repeaters">Repeaters</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/meetings">Meetings</a>
+            <a class="nav-link" :class="activepage=='meetings' ? 'active' : ''" href="/meetings">Meetings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/roster">Join Narc</a>
+            <a class="nav-link" :class="activepage=='roster' ? 'active' : ''" href="/roster">Join Narc</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dmr">DMR</a>
+            <a class="nav-link" :class="activepage=='dmr' ? 'active' : ''" href="/dmr">DMR</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/bylaws">Bylaws</a>
+            <a class="nav-link" :class="activepage=='bylaws' ? 'active' : ''" href="/bylaws">Bylaws</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/officers">Officers</a>
+            <a class="nav-link" :class="activepage=='officers' ? 'active' : ''" href="/officers">Officers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" :class="activepage=='contact' ? 'active' : ''" href="/contact">Contact</a>
           </li>
 
           <ul class="navbar-nav">
@@ -66,7 +66,7 @@
                   <a class="dropdown-item" href="/profile">Profile</a>
                 </li>
                 <li v-if="user.permissionLevel == 'ADMIN'">
-                  <a class="dropdown-item" href="/alpha">Admin</a>
+                  <a class="dropdown-item" href="/admin">Admin</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#" @click="logout">Logout</a>
@@ -106,7 +106,7 @@ export default {
     },
   },
   data() {
-    return {};
+    return {activepage: 'home'};
   },
   methods: {
     logout() {
@@ -138,6 +138,13 @@ export default {
         }
       });
     },
+  },
+  watch:{
+    $route (to, from){
+      to;
+      this.activepage = to.name;
+      console.log(to.name)
+    }
   },
   mounted() {
     this.getUserData();

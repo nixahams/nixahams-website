@@ -70,6 +70,7 @@
     text-align: center;
     display: flex; justify-content: center; align-items: center;
     padding-top: 100px;
+    color: white;
 } 
 #staffpage{
     height: fit-content;

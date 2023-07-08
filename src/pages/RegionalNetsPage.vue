@@ -49,24 +49,6 @@ export default {
     }
   },
   methods:{
-    scrl(){
-      let elem = document.querySelector('#blog_key');
-      // let bounding = elem.getBoundingClientRect();
-      // if (bounding.top < 0) {
-      //   // Top is out of viewport
-      //   elem.style.position = 'fixed';
-      // }else{
-      //   //in viewport
-      //   elem.style.position = 'relative';
-      // }
-      if(document.body.scrollTop > 350)
-      {
-        elem.style.position = 'fixed';
-      }
-      else{
-        elem.style.position = 'relative';
-      }
-    },
     scrollToTop() {document.body.scrollTop = 0;},
     getAnnouncement(VueObj){
       const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net';
@@ -87,10 +69,6 @@ export default {
   async mounted(){
     this.scrollToTop();
     await this.getAnnouncement(this);
-    document.addEventListener('scroll', this.scrl, true)
-  },
-  destroyed () {
-    document.removeEventListener('scroll', this.scrl, true)
   },
 }
 </script>
@@ -106,27 +84,27 @@ export default {
 
 
 #blog_key{
-    left: 0;
-    top: 0;
-    z-index: 99;
-    width: 100%; height: fit-content;
-    padding: 0 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
+  z-index: 99;
+  width: 100%; height: 50px;
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  position: -webkit-sticky !important;
+  top: 0 !important;
+  position: sticky !important;
 }
 #blog_text_parent {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    background-color: #DB7B32;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(4,1fr) 1.5fr 2fr;
-    transition: 0.2s ease;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: #DB7B32;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr) 1.5fr 2fr;
+  transition: 0.2s ease;
+  margin-bottom: 10px;
 }
 .blog_txt{
     display: flex;
@@ -154,6 +132,8 @@ export default {
   min-height: 100vh;
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 #blog_title{
   width: 100%; height: fit-content;
