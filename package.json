@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build-vue": "vue-cli-service build",
     "build": "vite build",
     "lint": "vue-cli-service lint",
     "dev": "vite",
