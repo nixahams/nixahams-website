@@ -95,6 +95,7 @@ router.beforeEach((to, from, next) => {
   //check if route needs auth
   if(to.meta.needsAuth)
   {
+    console.log()
     next();
     return
     let self = this;
