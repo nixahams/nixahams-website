@@ -8,7 +8,7 @@
       :icon="card.icon" 
       v-for="(card, index) in editPages"/>
     </div>
-    <router-view/>
+    <router-view :newdata="newdata"/>
   </div>
 </template>
   
@@ -17,6 +17,7 @@ import PageCard from '../components/PageCard.vue'
 
 export default {
   name: 'AdminEdit',
+  props: ['newdata'],
   components: {
     PageCard
   },

@@ -15,6 +15,7 @@
 
     <div class="row_container">
       <PackRow 
+      v-if="dataAvailable"
       :key="index" 
       :rowsData="rowsData[index].dataArray"
       :idNum="rowsData[index].id" 
@@ -30,6 +31,7 @@
 import PackHead from '../../components/packs/PackHead.vue';
 import PackFooter from '../../components/packs/PackFooter.vue';
 import PackRow from '../../components/packs/PackRow.vue';
+import axios from 'axios';
 
 export default {
   name: 'EditRepeater',
@@ -43,6 +45,7 @@ export default {
       netURL: "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/repeaters",
       rowsData: [],
       rowNum: 10,
+      dataAvailable: false,
       allowFooter: false,
       rowsDataLength: 0,
       activeRow: 1,
@@ -96,6 +99,7 @@ export default {
       }
       this.allowFooter = true;
       this.rowsDataLength = response.data.length
+      this.dataAvailable = true;
       
     })
   }

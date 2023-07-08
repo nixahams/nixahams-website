@@ -15,6 +15,7 @@
 
     <div class="row_container">
       <PackRow 
+      v-if="dataAvailable"
       :key="index" 
       :rowsData="rowsData[index].dataArray"
       :idNum="rowsData[index].id" 
@@ -39,6 +40,7 @@ import axios from 'axios';
 
 export default {
   name: 'EditNet',
+  props: ['newdata'],
   components: {
     PackHead,
     PackFooter,
@@ -50,6 +52,7 @@ export default {
       rowsData: [],
       rowsDataLength: 0,
       rowNum: 10,
+      dataAvailable: false,
       allowFooter: false,
       activeRow: 1,
       titles: ["Day", "Frequency"," Net_Sponsor", "PL", "Rep_Location", "Time"],
@@ -83,17 +86,17 @@ export default {
   mounted(){
     axios.get(this.netURL).then((response) => {
       this.rowNum = response.data.length
-
+      console.log(response.data.length)
       for(let i = 0; i < response.data.length; i++)
       {
         let tempObj = {
           dataArray: [
-          response.data[i].day,
-          response.data[i].freq,
-          response.data[i].time,
-          response.data[i].rep_loc,
-          response.data[i].pl,
-          response.data[i].time
+            response.data[i].day,
+            response.data[i].freq,
+            response.data[i].time,
+            response.data[i].rep_loc,
+            response.data[i].pl,
+            response.data[i].time
           ],
           id: response.data[i]._id
         }
@@ -101,6 +104,7 @@ export default {
       }
       this.allowFooter = true;
       this.rowsDataLength = response.data.length;
+      this.dataAvailable = true;
     }) 
     }
   }

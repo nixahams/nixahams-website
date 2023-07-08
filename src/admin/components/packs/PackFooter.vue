@@ -40,7 +40,7 @@ export default {
 <style scoped>
 .pack_footer {
     width: 100%;
-    height: 20%;
+    height: 10%;
     display: flex;
     flex-wrap: wrap;
     align-content: center;

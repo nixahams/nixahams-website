@@ -161,6 +161,11 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this title only -->
 <style scoped>
+nav{
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99;
+}
 .nav-background {
   background-image: url("../assets/motherboard.jpg");
   background-size: 25%;

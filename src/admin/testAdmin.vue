@@ -91,8 +91,7 @@ export default {
 #admintest {
   color: #2c3e50;
   background-color: #1A1A1A;
-  min-height: 100vh;
-  height: calc(100vh - 7px); width: 100vw;
+  height: calc(100vh - 57px); width: 100vw;
 
   /* padding-top: 120px; */
 }
@@ -130,9 +129,24 @@ a{
 #formSubmit:hover{
   background-color: #fdb02194;
 }
+/* width */
+.row_container::-webkit-scrollbar {
+  width: 7px !important;
+}
+/* Track */
+.row_container::-webkit-scrollbar-track {
+}
+/* Handle */
+.row_container::-webkit-scrollbar-thumb {
+  background: #888 !important;
+}
+/* Handle on hover */
+.row_container::-webkit-scrollbar-thumb:hover {
+  background: #555 !important;
+}
 .row_container{
   width: 100%;
-  height: 80%;
+  height: calc(85% - 80px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   padding: 5px;

@@ -26,6 +26,7 @@
         No data for '{{ currentYear }}'
       </div>
       <PackRow 
+      v-if="dataAvailable"
       :key="index" 
       :rowsData="rowsData.dataArray[index]"
       :idNum="rowsData.id" 
@@ -57,6 +58,7 @@ export default {
       rowsData: {dataArray: [], id: ''},
       rowsDataLength: 0,
       rowNum: 1,
+      dataAvailable: false,
       allowFooter: false,
       activeRow: 1,
       titles: ["Callsign", "Name","ARRL_Membership"],
@@ -103,6 +105,7 @@ export default {
         }
         this.rowsData.id = response.data._id;
         this.rowsDataLength = response.data.roster.length
+        this.dataAvailable = true;
         this.allowFooter = true;  
       })
       .catch((err) => {

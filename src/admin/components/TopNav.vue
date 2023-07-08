@@ -69,7 +69,7 @@ export default {
         this.pageTitle = search.title;
       }
       catch(err){
-        console.log(err)
+        console.log("TypeError: Cannot read properties of undefined (reading 'title')")
       }
     }
   },
@@ -80,7 +80,7 @@ export default {
       this.pageTitle = search.title;
     }
     catch(err){
-      console.log(err)
+      console.log("TypeError: Cannot read properties of undefined (reading 'title')")
     }
     // console.log(this.year, this.show)
   },
