@@ -90,7 +90,7 @@ export default {
   color: #2c3e50;
   background-color: #1A1A1A;
   min-height: 100vh;
-  height: 100vh; width: 100vw;
+  height: calc(100vh - 7px); width: 100vw;
 
   /* padding-top: 120px; */
 }
@@ -102,16 +102,16 @@ body,html{
   width: 100vw; height: 100vh;
 }
 a{
-  color: inherit;
-  text-decoration: none;
+  color: inherit !important;
+  text-decoration: inherit !important;
 }
 
 
 /* other pages global styles */
 #siblings{
   display: flex;
-  width: 100%; height: calc(100% - 60px);
-  background-color: red;
+  width: 100%; height: 100%;
+  background-color: rgb(92, 12, 12);
 }
 #formSubmit{
   width: 100px;
@@ -179,9 +179,14 @@ a{
 .btnNew:hover{
   filter: brightness(70%);
 }
+#route_card_container{
+  display: flex; flex-wrap: wrap;
+  gap: 10px;
+}
 #card_container{
   display: flex; flex-wrap: wrap;
   gap: 15px;
+  height: 94%;
 }
 </style>
     

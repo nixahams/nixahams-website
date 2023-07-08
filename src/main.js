@@ -42,7 +42,8 @@ const user = createStore({
 axios.defaults.baseURL = "http://localhost:4001";
 
 const app = createApp(App);
-app.use(router);
-app.use(user);
-app.component("font-awesome-icon", FontAwesomeIcon);
-app.mount("#app");
+app.use(router)
+.use(user)
+.use('vue-cookies')
+.component("font-awesome-icon", FontAwesomeIcon)
+.mount("#app")

@@ -64,14 +64,24 @@ export default {
     $route (to, from){
       this.currentPath = to.fullPath
       this.previousPath = from.fullPath
-      let search =  this.pageTitles.find(item => item.path === this.currentPath)
-      this.pageTitle = search.title;
+      try{
+        let search =  this.pageTitles.find(item => item.path === this.currentPath)
+        this.pageTitle = search.title;
+      }
+      catch(err){
+        console.log(err)
+      }
     }
   },
   mounted(){
     let temp = window.location.hash.replace(/^./, "")
-    let search =  this.pageTitles.find(item => item.path === temp)
-    this.pageTitle = search.title;
+    try{
+      let search =  this.pageTitles.find(item => item.path === temp)
+      this.pageTitle = search.title;
+    }
+    catch(err){
+      console.log(err)
+    }
     // console.log(this.year, this.show)
   },
   methods:{

@@ -166,9 +166,9 @@ export default {
     gap: 2em;
 }
 
-.block1{background: linear-gradient( #15181cd2, #15181cad ), url('https://i.imgur.com/Ok8bR9Q.png');}
-.block2{background: linear-gradient( #15181c63, #15181c8e ), url('https://i.imgur.com/KoDiXX2.png');}
-.block3{background: linear-gradient( #15181c4f, #15181c8e ), url('https://i.imgur.com/RKuZ1f8.png');}
+.block1{background: linear-gradient( #15181cd2, #15181cad ), url('@/assets/nets/regional.png');}
+.block2{background: linear-gradient( #15181c63, #15181c8e ), url('@/assets/nets/preamble.png');}
+.block3{background: linear-gradient( #15181c4f, #15181c8e ), url('@/assets/nets/interest.png');}
 /* .block1{background: linear-gradient( #15181c42, #15181c13 ), url('https://i.imgur.com/Ok8bR9Q.png');}
 .block2{background: linear-gradient( #15181c2a, #15181c21 ), url('https://i.imgur.com/KoDiXX2.png');}
 .block3{background: linear-gradient( #15181c2a, #15181c44 ), url('https://i.imgur.com/RKuZ1f8.png');} */

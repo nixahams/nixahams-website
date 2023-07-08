@@ -4,27 +4,29 @@
     <div 
       class="navFolder"
       v-for="(folder, index) in pageRoutes" :key="index">
-      <a :href="folder.route">
-        <div class="folderTitle">
-          <font-awesome-icon :icon="['fas', folder.icon]" />
-          {{folder.title}}
-          <!-- {{ folder.routes }} -->
-        </div>
-      </a>
+      <router-link :to="folder.route">
+          <div class="folderTitle">
+            <font-awesome-icon :icon="['fas', folder.icon]" />
+            {{folder.title}}
+            <!-- {{ folder.routes }} -->
+          </div>
+      </router-link>
       <div class="navFile_container">
-        <a 
+      <router-link 
+        :to="folder.route"
         :key="index"
         :href="route.href"
         :class="route.class"
         v-for="(route, index) in folder.routes">
           {{ route.title }}
-        </a>
+      </router-link>
+
       </div>
     </div>
 
     <div id="colorKey">
       <div id="devLog">
-        <a href="/devlogs">Developer Logs</a>
+        <a href="devlogs">Developer Logs</a>
       </div>
       <div class="keyBlock">
         <div class="key" id="key1"></div>
@@ -56,35 +58,35 @@ export default {
       pageRoutes: {
         dashboard: {
           routes: [
-          {href: "/dashboard/email", title: "Email Customers", class: "navFile_link underConstruction"},
-          // {href: "/dashboard/donations", title: "Donations", class: "navFile_link underConstruction"},
-          // {href: "/dashboard/visitors", title: "Site Visitors", class: "navFile_link underConstruction"},
+          {href: "dashboard/email", title: "Email Customers", class: "navFile_link underConstruction"},
+          // {href: "dashboard/donations", title: "Donations", class: "navFile_link underConstruction"},
+          // {href: "dashboard/visitors", title: "Site Visitors", class: "navFile_link underConstruction"},
           ],
-          route: "/dashboard",
+          route: "/admin/dashboard",
           icon: "chart-simple",
           title: "Dashboard"
         },
         edit: {
           routes: [
-            {href: "/edit/banner", title: "Info Banner", class: "navFile_link"},
-            {href: "/edit/net", title: "Nets", class: "navFile_link"},
-            {href: "/edit/repeater", title: "Repeaters", class: "navFile_link"},
-            {href: "/edit/meeting", title: "Meeting Info", class: "navFile_link"},
-            {href: "/edit/roster", title: "Update Roster", class: "navFile_link"},
-            {href: "/edit/dmr", title: "DMR Info", class: "navFile_link workingOnCurrently"},
-            {href: "/edit/officer", title: "Officers", class: "navFile_link"},
-            {href: "/edit/constitution", title: "Constitution", class: "navFile_link noBackend"}
+            {href: "edit/banner", title: "Info Banner", class: "navFile_link"},
+            {href: "edit/net", title: "Nets", class: "navFile_link"},
+            {href: "admin/edit/repeater", title: "Repeaters", class: "navFile_link"},
+            {href: "edit/meeting", title: "Meeting Info", class: "navFile_link"},
+            {href: "edit/roster", title: "Update Roster", class: "navFile_link"},
+            {href: "edit/dmr", title: "DMR Info", class: "navFile_link workingOnCurrently"},
+            {href: "edit/officer", title: "Officers", class: "navFile_link"},
+            {href: "edit/constitution", title: "Constitution", class: "navFile_link noBackend"}
           ],
-          route: "/edit",
+          route: "/admin/edit",
           icon: "pen-to-square",
           title: "Edit Pages"
         },
         settings: {
           routes: [
-            {href: "/settings/password", title: "Update Password", class: "navFile_link underConstruction"},
-            {href: "/settings/color", title: "Change Colors", class: "navFile_link underConstruction"}
+            {href: "settings/password", title: "Update Password", class: "navFile_link underConstruction"},
+            {href: "settings/color", title: "Change Colors", class: "navFile_link underConstruction"}
           ],
-          route: "/settings",
+          route: "/admin/settings",
           icon: "gear",
           title: "Settings"
         },
@@ -215,6 +217,8 @@ export default {
   width: 100%; height: 100%;
   padding-top: 5px;
   gap: 5px;
+  color: white;
+  text-decoration: none !important;
   font-weight: 700;
 }
 .navFile_container{
@@ -222,6 +226,7 @@ export default {
   flex-direction: column;
   padding-top: 30px;
   align-items: flex-end;
+  color: rgba(255, 255, 255, 0.7);
 }
 .navFile_container > a{
   width: 90%;
@@ -236,7 +241,7 @@ export default {
 .navFile_container > a:hover{
   background: none;
   background-color: rgba(255,255,255,1);
-  color: black;
+  color: black !important;
   font-weight: bold;
   /* background-color: #1A1A1A; */
   cursor: pointer;
@@ -262,8 +267,8 @@ export default {
   45deg,
   #606cbc00 0px,
   #606cbc00 9px,
-  #03ff1048 10px,
-  #24e613c4 19px,
+  #03ff1021 10px,
+  #17750f23 19px,
   #606cbc00 20px
 );
 }
@@ -273,7 +278,7 @@ export default {
   #606cbc00 0px,
   #606cbc00 9px,
   #dbc92457 10px,
-  #dbc924c4 19px,
+  #8e842831 19px,
   #606cbc00 20px
 );
 }
@@ -283,7 +288,7 @@ background: repeating-linear-gradient(
   #606cbc00 0px,
   #606cbc00 9px,
   #ff030348 10px,
-  #e61313c4 19px,
+  #e6131319 19px,
   #606cbc00 20px
 )
 }

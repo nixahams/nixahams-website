@@ -1,6 +1,6 @@
 <template>
-  <div id="admin_dash">
-    <div id="route_card_container" v-if="$route.name === 'dash'">
+  <div id="app_setting">
+    <div id="route_card_container" v-if="$route.name === 'settings'">
       <PageCard 
       :key="index" 
       :path="card.path" 
@@ -16,27 +16,24 @@
 import PageCard from '../components/PageCard.vue'
 
 export default {
-  name: 'AdminDash',
+  name: 'AdminSetting',
   components: {
     PageCard
   },
   data(){
     return{
       editPages: [
-        {path: 'dashboard/email', title: "Email", icon: ['fas', 'envelope']},
-        {path: 'dashboard/donations', title: "Donations", icon: ['fas', 'envelope']},
-        {path: 'dashboard/visitors', title: "Visitors", icon: ['fas', 'envelope']},
+        {path: 'settings/password', title: "Password", icon: ['fas', 'lock']},
+        {path: 'settings/color', title: "Colors", icon: ['fas', 'palette']},
       ]
     }
-  },
-  mounted(){
   }
 }
 </script>
   
 <style scoped>
-#admin_dash {
-  color: #ffffff;
+#app_setting {
+  color: #d6d6d6;
   width: 100%;
   background-color: #121212;
   padding: 20px;

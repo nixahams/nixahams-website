@@ -15,33 +15,33 @@ import Contact from "@/pages/ContactPage.vue";
 import Alpha from "@/pages/AlphaPage.vue";
 import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
-
-
-
 import Profile from "@/pages/ProfilePage.vue";
+
+
+
 
 //admin routes
 import adminPage from "@/admin/testAdmin.vue";
 import DashBoard from '@/admin/pages/AdminDash.vue';
-// import DashBoard_EMAIL from '@/admin/pages/dashboard/DashEmail.vue';
-// import DashBoard_DONATIONS from '@/admin/pages/dashboard/DashDonate.vue';
-// import DashBoard_VISITORS from '@/admin/pages/dashboard/DashVisitor.vue';
+import DashBoard_EMAIL from '@/admin/pages/dashboard/DashEmail.vue';
+import DashBoard_DONATIONS from '@/admin/pages/dashboard/DashDonate.vue';
+import DashBoard_VISITORS from '@/admin/pages/dashboard/DashVisitor.vue';
 
-// import EditPages from '@/admin/pages/AdminEdit.vue';
-// import EditPages_BANNER from '@/admin/pages/edit/EditBanner.vue';
-// import EditPages_NETS from '@/admin/pages/edit/EditNet.vue';
-// import EditPages_REPEATERS from '@/admin/pages/edit/EditRepeater.vue';
-// import EditPages_MEETING from '@/admin/pages/edit/EditMeeting.vue';
-// import EditPages_DMR from '@/admin/pages/edit/EditDmr.vue';
-// import EditPages_ROSTER from '@/admin/pages/edit/EditRoster.vue';
-// import EditPages_OFFICERS from '@/admin/pages/edit/EditOfficer.vue';
-// import EditPages_CONSTITUTION from '@/admin/pages/edit/ByLaws.vue';
+import EditPages from '@/admin/pages/AdminEdit.vue';
+import EditPages_BANNER from '@/admin/pages/edit/EditBanner.vue';
+import EditPages_NETS from '@/admin/pages/edit/EditNet.vue';
+import EditPages_REPEATERS from '@/admin/pages/edit/EditRepeater.vue';
+import EditPages_MEETING from '@/admin/pages/edit/EditMeeting.vue';
+import EditPages_DMR from '@/admin/pages/edit/EditDmr.vue';
+import EditPages_ROSTER from '@/admin/pages/edit/EditRoster.vue';
+import EditPages_OFFICERS from '@/admin/pages/edit/EditOfficer.vue';
+import EditPages_CONSTITUTION from '@/admin/pages/edit/ByLaws.vue';
 
-// import Settings from '@/admin/pages/AdminSetting.vue';
-// import Settings_PASSWORD from '@/admin/pages/setting/SettingPassword.vue';
-// import Settings_COLORS from '@/admin/pages/setting/SettingColor.vue';
+import Settings from '@/admin/pages/AdminSetting.vue';
+import Settings_PASSWORD from '@/admin/pages/setting/SettingPassword.vue';
+import Settings_COLORS from '@/admin/pages/setting/SettingColor.vue';
 
-// import DevLogs from '@/admin/pages/DevLogs.vue';
+import DevLogs from '@/admin/pages/DevLogs.vue';
 import InvalidAdmin from '@/admin/pages/InvalidPage.vue';
 
 
@@ -62,7 +62,7 @@ const router = createRouter({
     { path: "/officers", component: Officers, name: "officers" },
     { path: "/contact", component: Contact, name: "contact" },
     { path: "/alpha", component: Alpha},
-    { path: "/profile", component: Profile},
+    { path: "/profile", component: Profile, meta: { needsAuth: true }},
     //props method creates a prop from URL query
     { path: "/account", component: Account, name: "Account",props(route) {return {  method: route.query.method }}},
     // { path: '/donate', component: Donate},
@@ -74,14 +74,50 @@ const router = createRouter({
       name: 'admin',
       meta: { needsAuth: true },
       children: [
-        { path: '/', redirect: '/dashboard'},
-        { path: '/dashboard', component: DashBoard},
-        { path: '/404', component: InvalidAdmin},
-        { path: "/:catchAll(.*)", redirect: '404'},
+        { path: '', redirect: 'dashboard'},
+        { path: 'dashboard', 
+          component: DashBoard,
+          name: "dash",
+          children: [
+            { path: 'email', component: DashBoard_EMAIL},
+            { path: 'donations', component: DashBoard_DONATIONS},
+            { path: 'visitors', component: DashBoard_VISITORS},
+            // { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
+            // { path: '404', component: InvalidAdmin},
+          ]
+        },
+        { path: 'edit', 
+          component: EditPages,
+          name: "edit",
+          children: [
+            { path: 'banner', component: EditPages_BANNER},
+            { path: 'repeater', component: EditPages_REPEATERS},
+            { path: 'net', component: EditPages_NETS},
+            { path: 'officer', component: EditPages_OFFICERS},
+            { path: 'dmr', component: EditPages_DMR},
+            { path: 'roster', component: EditPages_ROSTER},
+            { path: 'meeting', component: EditPages_MEETING},
+            { path: 'constitution', component: EditPages_CONSTITUTION},
+            { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
+            { path: '404', component: InvalidAdmin},
+          ],
+        },
+        { path: 'settings', 
+          component: Settings,
+          name: "settings",
+          children: [
+            { path: 'password', component: Settings_PASSWORD},
+            { path: 'color', component: Settings_COLORS}, 
+            { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
+            { path: '404', component: InvalidAdmin},
+          ]  
+        },
+        { path: 'devlogs', component: DevLogs},
+        { path: "/:catchAll(.*)", redirect: 'admin/dashboard'},
       ],
     },
     
-    { path: "/:catchAll(.*)", redirect: '/404', name: "NotFound",},
+    { path: "/:pathMatch(.*)*", redirect: '/404', name: "NotFound",},
     {
       path: '/404',
       name: 'PageNotExist',
@@ -93,9 +129,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   //check if route needs auth
+  console.log(to)
   if(to.meta.needsAuth)
   {
-    console.log()
     next();
     return
     let self = this;

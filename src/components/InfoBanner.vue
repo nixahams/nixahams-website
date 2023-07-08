@@ -21,6 +21,7 @@
 
 <script>
 import axios from "axios";
+import VueCookies from 'vue-cookies'
 
 export default {
   name: "InfoBanner",
@@ -41,6 +42,7 @@ export default {
   methods: {
     minimizeBanner() {
       this.bannerShow = false;
+      $cookies.set("bannerAcknowledged", true);
     },
     getBannerInfo(VueObj) {
       const URL =
@@ -75,7 +77,11 @@ export default {
     },
   },
   mounted() {
-    this.getBannerInfo(this);
+    if(!$cookies.get("bannerAcknowledged"))
+    {
+      this.getBannerInfo(this);
+    }
+    
   },
 };
 </script>
@@ -91,7 +97,7 @@ export default {
 #red,
 #blue,
 #orange {
-  z-index: 998;
+  z-index: 99999;
   width: 80vw;
   left: 10vw;
   top: 75px;

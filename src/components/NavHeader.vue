@@ -24,7 +24,10 @@
       >
         <ul class="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
           <li class="nav-item">
-            <a class="nav-link" :class="activepage=='home' ? 'active' : ''" aria-current="page" href="/admin">Home</a>
+            <a class="nav-link" :class="activepage=='admin' ? 'active' : ''" aria-current="page" href="/admin">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" :class="activepage=='home' ? 'active' : ''" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" :class="activepage=='nets' || activepage=='regional' || activepage=='preamble' || activepage=='interest' ? 'active' : ''" href="/nets">Nets</a>
@@ -126,8 +129,12 @@ export default {
       axios({
         method: "get",
         url: "/users",
+        params: {
+          username: this.$store.getters.user
+        },
         withCredentials: true,
       }).then((res) => {
+        console.log(res.data.message)
         if (res.data.user) {
           console.log(res.data.user);
           this.$store.commit("changeUser", res.data.user);
@@ -136,14 +143,15 @@ export default {
           this.$store.commit("changeUser", {});
           this.$store.commit("changeLoggedIn", false);
         }
+      }).catch((err) => {
+        console.log(err)
       });
     },
   },
   watch:{
     $route (to, from){
-      to;
+      this.getUserData()
       this.activepage = to.name;
-      console.log(to.name)
     }
   },
   mounted() {
@@ -262,6 +270,15 @@ export default {
 }
 .dropIcon {
   padding-right: 5px;
+}
+.nav-link{
+  color: rgba(255, 255, 255, 0.566) !important;
+}
+.nav-link.active{
+  color: rgba(255, 255, 255, 1) !important;
+}
+.nav-link:hover{
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .headerOption > *,

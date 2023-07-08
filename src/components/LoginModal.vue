@@ -89,7 +89,7 @@ export default {
       axios({
         method: "post",
         url: "/users/login",
-        data: {
+        params: {
           username: self.email,
           password: self.password,
         },

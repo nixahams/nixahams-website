@@ -36,21 +36,21 @@
       <div class="carousel-inner c-inner">
         <div class="carousel-item c-item active">
           <img
-            src="https://i.imgur.com/wS0nAgM.jpeg"
+            src="@/assets/carosel-imgs/bg8.jpg"
             class="d-block w-100 c-img"
             alt="Slide 1"
           />
         </div>
         <div class="carousel-item c-item">
           <img
-            src="https://i.imgur.com/DMekFMZ.jpeg"
+          src="@/assets/carosel-imgs/bg7.jpg"
             class="d-block w-100 c-img"
             alt="Slide 2"
           />
         </div>
         <div class="carousel-item c-item">
           <img
-            src="../assets/carosel-imgs/bg3.jpg"
+            src="@/assets/carosel-imgs/bg3.jpg"
             class="d-block w-100 c-img"
             alt="Silde 3"
           />
@@ -79,7 +79,7 @@
     </div>
 
     <div id="home_text_image">
-      <img id="home_image" src="../assets/home/fieldday.jpg" alt="" />
+      <img id="home_image" src="@/assets/home/fieldday.jpg" alt="" />
       <div id="home_text_parent">
         <div id="this_container">
           <div id="home_title">Group Meetings</div>

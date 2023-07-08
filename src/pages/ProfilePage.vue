@@ -1,6 +1,6 @@
 <template>
     <div id="test">
-      profile page
+      Welcome, {{ userAcc }}
     </div>
   </template>
     
@@ -10,11 +10,17 @@
     name: 'ProfilePage',
     components: {
     },
+    data(){
+      return{
+        user: ''
+      }
+    },
     methods:{
       scrollToTop() {document.body.scrollTop = 0;},
     },
     mounted(){
       this.scrollToTop();
+      this.userAcc = this.$store.getters.user
     }
   }
   </script>
