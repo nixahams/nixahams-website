@@ -695,7 +695,7 @@ select {
 }
 
 #editInputHtml {
-  z-index: 9999;
+  z-index: 999;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);

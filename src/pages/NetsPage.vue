@@ -2,7 +2,7 @@
   <div id="nets">
     <div id="nets_title">What would you like to see?</div>
     <div id="nets_block_container">
-      <a href="/#/nets/regional">
+      <a href="/nets/regional">
         <!-- <div class="nets_block_header">
                     <div class="nets_folder_sec1"></div>
                     <div class="nets_folder_sec2">Regional Amateur Radio Nets</div>
@@ -11,7 +11,7 @@
         <div class="nets_block block1">Regional Amateur Radio Nets</div>
       </a>
 
-      <a href="/#/nets/preamble">
+      <a href="/nets/preamble">
         <!-- <div class="nets_block_header">
                     <div class="nets_folder_sec1"></div>
                     <div class="nets_folder_sec2">N.A.R.C. Net Preamble</div>
@@ -20,7 +20,7 @@
         <div class="nets_block block2">N.A.R.C. Net Preamble</div>
       </a>
 
-      <a href="/#/nets/interest">
+      <a href="/nets/interest">
         <!-- <div class="nets_block_header">
                     <div class="nets_folder_sec1"></div>
                     <div class="nets_folder_sec2">Nets Of Interest</div>

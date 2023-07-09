@@ -1,8 +1,8 @@
 <template>
     <a :href="path">
-        <div id="pageCard">
-            <div id="cardTitle">{{ title }}</div>
-            <div id="cardIcon">
+        <div class="pageCard">
+            <div class="cardTitle">{{ title }}</div>
+            <div class="cardIcon">
                 <font-awesome-icon :icon="[icon[0], icon[1]]" />
             </div>
         </div>
@@ -21,7 +21,7 @@ export default {
 </script>
     
 <style scoped>
-#pageCard {
+.pageCard {
     color: #d6d6d6;
     width: 150px;
     height: 90px;
@@ -34,14 +34,14 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
-#pageCard:has(:hover) #cardIcon{
+.pageCard:has(:hover) .cardIcon{
     font-size: 3em;
 }
-#pageCard:has(:hover) #cardTitle{
+.pageCard:has(:hover) .cardTitle{
     color: #1a1a1a;
     font-weight: bold !important;
 }
-#cardIcon{
+.cardIcon{
     width: 100%; height: 100%;
     position: absolute; top: 0; left: 0;
     display: flex; justify-content: center; align-items: center;
@@ -49,13 +49,13 @@ export default {
     transition: 0.2s ease;
     background: #ffffff23;
 }
-#cardIcon:hover{
+.cardIcon:hover{
     background: #d6d6d6;
     color: #1a1a1a;
 }
-#cardTitle{
-    font-size: 1;
-    z-index: 99;
+.cardTitle{
+    font-size: 1em;
+    z-index: 97;
     pointer-events: none;
     position: relative;
 }

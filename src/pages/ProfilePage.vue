@@ -1,6 +1,6 @@
 <template>
     <div id="test">
-      Welcome, {{ userAcc }}
+      Welcome, { {{ userAcc.callsign }} }
     </div>
   </template>
     
@@ -12,7 +12,7 @@
     },
     data(){
       return{
-        user: ''
+        userAcc: {callsign:''}
       }
     },
     methods:{
@@ -20,7 +20,7 @@
     },
     mounted(){
       this.scrollToTop();
-      this.userAcc = this.$store.getters.user
+      this.userAcc = this.$store.state.user
     }
   }
   </script>
@@ -28,6 +28,7 @@
   <style scoped>
   #test {
     color: white;
+    text-align: center;
     background-color: #1c2023;
     min-height: 100vh;
     width: 100%;

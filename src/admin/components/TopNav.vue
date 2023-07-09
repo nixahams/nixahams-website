@@ -113,7 +113,7 @@ export default {
   width: 100vw;
   height: 60px;
   box-shadow: 2px 5px 10px rgb(0, 0, 0);
-  z-index: 9999;
+  z-index: 98;
   display: grid;
   grid-template-columns: 300px repeat(2, 1fr);
   color: white;

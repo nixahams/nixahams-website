@@ -12,7 +12,7 @@ import Bylaw from "@/pages/BylawPage.vue";
 import Officers from "@/pages/OfficersPage.vue";
 import Invalid from "@/pages/InvalidPage.vue";
 import Contact from "@/pages/ContactPage.vue";
-import Alpha from "@/pages/AlphaPage.vue";
+// import Alpha from "@/pages/AlphaPage.vue";
 import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
 import Profile from "@/pages/ProfilePage.vue";
@@ -51,17 +51,17 @@ const router = createRouter({
   routes: [
     { path: "/", component: Home, name: "home" },
     { path: "/nets", component: Nets, name: "nets"},
-    { path: "/nets/regional", component: Nets_Regional, name: "regional"},
-    { path: "/nets/preamble", component: Nets_Preamble, name: "preamble"},
-    { path: "/nets/interest", component: Nets_Interest, name: "interest"},
-    { path: "/repeaters", component: Repeaters, name: "repeaters" },
-    { path: "/meetings", component: Meetings, name: "meetings" },
-    { path: "/roster", component: Roster, name: "roster" },
-    { path: "/dmr", component: DMR, name: "dmr" },
-    { path: "/bylaws", component: Bylaw, name: "bylaws" },
-    { path: "/officers", component: Officers, name: "officers" },
-    { path: "/contact", component: Contact, name: "contact" },
-    { path: "/alpha", component: Alpha},
+    { path: "/nets/regional", component: Nets_Regional, name: "regional", meta: { needsAuth: false }},
+    { path: "/nets/preamble", component: Nets_Preamble, name: "preamble", meta: { needsAuth: false }},
+    { path: "/nets/interest", component: Nets_Interest, name: "interest", meta: { needsAuth: false }},
+    { path: "/repeaters", component: Repeaters, name: "repeaters", meta: { needsAuth: false }},
+    { path: "/meetings", component: Meetings, name: "meetings", meta: { needsAuth: false }},
+    { path: "/roster", component: Roster, name: "roster", meta: { needsAuth: false }},
+    { path: "/dmr", component: DMR, name: "dmr", meta: { needsAuth: false }},
+    { path: "/bylaws", component: Bylaw, name: "bylaws", },
+    { path: "/officers", component: Officers, name: "officers", meta: { needsAuth: false }},
+    { path: "/contact", component: Contact, name: "contact", meta: { needsAuth: false }},
+    // { path: "/alpha", component: Alpha, meta: { needsAuth: false }},
     { path: "/profile", component: Profile, meta: { needsAuth: true }},
     //props method creates a prop from URL query
     { path: "/account", component: Account, name: "Account",props(route) {return {  method: route.query.method }}},
@@ -75,29 +75,31 @@ const router = createRouter({
       meta: { needsAuth: true },
       children: [
         { path: '404', component: InvalidAdmin},
-        { path: '', redirect: 'dashboard'},
+        { path: '', redirect: 'admin/dashboard', meta: { needsAuth: true }},
         { path: 'dashboard', 
           component: DashBoard,
           name: "dash",
+          meta: { needsAuth: true },
           children: [
-            { path: 'email', component: DashBoard_EMAIL},
-            { path: 'donations', component: DashBoard_DONATIONS},
-            { path: 'visitors', component: DashBoard_VISITORS},
+            { path: 'email', component: DashBoard_EMAIL, meta: { needsAuth: true }},
+            { path: 'donations', component: DashBoard_DONATIONS, meta: { needsAuth: true }},
+            { path: 'visitors', component: DashBoard_VISITORS, meta: { needsAuth: true }},
             { path: "/:catchAll(.*)", redirect: '/test34534553345534345345', name: "NotFound",},
           ]
         },
         { path: 'edit', 
           component: EditPages,
           name: "edit",
+          meta: { needsAuth: true },
           children: [
-            { path: 'banner', component: EditPages_BANNER},
-            { path: 'net', component: EditPages_NETS},
-            { path: 'repeater', component: EditPages_REPEATERS},
-            { path: 'officer', component: EditPages_OFFICERS},
-            { path: 'dmr', component: EditPages_DMR},
-            { path: 'roster', component: EditPages_ROSTER},
-            { path: 'meeting', component: EditPages_MEETING},
-            { path: 'constitution', component: EditPages_CONSTITUTION},
+            { path: 'banner', component: EditPages_BANNER, meta: { needsAuth: true }},
+            { path: 'net', component: EditPages_NETS, meta: { needsAuth: true }},
+            { path: 'repeater', component: EditPages_REPEATERS, meta: { needsAuth: true }},
+            { path: 'officer', component: EditPages_OFFICERS, meta: { needsAuth: true }},
+            { path: 'dmr', component: EditPages_DMR, meta: { needsAuth: true }},
+            { path: 'roster', component: EditPages_ROSTER, meta: { needsAuth: true }},
+            { path: 'meeting', component: EditPages_MEETING, meta: { needsAuth: true }},
+            { path: 'constitution', component: EditPages_CONSTITUTION, meta: { needsAuth: true }},
             { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
             { path: '404', component: InvalidAdmin},
           ],
@@ -105,14 +107,15 @@ const router = createRouter({
         { path: 'settings', 
           component: Settings,
           name: "settings",
+          meta: { needsAuth: true },
           children: [
-            { path: 'password', component: Settings_PASSWORD},
-            { path: 'color', component: Settings_COLORS}, 
+            { path: 'password', component: Settings_PASSWORD, meta: { needsAuth: true }},
+            { path: 'color', component: Settings_COLORS, meta: { needsAuth: true }}, 
             { path: "/:catchAll(.*)", redirect: '404', name: "NotFound",},
-            { path: '404', component: InvalidAdmin},
+            { path: '404', component: InvalidAdmin, meta: { needsAuth: true }},
           ]  
         },
-        { path: 'devlogs', component: DevLogs},
+        { path: 'devlogs', component: DevLogs, meta: { needsAuth: true }},
         { path: "/:catchAll(.*)", redirect: 'admin/404'},
       ],
     },
@@ -121,40 +124,12 @@ const router = createRouter({
     {
       path: '/404',
       name: 'PageNotExist',
-      component: () => Invalid
+      component: () => Invalid,
+      meta: { needsAuth: false }
     }
   ],
 });
 
-import VueCookies from 'vue-cookies'
-router.beforeEach((to, from, next) => {
-  //check if route needs auth
-  console.log(VueCookies.get('colorMode'))
-  if(to.meta.needsAuth)
-  {
-    next();
-    return
-    let self = this;
-    axios({
-      method: "post",
-      url: "/users/login",
-      data: {
-        username: self.email,
-        password: self.password,
-      },
-      withCredentials: true,
-    })
-    .then((res) => {
-      next();
-    })
-    .catch((error) => {
-      console.log(error)
-      next('/login')
-    });
-  }else{
-    next();
-  }
-})
 
 
 

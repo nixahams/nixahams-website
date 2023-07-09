@@ -30,7 +30,7 @@
                 required
                 placeholder="Your email..."
                 class="input"
-                type="email"
+                type="text"
                 id="email"
                 name="email"
               />

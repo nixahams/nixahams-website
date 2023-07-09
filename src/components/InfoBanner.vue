@@ -42,9 +42,11 @@ export default {
   methods: {
     minimizeBanner() {
       this.bannerShow = false;
-      $cookies.set("bannerAcknowledged", true);
+      VueCookies.set("bannerAcknowledged", true);
     },
-    getBannerInfo(VueObj) {
+    getBannerInfo(
+      
+    ) {
       const URL =
         "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message";
       axios
@@ -77,7 +79,8 @@ export default {
     },
   },
   mounted() {
-    if(!$cookies.get("bannerAcknowledged"))
+    // console.log("cookies",VueCookies.get("bannerAcknowledged"))
+    if(!VueCookies.get("bannerAcknowledged"))
     {
       this.getBannerInfo(this);
     }

@@ -19,7 +19,7 @@
           </div>
           <div class="dayInput">
             <label for="link">Link</label>
-            <input name="link" type="text" value="http://localhost:8080/#/edit/meeting">
+            <input name="link" type="text" value="http://localhost:8080/edit/meeting">
           </div>
           <div class="dayInput">
             <label for="address">Address</label>

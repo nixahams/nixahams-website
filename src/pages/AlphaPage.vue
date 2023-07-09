@@ -142,7 +142,6 @@ export default {
     async attemptLogIn(VueObj) {
       let user = this.daForm.user;
       let pass = this.daForm.pass;
-
       const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/auth?user=${user}&pass=${pass}`;
       axios
         .post(URL)

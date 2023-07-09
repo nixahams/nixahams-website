@@ -136,32 +136,11 @@ export default {
       }).then(() => {
         this.$store.commit("changeUser", {});
         this.$store.commit("changeLoggedIn", false);
-      });
+        this.$router.push("/");
+    });
     },
     toggleLoggedIn(newLoggedIn) {
       this.$store.commit("changeLoggedIn", newLoggedIn);
-    },
-    getUserData() {
-      axios({
-        method: "get",
-        url: "/users",
-        params: {
-          username: this.$store.getters.user
-        },
-        withCredentials: true,
-      }).then((res) => {
-        console.log(res.data.message)
-        if (res.data.user) {
-          console.log(res.data.user);
-          this.$store.commit("changeUser", res.data.user);
-          this.$store.commit("changeLoggedIn", true);
-        } else {
-          this.$store.commit("changeUser", {});
-          this.$store.commit("changeLoggedIn", false);
-        }
-      }).catch((err) => {
-        console.log(err)
-      });
     },
     getTheme() {
       return localStorage.getItem("user-theme");
@@ -175,7 +154,7 @@ export default {
       }
     },
     setTheme(theme) {
-      console.log(theme)
+      // console.log(theme)
       localStorage.setItem("colorMode", theme);
       this.userTheme = theme;
       this.forceRerender()
@@ -191,10 +170,9 @@ export default {
   },
   watch:{
     $route (to, from){
-      console.log('terdrt',this.getTheme())
-      this.getUserData()
+      // console.log('terdrt',this.getTheme())
       this.activepage = to.name;
-    }
+    },
   },
   mounted() {
     const initUserTheme = this.getTheme() || this.getMediaPreference();

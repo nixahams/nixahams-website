@@ -1,7 +1,7 @@
 <template>
     <div id="account">
         <div id="backgroundImg_container">
-            <img src="https://i.imgur.com/b0UKsvD.png" alt="Background">
+            <img src="@/assets/carosel-imgs/bg9.jpg" alt="Background">
             <div id="bgCover"></div>
         </div>
         <div id="watermark">
@@ -40,12 +40,12 @@
                     <div class="inputSpan2" v-if="method!='login'">
                         <div class="form_input">
                             <label for="fname" class="above">First Name</label>
-                            <input name="fname" type="text" placeholder="Jane" required value="Josh" 
+                            <input name="fname" type="text" placeholder="John" required 
                             @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <div class="form_input">
                             <label for="lname" class="above">Last Name</label>
-                            <input name="lname" type="text" placeholder="Doe" required value="Dejeu" 
+                            <input name="lname" type="text" placeholder="Doe" required 
                             @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                     </div>
@@ -54,14 +54,23 @@
                         <!-- Create : Email -->
                         <div class="form_input"  v-if="method!='login'">
                             <label for="email" class="above">Email</label>
-                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
+                            <input name="email" type="text" placeholder="email@website.com" required 
                             @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Email -->
                         <div class="form_input login" v-else>
                             <label for="email" class="above">Email</label>
-                            <input name="email" type="email" placeholder="Email" required value="randomemail@gmail.com"
+                            <input name="email" type="text" placeholder="email@website.com" required 
                             @focus="focusLabel($event, 2)" @blur="blurLabel($event)">
+                        </div>
+                    </div>
+                    
+                    <!-- Create : Callsign -->
+                    <div class="inputSpan1"   v-if="method!='login'">
+                        <div class="form_input">
+                            <label for="callsign" class="above">Callsign</label>
+                            <input name="callsign" type="text" placeholder="ABCDEF" required 
+                            @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                     </div>
 
@@ -69,19 +78,19 @@
                         <!-- Create : Password -->
                         <div class="form_input" v-if="method!='login'">
                             <label for="password" class="above">Password</label>
-                            <input for="password" type="password" placeholder="***" required value="******"
+                            <input for="password" type="password" placeholder="***" required 
                             @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                         <!-- Login : Password -->
                         <div class="form_input login" v-else>
                             <label for="password" class="above">Password</label>
-                            <input for="password" type="password" placeholder="***" required value="******"
+                            <input for="password" type="password" placeholder="***" required 
                             @focus="focusLabel($event, 2)" @blur="blurLabel($event)">
                         </div>
                         <!-- Create : Confirm Password -->
                         <div class="form_input" v-if="method!='login'">
                             <label for="cpassword" class="above">Confirm Password</label>
-                            <input for="cpassword" type="password" placeholder="***" required value="******"
+                            <input for="cpassword" type="password" placeholder="***" required 
                             @focus="focusLabel($event, 1)" @blur="blurLabel($event)">
                         </div>
                     </div>
@@ -94,6 +103,13 @@
                                 <input name="active" type="checkbox" v-on:change="bannerShow = !bannerShow">
                                 <span class="slider round"></span>
                             </label>
+                        </div>
+                    </div>
+
+                    <!-- Both -->
+                    <div class="inputSpan1">
+                        <div class="form_input">
+                            <div id="error_message" v-if="showError">{{loginMessage}}</div>
                         </div>
                     </div>
 
@@ -114,18 +130,34 @@
 </template>
     
 <script>
-
+import axios from 'axios'
 export default {
     name: 'AccountPage',
     props: ['method'],
+    computed: {
+        loggedIn: function () {
+        return this.$store.state.loggedIn;
+        },
+    },
     components: {
     },
     data(){
         return{
-            title: ''
+            title: '',
+            email: "",
+            password: "",
+            loginMessage: "",
+            showError: false,
         }
     },
     methods: {
+        toggleLoggedIn: function (newLoggedIn) {
+            this.$store.commit("changeLoggedIn", newLoggedIn);
+        },
+        changeUser: function (newUser) {
+            this.$store.commit("changeUser", newUser);
+            this.$router.push("/");
+        },
         focusLabel(e, page)
         {
             let sibling = e.target.previousSibling;
@@ -143,17 +175,99 @@ export default {
         },
         submitForm(e)
         {
-            for(let i = 0; i < e.target.length-1; i++)
-            {
-                console.log(e.target[i].value)
+            let self = this;
+            console.log(this.method!='login')
+            //register api call
+            if(this.method!='login'){
+                axios({
+                    method: "post",
+                    url: "/users/register",
+                    data: {
+                        username: e.target[0].value,
+                        firstName: e.target[0].value,
+                        lastName: e.target[1].value,
+                        email: e.target[2].value,
+                        callsign: e.target[3].value,
+                        password: e.target[4].value,
+                    },
+                    withCredentials: true,
+                })
+                .then((res) => {
+                    self.allowLogin(res.data.callsign);
+                    this.getUserInfo(res.data.callsign);
+                    self.showError = false;
+                })
+                .catch((error) => {
+                    this.$store.commit("changeUser", {});
+                    this.$store.commit("changeLoggedIn", false);
+                    self.loginMessage = error;
+                    self.showError = true;
+                });
             }
-        }
-    },
+            //login api call
+            else{
+                axios({
+                    method: "post",
+                    url: "/users/login",
+                    data: {
+                        // username: e.target[0].value,
+                        username: e.target[0].value,
+                        password: e.target[1].value,
+                    },
+                    withCredentials: true,
+                })
+                .then((res) => {
+                    self.allowLogin(res.data.callsign);
+                    this.getUserInfo(res.data.callsign);
+                    self.showError = false;
+                })
+                .catch((error) => {
+                    console.log('error',error)
+                    self.loginMessage = error;
+                    self.showError = true;
+                });
+            }
+
+            // for(let i = 0; i < e.target.length-1; i++)
+            // {
+            //     console.log(e.target[i].value)
+            // }
+        },
+        allowLogin: function (callsign) {
+            this.toggleLoggedIn(true);
+            let user = {
+                email: this.email,
+                callsign: callsign
+            }
+            this.changeUser(user);
+        },
+        getUserInfo(callsign) {
+            axios({
+                method: "post",
+                url: "/users",
+                data: {
+                callsign: callsign
+                },
+                withCredentials: true,
+            }).then((res) => {
+                if (res.data.user) {
+                    this.$store.commit("changeUser", res.data.user);
+                    this.$store.commit("changeLoggedIn", true);
+                } else {
+                    this.$store.commit("changeUser", {});
+                    this.$store.commit("changeLoggedIn", false);
+                }
+            });
+            },
+        },
     mounted() {
     }
 }
 </script>
 <style scoped>
+#error_message{
+    color: red;
+}
 #account{
     height: 100vh;
     width: 100%;
@@ -199,8 +313,8 @@ export default {
 
     /* Img Style 2 : Combine with "Linear Gradient Style 2" */
     height: 100%;
-    margin-right: -20%;
-
+    margin-right: -25%;
+    transform: rotateY(180deg);
     object-position: right;
     object-fit: cover;
 }
@@ -234,6 +348,7 @@ a{
 #form_title,#form_title_login{
     font-size: 3em;
     font-weight: bold;
+    color: rgba(255,255,255,0.9);
 }
 #form_title::after{
     content: '.';
@@ -413,6 +528,7 @@ input:checked + .slider:before {
 }
 label{
     transition: 0.2s ease !important;
+    color: rgba(255, 255, 255, 0.8);
 }
 #watermark{
     position: absolute;
@@ -441,5 +557,29 @@ input[type="submit"]:focus{
     border: 2px solid white;
     box-shadow: 0px 0px 0px transparent !important;
 }
+
+
+
+
+/* Slightly Resized Screen Styles */
+@media screen and (max-width: 1200px) {
+    #backgroundImg_container>img{
+        margin-right: -55%;
+    }
+}
+
+/* Half-Screen Styles */
+@media screen and (max-width: 900px) {
+    #backgroundImg_container>img{
+        margin-right: -25%;
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+
+}
+
+
 </style>
     
