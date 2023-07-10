@@ -10,12 +10,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="loginModalLabel">
-              Member Login
-              <a href="/account?method=signup" class="h5 fs-6 text-primary"
-                >(Register here)</a
-              >
-            </h1>
+            <h1 class="modal-title fs-5" id="loginModalLabel">Member Login</h1>
             <button
               type="button"
               id="closeLoginModal"
