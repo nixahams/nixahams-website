@@ -28,15 +28,6 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              :class="activepage == 'admin' ? 'active' : ''"
-              aria-current="page"
-              href="/admin"
-              >Admin</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
               :class="activepage == 'home' ? 'active' : ''"
               aria-current="page"
               href="/"
@@ -114,14 +105,14 @@
               >Contact</a
             >
           </li>
-          <li class="nav-item centertoggle" @click="toggleTheme">
+          <!-- <li class="nav-item centertoggle" @click="toggleTheme">
             <font-awesome-icon
               :key="componentKey"
               :icon="
                 userTheme == 'dark-theme' ? ['fas', 'sun'] : ['fas', 'moon']
               "
             />
-          </li>
+          </li> -->
 
           <ul class="navbar-nav">
             <li v-if="isLoggedIn" class="nav-item dropdown">

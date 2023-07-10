@@ -10,101 +10,96 @@
 
     <div id="top_2">
       {{ pageTitle }}
-      <div v-if="show">
-        for {{ year }}
-      </div>
-    </div>
-
-    <div id="top_3">
-      <button id="topBtn">Sign Out</button>
+      <div v-if="show">for {{ year }}</div>
     </div>
   </div>
 </template>
-  
+
 <script>
-
 export default {
-  name: 'TopNav',
-  props: ['year', 'show'],
-  components: {
-
-  },
+  name: "TopNav",
+  props: ["year", "show"],
+  components: {},
   data() {
     return {
-      currentYear: '',
+      currentYear: "",
       navToggle: true,
-      pageTitle: 'Dashboard',
-      currentPath: '/dashboard',
-      previousPath: '',
+      pageTitle: "Dashboard",
+      currentPath: "/dashboard",
+      previousPath: "",
       pageTitles: [
-        {path: '/dashboard', title: 'DASHBOARD'},
-        {path: '/dashboard/email', title: 'Email Customers'},
+        { path: "/dashboard", title: "DASHBOARD" },
+        { path: "/dashboard/email", title: "Email Customers" },
 
-        {path: '/edit', title: "EDIT PAGES"},
-        {path: '/edit/banner', title: "Edit Information Banner"},
-        {path: '/edit/net', title: "Edit Nets"},
-        {path: '/edit/repeater', title: "Edit Repeater Information"},
-        {path: '/edit/meeting', title: "Edit Meeting Information"},
-        {path: '/edit/roster', title: "Edit Roster"},
-        {path: '/edit/dmr', title: "Edit DMR Info"},
-        {path: '/edit/officer', title: "Edit Officers"},
-        {path: '/edit/constitution', title: "Edit Constitution & By Laws"},
+        { path: "/edit", title: "EDIT PAGES" },
+        { path: "/edit/banner", title: "Edit Information Banner" },
+        { path: "/edit/net", title: "Edit Nets" },
+        { path: "/edit/repeater", title: "Edit Repeater Information" },
+        { path: "/edit/meeting", title: "Edit Meeting Information" },
+        { path: "/edit/roster", title: "Edit Roster" },
+        { path: "/edit/dmr", title: "Edit DMR Info" },
+        { path: "/edit/officer", title: "Edit Officers" },
+        { path: "/edit/constitution", title: "Edit Constitution & By Laws" },
 
-        {path: '/settings', title: "SETTINGS"},
-        {path: '/settings/password', title: "Change Password"},
-        {path: '/settings/color', title: "Change Colors"},
+        { path: "/settings", title: "SETTINGS" },
+        { path: "/settings/password", title: "Change Password" },
+        { path: "/settings/color", title: "Change Colors" },
 
-        {path: '/devlogs', title: "Developer Logs"},
+        { path: "/devlogs", title: "Developer Logs" },
 
-        {path: '/404', title: "404 Page Not Found"},
-      ]
-    }
+        { path: "/404", title: "404 Page Not Found" },
+      ],
+    };
   },
-  watch:{
-    $route (to, from){
-      this.currentPath = to.fullPath
-      this.previousPath = from.fullPath
-      try{
-        let search =  this.pageTitles.find(item => item.path === this.currentPath)
+  watch: {
+    $route(to, from) {
+      this.currentPath = to.fullPath;
+      this.previousPath = from.fullPath;
+      try {
+        let search = this.pageTitles.find(
+          (item) => item.path === this.currentPath
+        );
         this.pageTitle = search.title;
+      } catch (err) {
+        console.log(
+          "TypeError: Cannot read properties of undefined (reading 'title')"
+        );
       }
-      catch(err){
-        console.log("TypeError: Cannot read properties of undefined (reading 'title')")
-      }
-    }
+    },
   },
-  mounted(){
-    let temp = window.location.hash.replace(/^./, "")
-    try{
-      let search =  this.pageTitles.find(item => item.path === temp)
+  mounted() {
+    let temp = window.location.hash.replace(/^./, "");
+    try {
+      let search = this.pageTitles.find((item) => item.path === temp);
       this.pageTitle = search.title;
-    }
-    catch(err){
-      console.log("TypeError: Cannot read properties of undefined (reading 'title')")
+    } catch (err) {
+      console.log(
+        "TypeError: Cannot read properties of undefined (reading 'title')"
+      );
     }
     // console.log(this.year, this.show)
   },
-  methods:{
-    minimizeNav(){
-      let sideNav = document.getElementById('app_side');
-      let header = document.getElementById('app_top');
+  methods: {
+    minimizeNav() {
+      let sideNav = document.getElementById("app_side");
+      let header = document.getElementById("app_top");
 
-      if(this.navToggle){
+      if (this.navToggle) {
         this.navToggle = !this.navToggle;
-        sideNav.style.width = "88px"
-        header.style.gridTemplateColumns = "88px repeat(2, 1fr)"
+        sideNav.style.width = "88px";
+        header.style.gridTemplateColumns = "88px repeat(2, 1fr)";
         sideNav.style.textIndent = "-999px";
-      }else{
+      } else {
         this.navToggle = !this.navToggle;
-        sideNav.style.width = "300px"
-        header.style.gridTemplateColumns = "300px repeat(2, 1fr)"
+        sideNav.style.width = "300px";
+        header.style.gridTemplateColumns = "300px repeat(2, 1fr)";
         sideNav.style.textIndent = "0px";
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
-  
+
 <style scoped>
 #app_top {
   position: relative;
@@ -120,27 +115,29 @@ export default {
   font-weight: bold;
   transition: 0.2s ease;
 }
-#app_top_dark{
+#app_top_dark {
   background-color: var(--bg-secondary-DARK) !important;
 }
-#app_top_light{
+#app_top_light {
   background-color: var(--bg-secondary-LIGHT) !important;
 }
-#top_1{
+#top_1 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 30px;
 }
-#top_2{
+#top_2 {
   padding-left: 40px;
-  display: flex; align-items: center;
+  display: flex;
+  align-items: center;
   font-size: 1em;
   gap: 1em;
 }
-#top_3{
+#top_3 {
   padding-right: 30px;
-  display: flex; justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 #burger {
@@ -153,23 +150,24 @@ export default {
 #burger:hover {
   cursor: pointer;
 }
-#burger>span {
+#burger > span {
   width: 100%;
   height: 2px;
   background-color: white;
   border-radius: 5px;
 }
-#topBtn{
+#topBtn {
   padding: 10px 15px;
   outline: none;
-  border: none; border-radius: 20px;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
   background-color: rgb(214, 89, 31);
-  color: white; font-weight: bold;
+  color: white;
+  font-weight: bold;
   transition: 0.2s ease;
 }
-#topBtn:hover{
+#topBtn:hover {
   background-color: rgb(255, 81, 0);
 }
 </style>
-  

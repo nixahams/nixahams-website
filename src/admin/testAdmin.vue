@@ -1,122 +1,146 @@
 <template>
   <div id="admintest">
-
-    <TopNav :key="colorMode" :year="showYear.year" :show="showYear.show"/>
+    <TopNav :key="colorMode" :year="showYear.year" :show="showYear.show" />
 
     <div id="siblings">
       <SideNav />
-      <router-view v-if="refresh" :newdata="newData" @userEdit="userEdit" @userDelete="userDelete"
-        @userAddNew="userAddNew" @headerShowYear="headerShowYear" />
+      <router-view
+        v-if="refresh"
+        :newdata="newData"
+        @userEdit="userEdit"
+        @userDelete="userDelete"
+        @userAddNew="userAddNew"
+        @headerShowYear="headerShowYear"
+      />
     </div>
 
-    <EditorView :editValues="editValues" :URL="URL" @responseNewData="responseNewData" @exitEditor="exitEditor"
-      v-if="showEditor" />
-
+    <EditorView
+      :editValues="editValues"
+      :URL="URL"
+      @responseNewData="responseNewData"
+      @exitEditor="exitEditor"
+      v-if="showEditor"
+    />
   </div>
 </template>
-    
-<script>
-import SideNav from './components/SideNav.vue';
-import TopNav from './components/TopNav.vue';
-import EditorView from './components/EditorView.vue';
-import axios from 'axios'
 
+<script>
+import SideNav from "./components/SideNav.vue";
+import TopNav from "./components/TopNav.vue";
+import EditorView from "./components/EditorView.vue";
+import axios from "axios";
 
 export default {
-  name: 'testAdmin',
+  name: "testAdmin",
   components: {
     SideNav,
     TopNav,
-    EditorView
+    EditorView,
   },
-  data(){
-    return{
+  data() {
+    return {
       showEditor: false,
       editValues: {},
-      showYear: {year: 0, show: false},
+      showYear: { year: 0, show: false },
       URL: "",
       newData: [],
       refresh: true,
       colorMode: true,
-    }
+    };
   },
   methods: {
-    scrollToTop() { document.body.scrollTop = 0; },
-    userDelete(id, URL){
-      this.editValues = {id:id, titles: [], values: []};
+    scrollToTop() {
+      document.body.scrollTop = 0;
+    },
+    userDelete(id, URL) {
+      this.editValues = { id: id, titles: [], values: [] };
       this.URL = URL;
 
-      axios.post(URL+"?id="+id).then((response) => {
-        this.responseNewData(response.data)
-
-      })
+      axios.post(URL + "?id=" + id).then((response) => {
+        this.responseNewData(response.data);
+      });
     },
-    userEdit(obj, URL){
+    userEdit(obj, URL) {
       this.showEditor = true;
       this.editValues = obj;
       this.URL = URL;
     },
-    exitEditor(){
+    exitEditor() {
       this.showEditor = !this.showEditor;
     },
-    userAddNew(genData, URL){
+    userAddNew(genData, URL) {
       this.showEditor = true;
       this.editValues = genData;
       this.URL = URL;
     },
-    headerShowYear(year){
+    headerShowYear(year) {
       this.showYear = year;
     },
-    responseNewData(data){
+    responseNewData(data) {
       this.newData = data;
-      this.refresh=false; this.refresh=true;
-    }
+      this.refresh = false;
+      this.refresh = true;
+    },
+    checkAuth() {
+      if (this.$store.state.user) {
+        if (this.$store.state.user.permissionLevel === "ADMIN") {
+          return true;
+        }
+      }
+      return false;
+    },
   },
   mounted() {
+    if (!this.checkAuth()) {
+      this.$router.push("/");
+    }
     this.scrollToTop();
-    this.colorMode = this.$cookies.get('colorMode');
+    this.colorMode = this.$cookies.get("colorMode");
   },
-  watch:{
-    $route (to, from){
+  watch: {
+    $route(to, from) {
       to;
       //disables showing the year in the header on irrelevant pages
-      if(from.fullPath == "/edit/roster")
-      {
-        this.showYear = {show: false, year: 0}
+      if (from.fullPath == "/edit/roster") {
+        this.showYear = { show: false, year: 0 };
       }
-    }
+    },
   },
-}
+};
 </script>
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 #admintest {
   color: #2c3e50;
-  background-color: #1A1A1A;
-  height: calc(100vh - 57px); width: 100vw;
+  background-color: #1a1a1a;
+  height: calc(100vh - 57px);
+  width: 100vw;
 
   /* padding-top: 120px; */
 }
-*{
-  padding: 0; margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
 }
-body,html{
-  width: 100vw; height: 100vh;
+body,
+html {
+  width: 100vw;
+  height: 100vh;
 }
-a{
+a {
   color: inherit !important;
   text-decoration: inherit !important;
 }
 
-
 /* other pages global styles */
-#siblings{
+#siblings {
   display: flex;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background-color: rgb(92, 12, 12);
 }
-#formSubmit{
+#formSubmit {
   width: 100px;
   height: 45px;
   border: none;
@@ -126,9 +150,9 @@ a{
   background-color: #fdb021;
   color: #000;
   font-weight: 700;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-#formSubmit:hover{
+#formSubmit:hover {
   background-color: #fdb02194;
 }
 /* width */
@@ -146,19 +170,20 @@ a{
 .row_container::-webkit-scrollbar-thumb:hover {
   background: #555 !important;
 }
-.row_container{
+.row_container {
   width: 100%;
   height: calc(85% - 80px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   padding: 5px;
-  display: flex; flex-direction: row;
+  display: flex;
+  flex-direction: row;
   align-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
   overflow-y: auto;
 }
-.rowheader{
+.rowheader {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr) 2fr;
@@ -166,7 +191,7 @@ a{
   overflow: hidden;
   margin-left: 5px;
 }
-.rowheader>div{
+.rowheader > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,38 +201,42 @@ a{
   font-weight: bold;
   color: white;
 }
-.rowheader>div:nth-child(2n){
+.rowheader > div:nth-child(2n) {
   background-color: rgb(223, 155, 29) !important;
 }
-.btnNew{
+.btnNew {
   width: fit-content;
   padding: 5px;
   height: 30px;
-  outline: none; border: none;
+  outline: none;
+  border: none;
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  display: flex; flex-direction: row;
-  align-items: center; justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   transition: 0.2s ease;
   background-color: rgb(119, 253, 102);
   color: black;
 }
-.btnNew:hover{
+.btnNew:hover {
   filter: brightness(70%);
 }
-#route_card_container{
-  display: flex; flex-wrap: wrap;
+#route_card_container {
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
-#card_container{
-  display: flex; flex-wrap: wrap;
+#card_container {
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
-.subroute_area{
+.subroute_area {
   height: 95%;
   width: 100%;
 }
 </style>
-    
