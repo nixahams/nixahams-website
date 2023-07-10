@@ -1,41 +1,57 @@
 <template>
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="loginModal"
+    tabindex="-1"
+    aria-labelledby="loginModalLabel"
+    aria-hidden="true"
+  >
     <form @submit.prevent="loginUser">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="loginModalLabel">
               Member Login
-              <a href="/account?method=signup" class="h5 fs-6 text-primary">(Register here)</a>
+              <a href="/account?method=signup" class="h5 fs-6 text-primary"
+                >(Register here)</a
+              >
             </h1>
-            <button type="button" id="closeLoginModal" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Close"></button>
+            <button
+              type="button"
+              id="closeLoginModal"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
-            <input 
-              required 
-              type="test" 
-              class="form-control" 
-              placeholder="Email" 
-              v-model="email" />
-            <input 
-              required 
-              type="password" 
-              class="form-control" 
-              placeholder="Password" 
-              v-model="password" />
-            <span id="loginMessage" class="text-danger">{{ loginMessage }}</span>
+            <input
+              required
+              type="test"
+              class="form-control"
+              placeholder="Email"
+              v-model="email"
+            />
+            <input
+              required
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              v-model="password"
+            />
+            <span id="loginMessage" class="text-danger">{{
+              loginMessage
+            }}</span>
           </div>
           <div class="modal-footer">
-            <button 
-              type="button" 
-              class="btn btn-secondary" 
-              data-bs-dismiss="modal">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
               Close
             </button>
-            <button type="submit" class="btn btn-primary">
-              Login
-            </button>
+            <button type="submit" class="btn btn-primary">Login</button>
           </div>
         </div>
       </div>
@@ -67,17 +83,12 @@ export default {
     changeUser: function (newUser) {
       this.$store.commit("changeUser", newUser);
     },
-    allowLogin: function (callsign) {
+    allowLogin: function (user) {
       this.toggleLoggedIn(true);
-      let user = {
-        email: this.email,
-        callsign: callsign
-      }
       this.changeUser(user);
       this.$router.push("/");
     },
     loginUser: function () {
-      console.log("logging in now")
       let self = this;
       axios({
         method: "post",
@@ -89,25 +100,20 @@ export default {
         withCredentials: true,
       })
         .then((res) => {
-          self.allowLogin(res.data.callsign);
+          self.allowLogin(self.getUserInfo());
           document.getElementById("closeLoginModal").click();
-          this.getUserInfo(res.data.callsign);
         })
         .catch((error) => {
-          console.log('error',error)
           self.loginMessage = error;
         });
     },
-    getUserInfo(callsign) {
+    getUserInfo() {
       axios({
-        method: "post",
+        method: "get",
         url: "/users",
-        data: {
-          callsign: callsign
-        },
         withCredentials: true,
       }).then((res) => {
-        if (res.data.user) {
+        if (res.data) {
           this.$store.commit("changeUser", res.data.user);
           this.$store.commit("changeLoggedIn", true);
         } else {
