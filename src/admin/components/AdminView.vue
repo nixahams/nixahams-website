@@ -4,9 +4,16 @@
     <EditNet v-if="pageType === 'editNets'" />
     <EditRepeater v-if="pageType === 'editRepeaters'" />
     <EditMeeting v-if="pageType === 'editMeetings'" />
-    <EditRoster v-if="pageType === 'editRosters'" />
+    <EditRoster v-if="pageType === 'editRosters'" @userAddNew="userAddNew" />
     <EditDmr v-if="pageType === 'editDmrs'" />
     <EditOfficer v-if="pageType === 'editOfficers'" />
+    <EditorView
+      :editValues="editValues"
+      :URL="URL"
+      @responseNewData="responseNewData"
+      @exitEditor="exitEditor"
+      v-if="showEditor"
+    />
   </div>
 </template>
 
@@ -18,6 +25,7 @@ import EditMeeting from "../pages/edit/EditMeeting.vue";
 import EditRoster from "../pages/edit/EditRoster.vue";
 import EditDmr from "../pages/edit/EditDmr.vue";
 import EditOfficer from "../pages/edit/EditOfficer.vue";
+import EditorView from "../components/EditorView.vue";
 export default {
   name: "AdminView",
   components: {
@@ -28,9 +36,37 @@ export default {
     EditRoster,
     EditDmr,
     EditOfficer,
+    EditorView,
   },
   props: {
     pageType: String,
+  },
+  data() {
+    return {
+      showEditor: false,
+      URL: "",
+      editValues: {},
+    };
+  },
+  methods: {
+    userAddNew(genData, URL) {
+      this.showEditor = true;
+      this.editValues = genData;
+      this.URL = URL;
+    },
+    userEdit(obj, URL) {
+      this.showEditor = true;
+      this.editValues = obj;
+      this.URL = URL;
+    },
+    exitEditor() {
+      this.showEditor = !this.showEditor;
+    },
+    responseNewData(data) {
+      this.newData = data;
+      this.refresh = false;
+      this.refresh = true;
+    },
   },
 };
 </script>

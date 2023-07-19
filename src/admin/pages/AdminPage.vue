@@ -11,12 +11,14 @@
 <script>
 import SideNav from "../components/AdminSideNav.vue";
 import AdminView from "../components/AdminView.vue";
+import EditorView from "../components/EditorView.vue";
 
 export default {
   name: "AdminPage",
   components: {
     SideNav,
     AdminView,
+    EditorView,
   },
   data() {
     return {
