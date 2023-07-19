@@ -17,6 +17,9 @@ import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
 import Profile from "@/pages/ProfilePage.vue";
 
+// Hamfest Pages
+import Hamfest from "@/pages/Hamfest/HamfestAttendees.vue";
+
 import admin from "@/admin/pages/AdminPage.vue";
 //admin routes
 import adminPage from "@/admin/testAdmin.vue";
@@ -107,6 +110,11 @@ const router = createRouter({
       props(route) {
         return { method: route.query.method };
       },
+    },
+    {
+      path: "/hamfest/attendees",
+      component: Hamfest,
+      name: "hamfest",
     },
     // { path: '/donate', component: Donate},
     // { path: "/:pathMatch(.*)*", component: Invalid },
