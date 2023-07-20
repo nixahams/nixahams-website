@@ -21,7 +21,7 @@
 
 <script>
 import axios from "axios";
-import VueCookies from 'vue-cookies'
+import VueCookies from "vue-cookies";
 
 export default {
   name: "InfoBanner",
@@ -44,28 +44,38 @@ export default {
       this.bannerShow = false;
       VueCookies.set("bannerAcknowledged", true);
     },
-    getBannerInfo(
-      
-    ) {
+    getBannerInfo() {
+      let self = this;
       const URL =
         "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message";
-      axios
-        .get(URL)
+      axios({
+        method: "get",
+        url: "/get-banner-info",
+        withCredentials: true,
+      })
         .then(function (response) {
           // handle success
           let message = response.data[0];
+
           if (message.show == "true" || message.show == true) {
-            VueObj.bannerShow = true;
-            VueObj.message = message;
+            self.bannerShow = true;
+            self.message = message;
           } else if (message.show == "false" || message.show == false) {
-            VueObj.bannerShow = false;
+            self.bannerShow = false;
           }
-          if (message.color == "#0469E3") {
-            VueObj.checkColor = "blue";
-          } else if (message.color == "#de781f") {
-            VueObj.checkColor = "orange";
+
+          if (message.color == 2) {
+            self.checkColor = "blue";
+          } else if (message.color == 3) {
+            self.checkColor = "orange";
           } else {
-            VueObj.checkColor = "red";
+            self.checkColor = "red";
+          }
+
+          if (response.data[0].icon == "fa-solid fa-triangle-exclamation") {
+            self.message.icon = "triangle-exclamation";
+          } else {
+            self.message.icon = "circle-info";
           }
         })
         .catch(function (error) {
@@ -79,12 +89,9 @@ export default {
     },
   },
   mounted() {
-    // console.log("cookies",VueCookies.get("bannerAcknowledged"))
-    if(!VueCookies.get("bannerAcknowledged"))
-    {
+    if (!VueCookies.get("bannerAcknowledged")) {
       this.getBannerInfo(this);
     }
-    
   },
 };
 </script>

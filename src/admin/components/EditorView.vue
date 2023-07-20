@@ -129,7 +129,7 @@ export default {
 
       this.member.callsign = this.callsign;
       this.member.name = this.name;
-      this.member.arrl_membership = this.arrl_membership;
+      this.member.ARRL_membership = this.arrl_membership;
 
       console.log(this.member);
       axios({
