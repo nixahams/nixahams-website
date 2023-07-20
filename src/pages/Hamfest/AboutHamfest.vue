@@ -11,7 +11,8 @@
           The Nixa Amateur Radio Club Hamfest takes place on the second Saturday
           in November. We have some amazing prizes in store as well as some
           great vendors including Associated Radio and D&L Antenna Supply! We
-          will also have a VE testing session at 9:00 AM.
+          will also have a VE testing session. More information will be posted
+          as it becomes available!
         </p>
         <div class="row">
           <div class="col-4">
@@ -19,23 +20,24 @@
             <ul>
               <li>Table + Entry: $20</li>
               <li>Additional Tables: $10 each</li>
-              <li>Regular Entry: ??</li>
-              <li>Super Tickets: ??</li>
+              <li>Regular Entry: $10</li>
+              <li>Super Tickets: $20 (Entry + 20 tickets)</li>
+              <li>Extra Raffle Tickets: $1 each</li>
             </ul>
+            <button class="btn btn-primary m-auto" id="buyTicketsBtn">
+              Buy Tickets
+            </button>
           </div>
           <div class="col-4">
             <p class="text-decoration-underline m-0">Presentations:</p>
             <ul>
-              <li>Hex Beam Antenna Building</li>
-              <li>Queen City Digital Cluster</li>
+              <li>Coming Soon!</li>
             </ul>
           </div>
           <div class="col-4">
             <p class="text-decoration-underline m-0">Prizes:</p>
             <ul>
-              <li>A Radio</li>
-              <li>A Meter</li>
-              <li>Much Much More!</li>
+              <li>Coming Soon!</li>
             </ul>
           </div>
         </div>
@@ -53,11 +55,6 @@
             <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <button class="btn btn-primary">Buy Tickets</button>
       </div>
     </div>
   </div>
@@ -81,5 +78,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#buyTicketsBtn {
+  width: 100%;
 }
 </style>
