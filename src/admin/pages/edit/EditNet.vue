@@ -1,44 +1,45 @@
 <template>
   <div class="subroute_area">
-    <button type="button" class="btn btn-primary" @click="addNet">
-      Add Net
-    </button>
-    <div class="row_container">
+    <div class="table-responsive">
+      <button type="button" class="btn btn-success mb-1" @click="addNet">
+        Add Net
+      </button>
       <table class="table table-striped table-hover text-center">
         <thead>
           <tr class="text-decoration-underline">
+            <th></th>
+            <th>Net Name</th>
             <th>Day</th>
             <th>Time</th>
             <th>Frequency</th>
             <th>PL</th>
-            <th>Net Sponsor</th>
             <th>Repeater Location</th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in netData">
-            <td>{{ row.day }}</td>
-            <td>{{ row.time }}</td>
-            <td>{{ row.freq }}</td>
-            <td>{{ row.pl }}</td>
-            <td>{{ row.net_sponsor }}</td>
-            <td>{{ row.rep_loc }}</td>
-            <td>
+            <td class="d-flex flex-column flex-md-row">
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-primary m-1 w-100"
                 @click="editRow(row._id)"
               >
                 Edit
               </button>
-            </td>
-            <td>
-              <button class="btn btn-danger" @click="deleteRow(row._id)">
+              <button
+                class="btn btn-danger m-1 w-100"
+                @click="deleteRow(row._id)"
+              >
                 Delete
               </button>
             </td>
+
+            <td>{{ row.net_sponsor }}</td>
+            <td>{{ row.day }}</td>
+            <td>{{ row.time }}</td>
+            <td>{{ row.freq }}</td>
+            <td>{{ row.pl }}</td>
+            <td>{{ row.rep_loc }}</td>
           </tr>
         </tbody>
       </table>
