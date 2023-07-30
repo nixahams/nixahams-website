@@ -177,16 +177,16 @@ export default {
         type: signalType,
         icon: iconType,
         color: color,
-        text: encodeURI(desc),
+        text: desc,
       };
-
+      console.log(obj);
       axios({
         method: "post",
-        url: "/admin/edit-banner",
+        url: "/admin/banner/edit",
         withCredentials: true,
         data: obj,
       }).then((response) => {
-        // Need confirmation message
+        console.log(response.data.message);
       });
     },
     updateColor(selected, div) {

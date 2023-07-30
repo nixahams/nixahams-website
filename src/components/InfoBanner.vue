@@ -46,8 +46,7 @@ export default {
     },
     getBannerInfo() {
       let self = this;
-      const URL =
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/admin_message";
+
       axios({
         method: "get",
         url: "/get-banner-info",
@@ -64,12 +63,12 @@ export default {
             self.bannerShow = false;
           }
 
-          if (message.color == 2) {
-            self.checkColor = "blue";
-          } else if (message.color == 3) {
+          if (message.color == 3) {
             self.checkColor = "orange";
-          } else {
+          } else if (message.color == 1) {
             self.checkColor = "red";
+          } else if (message.color == 2) {
+            self.checkColor = "blue";
           }
 
           if (response.data[0].icon == "fa-solid fa-triangle-exclamation") {
