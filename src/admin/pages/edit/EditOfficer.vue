@@ -1,37 +1,50 @@
 <template>
   <div class="subroute_area">
-    <PackHead
-      @userSelectedSort="updateComputedSort"
-      @userAddNew="userAddNew"
-      :titles="titles"
-      :values="newValues"
-      :maxsort="rowsDataLength"
-      :inputtypes="inputTypes"
-      :showrowoption="true"
-    />
-
-    <div class="rowheader">
-      <div v-for="(i, index) in titles" :key="index">{{ titles[index] }}</div>
+    <div class="d-flex flex-row w-100">
+      <div v-for="officer in dataList" class="card m-3 w-100">
+        <div class="card-header">
+          <h3 class="card-title">{{ officer.position }}</h3>
+        </div>
+        <div class="card-body">
+          <form class="d-flex flex-column">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                v-model="officer.name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="callsign">Callsign</label>
+              <input
+                type="text"
+                class="form-control"
+                id="callsign"
+                v-model="officer.callsign"
+              />
+            </div>
+            <div class="form-group">
+              <label for="info">Info</label>
+              <textarea
+                class="form-control"
+                rows="15"
+                id="info"
+                v-model="officer.info"
+              ></textarea>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary w-25 mt-2 align-self-end"
+              @click="submitForm(officer)"
+            >
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <div class="row_container" v-if="loadRows">
-      <PackRow
-        :key="index"
-        :rowsData="dataArray[index]"
-        :idNum="idArray[index]"
-        @userEdit="userEdit"
-        @userDelete="userDelete"
-        v-for="(i, index) in rowNum"
-      />
-    </div>
-
-    <PackFooter
-      @reRenderRows="updateRows"
-      v-if="allowFooter"
-      :key="rowNum"
-      :arraysize="rowsDataLength"
-      :rowcount="rowNum"
-    />
   </div>
 </template>
 
@@ -41,6 +54,10 @@ import PackFooter from "../../components/packs/PackFooter.vue";
 import PackRow from "../../components/packs/PackRow.vue";
 import axios from "axios";
 
+import { reactive } from "vue";
+const state = reactive({
+  formModal: null,
+});
 export default {
   name: "EditOfficer",
   props: ["newdata"],
@@ -51,82 +68,43 @@ export default {
   },
   data() {
     return {
-      getURL:
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/officer",
-      newURL:
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/new/officer",
-      editURL:
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/edit/officer",
-      delURl:
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/delete/officer",
-      dataArray: [],
-      idArray: [],
-      rowsDataLength: 0,
-      rowNum: 10,
-      allowFooter: false,
-      activeRow: 1,
-      titles: ["Callsign", "Info", "Name", "Position"],
-      inputTypes: ["text", "textarea", "text", "text"],
-      newValues: ["...", "...", "...", "..."],
-      loadRows: false,
-      newer: [],
+      dataList: [],
+      url: "/admin/officers",
+      data: {},
     };
   },
   methods: {
-    userDelete(id) {
-      this.$emit("userDelete", id, this.delURl);
+    submitForm(row) {
+      this.url = "/admin/officers/edit";
+      this.data = row;
+      axios(this.url, {
+        method: "POST",
+        withCredentials: true,
+        data: this.data,
+      }).then((response) => {
+        console.log(response);
+        this.getData();
+      });
     },
-    userEdit(obj, id) {
-      let generateData = {
-        titles: this.titles,
-        values: [obj[0], obj[1], obj[2], obj[3]],
-        type: this.inputTypes,
-        id: id,
-      };
-      this.$emit("userEdit", generateData, this.editURL);
-    },
-    updateComputedSort(a) {
-      this.rowNum = Number(a);
-      this.rowsDataLength = this.dataArray.length;
-    },
-    updateRows(activeR) {
-      this.activeRow = Number(activeR);
-    },
-    userAddNew(genData) {
-      this.$emit("userAddNew", genData, this.newURL);
+    getData() {
+      axios("/admin/officers", {
+        method: "GET",
+        withCredentials: true,
+      }).then((response) => {
+        this.dataList = response.data;
+
+        this.allowFooter = true;
+
+        this.dataAvailable = true;
+      });
     },
   },
   mounted() {
-    this.newer = this.newdata;
-    axios.get(this.getURL).then((response) => {
-      this.rowNum = response.data.length;
-
-      for (let i = 0; i < response.data.length; i++) {
-        this.dataArray.push([
-          response.data[i].callsign,
-          response.data[i].info,
-          response.data[i].name,
-          response.data[i].position,
-        ]);
-        this.idArray.push(response.data[i]._id);
-      }
-      this.allowFooter = true;
-      this.rowsDataLength = response.data.length;
-      this.loadRows = true;
-    });
+    this.getData();
   },
 };
 </script>
 
 <style scoped>
-#edit {
-  color: #d6d6d6;
-  width: 100%;
-  background-color: #1a1a1a;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
 /* background-color: #1a1a1a; */
 </style>
