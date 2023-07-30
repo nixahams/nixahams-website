@@ -1,125 +1,246 @@
 <template>
   <div class="subroute_area">
-    <PackHead 
-    @userSelectedSort="updateComputedSort" 
-    @userAddNew="userAddNew"
-    :titles="titles"
-    :values="newValues"
-    :maxsort="rowsDataLength"
-    :inputtypes="inputTypes"
-    :showrowoption="true"/>
-    
-    <div class="rowheader">
-      <div v-for="(i, index) in 5" :key="index"> {{ titles[index] }}</div>
-    </div>
-
+    <button type="button" class="btn btn-primary" @click="addNet">
+      Add Net
+    </button>
     <div class="row_container">
-      <PackRow 
-      v-if="dataAvailable"
-      :key="index" 
-      :rowsData="rowsData[index].dataArray"
-      :idNum="rowsData[index].id" 
-      @userEdit="userEdit"
-      v-for="(i, index) in rowNum"/>
+      <table class="table table-striped table-hover text-center">
+        <thead>
+          <tr class="text-decoration-underline">
+            <th>Day</th>
+            <th>Time</th>
+            <th>Frequency</th>
+            <th>PL</th>
+            <th>Net Sponsor</th>
+            <th>Repeater Location</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in netData">
+            <td>{{ row.day }}</td>
+            <td>{{ row.time }}</td>
+            <td>{{ row.freq }}</td>
+            <td>{{ row.pl }}</td>
+            <td>{{ row.net_sponsor }}</td>
+            <td>{{ row.rep_loc }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click="editRow(row._id)"
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" @click="deleteRow(row._id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <PackFooter 
-    :key="rowNum" 
-    :arraysize="rowsDataLength" 
-    :rowcount="rowNum"
-    @reRenderRows="updateRows" 
-    v-if="allowFooter" />
+    <div class="modal" tabindex="-1" role="dialog" id="formModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark">{{ modalTitle }}</h5>
+            <button
+              type="button"
+              class="close"
+              @click="closeModal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            <form class="d-flex flex-column">
+              <div class="form-group">
+                <label for="dayInput">Day</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dayInput"
+                  v-model="net.day"
+                />
+              </div>
+              <div class="form-group">
+                <label for="time">Time</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="time"
+                  v-model="net.time"
+                />
+              </div>
+              <div class="form-group">
+                <label for="freq">Frequency</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="freq"
+                  v-model="net.freq"
+                />
+              </div>
+              <div class="form-group">
+                <label for="pl">PL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pl"
+                  v-model="net.pl"
+                />
+              </div>
+              <div class="form-group">
+                <label for="net_sponsor">Net Sponsor</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="net_sponsor"
+                  v-model="net.net_sponsor"
+                />
+              </div>
+              <div class="form-group">
+                <label for="rep_loc">Repeater Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rep_loc"
+                  v-model="net.rep_loc"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeModal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" @click="submitForm">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-    
-<script>
-import PackHead from '../../components/packs/PackHead.vue';
-import PackFooter from '../../components/packs/PackFooter.vue';
-import PackRow from '../../components/packs/PackRow.vue';
-import axios from 'axios';
 
+<script>
+import PackHead from "../../components/packs/PackHead.vue";
+import PackFooter from "../../components/packs/PackFooter.vue";
+import PackRow from "../../components/packs/PackRow.vue";
+import axios from "axios";
+
+import { reactive } from "vue";
+const state = reactive({
+  formModal: null,
+});
 export default {
-  name: 'EditNet',
-  props: ['newdata'],
+  name: "EditNet",
+  props: ["newdata"],
   components: {
     PackHead,
     PackFooter,
-    PackRow
+    PackRow,
   },
   data() {
     return {
-      netURL: "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net",
-      rowsData: [],
-      rowsDataLength: 0,
-      rowNum: 10,
-      dataAvailable: false,
-      allowFooter: false,
-      activeRow: 1,
-      titles: ["Day", "Frequency"," Net_Sponsor", "PL", "Rep_Location", "Time"],
-      inputTypes: ["text", "text", "text", "text", "text", "text"],
-      newValues: ["...", "...", "...", "...", "...", "..."],
-    }
+      netData: [],
+      modalTitle: "Edit Net Listing",
+      url: "/admin/nets",
+      net: {
+        day: "",
+        time: "",
+        freq: "",
+        pl: "",
+        net_sponsor: "",
+        rep_loc: "",
+      },
+    };
   },
-  methods:{
-    userEdit(obj){
-      console.log('1', obj)
-      let generateData = {
-        titles: this.titles,
-        values: [obj[0], obj[1], obj[2], obj[3], obj[4], obj[5]],
-        type: this.inputTypes,
-        id: obj._id
-      }
-      this.$emit('userEdit',generateData)
+  methods: {
+    addNet() {
+      this.modalTitle = "Add Net Listing";
+      this.url = "/admin/nets/add";
+      this.net = {
+        day: "",
+        time: "",
+        freq: "",
+        pl: "",
+        net_sponsor: "",
+        rep_loc: "",
+      };
+      state.formModal.show();
     },
-    updateComputedSort(a)
-    {
-      this.rowNum = Number(a);
-      this.rowsDataLength = this.rowsData.length
+    closeModal() {
+      state.formModal.hide();
     },
-    updateRows(activeR){
-      this.activeRow = Number(activeR);
+    editRow(id) {
+      this.modalTitle = "Edit Net Listing";
+      this.url = "/admin/nets/edit";
+      // TODO: Need to implement an endpoint to get a single net listing from the db
+      this.net = this.netData.find((row) => row._id === id);
+      console.log(this.net);
+      state.formModal.show();
     },
-    userAddNew(genData){
-      this.$emit('userAddNew',genData)
+    submitForm() {
+      axios(this.url, {
+        method: "POST",
+        withCredentials: true,
+        data: this.net,
+      }).then((response) => {
+        console.log(response);
+        this.getNets();
+      });
+      this.closeModal();
     },
-  },
-  mounted(){
-    axios.get(this.netURL).then((response) => {
-      this.rowNum = response.data.length
-      console.log(response.data.length)
-      for(let i = 0; i < response.data.length; i++)
-      {
-        let tempObj = {
-          dataArray: [
-            response.data[i].day,
-            response.data[i].freq,
-            response.data[i].time,
-            response.data[i].rep_loc,
-            response.data[i].pl,
-            response.data[i].time
-          ],
-          id: response.data[i]._id
-        }
-        this.rowsData.push(tempObj)
-      }
-      this.allowFooter = true;
-      this.rowsDataLength = response.data.length;
-      this.dataAvailable = true;
-    }) 
-    }
-  }
-</script>
-    
-<style scoped>
-#edit {
-  color: #d6d6d6;
-  width: 100%;
-  background-color: #1a1a1a;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
+    deleteRow(id) {
+      console.log(id);
+      axios("/admin/nets/delete", {
+        method: "POST",
+        withCredentials: true,
+        data: {
+          id: id,
+        },
+      }).then((response) => {
+        console.log(response);
+        this.getNets();
+      });
+    },
+    getNets() {
+      axios("/admin/nets", {
+        method: "GET",
+        withCredentials: true,
+      }).then((response) => {
+        this.netData = response.data;
 
+        this.allowFooter = true;
+
+        this.dataAvailable = true;
+      });
+    },
+  },
+  mounted() {
+    state.formModal = new bootstrap.Modal("#formModal", {});
+    axios("/admin/nets", {
+      method: "GET",
+      withCredentials: true,
+    }).then((response) => {
+      this.netData = response.data;
+
+      this.allowFooter = true;
+
+      this.dataAvailable = true;
+    });
+  },
+};
+</script>
+
+<style scoped>
 /* background-color: #1a1a1a; */
 </style>
-    
