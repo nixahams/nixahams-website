@@ -1,193 +1,194 @@
 <template>
   <div class="subroute_area">
-    <PackHead 
-    @userSelectedSort="updateComputedSort" 
-    @userAddNew="userAddNew"
-    :titles="titles"
-    :values="newValues"
-    :maxsort="rowsDataLength"
-    :inputtypes="inputTypes"
-    :showrowoption="true"/>
-    
-    <div class="rowheader">
-      <div v-for="(i, index) in titles" :key="index"> {{ titles[index] }}</div>
-      <form @submit.prevent="searchNewYear" id="formYear">
-        <div id="yearSelector">
-          <input name="year" type="text" placeholder="Search year">
-        </div>
-        <div id="yearBtn_container">
-          <input type="submit" value="Search">
-        </div>
-      </form>
+    <div class="table-responsive">
+      <button type="button" class="btn btn-success mb-1" @click="addRow">
+        Add Member
+      </button>
+      <table class="table table-striped table-hover text-center">
+        <thead>
+          <tr class="text-decoration-underline">
+            <th></th>
+            <th>Callsign</th>
+            <th>Name</th>
+            <th>ARRL Membership</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in dataList">
+            <td class="d-flex flex-column flex-md-row">
+              <!-- <button
+                type="button"
+                class="btn btn-primary m-1 w-100"
+                @click="editRow(row.callsign, row.name)"
+              >
+                Edit
+              </button> -->
+              <button
+                class="btn btn-danger m-1 w-100"
+                @click="deleteRow(row.name, row.callsign)"
+              >
+                Delete
+              </button>
+            </td>
+            <td>{{ row.callsign }}</td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.ARRL_membership }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="row_container">
-      <div v-if="showEmptyYear" id="noYear">
-        No data for '{{ currentYear }}'
+    <div class="modal" tabindex="-1" role="dialog" id="formModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark">{{ modalTitle }}</h5>
+            <button
+              type="button"
+              class="close"
+              @click="closeModal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            <form class="d-flex flex-column">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  v-model="data.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="callsign">Callsign</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="callsign"
+                  v-model="data.callsign"
+                />
+              </div>
+              <div class="form-group">
+                <label for="arrl">ARRL Membership</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="arrl"
+                  v-model="data.ARRL_membership"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeModal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" @click="submitForm">
+              Save changes
+            </button>
+          </div>
+        </div>
       </div>
-      <PackRow 
-      v-if="dataAvailable"
-      :key="index" 
-      :rowsData="rowsData.dataArray[index]"
-      :idNum="rowsData.id" 
-      @userEdit="userEdit"
-      v-for="(i, index) in rowNum"/>
     </div>
-
-    <PackFooter @reRenderRows="updateRows" v-if="allowFooter" :key="rowNum" :arraysize="rowsDataLength" :rowcount="rowNum"/>
   </div>
 </template>
-    
-<script>
-import PackHead from '../../components/packs/PackHead.vue';
-import PackFooter from '../../components/packs/PackFooter.vue';
-import PackRow from '../../components/packs/PackRow.vue';
-import axios from 'axios';
 
+<script>
+import PackHead from "../../components/packs/PackHead.vue";
+import PackFooter from "../../components/packs/PackFooter.vue";
+import PackRow from "../../components/packs/PackRow.vue";
+import axios from "axios";
+
+import { reactive } from "vue";
+const state = reactive({
+  formModal: null,
+});
 export default {
-  name: 'EditRoster',
+  name: "EditOfficer",
+  props: ["newdata"],
   components: {
     PackHead,
     PackFooter,
-    PackRow
+    PackRow,
   },
   data() {
     return {
-      currentYear: 2023,
-      netURL: "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/roster?year=",
-      rowsData: {dataArray: [], id: ''},
-      rowsDataLength: 0,
-      rowNum: 1,
-      dataAvailable: false,
-      allowFooter: false,
-      activeRow: 1,
-      titles: ["Callsign", "Name","ARRL_Membership"],
-      inputTypes: ["text", "text", "checkbox"],
-      newValues: ["...","...",false],
-      showEmptyYear: true,
-    }
+      dataList: [],
+      modalTitle: "Edit Member",
+      url: "/admin/roster",
+      data: {},
+      year: "",
+    };
   },
-  methods:{
-    userEdit(obj){
-      let generateData = {
-        titles: this.titles,
-        values: [obj[0], obj[1], obj[2], obj[3]],
-        type: this.inputTypes,
-        id: obj._id
-      }
-      this.$emit('userEdit',generateData)
+  methods: {
+    addRow() {
+      this.modalTitle = "Add Member";
+      this.url = "/admin/roster/add";
+      this.data = {};
+      state.formModal.show();
     },
-    updateComputedSort(a)
-    {
-      this.rowNum = Number(a);
-      this.rowsDataLength = this.rowsData.dataArray.length
+    closeModal() {
+      state.formModal.hide();
     },
-    updateRows(activeR){
-      this.activeRow = Number(activeR);
+    editRow(callsign, name) {
+      this.modalTitle = "Edit Member";
+      this.url = "/admin/roster/edit";
+      // TODO: Need to implement an endpoint to get a single repeater listing from the db
+      this.data = this.dataList.find(
+        (row) => row.callsign === callsign && row.name === name
+      );
+      console.log(this.data);
+      state.formModal.show();
     },
-    userAddNew(genData){
-      this.$emit('userAddNew',genData)
+    submitForm() {
+      axios(this.url, {
+        method: "POST",
+        withCredentials: true,
+        data: this.data,
+      }).then((response) => {
+        console.log(response);
+        this.getData();
+      });
+      this.closeModal();
     },
-    callAPI(){
-      axios.get(this.netURL+this.currentYear)
-      .then((response) => {
-        this.showEmptyYear = false;
-        this.$emit('headerShowYear', {show: true, year: this.currentYear})
-        this.rowNum = response.data.roster.length
+    deleteRow(name, callsign) {
+      axios("/admin/roster/delete", {
+        method: "POST",
+        withCredentials: true,
+        data: {
+          name: name,
+          callsign: callsign,
+        },
+      }).then((response) => {
+        console.log(response);
+        this.getData();
+      });
+    },
+    getData() {
+      axios("/admin/roster", {
+        method: "GET",
+        withCredentials: true,
+      }).then((response) => {
+        this.dataList = response.data.roster;
+        this.year = response.data.year;
 
-        for(let i = 0; i < response.data.roster.length; i++){
-          let tempObj = [
-            response.data.roster[i].callsign,
-            response.data.roster[i].name,
-            response.data.roster[i].ARRL_membership,
-          ]
-          this.rowsData.dataArray.push(tempObj)
-        }
-        this.rowsData.id = response.data._id;
-        this.rowsDataLength = response.data.roster.length
+        this.allowFooter = true;
+
         this.dataAvailable = true;
-        this.allowFooter = true;  
-      })
-      .catch((err) => {
-        console.log(err)
-        this.showEmptyYear = true;
-        this.$emit('headerShowYear', {show: false, year: this.currentYear})
-      })
+      });
     },
-    searchNewYear(e){
-      this.currentYear = e.target.elements.year.value
-      this.callAPI();
-    }
   },
-  mounted(){
-    let year = new Date;
-    this.currentYear = year.getFullYear() 
-    this.callAPI();
-  }
-}
+  mounted() {
+    this.getData();
+    state.formModal = new bootstrap.Modal("#formModal", {});
+  },
+};
 </script>
-    
+
 <style scoped>
-#formYear{
-  display: flex;
-  flex-direction: row;
-  width: 200%;
-  height: 100%;
-  justify-content: center; align-items: center;
-}
-#noYear{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3em;
-}
-#edit {
-  color: #d6d6d6;
-  width: 100%;
-  background-color: #1a1a1a;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-#yearSelector{
-  height: 100%;
-  width: 50%;
-  display: flex; justify-content: center; align-items: center;
-  padding-left: 30px;
-  background-color: #1A1A1A !important;
-}
-#yearSelector>input{
-  width: 90%;
-  height: 150%;
-  outline: none; border: none;
-  color: black;
-  padding: 0px 5px;
-}
-#yearBtn_container{
-  height: 100%;
-  width: 50%;
-  display: flex; justify-content: center; align-items: center;
-  width: fit-content !important;
-  background-color: #1A1A1A !important;
-  padding: 0 10px;
-}
-#yearBtn_container>input:hover{
-  background-color: rgb(54, 51, 206);
-  box-shadow: 0px 0px 0px rgba(21, 158, 238, 0.651);
-}
-#yearBtn_container>input{
-  transition: 0.2s ease;
-  width: 80px;
-  height: 80%;
-  outline: none; border: none;
-  background-color: rgb(64, 61, 253);
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(21, 158, 238, 0.8);
-}
 /* background-color: #1a1a1a; */
 </style>
-    
