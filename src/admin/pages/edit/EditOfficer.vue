@@ -1,6 +1,6 @@
 <template>
   <div class="subroute_area">
-    <div class="d-flex flex-row w-100">
+    <div class="d-flex flex-column w-100">
       <div v-for="officer in dataList" class="card m-3 w-100">
         <div class="card-header">
           <h3 class="card-title">{{ officer.position }}</h3>
@@ -29,7 +29,7 @@
               <label for="info">Info</label>
               <textarea
                 class="form-control"
-                rows="15"
+                rows="5"
                 id="info"
                 v-model="officer.info"
               ></textarea>
