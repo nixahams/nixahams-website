@@ -8,7 +8,7 @@
       </div>
 
       <div class="col-3">
-        <select>
+        <select @change="addMonths">
           <option v-for="year in yearsList" :key="year" class="form-control">
             {{ year }}
           </option>
@@ -203,6 +203,7 @@ export default {
       })
         .then((response) => {
           console.log(response.data);
+          this.getTimeData();
         })
         .catch((error) => {
           console.log(error);
@@ -210,6 +211,8 @@ export default {
     },
     addMonths() {
       // based on the year selected, add all available months to the monthsList
+      this.selectedYear = document.querySelector("select").value;
+      this.monthsList = [];
       this.meetingsList.forEach((meeting) => {
         if (meeting.year == this.selectedYear) {
           if (!this.monthsList.includes(meeting.month)) {
