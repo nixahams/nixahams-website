@@ -1,21 +1,16 @@
 <template>
   <div class="subroute_area">
-    <PackHead :showrowoption="false" />
-    
+    <h1>Under Construction</h1>
   </div>
 </template>
-    
-<script>
-import PackHead from '../../components/packs/PackHead.vue';
 
+<script>
 export default {
-  name: 'EditDmr',
-  components: {
-    PackHead
-  }
-}
+  name: "EditDmr",
+  components: {},
+};
 </script>
-    
+
 <style scoped>
 #edit_dmr {
   color: #d6d6d6;
@@ -28,4 +23,3 @@ export default {
 
 /* background-color: #1a1a1a; */
 </style>
-    

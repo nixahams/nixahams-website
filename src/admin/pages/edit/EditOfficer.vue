@@ -49,9 +49,6 @@
 </template>
 
 <script>
-import PackHead from "../../components/packs/PackHead.vue";
-import PackFooter from "../../components/packs/PackFooter.vue";
-import PackRow from "../../components/packs/PackRow.vue";
 import axios from "axios";
 
 import { reactive } from "vue";
@@ -61,11 +58,7 @@ const state = reactive({
 export default {
   name: "EditOfficer",
   props: ["newdata"],
-  components: {
-    PackHead,
-    PackFooter,
-    PackRow,
-  },
+  components: {},
   data() {
     return {
       dataList: [],

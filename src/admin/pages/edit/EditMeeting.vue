@@ -19,7 +19,9 @@
           </option>
         </select>
       </div>
-
+      <div class="row">
+        <h2 class="text-center">{{ selectedMonth }} Meeting</h2>
+      </div>
       <div class="row">
         <form>
           <div class="form-group">
@@ -49,7 +51,8 @@
               v-model="selectedMeeting.desc"
             ></textarea>
           </div>
-          <div class="form-group">
+          <!-- If we need to change the address, uncomment this -->
+          <!-- <div class="form-group">
             <label for="address">Address</label>
             <input
               type="text"
@@ -57,8 +60,12 @@
               id="address"
               v-model="selectedMeeting.address"
             />
-          </div>
-          <button type="button" class="btn btn-primary" @click="editMeeting">
+          </div> -->
+          <button
+            type="button"
+            class="btn btn-primary mt-1"
+            @click="editMeeting"
+          >
             Save
           </button>
         </form>
