@@ -5,107 +5,122 @@
     class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
-    <div class="d-flex justify-content-evenly w-100 align-items-center">
-      <a id="headerImage_container" href="#"
-        ><img src="@/assets/logobottom.png" alt="" class="img-fluid"
-      /></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <div class="w-100 p-1">
       <div
-        class="w-75 d-flex justify-content-between"
-        id="navbarSupportedContent"
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-center"
       >
-        <ul class="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'home' ? 'active' : ''"
-              aria-current="page"
-              href="/"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="
-                activepage == 'nets' ||
-                activepage == 'regional' ||
-                activepage == 'preamble' ||
-                activepage == 'interest'
-                  ? 'active'
-                  : ''
-              "
-              href="/nets"
-              >Nets</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'repeaters' ? 'active' : ''"
-              href="repeaters"
-              >Repeaters</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'meetings' ? 'active' : ''"
-              href="/meetings"
-              >Meetings</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'roster' ? 'active' : ''"
-              href="/roster"
-              >Join Narc</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'dmr' ? 'active' : ''"
-              href="/dmr"
-              >DMR</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'bylaws' ? 'active' : ''"
-              href="/bylaws"
-              >Bylaws</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'officers' ? 'active' : ''"
-              href="/officers"
-              >Officers</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="activepage == 'contact' ? 'active' : ''"
-              href="/contact"
-              >Contact</a
-            >
-          </li>
-          <!-- <li class="nav-item centertoggle" @click="toggleTheme">
+        <div
+          class="col-12 col-lg-2 d-flex justify-content-evenly align-items-center"
+        >
+          <img
+            src="@/assets/logobottom.png"
+            alt=""
+            id="navImg"
+            class="img-fluid w-75"
+          />
+          <button
+            class="navbar-toggler"
+            type="button"
+            @click="toggleNav"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="col-12 col-lg-10" id="navItemsContainer">
+          <div class="d-flex justify-content-between">
+            <ul class="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'home' ? 'active' : ''"
+                  aria-current="page"
+                  href="/"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'hamfest' ? 'active' : ''"
+                  href="/hamfest"
+                  >Hamfest</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="
+                    activepage == 'nets' ||
+                    activepage == 'regional' ||
+                    activepage == 'preamble' ||
+                    activepage == 'interest'
+                      ? 'active'
+                      : ''
+                  "
+                  href="/nets"
+                  >Nets</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'repeaters' ? 'active' : ''"
+                  href="repeaters"
+                  >Repeaters</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'meetings' ? 'active' : ''"
+                  href="/meetings"
+                  >Meetings</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'roster' ? 'active' : ''"
+                  href="/roster"
+                  >Join Narc</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'dmr' ? 'active' : ''"
+                  href="/dmr"
+                  >DMR</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'bylaws' ? 'active' : ''"
+                  href="/bylaws"
+                  >Bylaws</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'officers' ? 'active' : ''"
+                  href="/officers"
+                  >Officers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  :class="activepage == 'contact' ? 'active' : ''"
+                  href="/contact"
+                  >Contact</a
+                >
+              </li>
+              <!-- <li class="nav-item centertoggle" @click="toggleTheme">
             <font-awesome-icon
               :key="componentKey"
               :icon="
@@ -114,38 +129,42 @@
             />
           </li> -->
 
-          <ul class="navbar-nav">
-            <li v-if="isLoggedIn" class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                href="#"
-                >{{ user.callsign }}</a
-              >
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/profile">Profile</a>
+              <ul class="navbar-nav">
+                <li v-if="isLoggedIn" class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    href="#"
+                    >{{ user.callsign }}</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="/profile">Profile</a>
+                    </li>
+                    <li v-if="user.permissionLevel == 'ADMIN'">
+                      <a class="dropdown-item" href="/admin">Admin</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#" @click="logout"
+                        >Logout</a
+                      >
+                    </li>
+                  </ul>
                 </li>
-                <li v-if="user.permissionLevel == 'ADMIN'">
-                  <a class="dropdown-item" href="/admin">Admin</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#" @click="logout">Logout</a>
-                </li>
+                <button
+                  v-else
+                  class="btn btn-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  Member Login
+                </button>
               </ul>
-            </li>
-            <button
-              v-else
-              class="btn btn-secondary"
-              data-bs-toggle="modal"
-              data-bs-target="#loginModal"
-            >
-              Member Login
-            </button>
-          </ul>
-        </ul>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <LoginModal />
@@ -227,15 +246,28 @@ export default {
         method: "get",
         url: "/users",
         withCredentials: true,
-      }).then((res) => {
-        if (res.data.user) {
-          this.$store.commit("changeUser", res.data.user);
-          this.$store.commit("changeLoggedIn", true);
-        } else {
+      })
+        .then((res) => {
+          if (res.data.user) {
+            this.$store.commit("changeUser", res.data.user);
+            this.$store.commit("changeLoggedIn", true);
+          } else {
+            this.$store.commit("changeUser", {});
+            this.$store.commit("changeLoggedIn", false);
+          }
+        })
+        .catch((err) => {
           this.$store.commit("changeUser", {});
           this.$store.commit("changeLoggedIn", false);
-        }
-      });
+        });
+    },
+    toggleNav() {
+      const nav = document.getElementById("navItemsContainer");
+      if (nav.style.display === "block") {
+        nav.style.display = "none";
+      } else {
+        nav.style.display = "block";
+      }
     },
   },
   watch: {
@@ -309,9 +341,6 @@ nav {
 }
 #header > div {
   object-fit: cover;
-}
-#headerImage_container {
-  width: 15%;
 }
 #header_bg,
 #bg_edit {
@@ -412,13 +441,19 @@ nav {
   color: inherit;
 }
 
-/* Slightly Resized Screen Styles */
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 992px) {
+  #navItemsContainer {
+    display: block !important;
+  }
 }
-/* Half-Screen Styles */
-@media screen and (max-width: 900px) {
-}
-/* Mobile Styles */
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 991px) {
+  #navItemsContainer {
+    display: none;
+  }
+
+  #navImg {
+    width: 50% !important;
+  }
 }
 </style>

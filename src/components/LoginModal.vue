@@ -99,6 +99,7 @@ export default {
           document.getElementById("closeLoginModal").click();
         })
         .catch((error) => {
+          console.log(error);
           self.loginMessage = error;
         });
     },

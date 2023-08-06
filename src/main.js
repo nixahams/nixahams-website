@@ -46,10 +46,10 @@ router.beforeEach((to, from, next) => {
   // console.log(store.state.user)
   // console.log("This route needs Auth: ", to.meta.needsAuth)
   let user = store.state.user;
-  if(to.meta.needsAuth)
-  {
-    if(store.state.user.callsign === undefined)
-    {next('/account?method=login')}
+  if (to.meta.needsAuth) {
+    if (store.state.user.callsign === undefined) {
+      next("/account?method=login");
+    }
     axios({
       method: "post",
       url: "/users/login",
@@ -59,26 +59,30 @@ router.beforeEach((to, from, next) => {
       },
       withCredentials: true,
     })
-    .then((res) => {
-      if(!!res.data.callsign)
-      {next('/account?method=login')}
-      else{next()};
-    })
-    .catch((error) => {
-      console.log(error)
-      next('/account?method=login')
-    });
-  }else{
+      .then((res) => {
+        if (!!res.data.callsign) {
+          next("/account?method=login");
+        } else {
+          next();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        next("/account?method=login");
+      });
+  } else {
     next();
   }
-})
+});
 
-axios.defaults.baseURL = "http://localhost:4001";
-import VueCookies from 'vue-cookies'
+//http://localhost:4001/
+axios.defaults.baseURL = "https://strp-wbhk-1234.herokuapp.com";
+import VueCookies from "vue-cookies";
 
 const app = createApp(App);
-app.use(router)
-.use(store)
-.use(VueCookies, { expires: '7d'})
-.component("font-awesome-icon", FontAwesomeIcon)
-.mount("#app")
+app
+  .use(router)
+  .use(store)
+  .use(VueCookies, { expires: "7d" })
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app");

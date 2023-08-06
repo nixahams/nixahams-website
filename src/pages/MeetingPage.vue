@@ -98,7 +98,7 @@ export default {
           self.month = meetingDate.toLocaleString("default", {
             month: "long",
           });
-          self.day = meetingDate.getDate();
+          self.day = meetingDate.getDate() + 1;
           self.description = upcomingMeeting.description;
           self.link = upcomingMeeting.link;
         })
