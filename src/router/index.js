@@ -16,6 +16,7 @@ import Contact from "@/pages/ContactPage.vue";
 import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
 import Profile from "@/pages/Profile.vue";
+import HamfestTickets from "@/pages/Hamfest/HamfestTickets.vue";
 
 // Hamfest Pages
 import HamfestAttendees from "@/pages/Hamfest/HamfestAttendees.vue";
@@ -93,6 +94,7 @@ const router = createRouter({
       path: "/hamfest/attendees",
       component: HamfestAttendees,
       name: "HamfestAttendees",
+      meta: { needsAuth: true },
     },
     {
       path: "/hamfest",

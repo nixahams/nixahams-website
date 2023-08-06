@@ -76,7 +76,7 @@ router.beforeEach((to, from, next) => {
 });
 
 //http://localhost:4001/
-axios.defaults.baseURL = "https://strp-wbhk-1234.herokuapp.com";
+axios.defaults.baseURL = "https://api.nixahams.net";
 //axios.defaults.baseURL = "http://localhost:4001/";
 import VueCookies from "vue-cookies";
 
