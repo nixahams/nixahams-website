@@ -39,8 +39,7 @@
           you already. Associated Radio, D&L Antenna and Ham Crazy will be on
           site for all your new equipment needs. If you’re in the market for
           used gear, you’re also in luck! We will have about 32 tables available
-          for used equipment. So if you have some used gear to sell, please
-          email us ASAP before the tables are gone at hamfest@nixahams.net
+          for used equipment.
         </p>
 
         <p>
