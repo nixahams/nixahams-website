@@ -57,6 +57,7 @@ export default {
     align-items: center;
     font-size: 3em;
     position: relative;
+    color: white;
     min-width: 290px;
 }
 #member_callsign::after{
@@ -80,6 +81,7 @@ span{
 #member_text_name{
     font-size: 2em;
     font-weight: bold;
+    color: rgb(255, 255, 255)
 }
 #member_text_position{
     font-size: 1.5em;

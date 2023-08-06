@@ -12,16 +12,16 @@
             <div class="footer_block">
                 <div class="footer_title">Quick Links</div>
                 <div class="footer_link">
-                    <a href="#/">
+                    <a href="/">
                         <i class="fa-solid fa-house icon"></i>
                         - Home</a>
-                    <a href="#/bylaws">
+                    <a href="/bylaws">
                         <i class="fa-solid fa-circle-question icon"></i>
                         - Constitution & Bylaws</a>
-                    <a href="#/roster">
+                    <a href="/roster">
                         <i class="fa-solid fa-list icon"></i>
                         - Join This Years Roster</a>
-                    <a href="#/contact">
+                    <a href="/contact">
                         <i class="fa-solid fa-envelope icon"></i>
                         - Contact Us</a>
                 </div>
@@ -29,16 +29,16 @@
             <div class="footer_block">
                 <div class="footer_title">Services</div>
                 <div class="footer_link">
-                    <a href="#/nets">
+                    <a href="/nets">
                         <i class="fas fa-walkie-talkie icon"></i>
                         - Nets</a>
-                    <a href="#/dmr">
+                    <a href="/dmr">
                         <i class="fa-solid fa-circle-info icon"></i>
                         - SWMO DMR Info</a>
-                    <a href="#/meetings">
+                    <a href="/meetings">
                         <i class="fa-solid fa-people-group icon"></i>
                         - Monthly Meetings</a>
-                    <a href="#/repeaters">
+                    <a href="/repeaters">
                         <i class="fa-solid fa-tower-cell icon"></i>
                         - Repeaters</a>
                 </div>
@@ -60,9 +60,14 @@
                 Copyright {{year}} &#169; All rights Reserved. The Nixa Amateur Radio Club, Inc.
             </div>
             <div id="created">Website Created by: 
-                <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
+                <div>
+                    <a target="_blank" href="https://www.linkedin.com/in/josh-dejeu-767557239/">Josh
                     Dejeu
                 </a>
+                <a target="_blank" href="https://www.linkedin.com/in/preston-roesslet">Preston
+                    Roesslet
+                </a>
+                </div>
             </div>
         </div>
     </div>
@@ -125,9 +130,22 @@ a:hover {
     width: 20%;
     bottom: 0; right: 0;
     font-size: 0.8em;
-    padding: 10px;
+    padding: 0 10px;
+    gap: 10px;
     text-align: right;
+    display: flex;
+    align-items: center;
 }
+#created>div{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#created>div>a{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.3);
+}
+
 
 #copyright_block {
     display: flex;

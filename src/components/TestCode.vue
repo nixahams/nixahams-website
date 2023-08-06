@@ -41,7 +41,7 @@ export default {
   created() {
   window.addEventListener("resize", this.resizeHandle);
   },
-  destroyed() {
+  unmounted() {
     window.removeEventListener("resize", this.resizeHandle);
   },
   methods: {

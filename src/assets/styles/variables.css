@@ -1,0 +1,16 @@
+/* global root styles */
+:root{
+    --bg-color-LIGHT: #121212;
+    --bg-color-faded1-LIGHT: #12121269;
+    --bg-color-faded2-LIGHT: #12121250;
+    --bg-primary-LIGHT: #d6d6d6;
+    --bg-secondary-LIGHT: #bebebe;
+
+    --bg-color-DARK: #d6d6d6;
+    --bg-color-faded1-DARK: #d6d6d6ab;
+    --bg-color-faded2-DARK: #d6d6d67a;
+    --bg-primary-DARK: #121212;
+    --bg-secondary-DARK: #212121;
+
+    --bs-backdrop-zindex: 999 !important;
+}

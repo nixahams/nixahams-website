@@ -119,8 +119,8 @@ export default {
             dollar100:[{price: 'price_1M7uJqEaEcKb49YvDRB95xqH',quantity: 1}],
             customPrice:[{price: 'price_1M8Gu5EaEcKb49YvPlhYd91T',quantity: 1}],
             
-            successURL:'http://localhost:8080/#/Success',
-            cancelURL:'http://localhost:8080/#/Donate',
+            successURL:'http://localhost:8080/Success',
+            cancelURL:'http://localhost:8080/Donate',
             showCustomError: false,
         }
     },

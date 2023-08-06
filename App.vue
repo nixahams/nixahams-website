@@ -1,29 +1,29 @@
 <template>
   <div id="app">
-    <!-- <PageHeader :key="componentKey" :bgcolor="bg_color"/> -->
+    <NavHeader />
     <InfoBanner />
-    <NewHeader />
-    <router-view></router-view>
-    <PageFooter />
+    <div id="router-footer">
+      <router-view />
+      <PageFooter />
+    </div>
   </div>
 </template>
 
 <script>
-// import PageHeader from './components/PageHeader.vue';
-import NewHeader from "./components/NewHeader.vue";
-import PageFooter from "./components/PageFooter.vue";
-import InfoBanner from "./components/InfoBanner.vue";
+import NavHeader from "@/components/NavHeader.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import InfoBanner from "@/components/InfoBanner.vue";
 
 export default {
   name: "App",
   components: {
-    // PageHeader,
+    NavHeader,
     InfoBanner,
     PageFooter,
-    NewHeader,
   },
   data() {
-    return {};
+    return {
+    };
   },
   methods: {},
   mounted() {},
@@ -32,37 +32,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@import '@/assets/styles/variables.css';
 @font-face {
   font-family: "Dropstyle";
-  src: url("./assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
+  src: url("@/assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-ExtraLight.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-ExtraLight.ttf") format("truetype");
   font-weight: 100;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Light.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: sans-serif;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  src: url("@/assets/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: sans-serif;
 }
@@ -81,23 +82,17 @@ html {
 body {
   background-color: #1c2023;
 }
-
-#app {
+#router-footer {
   width: 100%;
   height: 100%;
-  position: relative;
-  /* overflow:scroll;allows scroll event */
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
+  /* overflow: auto; */
+  background-color: black;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
+
 }
 
 /* Track */
@@ -700,7 +695,7 @@ select {
 }
 
 #editInputHtml {
-  z-index: 9999;
+  z-index: 999;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);

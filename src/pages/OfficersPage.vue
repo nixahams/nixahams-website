@@ -41,6 +41,8 @@
             VueOBJ.nodata = true;
             return;
           }
+          console.log(response.data)
+          response.data.shift()
           VueOBJ.officer_list = response.data;
         })
         .catch(function (error) {
@@ -67,7 +69,8 @@
     font-family: 'Montserrat';
     text-align: center;
     display: flex; justify-content: center; align-items: center;
-    margin-top: 100px;
+    padding-top: 100px;
+    color: white;
 } 
 #staffpage{
     height: fit-content;

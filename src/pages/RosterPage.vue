@@ -196,8 +196,8 @@ export default {
       ],
       // Will want to create a success page that tells the user they've paid, and then from the backend,
       // add them to the roster and send them a confirmation email
-      successURL: "https://nixahams-website-cg9.pages.dev/#/roster",
-      cancelURL: "https://nixahams-website-cg9.pages.dev/#/roster",
+      successURL: "https://nixahams-website-cg9.pages.dev/roster",
+      cancelURL: "https://nixahams-website-cg9.pages.dev/roster",
 
       membership_selected: "single_side",
       single: "single_on",
