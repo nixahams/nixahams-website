@@ -1,7 +1,13 @@
 <template>
+<<<<<<< HEAD
   <div v-if="bannerShow" :id="checkColor">
     <div id="warning_icon">
       <i :class="message.icon"></i>
+=======
+  <div v-if="bannerShow" :id=checkColor>
+    <div id='warning_icon'>
+      <font-awesome-icon :icon="['fas', message.icon]" />
+>>>>>>> master
     </div>
     <div id="warning_text">
       <span id="tr">{{ message.type }} :</span>
@@ -24,8 +30,17 @@ import axios from "axios";
 import VueCookies from "vue-cookies";
 
 export default {
+<<<<<<< HEAD
   name: "InfoBanner",
   props: {},
+=======
+  name: 'InfoBanner',
+  components: {
+  },
+  props: {
+
+  },
+>>>>>>> master
   data() {
     return {
       bannerShow: false,
@@ -75,6 +90,17 @@ export default {
             self.message.icon = "triangle-exclamation";
           } else {
             self.message.icon = "circle-info";
+          }
+          switch(message.color){
+            case 1:
+              VueObj.checkColor = 'red'
+              break;
+            case 2:
+              VueObj.checkColor = 'blue'
+              break;
+            case 3:
+            VueObj.checkColor = 'orange'
+              break;
           }
         })
         .catch(function (error) {
