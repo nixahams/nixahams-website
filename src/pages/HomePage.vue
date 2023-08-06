@@ -43,7 +43,7 @@
         </div>
         <div class="carousel-item c-item">
           <img
-          src="@/assets/carosel-imgs/bg7.jpg"
+            src="@/assets/carosel-imgs/bg7.jpg"
             class="d-block w-100 c-img"
             alt="Slide 2"
           />
@@ -88,12 +88,12 @@
           </div>
           <div id="home_info">
             <div id="home_info_left">
-              <div id="info_big_left">{{ date }}</div>
+              <div id="info_big_left">{{ day }}</div>
               <div id="info_small_left">{{ month }} {{ year }}</div>
             </div>
             <div id="home_info_right">
               <div id="info_big_right">Meeting</div>
-              <div id="info_small_right">{{ city }}</div>
+              <div id="info_small_right">Nixa</div>
             </div>
           </div>
           <div id="home_btn">
@@ -184,46 +184,64 @@ export default {
   components: {},
   data() {
     return {
-      date: 14,
-      month: "Jan",
-      year: 2023,
-      city: "Springfield",
+      year: "",
+      month: "",
+      day: "",
+      description: "",
+      link: "",
     };
   },
   methods: {
     scrollToTop() {
       document.body.scrollTop = 0;
     },
-    getMeetingInfo(VueObj) {
+    getMeetingInfo() {
+      let self = this;
       const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meetings/all`;
       axios
         .get(URL)
         .then(function (response) {
-          // handle success
-          if (!response.data) {
-            VueObj.meetingData = {};
-            return;
+          console.log(response.data);
+          // find meeting that is the closest to current date, but occurs after current date
+          const meetings = response.data;
+          const today = new Date();
+          const todayYear = today.getFullYear();
+          const todayMonth = today.getMonth();
+          const todayDay = today.getDate();
+          const todayDate = new Date(todayYear, todayMonth, todayDay);
+
+          let upcomingMeeting = null;
+
+          for (let i = 0; i < meetings.length; i++) {
+            const meeting = meetings[i];
+            const meetingDate = new Date(meeting.date);
+
+            if (meetingDate > todayDate) {
+              upcomingMeeting = meeting;
+              break;
+            }
           }
-          let indx = response.data[response.data.length - 1].months.length - 1;
-          let databit = response.data[response.data.length - 1].months[indx];
-          VueObj.date = databit.day;
-          VueObj.month = databit.month;
-          VueObj.year = response.data[response.data.length - 1].year;
-          VueObj.city = databit.city;
+
+          console.log(upcomingMeeting);
+          let meetingDate = new Date(upcomingMeeting.date);
+
+          self.year = meetingDate.getFullYear();
+          self.month = meetingDate.toLocaleString("default", {
+            month: "long",
+          });
+          self.day = meetingDate.getDate() + 1;
+          self.description = upcomingMeeting.description;
+          self.link = upcomingMeeting.link;
         })
         .catch(function (error) {
           // handle error
-          VueObj.meetingData = {};
-          error;
-        })
-        .finally(function () {
-          // always executed
+          console.error(error);
         });
     },
   },
   mounted() {
     this.scrollToTop();
-    this.getMeetingInfo(this);
+    this.getMeetingInfo();
   },
 };
 </script>
