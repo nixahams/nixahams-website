@@ -101,6 +101,11 @@ const router = createRouter({
       component: AboutHamfest,
       name: "AboutHamfest",
     },
+    {
+      path: "/hamfest/tickets",
+      component: HamfestTickets,
+      name: "HamfestTickets",
+    },
     // { path: '/donate', component: Donate},
     // { path: "/:pathMatch(.*)*", component: Invalid },
     {
