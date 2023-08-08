@@ -17,7 +17,7 @@ import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
 import Profile from "@/pages/Profile.vue";
 import HamfestTickets from "@/pages/Hamfest/HamfestTickets.vue";
-import HamfestThankYou from "@/pages/Hamfest/Thankyou.vue";
+import HamfestThankYou from "@/pages/Hamfest/ThankYou.vue";
 
 // Hamfest Pages
 import HamfestAttendees from "@/pages/Hamfest/HamfestAttendees.vue";
