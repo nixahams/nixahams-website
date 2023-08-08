@@ -27,7 +27,11 @@
             <p>Time: 8:00 AM - 2:00 PM</p>
             <p>Where: Aldersgate Church</p>
             <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
-            <button class="btn btn-primary m-auto" id="buyTicketsBtn">
+            <button
+              class="btn btn-primary m-auto"
+              id="buyTicketsBtn"
+              @click="buyTickets"
+            >
               Buy Tickets - Coming Soon!
             </button>
           </div>
@@ -105,12 +109,19 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "AboutHamfest",
   data() {
     return {
       hamfest: {},
     };
+  },
+  methods: {
+    buyTickets() {
+      router.push("/hamfest/tickets");
+    },
   },
 };
 </script>
