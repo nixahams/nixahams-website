@@ -63,7 +63,7 @@
           </ul>
           <p v-if="totalCost != 0">Total Cost: ${{ totalCost }}</p>
           <form
-            action="http://localhost:4001/stripe/hamfest-checkout"
+            action="https://api.nixahams.net/stripe/hamfest-checkout"
             method="POST"
           >
             <input type="hidden" name="lineItems" v-model="lineItems" />
@@ -139,7 +139,7 @@ export default {
 
       if (this.numTables > 0) {
         this.lineItems.push({
-          price: "price_1NcEXYFTeL1911WTwxxHB4zb",
+          price: "price_1NcfqNFTeL1911WTRxWBco89",
           quantity: 1,
         });
 
@@ -147,7 +147,7 @@ export default {
 
         if (extraTables > 0) {
           this.lineItems.push({
-            price: "price_1NcEYuFTeL1911WTFU84D947",
+            price: "price_1Ncfq9FTeL1911WTp7UtonnT",
             quantity: extraTables,
           });
         }
@@ -159,7 +159,7 @@ export default {
 
       if (this.numRegAdmission > 0) {
         this.lineItems.push({
-          price: "price_1NXFOBFTeL1911WTr29OYIyo",
+          price: "price_1NcfqQFTeL1911WT5TiwuRo7",
           quantity: this.numRegAdmission,
         });
         AdmissionCost = this.numRegAdmission * 10;
@@ -169,7 +169,7 @@ export default {
 
       if (this.numPrizeTicket > 0) {
         this.lineItems.push({
-          price: "price_1NcEY5FTeL1911WTKEmgeLx7",
+          price: "price_1NcfqKFTeL1911WTVbb8sSVE",
           quantity: this.numPrizeTicket,
         });
         raffleCost = this.numPrizeTicket * 1;
@@ -179,7 +179,7 @@ export default {
 
       if (this.numSuperTicket > 0) {
         this.lineItems.push({
-          price: "price_1NcEYWFTeL1911WTWlNXhDVu",
+          price: "price_1NcfqGFTeL1911WTiqhYgZ1R",
           quantity: this.numSuperTicket,
         });
         superTicketCost = this.numSuperTicket * 20;
