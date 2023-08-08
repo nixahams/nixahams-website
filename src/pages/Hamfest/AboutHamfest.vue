@@ -1,14 +1,3 @@
-<!-- <div class="col-4">
-            <p class="text-decoration-underline m-0">Ticket Information:</p>
-            <ul>
-              <li>Table + Entry: $20</li>
-              <li>Additional Tables: $10 each</li>
-              <li>Regular Entry: $10</li>
-              <li>Super Tickets: $20 (Entry + 20 tickets)</li>
-              <li>Extra Raffle Tickets: $1 each</li>
-            </ul>
-          </div> -->
-
 <template>
   <div class="container text-white">
     <div class="row">
@@ -27,8 +16,12 @@
             <p>Time: 8:00 AM - 2:00 PM</p>
             <p>Where: Aldersgate Church</p>
             <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
-            <button class="btn btn-primary m-auto" id="buyTicketsBtn">
-              Buy Tickets - Coming Soon!
+            <button
+              class="btn btn-primary m-auto"
+              id="buyTicketsBtn"
+              @click="buyTickets"
+            >
+              Buy Tickets
             </button>
           </div>
         </div>
@@ -37,8 +30,8 @@
         <p>
           Doors open at 8:00 a.m. and we have some exciting events lined up for
           you already. Associated Radio, D&L Antenna and Ham Crazy will be on
-          site for all your new equipment needs. If you’re in the market for
-          used gear, you’re also in luck! We will have about 32 tables available
+          site for all your new equipment needs. If you're in the market for
+          used gear, you're also in luck! We will have about 32 tables available
           for used equipment.
         </p>
 
@@ -48,13 +41,13 @@
         </p>
 
         <p>
-          We will again have TWO great forums for this year’s event! At 10 a.m.,
+          We will again have TWO great forums for this year's event! At 10 a.m.,
           James Adkins, KB0NHX, will be presenting information on the Queen City
           Digital Cluster, also known as the QCDC. This is a new addition to the
           region that has (5) UHF repeaters located on the same tower in NE
           Springfield in which all 5 repeaters share the same transmit antenna
           and also share a separate receive antenna. Besides the cool technical
-          details, you’ll also want to know how you can use it, what you’ll
+          details, you'll also want to know how you can use it, what you'll
           normally hear on it, and how to get involved. The second forum at
           11:30 a.m. by Dave Burtrum, N0DF, will focus on building a Hex Beam HF
           antenna. Dave will not only give you ideas on how to build your own HF
@@ -69,7 +62,7 @@
         </p>
 
         <p>
-          There is plenty of parking on site – you will be able to park in the
+          There is plenty of parking on site - you will be able to park in the
           East parking lot and there are handicap parking spots available on a
           first come, first serve basis. To streamline entry, the entry cost is
           $10.00 and that gives you 2 chances at hamfest prizes. And, if you
@@ -105,12 +98,19 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "AboutHamfest",
   data() {
     return {
       hamfest: {},
     };
+  },
+  methods: {
+    buyTickets() {
+      router.push("/hamfest/tickets");
+    },
   },
 };
 </script>
