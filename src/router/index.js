@@ -17,6 +17,7 @@ import Account from "@/pages/AccountPage.vue";
 // import Donate from '@/pages/DonationPage.vue';
 import Profile from "@/pages/Profile.vue";
 import HamfestTickets from "@/pages/Hamfest/HamfestTickets.vue";
+import HamfestThankYou from "@/pages/Hamfest/Thankyou.vue";
 
 // Hamfest Pages
 import HamfestAttendees from "@/pages/Hamfest/HamfestAttendees.vue";
@@ -105,6 +106,11 @@ const router = createRouter({
       path: "/hamfest/tickets",
       component: HamfestTickets,
       name: "HamfestTickets",
+    },
+    {
+      path: "/hamfest/thankyou",
+      component: HamfestThankYou,
+      name: "HamfestThankYou",
     },
     // { path: '/donate', component: Donate},
     // { path: "/:pathMatch(.*)*", component: Invalid },
