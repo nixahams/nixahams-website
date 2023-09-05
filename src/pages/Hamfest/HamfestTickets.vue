@@ -80,6 +80,7 @@
         <div class="">
           <SelectTicketOption
             v-if="ticketType == ''"
+            :tablesRemaining="tablesRemaining"
             @changeTicketType="changeTicketType"
           />
           <AdmissionTickets
@@ -119,9 +120,17 @@ export default {
       numPrizeTicket: 0,
       totalCost: 0,
       lineItems: [],
+      tablesRemaining: 0,
     };
   },
   methods: {
+    getTotalTablesSold() {
+      axios("/stripe/hamfest-tables-sold", {
+        method: "GET",
+      }).then((response) => {
+        this.tablesRemaining = 32 - response.data;
+      });
+    },
     changeTicketType(type) {
       this.ticketType = type;
     },
@@ -193,6 +202,9 @@ export default {
 
       this.ticketType = "checkout";
     },
+  },
+  mounted() {
+    this.getTotalTablesSold();
   },
 };
 </script>

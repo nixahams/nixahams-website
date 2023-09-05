@@ -12,13 +12,18 @@
           Regular Admission
         </button>
       </div>
-      <div class="col-6 m-auto mt-3">
+      <div v-if="tablesRemaining > 0" class="col-6 m-auto mt-3">
         <button
           class="btn btn-primary w-100"
           @click="$emit('changeTicketType', 'table')"
         >
           Reserve a Table
         </button>
+        <p class="text-center">Only {{ tablesRemaining }} tables left!</p>
+      </div>
+      <div v-else class="col-6 m-auto mt-3">
+        <button disabled>Reserve a Table</button>
+        <p class="text-center">Tables are sold out</p>
       </div>
     </div>
   </div>
@@ -31,6 +36,12 @@ export default {
     return {
       ticketType: "",
     };
+  },
+  props: {
+    tablesRemaining: {
+      type: Number,
+      required: true,
+    },
   },
 };
 </script>
