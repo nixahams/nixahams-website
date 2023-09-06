@@ -12,7 +12,7 @@
             <h3>Hamfest 2023</h3>
           </div>
           <div class="card-body">
-            <p>When: November 13, 2023</p>
+            <p>When: November 11, 2023</p>
             <p>Time: 8:00 AM - 2:00 PM</p>
             <p>Where: Aldersgate Church</p>
             <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
