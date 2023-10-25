@@ -1,48 +1,57 @@
 <template>
   <div :id="true ? 'admin_edit_dark' : 'admin_edit_light'">
     <div id="route_card_container" v-if="$route.name === 'edit'">
-      <PageCard 
-      :key="index" 
-      :path="card.path" 
-      :title="card.title" 
-      :icon="card.icon" 
-      v-for="(card, index) in editPages"/>
+      <PageCard
+        :key="index"
+        :path="card.path"
+        :title="card.title"
+        :icon="card.icon"
+        v-for="(card, index) in editPages"
+      />
     </div>
-    <router-view :newdata="newdata"/>
+    <router-view :newdata="newdata" />
   </div>
 </template>
-  
+
 <script>
-import PageCard from '../components/PageCard.vue'
+import PageCard from "../components/PageCard.vue";
 
 export default {
-  name: 'AdminEdit',
-  props: ['newdata'],
+  name: "AdminEdit",
+  props: ["newdata"],
   components: {
-    PageCard
+    PageCard,
   },
-  data(){
-    return{
+  data() {
+    return {
       editPages: [
-        {path: 'edit/banner', title: "Banner", icon: ['fas', 'circle-info']},
-        {path: 'edit/net', title: "Nets", icon: ['fas', 'mosquito-net']},
-        {path: 'edit/repeater', title: "Repeater", icon: ['fas', 'tower-cell']},
-        {path: 'edit/meeting', title: "Meeting", icon: ['fas', 'handshake']},
-        {path: 'edit/roster', title: "Roster", icon: ['fas', 'clipboard-user']},
-        {path: 'edit/dmr', title: "DMR", icon: ['fas', 'walkie-talkie']},
-        {path: 'edit/officer', title: "Officers", icon: ['fas', 'person-military-pointing']},
+        { path: "edit/banner", title: "Banner", icon: ["fas", "circle-info"] },
+        { path: "edit/net", title: "Nets", icon: ["fas", "mosquito-net"] },
+        {
+          path: "edit/repeater",
+          title: "Repeater",
+          icon: ["fas", "tower-cell"],
+        },
+        { path: "edit/meeting", title: "Meeting", icon: ["fas", "handshake"] },
+        {
+          path: "edit/roster",
+          title: "Roster",
+          icon: ["fas", "clipboard-user"],
+        },
+        { path: "edit/dmr", title: "DMR", icon: ["fas", "walkie-talkie"] },
+        {
+          path: "edit/officer",
+          title: "Officers",
+          icon: ["fas", "person-military-pointing"],
+        },
       ],
       colorMode: true,
-    }
+    };
   },
-  mounted(){
-    // localStorage.setItem("user-theme", theme);
-    // this.userTheme = theme;
-
-  }
-}
+  mounted() {},
+};
 </script>
-  
+
 <style scoped>
 #admin_edit_dark {
   color: var(--bg-color-DARK);
@@ -56,6 +65,4 @@ export default {
   background-color: var(--bg-primary-LIGHT);
   padding: 20px;
 }
-
 </style>
-  
