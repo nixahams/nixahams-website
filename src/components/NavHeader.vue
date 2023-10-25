@@ -120,6 +120,13 @@
                   >Contact</a
                 >
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://donate.stripe.com/aEU2bi0qrg7Ec7K4gj"
+                  >Donate</a
+                >
+              </li>
               <!-- <li class="nav-item centertoggle" @click="toggleTheme">
             <font-awesome-icon
               :key="componentKey"
