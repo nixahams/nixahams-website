@@ -1,7 +1,6 @@
 <template>
   <nav
     :key="componentKey"
-    :id="userTheme == 'dark-theme' ? 'app_header_dark' : 'app_header_light'"
     class="navbar navbar-expand-lg bg-dark text-white border-bottom"
     data-bs-theme="dark"
   >
@@ -127,14 +126,6 @@
                   >Donate</a
                 >
               </li>
-              <!-- <li class="nav-item centertoggle" @click="toggleTheme">
-            <font-awesome-icon
-              :key="componentKey"
-              :icon="
-                userTheme == 'dark-theme' ? ['fas', 'sun'] : ['fas', 'moon']
-              "
-            />
-          </li> -->
 
               <ul class="navbar-nav">
                 <li v-if="isLoggedIn" class="nav-item dropdown">
@@ -199,7 +190,6 @@ export default {
   data() {
     return {
       activepage: "home",
-      userTheme: "dark-theme",
       componentKey: 0,
     };
   },
@@ -232,20 +222,6 @@ export default {
         return "dark-theme";
       } else {
         return "light-theme";
-      }
-    },
-    setTheme(theme) {
-      // console.log(theme)
-      localStorage.setItem("colorMode", theme);
-      this.userTheme = theme;
-      this.forceRerender();
-    },
-    toggleTheme() {
-      const activeTheme = localStorage.getItem("user-theme");
-      if (activeTheme === "light-theme") {
-        this.setTheme("dark-theme");
-      } else {
-        this.setTheme("light-theme");
       }
     },
     getUserData() {
@@ -285,9 +261,6 @@ export default {
   },
   mounted() {
     this.getUserData();
-    const initUserTheme = this.getTheme() || this.getMediaPreference();
-
-    this.setTheme(initUserTheme);
 
     // this.colorMode = VueCookies.get('colorMode')
     this.forceRerender();
