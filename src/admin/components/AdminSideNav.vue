@@ -19,6 +19,7 @@
     <a class="nav-link" href="#" @click="changePage('editOfficers')"
       >Edit Officers</a
     >
+    <a class="nav-link" href="#" @click="changePage('addUser')">Add User</a>
   </nav>
 </template>
 
