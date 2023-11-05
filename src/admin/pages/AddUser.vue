@@ -1,6 +1,12 @@
 <template>
   <div>
     <h1>Add User</h1>
+    <p>
+      This form can be used to manually initiate account creation. Most accounts
+      will be automatically initialized when a member pays dues, but in the
+      event that a member needs an account without paying dues (i.e. Family
+      Dues), this form can be used to initialize the account.
+    </p>
     <form class="w-25">
       <div class="form-group">
         <label for="name">Name</label>
