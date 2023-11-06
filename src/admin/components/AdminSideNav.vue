@@ -1,6 +1,6 @@
 <template>
   <nav class="nav flex-column">
-    <p class="h5 mb-0">Editor</p>
+    <p class="h5 mb-0 text-center">Editor</p>
     <hr class="m-1" />
     <a class="nav-link" href="#" @click="changePage('editBanner')"
       >Edit Banner</a

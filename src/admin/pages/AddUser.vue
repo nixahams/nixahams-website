@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pageView">
     <h1>Add User</h1>
     <p>
       This form can be used to manually initiate account creation. Most accounts
@@ -70,3 +70,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.pageView {
+  min-height: 60vh;
+}
+</style>

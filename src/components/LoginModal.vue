@@ -89,7 +89,7 @@ export default {
         method: "post",
         url: "/users/login",
         data: {
-          username: self.email,
+          email: self.email,
           password: self.password,
         },
         withCredentials: true,
