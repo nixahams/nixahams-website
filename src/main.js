@@ -78,6 +78,7 @@ router.beforeEach((to, from, next) => {
 //http://localhost:4001/
 //axios.defaults.baseURL = "https://api.nixahams.net";
 axios.defaults.baseURL = "https://api.nixahams.net";
+axios.defaults.withCredentials = true;
 import VueCookies from "vue-cookies";
 
 const app = createApp(App);

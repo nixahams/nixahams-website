@@ -14,6 +14,7 @@
       @exitEditor="exitEditor"
       v-if="showEditor"
     />
+    <AddUser v-if="pageType === 'addUser'" />
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import EditRoster from "../pages/edit/EditRoster.vue";
 import EditDmr from "../pages/edit/EditDmr.vue";
 import EditOfficer from "../pages/edit/EditOfficer.vue";
 import EditorView from "../components/EditorView.vue";
+import AddUser from "../pages/AddUser.vue";
 export default {
   name: "AdminView",
   components: {
@@ -37,6 +39,7 @@ export default {
     EditDmr,
     EditOfficer,
     EditorView,
+    AddUser,
   },
   props: {
     pageType: String,
