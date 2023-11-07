@@ -114,7 +114,7 @@ const router = createRouter({
       name: "HamfestThankYou",
     },
     {
-      path: "/accountsetup",
+      path: "/register",
       component: AccountSetup,
       name: "AccountSetup",
     },
