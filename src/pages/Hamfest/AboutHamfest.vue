@@ -16,13 +16,13 @@
             <p>Time: 8:00 AM - 2:00 PM</p>
             <p>Where: Aldersgate Church</p>
             <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
-            <button
+            <!-- <button
               class="btn btn-primary m-auto"
               id="buyTicketsBtn"
               @click="buyTickets"
             >
               Buy Tickets
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
