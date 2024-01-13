@@ -98,16 +98,16 @@ const router = createRouter({
       name: "HamfestAttendees",
       meta: { needsAuth: true },
     },
-    {
-      path: "/hamfest",
-      component: AboutHamfest,
-      name: "AboutHamfest",
-    },
-    {
-      path: "/hamfest/tickets",
-      component: HamfestTickets,
-      name: "HamfestTickets",
-    },
+    // {
+    //   path: "/hamfest",
+    //   component: AboutHamfest,
+    //   name: "AboutHamfest",
+    // },
+    // {
+    //   path: "/hamfest/tickets",
+    //   component: HamfestTickets,
+    //   name: "HamfestTickets",
+    // },
     {
       path: "/hamfest/thankyou",
       component: HamfestThankYou,
