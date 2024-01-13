@@ -201,29 +201,12 @@ export default {
       axios
         .get(URL)
         .then(function (response) {
-          console.log(response.data);
           // find meeting that is the closest to current date, but occurs after current date
           const meetings = response.data;
-          const today = new Date();
-          const todayYear = today.getFullYear();
-          const todayMonth = today.getMonth();
-          const todayDay = today.getDate();
-          const todayDate = new Date(todayYear, todayMonth, todayDay);
 
-          let upcomingMeeting = null;
-
-          for (let i = 0; i < meetings.length; i++) {
-            const meeting = meetings[i];
-            const meetingDate = new Date(meeting.date);
-
-            if (meetingDate > todayDate) {
-              upcomingMeeting = meeting;
-              break;
-            }
-          }
-
-          console.log(upcomingMeeting);
-          let meetingDate = new Date(upcomingMeeting.date);
+          // Get last meeting in the list
+          const upcomingMeeting = meetings[meetings.length - 1];
+          const meetingDate = new Date(upcomingMeeting.date);
 
           self.year = meetingDate.getFullYear();
           self.month = meetingDate.toLocaleString("default", {
