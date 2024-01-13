@@ -8,7 +8,7 @@
       </div>
       <div id="absol_loc">
         <span>Nixa, MO</span>
-        <span id="loc_address">711 N Main St.</span>
+        <span id="loc_address">460 Aldersgate Dr</span>
       </div>
     </div>
     <div id="top">
