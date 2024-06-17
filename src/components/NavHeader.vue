@@ -40,14 +40,14 @@
                   >Home</a
                 >
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a
                   class="nav-link"
                   :class="activepage == 'hamfest' ? 'active' : ''"
                   href="/hamfest"
                   >Hamfest</a
                 >
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a
                   class="nav-link"

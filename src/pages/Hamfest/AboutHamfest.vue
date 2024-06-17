@@ -3,94 +3,87 @@
     <div class="row">
       <div class="col-12">
         <h1 class="text-center">Nixa Amateur Radio Club Hamfest</h1>
+        <h4 class="text-center font-italic">In memory of Bob Heil K9EID</h4>
       </div>
     </div>
     <div class="row text-center">
       <div class="col-12 col-lg-4 mb-2">
         <div class="card w-75 m-auto">
           <div class="card-header">
-            <h3>Hamfest 2023</h3>
+            <h3>Hamfest 2024</h3>
           </div>
           <div class="card-body">
-            <p>When: November 11, 2023</p>
-            <p>Time: 8:00 AM - 2:00 PM</p>
-            <p>Where: Aldersgate Church</p>
-            <p>Address: 460 Aldersgate Dr, Nixa, MO 65714</p>
-            <!-- <button
+            <p>When: November 9, 2024</p>
+            <p>Time: 8:00 AM - 1:00 PM</p>
+            <p>Where: Victory Baptist Church</p>
+            <p>Address: 252 N Nicholas Road, Nixa, MO 65714</p>
+            <button
               class="btn btn-primary m-auto"
               id="buyTicketsBtn"
               @click="buyTickets"
             >
               Buy Tickets
-            </button> -->
+            </button>
           </div>
         </div>
       </div>
       <div class="col-12 col-lg-8 text-start">
         <p>
-          Doors open at 8:00 a.m. and we have some exciting events lined up for
-          you already. Associated Radio, D&L Antenna and Ham Crazy will be on
-          site for all your new equipment needs. If you're in the market for
-          used gear, you're also in luck! We will have about 32 tables available
-          for used equipment.
+          The NARCfest 2024 committee is working around the clock to ensure an
+          exceptional Hamfest experience that's second to none. Get ready for a
+          lineup of thrilling events designed for your entertainment. Top
+          vendors like Associated Radio, D&L Antenna, and Mike Hoffman
+          Embroidery will be there to cater to all your ham radio desires. And
+          for those passionate about pre-loved equipment, we have exciting news!
+          Approximately 40 tables will be exclusively reserved for used gear.
+          Interested in selling your items? Hurry and reach out to us at
+          hamfest@nixahams.net to reserve a table before they're all snapped up!
         </p>
 
         <p>
-          At 8:30 a.m., Rob Huelga, W3LGA, and members from the Nixa ARC VE team
-          will be holding a VE testing session.
+          Rob Huelga, W3LGA, and members from the Nixa ARC VE team will be
+          holding a VE testing session.
+        </p>
+
+        <p>Forums information TBD.</p>
+
+        <p>
+          For those looking to grab breakfast, a morning treat, or lunch,
+          Fatty's Food Concession will be conveniently available right on the
+          premises!
         </p>
 
         <p>
-          We will again have TWO great forums for this year's event! At 10 a.m.,
-          James Adkins, KB0NHX, will be presenting information on the Queen City
-          Digital Cluster, also known as the QCDC. This is a new addition to the
-          region that has (5) UHF repeaters located on the same tower in NE
-          Springfield in which all 5 repeaters share the same transmit antenna
-          and also share a separate receive antenna. Besides the cool technical
-          details, you'll also want to know how you can use it, what you'll
-          normally hear on it, and how to get involved. The second forum at
-          11:30 a.m. by Dave Burtrum, N0DF, will focus on building a Hex Beam HF
-          antenna. Dave will not only give you ideas on how to build your own HF
-          Hex Beam, but also talk about some of the considerations for space,
-          how to install it, and the advantages of the Hex Beam vs other
-          antennas.
+          There is plenty of parking on site. To streamline entry, the entry
+          cost is $10.00 and that gives you 2 chances at hamfest prizes. And, if
+          you would like to purchase the Super Ticket for $20.00, that gives you
+          20 chances to win!
         </p>
 
         <p>
-          If you want to catch breakfast, a morning snack or lunch, there will
-          be food available onsite!
+          Local Talk-in: 147.015+ PL 162.2 Hz<br />
+          Regional Talk-in : Southwest Missouri Linked Repeater System
         </p>
 
         <p>
-          There is plenty of parking on site - you will be able to park in the
-          East parking lot and there are handicap parking spots available on a
-          first come, first serve basis. To streamline entry, the entry cost is
-          $10.00 and that gives you 2 chances at hamfest prizes. And, if you
-          would like to purchase the Super Ticket for $20.00, that gives you 20
-          chances to win!!!! We have over $1500 in prizes to give away courtesy
-          of DX Engineering, Alpha Antenna, N3FJP and the ARRL and prize radios
-          and equipment purchased by the Nixa ARC.
-        </p>
-
-        <p>
-          Remember: All funds from the hamfest go to support the Southwest
-          Missouri Linked Repeater System (SMLRS). Last year we avertised that
-          we were hoping to add a couple of repeaters to the network to fill in
-          the coverage of the system should it be needed for a regional ARES
-          activation or as a backup for / supplemental communications medium for
-          the regional SkyWarn network. Thanks to your support we were able to
-          add the 145.290-, PL 100.0 Hz Taum Sauk repeater to the link system in
-          March 2022 to expand coverage to our East and we upgraded the 147.060+
-          PL 162.2 Hz Bolivar repeater in August 2022 with a new 9 dBd gain
-          antenna system and 7/8″ heliax with hopes of adding it to the SMLRS in
-          the near future providing the SMLRS coverage between Springfield and
-          Clinton and beyond! This year we have an opportunity to add a repeater
-          to expand coverage to the West into Kansas and NE Oklahoma and hope to
-          raise funds to support that repeater system. If you would like to make
-          a donation above and beyond your admission ticket or “Super” ticket
-          purchase, you can do so at the hamfest or anytime online by sending it
-          to paypal@nixahams.net and with the donation leave a note stating
-          “SMLRS westward expansion”
+          All proceeds from the hamfest are allocated to support the Southwest
+          Missouri Linked Repeater System (SMLRS). Last year, we announced our
+          intention to enhance the network by adding several repeaters to
+          improve coverage for potential regional ARES activations or to serve
+          as a backup/supplemental communication channel for the regional
+          SkyWarn network. Thanks to your contributions, we integrated the
+          145.290-, PL 100.0 Hz Taum Sauk repeater into the link system in March
+          2022 to extend coverage eastward, and in August 2022, we upgraded the
+          147.060+ PL 162.2 Hz Bolivar repeater with a new 9 dBd gain antenna
+          system and 7/8″ heliax, anticipating its future inclusion in the SMLRS
+          to provide coverage between Springfield and Clinton, and further. This
+          year, we aim to further expand coverage westward into Kansas and NE
+          Oklahoma and are seeking funds to support this new repeater system.
+          Should you wish to contribute beyond the purchase of your admission or
+          “Super” ticket, donations are welcome at the hamfest or online at any
+          time by sending them to paypal@nixahams.net or by clicking the
+          "Donate" button at the top of the website. Please include a note with
+          your donation specifying “SMLRS westward expansion.”
         </p>
       </div>
     </div>
@@ -118,5 +111,12 @@ export default {
 <style scoped>
 #buyTicketsBtn {
   width: 100%;
+}
+
+.font-italic {
+  font-style: italic;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+  line-height: 0;
 }
 </style>
