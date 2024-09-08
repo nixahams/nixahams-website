@@ -128,7 +128,7 @@ export default {
       axios("/stripe/hamfest-tables-sold", {
         method: "GET",
       }).then((response) => {
-        this.tablesRemaining = 32 - response.data;
+        this.tablesRemaining = 40 - response.data;
       });
     },
     changeTicketType(type) {
