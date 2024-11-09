@@ -103,16 +103,16 @@ const router = createRouter({
       component: AboutHamfest,
       name: "AboutHamfest",
     },
-    {
-      path: "/hamfest/tickets",
-      component: HamfestTickets,
-      name: "HamfestTickets",
-    },
-    {
-      path: "/hamfest/thankyou",
-      component: HamfestThankYou,
-      name: "HamfestThankYou",
-    },
+    // {
+    //   path: "/hamfest/tickets",
+    //   component: HamfestTickets,
+    //   name: "HamfestTickets",
+    // },
+    // {
+    //   path: "/hamfest/thankyou",
+    //   component: HamfestThankYou,
+    //   name: "HamfestThankYou",
+    // },
     {
       path: "/register",
       component: AccountSetup,
