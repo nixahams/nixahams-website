@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 import VueCookies from "vue-cookies";
 
 export default {

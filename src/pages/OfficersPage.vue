@@ -16,7 +16,7 @@
 
 <script>
 import OfficerCard from "../components/OfficersCard.vue";
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 
 export default {
   props: {

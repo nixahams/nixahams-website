@@ -101,7 +101,7 @@
 import AdmissionTickets from "@/components/Hamfest/AdmissionTickets.vue";
 import ReserveTable from "@/components/Hamfest/ReserveTable.vue";
 import SelectTicketOption from "@/components/Hamfest/SelectTicketOption.vue";
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 
 export default {
   name: "HamfestTickets",

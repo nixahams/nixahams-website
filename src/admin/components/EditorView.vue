@@ -102,7 +102,7 @@
 
 <script>
 // import Vue from 'vue';
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 // onfocus="this.select()"
 // add ^ to input field to autohighlight on focus
 

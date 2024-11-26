@@ -136,4 +136,33 @@ const router = createRouter({
   ],
 });
 
+// Global navigation guard
+// router.beforeEach(async (to, from, next) => {
+//   const userStore = useUserStore();
+
+//   if (to.meta.needsAuth) {
+//     // Check if user is authenticated
+//     if (!userStore.isAuthenticated) {
+//       return next("/account?method=login");
+//     }
+
+//     try {
+//       // Example: Verify user session
+//       const isAuthenticated = await axios.post("/users/verify", {
+//         email: userStore.user.email,
+//       });
+//       if (!isAuthenticated.data.valid) {
+//         userStore.logout();
+//         return next("/account?method=login");
+//       }
+//       next();
+//     } catch (error) {
+//       console.error("Authentication error:", error);
+//       return next("/account?method=login");
+//     }
+//   } else {
+//     next();
+//   }
+// });
+
 export default router;

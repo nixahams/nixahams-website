@@ -3,120 +3,131 @@
     <div id="blog_parent">
       <div id="blog_title">Regional Amateur Radio Nets</div>
       <div id="table_key_parent">
-        <div class="table_key">* - Net available on ALL Brandmeister DMR repeaters worldwide</div>
-        <div class="table_key">** - Net conducted on ALL SMLRS repeaters, all Nixa ARC repeaters, and the Forgotten Band's Network</div>
+        <div class="table_key">
+          * - Net available on ALL Brandmeister DMR repeaters worldwide
+        </div>
+        <div class="table_key">
+          ** - Net conducted on ALL SMLRS repeaters, all Nixa ARC repeaters, and
+          the Forgotten Band's Network
+        </div>
         <div class="table_key">*** - Net conducted on ALL SMLRS repeaters</div>
-        <div class="table_key">**** - Net conducted on all N0NWS branded SkyWarn repeaters in Southwest Missouri</div>
+        <div class="table_key">
+          **** - Net conducted on all N0NWS branded SkyWarn repeaters in
+          Southwest Missouri
+        </div>
       </div>
       <div id="blog_key">
         <div id="blog_text_parent">
-            <div class="blog_txt">Day</div>
-            <div class="blog_txt">Time</div>
-            <div class="blog_txt">Frequency</div>
-            <div class="blog_txt">PL</div>
-            <div class="blog_txt">Repeater Location</div>
-            <div class="blog_txt">Net Sponsor</div>
+          <div class="blog_txt">Day</div>
+          <div class="blog_txt">Time</div>
+          <div class="blog_txt">Frequency</div>
+          <div class="blog_txt">PL</div>
+          <div class="blog_txt">Repeater Location</div>
+          <div class="blog_txt">Net Sponsor</div>
         </div>
       </div>
       <BlogPost
-      v-for="(msg, index) in announcement_list" 
-      :day="msg.day"
-      :time="msg.time"
-      :freq="msg.freq"
-      :pl="msg.pl"
-      :rep_loc="msg.rep_loc"
-      :net_sponsor="msg.net_sponsor"
-      :key="index"/>
-      
+        v-for="(msg, index) in announcement_list"
+        :day="msg.day"
+        :time="msg.time"
+        :freq="msg.freq"
+        :pl="msg.pl"
+        :rep_loc="msg.rep_loc"
+        :net_sponsor="msg.net_sponsor"
+        :key="index"
+      />
     </div>
-
   </div>
 </template>
-  
+
 <script>
 import BlogPost from "../components/BlogPost.vue";
-import axios from 'axios';
+import axios from "@/utils/axiosClient";
 
 export default {
-  name: 'RegionalNetsPage',
+  name: "RegionalNetsPage",
   components: {
-    BlogPost
+    BlogPost,
   },
   data() {
     return {
       announcement_list: [],
-      inject: false
-    }
+      inject: false,
+    };
   },
-  methods:{
-    scrollToTop() {document.body.scrollTop = 0;},
-    getAnnouncement(VueObj){
-      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net';
-      axios.get(URL)
-      .then(function (response) {
+  methods: {
+    scrollToTop() {
+      document.body.scrollTop = 0;
+    },
+    getAnnouncement(VueObj) {
+      const URL =
+        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net";
+      axios
+        .get(URL)
+        .then(function (response) {
           // handle success
           VueObj.announcement_list = response.data;
-      })
-      .catch(function (error) {
+        })
+        .catch(function (error) {
           // handle error
           error;
-      })
-      .finally(function () {
+        })
+        .finally(function () {
           // always executed
-      });
-    }
+        });
+    },
   },
-  async mounted(){
+  async mounted() {
     this.scrollToTop();
     await this.getAnnouncement(this);
   },
-}
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#table_key_parent{
-  color: #DB7B32;
+#table_key_parent {
+  color: #db7b32;
   width: 100%;
   padding: 0px 10% 10px 10%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1em;
 }
 
-
-#blog_key{
+#blog_key {
   z-index: 99;
-  width: 100%; height: 50px;
+  width: 100%;
+  height: 50px;
   padding: 0 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: white;
   position: -webkit-sticky !important;
-  top: 62px!important;
+  top: 62px !important;
   position: sticky !important;
 }
 #blog_text_parent {
   width: 100%;
   height: 100%;
-  background-color: #DB7B32;
+  background-color: #db7b32;
   border-radius: 5px;
   display: grid;
-  grid-template-columns: repeat(4,1fr) 1.5fr 2fr;
+  grid-template-columns: repeat(4, 1fr) 1.5fr 2fr;
   transition: 0.2s ease;
   margin-bottom: 10px;
 }
-.blog_txt{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.1em;
-    font-weight: bold;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-right: 1px solid white;
+.blog_txt {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid white;
 }
-.blog_txt:nth-child(6){
+.blog_txt:nth-child(6) {
   border-right: 0px solid white;
 }
 
@@ -135,42 +146,42 @@ export default {
   display: flex;
   flex-direction: column;
 }
-#blog_title{
-  width: 100%; height: fit-content;
-  font-family: 'Montserrat', sans-serif;
+#blog_title {
+  width: 100%;
+  height: fit-content;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   color: rgb(247, 247, 247);
   padding: 2% 10% 0% 10%;
   font-size: 4em;
 }
 
-
 /* Slightly Resized Screen Styles */
 @media screen and (max-width: 1200px) {
-  #blog_title{
+  #blog_title {
     font-size: 2em;
   }
-  #blog_text_parent{
+  #blog_text_parent {
     font-size: 0.8em;
   }
-    #table_key_parent{
+  #table_key_parent {
     font-size: 0.9em;
   }
 }
 
 /* Half-Screen Styles */
 @media screen and (max-width: 900px) {
-  #blog_title{
+  #blog_title {
     font-size: 1.6em;
     padding: 2% 5% 0% 5%;
   }
-  #blog_text_parent{
+  #blog_text_parent {
     font-size: 0.7em;
   }
-  #blog_key{
-      padding: 0 0%;
+  #blog_key {
+    padding: 0 0%;
   }
-  #table_key_parent{
+  #table_key_parent {
     padding: 0px 5% 10px 5%;
     font-size: 0.8em;
   }
@@ -178,17 +189,16 @@ export default {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-  #blog_title{
+  #blog_title {
     font-size: 1.3em;
     padding: 2% 1% 0% 1%;
   }
-  #blog_text_parent{
+  #blog_text_parent {
     font-size: 0.6em;
   }
-  #table_key_parent{
+  #table_key_parent {
     padding: 0px 1% 10px 1%;
     font-size: 0.6em;
   }
 }
 </style>
-  

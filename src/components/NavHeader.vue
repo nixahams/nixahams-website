@@ -171,7 +171,7 @@
 
 <script>
 import LoginModal from "@/components/LoginModal.vue";
-import axios from "axios";
+import { useUserStore } from "@/stores/userStore";
 // import VueCookies from 'vue-cookies'
 
 export default {
@@ -181,10 +181,13 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return this.$store.state.loggedIn;
+      return useUserStore().isAuthenticated;
     },
     user() {
-      return this.$store.state.user;
+      return useUserStore().user;
+    },
+    navDropDownLabel() {
+      return this.user.callsign ? this.user.callsign : "Account";
     },
   },
   data() {
@@ -198,18 +201,7 @@ export default {
       this.componentKey += 1;
     },
     logout() {
-      axios({
-        method: "post",
-        url: "/users/logout",
-        withCredentials: true,
-      }).then(() => {
-        this.$store.commit("changeUser", {});
-        this.$store.commit("changeLoggedIn", false);
-        this.$router.push("/");
-      });
-    },
-    toggleLoggedIn(newLoggedIn) {
-      this.$store.commit("changeLoggedIn", newLoggedIn);
+      useUserStore().logout();
     },
     getTheme() {
       return localStorage.getItem("user-theme");
@@ -223,26 +215,6 @@ export default {
       } else {
         return "light-theme";
       }
-    },
-    getUserData() {
-      axios({
-        method: "get",
-        url: "/users",
-        withCredentials: true,
-      })
-        .then((res) => {
-          if (res.data.user) {
-            this.$store.commit("changeUser", res.data.user);
-            this.$store.commit("changeLoggedIn", true);
-          } else {
-            this.$store.commit("changeUser", {});
-            this.$store.commit("changeLoggedIn", false);
-          }
-        })
-        .catch((err) => {
-          this.$store.commit("changeUser", {});
-          this.$store.commit("changeLoggedIn", false);
-        });
     },
     toggleNav() {
       const nav = document.getElementById("navItemsContainer");
@@ -260,8 +232,6 @@ export default {
     },
   },
   mounted() {
-    this.getUserData();
-
     // this.colorMode = VueCookies.get('colorMode')
     this.forceRerender();
   },

@@ -6,7 +6,7 @@
     aria-labelledby="loginModalLabel"
     aria-hidden="true"
   >
-    <form @submit.prevent="loginUser">
+    <form @submit.prevent="handleLogin">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -55,69 +55,32 @@
 </template>
 
 <script>
-import axios from "axios";
+import { useUserStore } from "@/stores/userStore";
+import { ref } from "vue";
 
 export default {
-  name: "LoginModal",
-  computed: {
-    loggedIn: function () {
-      return this.$store.state.loggedIn;
-    },
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-      loginMessage: "",
+  setup() {
+    const userStore = useUserStore();
+    const email = ref("");
+    const password = ref("");
+    const loginMessage = ref("");
+
+    const handleLogin = async () => {
+      try {
+        await userStore.login(email.value, password.value);
+        loginMessage.value = "";
+        document.getElementById("closeLoginModal").click();
+      } catch (error) {
+        loginMessage.value = error.response.data.message;
+      }
     };
-  },
-  methods: {
-    toggleLoggedIn: function (newLoggedIn) {
-      this.$store.commit("changeLoggedIn", newLoggedIn);
-    },
-    changeUser: function (newUser) {
-      this.$store.commit("changeUser", newUser);
-    },
-    allowLogin: function (user) {
-      this.toggleLoggedIn(true);
-      this.changeUser(user);
-      this.$router.push("/");
-    },
-    loginUser: function () {
-      let self = this;
-      axios({
-        method: "post",
-        url: "/users/login",
-        data: {
-          email: self.email,
-          password: self.password,
-        },
-        withCredentials: true,
-      })
-        .then((res) => {
-          self.allowLogin(self.getUserInfo());
-          document.getElementById("closeLoginModal").click();
-        })
-        .catch((error) => {
-          console.log(error);
-          self.loginMessage = error;
-        });
-    },
-    getUserInfo() {
-      axios({
-        method: "get",
-        url: "/users",
-        withCredentials: true,
-      }).then((res) => {
-        if (res.data) {
-          this.$store.commit("changeUser", res.data.user);
-          this.$store.commit("changeLoggedIn", true);
-        } else {
-          this.$store.commit("changeUser", {});
-          this.$store.commit("changeLoggedIn", false);
-        }
-      });
-    },
+
+    return {
+      email,
+      password,
+      loginMessage,
+      handleLogin,
+    };
   },
 };
 </script>
