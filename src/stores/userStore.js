@@ -9,8 +9,22 @@ import axios from "../utils/axiosClient";
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    user: null,
-    roles: [],
+    user: (() => {
+      try {
+        const userData = localStorage.getItem("user");
+        return userData ? JSON.parse(userData) : null;
+      } catch (e) {
+        return null;
+      }
+    })(),
+    roles: (() => {
+      try {
+        const rolesData = localStorage.getItem("roles");
+        return rolesData ? JSON.parse(rolesData) : [];
+      } catch (e) {
+        return [];
+      }
+    })(),
     loading: false,
   }),
   getters: {
@@ -28,39 +42,57 @@ export const useUserStore = defineStore({
       try {
         this.loading = true;
         const response = await axios.get("/v1/auth");
-        this.user = response.data.user;
-        this.roles = response.data.roles || [];
+        this.setUser(response.data.user);
+        this.setRoles(response.data.roles || []);
         this.loading = false;
       } catch (error) {
         console.error(error);
         this.loading = false;
+        // Clear stored data if auth check fails
+        this.clearAuth();
       }
     },
 
-    login(email, password) {
-      // Use axios to authenticate the user
+    setUser(user) {
+      this.user = user;
+      localStorage.setItem("user", JSON.stringify(user));
+    },
+
+    setRoles(roles) {
+      this.roles = roles;
+      localStorage.setItem("roles", JSON.stringify(roles));
+    },
+
+    clearAuth() {
+      this.user = null;
+      this.roles = [];
+      localStorage.removeItem("user");
+      localStorage.removeItem("roles");
+    },
+
+    async login(email, password) {
       this.loading = true;
       try {
-        const credentials = { email: email, password: password };
-        axios.post("/v1/auth/login", credentials).then((response) => {
-          this.user = response.data.user;
-          this.roles = response.data.roles;
-          this.loading = false;
-        });
+        const credentials = { email, password };
+        const response = await axios.post("/v1/auth/login", credentials);
+        this.setUser(response.data.user);
+        this.setRoles(response.data.roles);
+        await this.hydrate();
+        this.loading = false;
+        return true;
       } catch (error) {
         console.error(error);
         this.loading = false;
+        return false;
       }
     },
-    logout() {
-      // Use axios to logout the user
+
+    async logout() {
       this.loading = true;
       try {
-        axios.post("/v1/auth/logout").then(() => {
-          this.user = null;
-          this.roles = [];
-          this.loading = false;
-        });
+        await axios.post("/v1/auth/logout");
+        this.clearAuth();
+        this.loading = false;
       } catch (error) {
         console.error(error);
         this.loading = false;

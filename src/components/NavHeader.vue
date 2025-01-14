@@ -135,7 +135,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                     href="#"
-                    >{{ user.callsign }}</a
+                    >{{ navDropDownLabel }}</a
                   >
                   <ul class="dropdown-menu">
                     <li>
@@ -173,15 +173,22 @@ import { useRouter } from "vue-router";
 
 export default {
   name: "ResultOption",
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
   computed: {
     isLoggedIn() {
-      return useUserStore().isAuthenticated;
+      return this.userStore.isAuthenticated;
     },
     user() {
-      return useUserStore().user;
+      return this.userStore.user;
     },
     navDropDownLabel() {
-      return this.user.callsign ? this.user.callsign : "Account";
+      if (!this.user || !this.user.callsign) {
+        return "Loading...";
+      }
+      return this.user.callsign;
     },
   },
   data() {
@@ -196,7 +203,8 @@ export default {
       this.componentKey += 1;
     },
     logout() {
-      useUserStore().logout();
+      this.userStore.logout();
+      this.forceRerender();
     },
     getTheme() {
       return localStorage.getItem("user-theme");
@@ -221,13 +229,19 @@ export default {
     },
   },
   watch: {
+    "userStore.user": {
+      handler(newVal) {
+        if (newVal) {
+          this.forceRerender();
+        }
+      },
+      deep: true,
+    },
     $route(to, from) {
-      // console.log('terdrt',this.getTheme())
       this.activepage = to.name;
     },
   },
   mounted() {
-    // this.colorMode = VueCookies.get('colorMode')
     this.forceRerender();
   },
 };

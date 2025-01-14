@@ -1,25 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import apiClient from "@/utils/axiosClient";
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const email = ref("");
 const password = ref("");
 
 const login = async () => {
   try {
-    const response = await apiClient.post("/v1/auth/login", {
-      email: email.value,
-      password: password.value,
-    });
-
-    if (response.data.success) {
-      const userStore = useUserStore();
-      userStore.setUser(response.data.user);
-      userStore.setToken(response.data.token);
+    const success = await userStore.login(email.value, password.value);
+    if (success) {
+      await nextTick();
       router.push("/");
     }
   } catch (error) {
@@ -27,6 +22,17 @@ const login = async () => {
     // Handle login error here
   }
 };
+
+onMounted(() => {
+  // Check if there's a token in localStorage
+  const token = localStorage.getItem("token"); // or whatever key you use
+  console.log("Token in localStorage:", token);
+  console.log("UserStore state:", userStore.$state);
+
+  if (userStore.isAuthenticated) {
+    router.push("/");
+  }
+});
 </script>
 
 <template>
