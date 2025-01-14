@@ -20,7 +20,7 @@ import HamfestTickets from "@/pages/Hamfest/HamfestTickets.vue";
 import HamfestThankYou from "@/pages/Hamfest/ThankYou.vue";
 import AccountSetup from "@/pages/AccountSetup.vue";
 import CreateAccount from "@/pages/CreateAccount.vue";
-
+import Login from "@/pages/Login.vue";
 // Hamfest Pages
 import HamfestAttendees from "@/pages/Hamfest/HamfestAttendees.vue";
 import AboutHamfest from "@/pages/Hamfest/AboutHamfest.vue";
@@ -131,6 +131,11 @@ const router = createRouter({
       path: "/create-account",
       component: CreateAccount,
       name: "CreateAccount",
+    },
+    {
+      path: "/login",
+      component: Login,
+      name: "Login",
     },
     { path: "/:pathMatch(.*)*", redirect: "/404", name: "NotFound" },
     {

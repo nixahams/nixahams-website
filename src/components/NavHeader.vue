@@ -154,8 +154,7 @@
                 <button
                   v-else
                   class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
+                  @click="router.push('/login')"
                 >
                   Member Login
                 </button>
@@ -165,20 +164,15 @@
         </div>
       </div>
     </div>
-    <LoginModal />
   </nav>
 </template>
 
 <script>
-import LoginModal from "@/components/LoginModal.vue";
 import { useUserStore } from "@/stores/userStore";
-// import VueCookies from 'vue-cookies'
+import { useRouter } from "vue-router";
 
 export default {
   name: "ResultOption",
-  components: {
-    LoginModal,
-  },
   computed: {
     isLoggedIn() {
       return useUserStore().isAuthenticated;
@@ -194,6 +188,7 @@ export default {
     return {
       activepage: "home",
       componentKey: 0,
+      router: useRouter(),
     };
   },
   methods: {
