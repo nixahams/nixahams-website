@@ -141,7 +141,7 @@
                     <li>
                       <a class="dropdown-item" href="/profile">Profile</a>
                     </li>
-                    <li v-if="user.permissionLevel == 'ADMIN'">
+                    <li v-if="isAdmin">
                       <a class="dropdown-item" href="/admin">Admin</a>
                     </li>
                     <li>
@@ -189,6 +189,9 @@ export default {
         return "Loading...";
       }
       return this.user.callsign;
+    },
+    isAdmin() {
+      return this.userStore.isAdmin;
     },
   },
   data() {

@@ -24,11 +24,7 @@ const login = async () => {
 };
 
 onMounted(() => {
-  // Check if there's a token in localStorage
-  const token = localStorage.getItem("token"); // or whatever key you use
-  console.log("Token in localStorage:", token);
-  console.log("UserStore state:", userStore.$state);
-
+  const token = localStorage.getItem("token");
   if (userStore.isAuthenticated) {
     router.push("/");
   }
