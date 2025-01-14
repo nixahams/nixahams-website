@@ -4,8 +4,8 @@
     <InfoBanner />
     <div id="router-footer">
       <router-view />
-      <PageFooter />
     </div>
+    <PageFooter />
   </div>
 </template>
 
@@ -22,8 +22,7 @@ export default {
     PageFooter,
   },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {},
   mounted() {},
@@ -32,7 +31,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-@import '@/assets/styles/variables.css';
+@import "@/assets/styles/variables.css";
 @font-face {
   font-family: "Dropstyle";
   src: url("@/assets/fonts/RobotoCondensed-Light.ttf") format("truetype");
@@ -84,7 +83,7 @@ body {
 }
 #router-footer {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   /* overflow: auto; */
   background-color: black;
 }
@@ -92,7 +91,6 @@ body {
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
-
 }
 
 /* Track */
