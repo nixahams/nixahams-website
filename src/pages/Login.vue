@@ -62,6 +62,10 @@ onMounted(() => {
           </div>
 
           <button type="submit" class="login-btn">Login</button>
+          <p class="text-center">
+            Don't have an account?
+            <router-link to="/create-account">Create one here</router-link>
+          </p>
         </form>
       </div>
     </div>
