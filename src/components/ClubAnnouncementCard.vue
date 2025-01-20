@@ -1,9 +1,13 @@
 <template>
-  <div id="club_update_parent">
-    <div id="club_update_title">{{ title }}</div>
-    <div id="club_update_date">{{ formattedDate }}</div>
-    <div id="club_update_description">{{ truncatedBody }}</div>
-    <div id="read_more">Read more</div>
+  <div class="announcement-card">
+    <div class="announcement-header">
+      <h2 class="announcement-title">{{ title }}</h2>
+      <span class="announcement-date">{{ formattedDate }}</span>
+    </div>
+    <p class="announcement-description">{{ truncatedBody }}</p>
+    <div class="button-wrapper">
+      <button class="read-more-btn">Read more</button>
+    </div>
   </div>
 </template>
 
@@ -27,44 +31,74 @@ const truncatedBody =
 </script>
 
 <style scoped>
-#club_update_parent {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  color: #000;
-  position: relative;
-  overflow: hidden;
+.announcement-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 1rem;
+  border: 1px solid #e5e7eb;
 }
 
-#club_update_title {
-  font-size: 1.5em;
-  font-weight: bold;
+.announcement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-#club_update_date {
-  font-size: 1.2em;
-  font-style: italic;
+.announcement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
 }
 
-#club_update_description {
-  margin-top: 10px;
+.announcement-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  flex: 1;
 }
 
-#read_more {
-  margin-top: 10px;
-  font-weight: bold;
+.announcement-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.announcement-description {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  clear: both;
+}
+
+.read-more-btn {
+  background-color: #f59e0b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
   cursor: pointer;
-  border: #000 1px solid;
-  width: fit-content;
-  padding: 1rem;
-  border-radius: 5px;
-  background-color: #f58937;
-  float: right;
+  transition: background-color 0.2s ease;
 }
 
-#read_more:hover {
-  background-color: #f5a962;
+.read-more-btn:hover {
+  background-color: #d97706;
+}
+
+.read-more-btn:focus {
+  outline: none;
+  ring: 2px solid #f59e0b;
+  ring-offset: 2px;
 }
 </style>

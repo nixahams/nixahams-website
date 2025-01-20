@@ -39,6 +39,16 @@ const router = createRouter({
         allowedRoles: ["Admin", "Officer"],
       },
     },
+    {
+      path: "/repeaters",
+      name: "Repeaters",
+      component: () => import("@/pages/RepeatersPage.vue"),
+    },
+    {
+      path: "/repeaters/:id",
+      name: "RepeaterDetails",
+      component: () => import("../pages/RepeaterDetailsPage.vue"),
+    },
     // Error routes
     {
       path: "/404",
