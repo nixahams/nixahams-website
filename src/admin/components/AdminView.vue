@@ -26,7 +26,7 @@ import EditMeeting from "../pages/edit/EditMeeting.vue";
 import EditRoster from "../pages/edit/EditRoster.vue";
 import EditDmr from "../pages/edit/EditDmr.vue";
 import EditOfficer from "../pages/edit/EditOfficer.vue";
-import EditorView from "../components/EditorView.vue";
+import EditorView from "./EditorView.vue";
 import AddUser from "../pages/AddUser.vue";
 export default {
   name: "AdminView",
