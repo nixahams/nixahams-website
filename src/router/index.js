@@ -40,6 +40,36 @@ const router = createRouter({
       },
     },
     {
+      path: "/roster",
+      name: "Membership",
+      component: () => import("@/pages/RosterPage.vue"),
+    },
+    {
+      path: "/meetings",
+      name: "Meetings",
+      component: () => import("@/pages/MeetingPage.vue"),
+    },
+    {
+      path: "/dmr",
+      name: "DMR",
+      component: () => import("@/pages/DMRPage.vue"),
+    },
+    {
+      path: "/bylaws",
+      name: "Bylaws",
+      component: () => import("@/pages/BylawPage.vue"),
+    },
+    {
+      path: "/officers",
+      name: "Officers",
+      component: () => import("@/pages/OfficersPage.vue"),
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+      component: () => import("@/pages/ContactPage.vue"),
+    },
+    {
       path: "/repeaters",
       name: "Repeaters",
       component: () => import("@/pages/RepeatersPage.vue"),
