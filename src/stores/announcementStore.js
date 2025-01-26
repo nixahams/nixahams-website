@@ -7,9 +7,19 @@ export const useAnnouncementStore = defineStore("announcement", {
     announcements: [],
   }),
   actions: {
-    async fetchAnnouncements() {
+    async fetchAnnouncementsWithLimit(limit) {
       try {
-        const response = await axios.get("/getAnnouncementPosts"); // Adjust API endpoint as needed
+        const response = await axios.get(
+          `/v1/announcements/recentPosts?limit=${limit}`
+        );
+        this.announcements = response.data;
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
+    },
+    async fetchAllAnnouncements() {
+      try {
+        const response = await axios.get("/v1/announcements/allPosts");
         this.announcements = response.data;
       } catch (error) {
         console.error("Error fetching announcements:", error);
@@ -18,7 +28,7 @@ export const useAnnouncementStore = defineStore("announcement", {
     async addAnnouncement(newAnnouncement) {
       try {
         const response = await axios.post(
-          "/api/announcements",
+          "/v1/announcements/addPost",
           newAnnouncement
         ); // Adjust API endpoint as needed
         this.announcements.push(response.data);

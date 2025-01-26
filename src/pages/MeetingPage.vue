@@ -9,6 +9,7 @@
     <!-- Next Meeting Card -->
     <div class="meeting-container">
       <div class="meeting-card" v-if="meeting">
+        <!-- Date and Title Section -->
         <div class="meeting-header">
           <div class="date-badge">
             <span class="month">{{ month }}</span>
@@ -20,6 +21,13 @@
           </div>
         </div>
 
+        <!-- Description Section -->
+        <div class="info-section" v-if="meeting.description">
+          <h3 class="info-title">About This Meeting</h3>
+          <div class="description" v-html="formattedDescription"></div>
+        </div>
+
+        <!-- Location and Online Meeting Section -->
         <div class="meeting-details">
           <div class="location-info">
             <div class="info-item">
@@ -116,6 +124,17 @@ export default {
       }
     },
   },
+  computed: {
+    formattedDescription() {
+      if (!this.meeting?.description) return "";
+      // Split by newlines and wrap each paragraph in <p> tags
+      return this.meeting.description
+        .split("\n")
+        .filter((para) => para.trim()) // Remove empty paragraphs
+        .map((para) => `<p>${para}</p>`)
+        .join("");
+    },
+  },
   mounted() {
     this.getMeeting();
   },
@@ -164,6 +183,8 @@ export default {
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(253, 153, 71, 0.2);
 }
 
 .date-badge {
@@ -195,6 +216,24 @@ export default {
 .time {
   color: #fd9947;
   font-size: 1.2rem;
+}
+
+.info-section {
+  background: #363246;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.info-title {
+  color: #fd9947;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-section p {
+  color: #ccc;
+  line-height: 1.5;
 }
 
 .meeting-details {
@@ -324,6 +363,10 @@ export default {
     gap: 1rem;
   }
 
+  .info-section {
+    text-align: left;
+  }
+
   .date-badge {
     margin: 0 auto;
   }
@@ -340,5 +383,13 @@ export default {
   .info-item i {
     margin: 0 auto 0.5rem;
   }
+}
+
+.description :deep(p) {
+  margin-bottom: 1rem;
+}
+
+.description :deep(p:last-child) {
+  margin-bottom: 0;
 }
 </style>
