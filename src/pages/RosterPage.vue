@@ -443,6 +443,7 @@ export default {
 .roster-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .roster-table th {
@@ -455,6 +456,24 @@ export default {
 .roster-table td {
   padding: 1rem;
   border-bottom: 1px solid #3d3654;
+}
+
+.roster-table th:nth-child(1),
+.roster-table td:nth-child(1) {
+  width: 25%;
+  text-align: left;
+}
+
+.roster-table th:nth-child(2),
+.roster-table td:nth-child(2) {
+  width: 55%;
+  text-align: left;
+}
+
+.roster-table th:nth-child(3),
+.roster-table td:nth-child(3) {
+  width: 20%;
+  text-align: center;
 }
 
 .roster-table tr:hover {
@@ -538,6 +557,21 @@ export default {
   .roster-table td {
     padding: 0.75rem;
     font-size: 0.9rem;
+  }
+
+  .roster-table th:nth-child(1),
+  .roster-table td:nth-child(1) {
+    width: 30%;
+  }
+
+  .roster-table th:nth-child(2),
+  .roster-table td:nth-child(2) {
+    width: 45%;
+  }
+
+  .roster-table th:nth-child(3),
+  .roster-table td:nth-child(3) {
+    width: 25%;
   }
 }
 </style>

@@ -71,14 +71,7 @@
             </thead>
             <tbody>
               <tr v-for="repeater in filteredRepeaters" :key="repeater.id">
-                <td>
-                  <router-link
-                    :to="`/repeaters/${repeater.id}`"
-                    class="frequency-link"
-                  >
-                    {{ repeater.frequency }}
-                  </router-link>
-                </td>
+                <td>{{ repeater.frequency }}</td>
                 <td>{{ repeater.offset }}</td>
                 <td>{{ repeater.key }}</td>
                 <td>
@@ -321,33 +314,6 @@ const sort = (key) => {
     padding: 0.75rem;
     font-size: 0.875rem;
   }
-}
-
-.frequency-link {
-  color: #f59e0b;
-  text-decoration: none;
-  transition: color 0.2s;
-  position: relative;
-}
-
-.frequency-link:hover {
-  color: #fbbf24;
-}
-
-.frequency-link::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transition: transform 0.2s;
-}
-
-.frequency-link:hover::after {
-  transform: scaleX(1);
 }
 
 .filters {
