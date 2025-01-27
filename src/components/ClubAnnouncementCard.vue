@@ -6,7 +6,12 @@
     </div>
     <p class="announcement-body">{{ truncatedBody }}</p>
     <div class="button-wrapper">
-      <button class="read-more-btn">Read more</button>
+      <RouterLink
+        :to="{ name: 'AnnouncementDetail', params: { id: announcement.id } }"
+        class="read-more-btn"
+      >
+        Read more
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -93,6 +98,7 @@ const truncatedBody = computed(() => {
 }
 
 .read-more-btn {
+  display: inline-block;
   background-color: #f58937;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -104,6 +110,7 @@ const truncatedBody = computed(() => {
   text-transform: uppercase;
   font-size: 0.875rem;
   letter-spacing: 0.5px;
+  text-decoration: none;
 }
 
 .read-more-btn:hover {

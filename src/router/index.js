@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import { hamfestRoutes } from "./hamfest";
 import { netRoutes } from "./nets";
 import { useUserStore } from "@/stores/userStore";
+import { adminRoutes } from "./admin";
+import AnnouncementDetailPage from "@/pages/AnnouncementDetailPage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,6 +16,7 @@ const router = createRouter({
     // Group related routes
     ...netRoutes,
     ...hamfestRoutes,
+    ...adminRoutes,
     // Auth routes
     {
       path: "/login",
@@ -29,15 +32,6 @@ const router = createRouter({
       path: "/create-account",
       name: "CreateAccount",
       component: () => import("@/pages/CreateAccount.vue"),
-    },
-    {
-      path: "/admin",
-      name: "Admin",
-      component: () => import("@/admin/pages/AdminPage.vue"),
-      meta: {
-        requiresAuth: true,
-        allowedRoles: ["Admin", "Officer"],
-      },
     },
     {
       path: "/roster",
@@ -78,6 +72,21 @@ const router = createRouter({
       path: "/repeaters/:id",
       name: "RepeaterDetails",
       component: () => import("../pages/RepeaterDetailsPage.vue"),
+    },
+    {
+      path: "/announcements",
+      name: "Announcements",
+      component: () => import("@/pages/AnnouncementsPage.vue"),
+    },
+    {
+      path: "/announcements/:id",
+      name: "AnnouncementDetail",
+      component: AnnouncementDetailPage,
+    },
+    {
+      path: "/testing",
+      name: "Testing",
+      component: () => import("@/pages/LicenseTestingPage.vue"),
     },
     // Error routes
     {

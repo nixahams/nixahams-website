@@ -43,7 +43,7 @@
                     <span class="month">{{ month }}</span>
                     <span class="day">{{ day }}</span>
                   </div>
-                  <div class="time">7:00 PM Central</div>
+                  <div class="time">6:00 PM Central</div>
                 </div>
 
                 <div class="meeting-content">

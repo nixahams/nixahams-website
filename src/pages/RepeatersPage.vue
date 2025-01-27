@@ -3,100 +3,110 @@
     <div class="container">
       <h1 class="page-title">K0NXA Repeaters</h1>
 
-      <div class="filters">
-        <div class="search-bar">
-          <input
-            type="text"
-            v-model="searchQuery"
-            placeholder="Search repeaters..."
-            class="search-input"
-          />
-        </div>
-
-        <div class="attribute-filters">
-          <div
-            v-for="attr in availableAttributes"
-            :key="attr"
-            :class="[
-              'attribute-chip',
-              { active: selectedAttributes.includes(attr) },
-            ]"
-            @click="toggleAttribute(attr)"
-          >
-            {{ attr }}
-          </div>
-        </div>
+      <!-- Loading State -->
+      <div v-if="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading repeaters...</p>
       </div>
 
-      <div class="table-container">
-        <table class="repeaters-table">
-          <thead>
-            <tr>
-              <th @click="sort('frequency')">
-                Frequency
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('offset')">
-                Offset
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('plTone')">
-                PL/CC/NAC
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('mode')">
-                Mode
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('location')">
-                Location
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('attributes')">
-                Attributes
-                <i class="fas fa-sort"></i>
-              </th>
-              <th @click="sort('status')">
-                Status
-                <i class="fas fa-sort"></i>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="repeater in filteredRepeaters" :key="repeater.id">
-              <td>
-                <router-link
-                  :to="`/repeaters/${repeater.id}`"
-                  class="frequency-link"
-                >
-                  {{ repeater.frequency }}
-                </router-link>
-              </td>
-              <td>{{ repeater.offset }}</td>
-              <td>{{ repeater.plTone }}</td>
-              <td>
-                <span class="mode-badge">{{ repeater.mode }}</span>
-              </td>
-              <td>{{ repeater.location }}</td>
-              <td>
-                <div class="attributes-container">
-                  <span
-                    v-for="attr in repeater.attributes"
-                    :key="attr"
-                    class="attribute-badge"
+      <div v-else>
+        <div class="filters">
+          <div class="search-bar">
+            <input
+              type="text"
+              v-model="searchQuery"
+              placeholder="Search repeaters..."
+              class="search-input"
+            />
+          </div>
+
+          <div class="attribute-filters">
+            <div
+              v-for="attr in availableAttributes"
+              :key="attr"
+              :class="[
+                'attribute-chip',
+                { active: selectedAttributes.includes(attr) },
+              ]"
+              @click="toggleAttribute(attr)"
+            >
+              {{ attr }}
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="repeaters-table">
+            <thead>
+              <tr>
+                <th @click="sort('frequency')">
+                  Frequency
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('offset')">
+                  Offset
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('plTone')">
+                  PL/CC/NAC
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('mode')">
+                  Mode
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('location')">
+                  Location
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('attributes')">
+                  Attributes
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('status')">
+                  Status
+                  <i class="fas fa-sort"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="repeater in filteredRepeaters" :key="repeater.id">
+                <td>
+                  <router-link
+                    :to="`/repeaters/${repeater.id}`"
+                    class="frequency-link"
                   >
-                    {{ attr }}
+                    {{ repeater.frequency }}
+                  </router-link>
+                </td>
+                <td>{{ repeater.offset }}</td>
+                <td>{{ repeater.key }}</td>
+                <td>
+                  <span class="mode-badge">{{ repeater.mode }}</span>
+                </td>
+                <td>{{ repeater.location }}</td>
+                <td>
+                  <div class="attributes-container">
+                    <span
+                      v-for="attr in repeater.attributes"
+                      :key="attr"
+                      class="attribute-badge"
+                    >
+                      {{ attr }}
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <span
+                    :class="['status-badge', repeater.status.toLowerCase()]"
+                  >
+                    {{ repeater.status }}
                   </span>
-                </div>
-              </td>
-              <td>
-                <span :class="['status-badge', repeater.status.toLowerCase()]">
-                  {{ repeater.status }}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -111,12 +121,13 @@ const searchQuery = ref("");
 const sortKey = ref("frequency");
 const sortOrder = ref("asc");
 const selectedAttributes = ref([]);
+const loading = ref(true); // Add loading state
 
 // Available attributes for filtering
 const availableAttributes = computed(() => {
   const attrs = new Set();
   repeaters.value.forEach((repeater) => {
-    repeater.attributes.forEach((attr) => attrs.add(attr));
+    repeater.attributes?.forEach((attr) => attrs.add(attr));
   });
   return Array.from(attrs);
 });
@@ -131,88 +142,15 @@ const toggleAttribute = (attr) => {
 };
 
 const fetchRepeaters = async () => {
-  repeaters.value = [
-    {
-      id: "1",
-      frequency: "145.270 MHz",
-      offset: "+",
-      plTone: "100 Hz",
-      mode: "Analog",
-      location: "Nixa",
-      status: "Operational",
-      attributes: ["AllStar", "EchoLink", "APRS"],
-    },
-    {
-      id: "2",
-      frequency: "147.015 MHz",
-      offset: "-",
-      plTone: "100 Hz",
-      mode: "DMR",
-      location: "East Springfield",
-      status: "Operational",
-      attributes: ["Weather Alerts"],
-    },
-    {
-      id: "3",
-      frequency: "444.925 MHz",
-      offset: "+",
-      plTone: "123 Hz",
-      mode: "P25",
-      location: "Downtown Springfield",
-      status: "Maintenance",
-      attributes: ["Linked System", "Emergency Power"],
-    },
-    {
-      id: "4",
-      frequency: "146.940 MHz",
-      offset: "-",
-      plTone: "103.5 Hz",
-      mode: "Analog",
-      location: "Republic",
-      status: "Offline",
-      attributes: ["Weather Alerts", "Emergency Power"],
-    },
-    {
-      id: "5",
-      frequency: "442.750 MHz",
-      offset: "+",
-      plTone: "131.8 Hz",
-      mode: "Fusion",
-      location: "Ozark",
-      status: "Operational",
-      attributes: ["Wires-X", "Emergency Power"],
-    },
-    {
-      id: "6",
-      frequency: "145.490 MHz",
-      offset: "-",
-      plTone: "100 Hz",
-      mode: "DMR",
-      location: "Branson",
-      status: "Operational",
-      attributes: ["BrandMeister", "Emergency Power", "Wide Coverage"],
-    },
-    {
-      id: "7",
-      frequency: "443.225 MHz",
-      offset: "+",
-      plTone: "110.9 Hz",
-      mode: "D-STAR",
-      location: "Willard",
-      status: "Maintenance",
-      attributes: ["Gateway", "Emergency Power"],
-    },
-    {
-      id: "8",
-      frequency: "146.880 MHz",
-      offset: "-",
-      plTone: "100 Hz",
-      mode: "Analog",
-      location: "Rogersville",
-      status: "Offline",
-      attributes: ["AllStar", "Remote Base"],
-    },
-  ];
+  try {
+    loading.value = true;
+    const response = await axios.get("/v1/repeaters");
+    repeaters.value = response.data;
+  } catch (error) {
+    console.error("Error fetching repeaters:", error);
+  } finally {
+    loading.value = false;
+  }
 };
 
 // Add this to call fetchRepeaters when component mounts
@@ -237,7 +175,7 @@ const filteredRepeaters = computed(() => {
   if (selectedAttributes.value.length > 0) {
     filtered = filtered.filter((repeater) =>
       selectedAttributes.value.every((attr) =>
-        repeater.attributes.includes(attr)
+        repeater.attributes?.includes(attr)
       )
     );
   }
@@ -465,5 +403,33 @@ const sort = (key) => {
   color: rgb(139, 92, 246);
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+/* Add these new styles for loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  border: 4px solid rgba(245, 158, 11, 0.1);
+  border-left: 4px solid #f59e0b;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
