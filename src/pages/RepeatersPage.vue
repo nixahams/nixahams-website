@@ -1,440 +1,401 @@
 <template>
-  <div id="repeaters_page">
-    <div v-if="showFullScreenImage" @click="exitFullScreenImage" id="fullScreen_clickOut"></div>
-    <div v-if="showFullScreenImage" id="fullScreenImage_parent">
-      <div>
-        <i @click="exitFullScreenImage" class="fa-solid fa-x" id="fullScreenImage_exit"></i>
-        <img id="fullScreenImage_child" :src="fullScreenImage_src">
-      </div>
-    </div>
+  <div class="repeaters-page">
+    <div class="container">
+      <h1 class="page-title">K0NXA Repeaters</h1>
 
-    <CardArrow @displayinfo="showinfo" v-if="asyncProp" :repeater_list="passList"/>
-    <div :class="desc_class" id="descriptive_parent">
-
-      <div id="more_images">
-        <ActiveImages @emitFullScreenImage="fullScreenImage(result)" v-for="(result, index) in image_array" :key="index" :index="index" :image="result"/>
+      <!-- Loading State -->
+      <div v-if="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading repeaters...</p>
       </div>
 
-      <div id="repeater_filter">
-        <div id="filter_img_parent">
-          <i id="filter_img" class="fa-solid fa-magnifying-glass"></i>
+      <div v-else>
+        <div class="filters">
+          <div class="search-bar">
+            <input
+              type="text"
+              v-model="searchQuery"
+              placeholder="Search repeaters..."
+              class="search-input"
+            />
+          </div>
+
+          <div class="attribute-filters">
+            <div
+              v-for="attr in availableAttributes"
+              :key="attr"
+              :class="[
+                'attribute-chip',
+                { active: selectedAttributes.includes(attr) },
+              ]"
+              @click="toggleAttribute(attr)"
+            >
+              {{ attr }}
+            </div>
+          </div>
         </div>
-        <input type="text" @click="user_active($event.target.values)" @input="user_typing($event.target.value)" :placeholder="search_by" name="user_input" id="user_input">
-        <div id="filter_drop">
-          <select name="search_options" id="search_options" @change="onChange($event)">
-            <option value="all">All</option>
-            <option value="location">Location</option>
-            <option value="frequency">Frequency</option>
-          </select>
-        </div>
-        <div v-if="result_visible" id="search_results">
-          <ResultOption @option_selected="op_selected" v-for="(res,index) in result_list" :key="index" :res="res" :filter="filter_by"/>
+
+        <div class="table-container">
+          <table class="repeaters-table">
+            <thead>
+              <tr>
+                <th @click="sort('frequency')">
+                  Frequency
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('offset')">
+                  Offset
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('plTone')">
+                  PL/CC/NAC
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('mode')">
+                  Mode
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('location')">
+                  Location
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('attributes')">
+                  Attributes
+                  <i class="fas fa-sort"></i>
+                </th>
+                <th @click="sort('status')">
+                  Status
+                  <i class="fas fa-sort"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="repeater in filteredRepeaters" :key="repeater.id">
+                <td>{{ repeater.frequency }}</td>
+                <td>{{ repeater.offset }}</td>
+                <td>{{ repeater.key }}</td>
+                <td>
+                  <span class="mode-badge">{{ repeater.mode }}</span>
+                </td>
+                <td>{{ repeater.location }}</td>
+                <td>
+                  <div class="attributes-container">
+                    <span
+                      v-for="attr in repeater.attributes"
+                      :key="attr"
+                      class="attribute-badge"
+                    >
+                      {{ attr }}
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <span
+                    :class="['status-badge', repeater.status.toLowerCase()]"
+                  >
+                    {{ repeater.status }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
-      <div id="desc_info_title1">{{freq}} - {{long_location}}</div>
-      <div id="desc_info_title2">{{long_title}}</div>
-      <div id="desc_info_date">Last Updated: {{date}}</div>
-      <div id="desc_info_desc">
-        <span 
-        :key="lineNumber" 
-        v-for="(line,lineNumber) of long_desc.split('<br>')" >{{line}}</span></div>
     </div>
   </div>
 </template>
-  
-<script>
 
-import CardArrow from '../components/CardArrow.vue';
-import ResultOption from '../components/ResultOption.vue';
-import axios from 'axios';
-import ActiveImages from '../components/ActiveImages.vue';
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import axios from "@/utils/axiosClient";
 
-export default {
-  props: {parallax: {
-    type: Boolean,
-    default: true
-  }},
-  name: 'RepeatersPage',
-  components: {
-    CardArrow,
-    ResultOption,
-    ActiveImages
-  },
-  data(){
-    return{
-      showFullScreenImage: false,
-      fullScreenImage_src: '',
-      rep_arr: {},
-      passList: {},
-      asyncProp: false,
-      search_by: "Search by all",
-      count: 0,
-      desc_class: "desc_fade2",
-      freq: '000.000',
-      long_location: 'No data to provide',
-      long_title: "No data to provide",
-      date: "00/00/0000",
-      long_desc: "No data to provide",
-      result_visible: false,
-      result_list: [],
-      filter_by: 'all',
-      image_array: []
-    }
-  },
-  methods: {
-    fullScreenImage(img){
-      this.showFullScreenImage=true;
-      this.fullScreenImage_src = img;
-    },
-    exitFullScreenImage(){
-      this.showFullScreenImage=false;
-      this.fullScreenImage_src = '';
-    },
-    scrollToTop() {document.body.scrollTop = 0;},
-    onChange(e){
-      this.result_visible = false;
-      this.filter_by = e.target.value;
-      this.search_by = `Search by ${this.filter_by}`;
-    },
-    user_active(text){
-      if(text!=''){this.result_visible=true;}
-    },
-    op_selected(obj){
-      this.freq=obj.freq;
-      this.long_location=obj.location;
-      this.long_title=obj.long_title;
-      this.date=obj.date;
-      this.long_desc=obj.long_desc;
-      this.result_visible = false;
-      this.image_array = obj.img_arr;
-    },
-    user_typing(text){
-      text=text.toLowerCase();
-      this.result_list = [];
-      if(text==""){
-        this.result_visible = false;
-        return;
-      }
-      this.result_visible = true;
-      let str = text;
-      let stringArray = str.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-      /* case: all */
-      // check every objet in database
-      let search_criteria = '';
-      for(let i = 0; i < this.rep_arr.length;i++){
-        // check if text appears in databse
-        for(let j = 0; j < stringArray.length; j++){
-            switch(this.filter_by){
-              case("all"):
-                search_criteria = this.rep_arr[i].long_title.toLowerCase(); 
-                break;
-              case("location"):
-                search_criteria = this.rep_arr[i].location.toLowerCase(); 
-                break;
-              case("frequency"):
-                search_criteria = this.rep_arr[i].freq.toLowerCase(); 
-                break;
-            }
-            if(search_criteria.includes(stringArray[j])){
-              this.result_list.push(this.rep_arr[i]);
-          }
-        }
-      }
-      // remove duplicate values from results
-      let uniqueResults = this.result_list.filter((c, index) => {
-        return this.result_list.indexOf(c) === index;
-      });
-      this.result_list = uniqueResults;
-    },
-    showinfo(obj){
-      if(this.count%2==0){
-        this.desc_class="desc_fade1";
-      }else{
-        this.desc_class="desc_fade2";
-      }
-      this.freq=obj.freq;
-      this.long_location=obj.location;
-      this.long_title=obj.long_title;
-      this.date=obj.date;
-      this.long_desc=obj.long_desc;
-      this.image_array = obj.img_arr;
-      this.count++;
-    },
-    getRepeaters(VueObj){
-      const URL = 'https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/repeaters';
-      axios.get(URL)
-      .then(function (response) {
-          // handle success
-          VueObj.rep_arr = response.data;
-          VueObj.freq=response.data[0].freq;
-          VueObj.long_location=response.data[0].location;
-          VueObj.long_title=response.data[0].long_title;
-          VueObj.date=response.data[0].date;
-          let newStr = response.data[0].long_desc;
-          // newStr = newStr.replace("<br>", ("<br>"));
-          VueObj.long_desc= newStr;
-          
-          VueObj.image_array = response.data[0].img_arr;
-          VueObj.passList = response.data;
-          VueObj.asyncProp = true;
-      })
-      .catch(function (error) {
-          // handle error
-          VueObj.repeaters = {};
-          console.log(error);
-      })
-      .finally(function () {
-          // always executed
-      });
-    },
-  },
-  async mounted(){
-    this.scrollToTop();
-    await this.getRepeaters(this);
+const repeaters = ref([]);
+const searchQuery = ref("");
+const sortKey = ref("frequency");
+const sortOrder = ref("asc");
+const selectedAttributes = ref([]);
+const loading = ref(true); // Add loading state
+
+// Available attributes for filtering
+const availableAttributes = computed(() => {
+  const attrs = new Set();
+  repeaters.value.forEach((repeater) => {
+    repeater.attributes?.forEach((attr) => attrs.add(attr));
+  });
+  return Array.from(attrs);
+});
+
+const toggleAttribute = (attr) => {
+  const index = selectedAttributes.value.indexOf(attr);
+  if (index === -1) {
+    selectedAttributes.value.push(attr);
+  } else {
+    selectedAttributes.value.splice(index, 1);
   }
-}
+};
+
+const fetchRepeaters = async () => {
+  try {
+    loading.value = true;
+    const response = await axios.get("/v1/repeaters");
+    repeaters.value = response.data;
+  } catch (error) {
+    console.error("Error fetching repeaters:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+
+// Add this to call fetchRepeaters when component mounts
+onMounted(() => {
+  fetchRepeaters();
+});
+
+const filteredRepeaters = computed(() => {
+  let filtered = [...repeaters.value];
+
+  // Filter by search query
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase();
+    filtered = filtered.filter((repeater) =>
+      Object.values(repeater).some((value) =>
+        String(value).toLowerCase().includes(query)
+      )
+    );
+  }
+
+  // Filter by selected attributes
+  if (selectedAttributes.value.length > 0) {
+    filtered = filtered.filter((repeater) =>
+      selectedAttributes.value.every((attr) =>
+        repeater.attributes?.includes(attr)
+      )
+    );
+  }
+
+  return filtered.sort((a, b) => {
+    const aVal = a[sortKey.value];
+    const bVal = b[sortKey.value];
+
+    if (sortOrder.value === "asc") {
+      return aVal > bVal ? 1 : -1;
+    }
+    return aVal < bVal ? 1 : -1;
+  });
+});
+
+const sort = (key) => {
+  if (sortKey.value === key) {
+    sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
+  } else {
+    sortKey.value = key;
+    sortOrder.value = "asc";
+  }
+};
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-#fullScreen_clickOut{
-  background-color: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  height: 100vh; width: 100vw;
-  z-index: 9999;
-  top: 0;
-}
-#fullScreenImage_parent{
-  position: fixed;
-  z-index: 9999;
-  width: 100vw; height: 100vh;
-  top: 0;
-  display: flex; justify-content: center; align-items: center;
-  pointer-events: none;
-}
-#fullScreenImage_parent>div{
-  display: flex; justify-content: center; align-items: center;
-  width: 90%; height: 90%;
-  position: relative;
-  pointer-events: fill;
-}
-#fullScreenImage_exit{
-  position: absolute;
-  width: 20px; height: 20px;
-  color: rgb(210, 90, 90);
-  right:40px; top: 30px;
-  font-size: 2.5em;
-  z-index: 9999;
-  cursor: pointer;
-}
-#fullScreenImage_child{
-  width: 100%; height: 100%;
-  object-fit: contain;
-  position: relative;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  background-color: rgb(0, 0, 0);
-  padding: 10px;
-  border-radius: 10px;
-  pointer-events: none;
-}
-#more_images{
-  width: 80%; height: 30vh;
-  margin-top: 10vh;
-  margin-bottom: 5vh;  
-  display: flex; gap: 20px;
-  position: relative; justify-content: center;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-/* width */
-#more_images::-webkit-scrollbar {
-  width: 10px;
-}
-/* Track */
-#more_images::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.1);
-}
-/* Handle */
-#more_images::-webkit-scrollbar-thumb {
-  background: #cdcdcd;
-  box-shadow: inset 3px 3px 3px 0px #ffffff;
+.repeaters-page {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: rgb(17, 17, 17);
+  color: rgb(208, 213, 239);
 }
 
-/* .desc_fade1{animation: desc1 0.6s forwards;} */
-/* .desc_fade2{animation: desc2 0.6s forwards;} */
-@keyframes desc1{
-  0%{transform: translateY(5%); opacity: 0.2;}
-  100%{transform: translateY(0%); opacity: 1;}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
-@keyframes desc2{
-  0%{transform: translateY(5%); opacity: 0.2;}
-  100%{transform: translateY(0%); opacity: 1;}
-}
-#repeaters_page {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 213, 239);
-  /* multiple sections of various VH height */
-  width: 100%; height: fit-content;
-  /* padding-top: 120px; */
-  background-color: rgb(17, 17, 17);
-  position: relative;
-}
-#descriptive_parent{
-  width: 100%; min-height: 100vh;
-  height: fit-content;
-  position: relative;
-  display: flex;  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 8vh;
-}
-#desc_info_title1{
-  color: #E08136;
-  font-size: 3.5em;
+
+.page-title {
+  font-size: 2rem;
+  color: #f59e0b;
+  margin-bottom: 2rem;
   text-align: center;
 }
-#desc_info_title2{
-  color: white;
-  font-size: 4em;
+
+.search-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
 }
-#desc_info_desc{
-  color: white;
-  font-size: 1.5em;
-  font-size: 1em;
-  padding: 1% 20% 10% 20%;
-  /* text-indent: 4em; */
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #f59e0b;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+  background-color: rgba(245, 158, 11, 0.1);
+  color: rgb(208, 213, 239);
+}
+
+.search-input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.search-input::placeholder {
+  color: rgba(208, 213, 239, 0.5);
+}
+
+.table-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+.repeaters-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.repeaters-table th,
+.repeaters-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.repeaters-table th {
+  background-color: rgba(245, 158, 11, 0.1);
+  font-weight: 600;
+  color: #f59e0b;
+  cursor: pointer;
+  user-select: none;
+}
+
+.repeaters-table th:hover {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+.repeaters-table tbody tr:hover {
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge.operational {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.status-badge.maintenance {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.status-badge.offline {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .repeaters-page {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .repeaters-table th,
+  .repeaters-table td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+.filters {
   display: flex;
   flex-direction: column;
-}
-#desc_info_desc>span{
-  /* white-space: pre-line;
-  word-wrap: break-word;
-  font-family: inherit; */
-  min-height: 1em;
-}
-#desc_info_date{
-  font-size: 1em;
-  color: rgba(255,255,255,0.5);
-}
-#repeater_filter{
-  position: absolute;
-  top: 5vh;
-  right: 0; left: 0;
-  border-radius: 100px;
-  border: 3px solid #DB7B32;
-  display: flex; justify-content: center; align-items: center;
-  margin: 0 auto;
-  width: 40%; height: 8vh;
-  cursor: pointer;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-#user_input{
-  height: 100%; width: 75%;
-  padding-right: 3%;
-  background-color: transparent;
-  outline: none; border: none;
-  color: #e49050;
-  font-size: 2em;
+.attribute-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
-#filter_img_parent{
-  height: 100%;width: 10%;
-  display: flex; justify-content: center;align-items: center;
-}
-#filter_img{
-  width: 100%; height: 100%;
-  display: flex; justify-content: center;align-items: center;
-  object-fit: contain;
-  color: white; font-size: 1.6em;
-}
-#filter_drop{
-  width: fit-content; height: 100%;
-  min-width: 15%;
-  display: flex; justify-content: center;  align-items: center;
-  background-color: #DB7B32;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  transition: 0.2s ease;
-  padding: 10px;
-}
-#filter_drop:hover{
-  background-color: #DB7B32ae;
-}
-#search_options{
-  outline: none; border: none;
-  width: fit-content; height: 100%;
-  background-color: transparent; outline: none;
+
+.attribute-chip {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
   cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.attribute-chip:hover {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+.attribute-chip.active {
+  background-color: #f59e0b;
   color: white;
 }
-option{
-  color:black;
-}
-#search_results{
-  height: fit-content; width: 75%;
-  margin-left: -5%;
-  background-color: rgb(63, 63, 67);
-  position: absolute;
-  top: 100%;
-  color: white;
-  display: flex; flex-direction: column;
-  border-end-end-radius: 30px;
-  border-end-start-radius: 30px;
-  overflow: hidden;
+
+.attributes-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-
-
-
-
-/* Slightly Resized Screen Styles */
-@media screen and (max-width: 1200px) {
-  #repeater_filter{
-    width: 60%; height: 8vh;
-  }
-  #desc_info_desc{
-    font-size: 1.3em;
-  }
-  #desc_info_title2{
-    font-size: 3em;
-  }
-  #desc_info_title1{
-    font-size: 3em;
-  }
+.attribute-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  font-size: 0.75rem;
 }
 
-/* Half-Screen Styles */
-@media screen and (max-width: 900px) {
-  #repeater_filter{
-    width: 60%; height: 8vh;
-  }
-  #desc_info_desc{
-    font-size: 0.9em;
-  }
-  #desc_info_title2{
-    font-size: 2.5em;
-  }
-  #desc_info_title1{
-    font-size: 2em;
-  }
+.mode-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(139, 92, 246, 0.1); /* Purple tint */
+  color: rgb(139, 92, 246);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-/* Mobile Styles */
-@media screen and (max-width: 768px) {
-  #repeater_filter{
-    width: 80%; height: 8vh;
-    font-size: 0.8em;
+/* Add these new styles for loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  border: 4px solid rgba(245, 158, 11, 0.1);
+  border-left: 4px solid #f59e0b;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  #desc_info_desc{
-    font-size: 0.8em;
-  }
-  #desc_info_title2{
-    font-size: 2em;
-  }
-  #desc_info_title1{
-    font-size: 1.7em;
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
-  

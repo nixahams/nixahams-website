@@ -49,7 +49,7 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input
-          type="text"
+          type="password"
           class="form-control"
           id="password"
           aria-describedby="password"
@@ -60,7 +60,7 @@
       <div class="form-group">
         <label for="passwordConfirm">Confirm Password</label>
         <input
-          type="text"
+          type="password"
           class="form-control"
           id="passwordConfirm"
           aria-describedby="passwordConfirm"
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 
 export default {
   name: "AccountSetup",
@@ -148,5 +148,54 @@ export default {
 <style scoped>
 .container {
   min-height: 65vh;
+  padding: 2rem;
+  background-color: rgb(17, 17, 17);
+}
+
+.form-control,
+input.form-control {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid #3d3654 !important;
+  color: rgb(208, 213, 239) !important;
+  opacity: 1 !important;
+}
+
+.form-control:focus,
+input.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fd9947 !important;
+  color: rgb(208, 213, 239) !important;
+  box-shadow: none !important;
+}
+
+.form-control::placeholder {
+  color: rgba(208, 213, 239, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: rgb(208, 213, 239);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #fd9947 !important;
+  border: none !important;
+  padding: 0.75rem;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e88835 !important;
+}
+
+h1 {
+  color: #fd9947;
+  margin-bottom: 2rem;
 }
 </style>
