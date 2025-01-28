@@ -197,7 +197,60 @@ function checkPasswordsMatch() {
 </template>
 
 <style scoped>
-* {
-  color: #fff;
+.form-control,
+input.form-control {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid #3d3654 !important;
+  color: rgb(208, 213, 239) !important;
+  opacity: 1 !important;
+}
+
+.form-control:focus,
+input.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fd9947 !important;
+  color: rgb(208, 213, 239) !important;
+  box-shadow: none !important;
+}
+
+.form-control::placeholder {
+  color: rgba(208, 213, 239, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: rgb(208, 213, 239);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #fd9947 !important;
+  border: none !important;
+  padding: 0.75rem;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e88835 !important;
+}
+
+h2,
+h3,
+p {
+  color: rgb(208, 213, 239);
+}
+
+.form-check-label {
+  color: rgb(208, 213, 239);
+}
+
+.form-check-input:checked {
+  background-color: #fd9947 !important;
+  border-color: #fd9947 !important;
 }
 </style>

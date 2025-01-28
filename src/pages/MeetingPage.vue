@@ -17,7 +17,7 @@
           </div>
           <div class="meeting-title">
             <h2>Next Meeting</h2>
-            <p class="time">7:00 PM Central</p>
+            <p class="time">6:00 PM Central</p>
           </div>
         </div>
 

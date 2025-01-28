@@ -399,7 +399,7 @@ const createFamilyMember = async () => {
 // Lifecycle
 onMounted(async () => {
   await fetchProfile();
-  if (profile.value.membership_type?.toLowerCase() === "family") {
+  if (profile.value.membership_type.toLowerCase() === "family") {
     await fetchFamilyMembers();
   }
 });
