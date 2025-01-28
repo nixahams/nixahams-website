@@ -59,7 +59,10 @@ function addPerson() {
 }
 
 function addUser() {
-  console.log(userInfo.value);
+  return apiClient.post("/v1/users/addUser", {
+    email: email.value,
+    password: userInfo.value.password,
+  });
 }
 
 function checkPasswordsMatch() {
