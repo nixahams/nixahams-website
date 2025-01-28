@@ -78,6 +78,16 @@ const router = createRouter({
       name: "RepeaterDetails",
       component: () => import("../pages/RepeaterDetailsPage.vue"),
     },
+    // {
+    //   path: "/hamfest/tickets",
+    //   component: HamfestTickets,
+    //   name: "HamfestTickets",
+    // },
+    // {
+    //   path: "/hamfest/thankyou",
+    //   component: HamfestThankYou,
+    //   name: "HamfestThankYou",
+    // },
     {
       path: "/announcements",
       name: "Announcements",

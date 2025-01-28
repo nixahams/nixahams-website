@@ -17,6 +17,7 @@
             <p>Time: 8:00 AM - 1:00 PM</p>
             <p>Where: Victory Baptist Church</p>
             <p>Address: 252 N Nicholas Road, Nixa, MO 65714</p>
+            <!--
             <button
               class="btn btn-primary m-auto"
               id="buyTicketsBtn"
@@ -24,6 +25,7 @@
             >
               Buy Tickets
             </button>
+            -->
           </div>
         </div>
       </div>
