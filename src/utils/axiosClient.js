@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:4001/",
+  baseURL: "https://api.nixahams.net/",
   withCredentials: true,
 });
 
