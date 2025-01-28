@@ -1,4 +1,3 @@
-# Add "scoped" attribute to limit CSS to this component only
 <template>
   <div class="profile-page">
     <div class="container">
@@ -97,21 +96,24 @@
         </form>
       </div>
 
-      <!-- Family Membership Section -->
-      <div v-if="hasFamilyMembership" class="profile-section">
+      <!-- Family Members Section -->
+      <div
+        v-if="profile.membership_type?.toLowerCase() === 'family'"
+        class="profile-section"
+      >
         <div class="section-header">
           <h2>Family Members</h2>
           <button
-            @click="openFamilyModal"
-            class="add-family-button"
-            :disabled="familyMembers.length >= 3"
+            v-if="familyMembers.length < 3"
+            @click="showAddFamilyMemberModal = true"
+            class="add-button"
           >
-            <i class="fas fa-plus"></i> Add Family Member
+            Add Family Member
           </button>
         </div>
 
-        <div v-if="familyMembers.length === 0" class="no-family-members">
-          No family members added yet. You can add up to 3 family members.
+        <div v-if="familyMembers.length === 0" class="no-members">
+          No family members added yet.
         </div>
 
         <div v-else class="family-members-list">
@@ -121,80 +123,74 @@
             class="family-member-card"
           >
             <div class="member-info">
-              <div class="member-name">{{ member.name }}</div>
-              <div class="member-callsign">
-                {{ member.callsign || "No callsign" }}
-              </div>
-            </div>
-            <div class="member-actions">
-              <button
-                @click="editFamilyMember(member)"
-                class="action-button edit"
-              >
-                <i class="fas fa-edit"></i>
-              </button>
-              <button
-                @click="removeFamilyMember(member.id)"
-                class="action-button delete"
-              >
-                <i class="fas fa-trash"></i>
-              </button>
+              <h3>{{ member.person_name }}</h3>
+              <p>{{ member.email }}</p>
+              <p v-if="member.callsign">Callsign: {{ member.callsign }}</p>
+              <p>ARRL Member: {{ member.arrl_member ? "Yes" : "No" }}</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Family Member Modal -->
-    <div v-if="showFamilyModal" class="modal-overlay" @click="closeFamilyModal">
-      <div class="modal-content" @click.stop>
-        <h3>{{ editingFamilyMember ? "Edit" : "Add" }} Family Member</h3>
-        <form @submit.prevent="saveFamilyMember" class="family-form">
-          <div class="form-group">
-            <label for="familyName">Full Name</label>
-            <input
-              type="text"
-              id="familyName"
-              v-model="familyForm.name"
-              required
-            />
-          </div>
+        <!-- Add Family Member Modal -->
+        <div v-if="showAddFamilyMemberModal" class="modal">
+          <div class="modal-content">
+            <h2>Add Family Member</h2>
+            <form @submit.prevent="createFamilyMember" class="modal-form">
+              <div class="form-group">
+                <label for="familyMemberName">Full Name</label>
+                <input
+                  type="text"
+                  id="familyMemberName"
+                  v-model="newFamilyMember.person_name"
+                  required
+                />
+              </div>
 
-          <div class="form-group">
-            <label for="familyCallsign">Callsign (optional)</label>
-            <input
-              type="text"
-              id="familyCallsign"
-              v-model="familyForm.callsign"
-              pattern="[A-Za-z0-9]*"
-            />
-          </div>
+              <div class="form-group">
+                <label for="familyMemberEmail">Email</label>
+                <input
+                  type="email"
+                  id="familyMemberEmail"
+                  v-model="newFamilyMember.email"
+                  required
+                />
+              </div>
 
-          <div class="form-group checkbox">
-            <input
-              type="checkbox"
-              id="familyArrl"
-              v-model="familyForm.arrl_member"
-            />
-            <label for="familyArrl">ARRL Member</label>
-          </div>
+              <div class="form-group">
+                <label for="familyMemberCallsign">Callsign</label>
+                <input
+                  type="text"
+                  id="familyMemberCallsign"
+                  v-model="newFamilyMember.callsign"
+                  pattern="[A-Za-z0-9]+"
+                />
+              </div>
 
-          <div class="modal-actions">
-            <button
-              type="button"
-              class="cancel-button"
-              @click="closeFamilyModal"
-            >
-              Cancel
-            </button>
-            <button type="submit" class="save-button" :disabled="familyLoading">
-              <span v-if="familyLoading" class="spinner-small"></span>
-              <span v-else>{{
-                editingFamilyMember ? "Save Changes" : "Add Member"
-              }}</span>
-            </button>
+              <div class="form-group checkbox">
+                <input
+                  type="checkbox"
+                  id="familyMemberArrl"
+                  v-model="newFamilyMember.arrl_member"
+                />
+                <label for="familyMemberArrl">ARRL Member</label>
+              </div>
+
+              <div class="modal-buttons">
+                <button
+                  type="button"
+                  @click="showAddFamilyMemberModal = false"
+                  class="cancel-button"
+                >
+                  Cancel
+                </button>
+                <button type="submit" :disabled="loading" class="save-button">
+                  <span v-if="loading" class="spinner-small"></span>
+                  <span v-else>Add Member</span>
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -209,10 +205,12 @@ const toast = useToast();
 
 // State
 const profile = ref({
-  name: "",
+  person_name: "",
   email: "",
   callsign: "",
   arrl_member: false,
+  membership_type: null,
+  membership_status: null,
 });
 
 const passwordForm = ref({
@@ -235,6 +233,13 @@ const editingFamilyMember = ref(null);
 const familyMembers = ref([]);
 const membershipStatus = ref(null);
 const hasFamilyMembership = ref(false);
+const showAddFamilyMemberModal = ref(false);
+const newFamilyMember = ref({
+  person_name: "",
+  email: "",
+  callsign: "",
+  arrl_member: false,
+});
 
 // Methods
 const fetchProfile = async () => {
@@ -292,8 +297,6 @@ const updatePassword = async () => {
 };
 
 const fetchFamilyMembers = async () => {
-  if (!hasFamilyMembership.value) return;
-
   try {
     const response = await axios.get("/v1/profile/family");
     familyMembers.value = response.data;
@@ -365,10 +368,40 @@ const removeFamilyMember = async (id) => {
   }
 };
 
+const createFamilyMember = async () => {
+  try {
+    loading.value = true;
+    const response = await axios.post("/v1/profile/family", {
+      person_name: newFamilyMember.value.person_name,
+      email: newFamilyMember.value.email,
+      callsign: newFamilyMember.value.callsign || null,
+      arrl_member: newFamilyMember.value.arrl_member || false,
+    });
+
+    familyMembers.value.push(response.data);
+    showAddFamilyMemberModal.value = false;
+    newFamilyMember.value = {
+      person_name: "",
+      email: "",
+      callsign: "",
+      arrl_member: false,
+    };
+    toast.success("Family member added successfully");
+    await fetchFamilyMembers(); // Refresh the list to ensure we have the latest data
+  } catch (error) {
+    console.error("Error adding family member:", error);
+    toast.error(error.response?.data?.error || "Failed to add family member");
+  } finally {
+    loading.value = false;
+  }
+};
+
 // Lifecycle
 onMounted(async () => {
   await fetchProfile();
-  await fetchFamilyMembers();
+  if (profile.value.membership_type?.toLowerCase() === "family") {
+    await fetchFamilyMembers();
+  }
 });
 </script>
 
@@ -432,7 +465,155 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.family-members-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.family-member-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.member-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.member-info p {
+  margin: 0.25rem 0;
+  color: #666;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #2c283b;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: rgb(208, 213, 239);
+}
+
+.modal-content h2 {
+  color: #fd9947;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.modal-form .form-group label {
+  color: rgb(208, 213, 239);
+  font-weight: 500;
+}
+
+.modal-form .form-group input[type="text"],
+.modal-form .form-group input[type="email"] {
+  padding: 0.75rem;
+  border: 1px solid #3d3654;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgb(208, 213, 239);
+  font-size: 1rem;
+}
+
+.modal-form .form-group input:focus {
+  outline: none;
+  border-color: #fd9947;
+}
+
+.modal-form .form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-buttons .cancel-button {
+  background: transparent;
+  border: 1px solid #3d3654;
+  color: rgb(208, 213, 239);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-buttons .cancel-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modal-buttons .save-button {
+  padding: 0.75rem 1.5rem;
+  background: #fd9947;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-buttons .save-button:hover {
+  background: #e88835;
+}
+
+.modal-buttons .save-button:disabled {
+  background: #666;
+  cursor: not-allowed;
 }
 
 .profile-form {
@@ -473,143 +654,6 @@ onMounted(async () => {
   gap: 0.75rem;
 }
 
-.save-button,
-.add-family-button {
-  padding: 0.75rem 1.5rem;
-  background: #fd9947;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.save-button:hover,
-.add-family-button:hover {
-  background: #e88835;
-}
-
-.save-button:disabled {
-  background: #666;
-  cursor: not-allowed;
-}
-
-.family-members-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.family-member-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-}
-
-.member-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.member-name {
-  font-weight: 500;
-}
-
-.member-callsign {
-  font-size: 0.875rem;
-  color: #888;
-}
-
-.member-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.action-button {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.action-button.edit {
-  background: rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
-}
-
-.action-button.delete {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-}
-
-.action-button:hover {
-  opacity: 0.8;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #2c283b;
-  border-radius: 12px;
-  padding: 2rem;
-  width: 90%;
-  max-width: 500px;
-}
-
-.modal-content h3 {
-  color: #fd9947;
-  font-size: 1.5rem;
-  margin: 0 0 1.5rem 0;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.cancel-button {
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  border: 1px solid #3d3654;
-  color: rgb(208, 213, 239);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.cancel-button:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.no-family-members {
-  text-align: center;
-  padding: 2rem;
-  color: #888;
-}
-
 .spinner-small {
   width: 1rem;
   height: 1rem;
@@ -647,5 +691,22 @@ onMounted(async () => {
     margin: 1rem;
     padding: 1.5rem;
   }
+}
+
+.no-members {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.family-member-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: rgb(208, 213, 239);
+}
+
+.member-info p {
+  color: rgb(208, 213, 239) !important;
 }
 </style>
