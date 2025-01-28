@@ -1,90 +1,55 @@
 import { createApp } from "vue";
 import App from "../App.vue";
-import router from "./router";
-import { createStore } from "vuex";
-import createPersistedState from "vuex-plugin-persistedstate";
-import axios from "axios";
+import router from "./router"; // Router configuration
+import { createPinia } from "pinia"; // State management
+import VueCookies from "vue-cookies";
+import axios from "./utils/axiosClient"; // Centralized Axios configuration
+import { useUserStore } from "./stores/userStore"; // User store
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
-// import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+// Bootstrap and Font Awesome
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
-library.add(fas);
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-// User Instance
-const store = createStore({
-  plugins: [createPersistedState()],
-  state() {
-    return {
-      loggedIn: false,
-      user: {},
-    };
-  },
-  mutations: {
-    changeLoggedIn(state, payload) {
-      state.loggedIn = payload;
-    },
-    changeUser(state, payload) {
-      state.user = payload;
-    },
-  },
-  getters: {
-    loggedIn(state) {
-      return state.loggedIn;
-    },
-    user(state) {
-      return state.user;
-    },
-  },
-});
+library.add(fas);
 
-//check if route needs auth
-router.beforeEach((to, from, next) => {
-  // console.log(store.state.user)
-  // console.log("This route needs Auth: ", to.meta.needsAuth)
-  let user = store.state.user;
-  if (to.meta.needsAuth) {
-    if (store.state.user.callsign === undefined) {
-      next("/account?method=login");
-    }
-    axios({
-      method: "post",
-      url: "/users/login",
-      data: {
-        username: user.email,
-        password: user.password,
-      },
-      withCredentials: true,
-    })
-      .then((res) => {
-        if (!!res.data.callsign) {
-          next("/account?method=login");
-        } else {
-          next();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        next("/account?method=login");
-      });
-  } else {
-    next();
-  }
-});
+// Toast configuration
+const toastOptions = {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: false,
+  closeButton: "button",
+  icon: true,
+  rtl: false,
+  transition: "Vue-Toastification__bounce",
+  maxToasts: 20,
+  newestOnTop: true,
+};
 
-//http://localhost:4001/
-//axios.defaults.baseURL = "https://api.nixahams.net";
-axios.defaults.baseURL = "https://api.nixahams.net";
-axios.defaults.withCredentials = true;
-import VueCookies from "vue-cookies";
-
+// Create Vue app instance
 const app = createApp(App);
-app
-  .use(router)
-  .use(store)
-  .use(VueCookies, { expires: "7d" })
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .mount("#app");
+
+// Install plugins
+const pinia = createPinia();
+app.use(pinia);
+app.use(router);
+app.use(VueCookies, { expires: "7d" }); // Optional: Only include if cookies are necessary
+app.use(Toast, toastOptions);
+
+const userStore = useUserStore();
+userStore.hydrate();
+
+// Register global components
+app.component("font-awesome-icon", FontAwesomeIcon);
+
+// Mount the app
+app.mount("#app");

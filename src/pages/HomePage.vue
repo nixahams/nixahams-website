@@ -1,911 +1,651 @@
 <template>
-  <div id="home_page">
-    <div id="home_top">
-      <div id="text_image">
-        <div id="title">
-          Welcome To the <br />
-          Nixa Amateur Radio Club!
-        </div>
-        <div id="subtext">Scroll to find more info about our club!</div>
-      </div>
+  <div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <img
+        src="@/assets/home/bg3.jpg"
+        alt="An image of an antenna tower."
+        class="hero-image"
+      />
+      <h1 class="hero-title">Welcome to the Nixa Amateur Radio Club!</h1>
     </div>
 
-    <div id="home-carousel" class="carousel slide" data-bs-ride="true">
-      <div class="carousel-indicators c-indicator">
-        <button
-          type="button"
-          data-bs-target="#home-carousel"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#home-carousel"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#home-carousel"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
-      <div class="carousel-inner c-inner">
-        <div class="carousel-item c-item active">
-          <img
-            src="@/assets/carosel-imgs/bg8.jpg"
-            class="d-block w-100 c-img"
-            alt="Slide 1"
-          />
-        </div>
-        <div class="carousel-item c-item">
-          <img
-            src="@/assets/carosel-imgs/bg7.jpg"
-            class="d-block w-100 c-img"
-            alt="Slide 2"
-          />
-        </div>
-        <div class="carousel-item c-item">
-          <img
-            src="@/assets/carosel-imgs/bg3.jpg"
-            class="d-block w-100 c-img"
-            alt="Silde 3"
-          />
-        </div>
-      </div>
-      <button
-        id="c-btn"
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#home-carousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        id="c-btn"
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#home-carousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-    <div id="home_text_image">
-      <img id="home_image" src="@/assets/home/fieldday.jpg" alt="" />
-      <div id="home_text_parent">
-        <div id="this_container">
-          <div id="home_title">Group Meetings</div>
-          <div id="home_text">
-            Join us for our monthly meetings, click to join our live stream!
-          </div>
-          <div id="home_info">
-            <div id="home_info_left">
-              <div id="info_big_left">{{ day }}</div>
-              <div id="info_small_left">{{ month }} {{ year }}</div>
-            </div>
-            <div id="home_info_right">
-              <div id="info_big_right">Meeting</div>
-              <div id="info_small_right">Nixa</div>
+    <!-- Main Content Container -->
+    <div class="main-content">
+      <div class="container">
+        <!-- Updates and Meeting Section -->
+        <div class="row content-section">
+          <!-- Club Updates Column -->
+          <div class="col-lg-6">
+            <div class="content-block">
+              <h2 class="section-title">Club Updates</h2>
+              <div class="announcements-container">
+                <ClubAnnouncementCard
+                  v-for="announcement in announcements"
+                  :announcement="announcement"
+                />
+                <div class="view-all-wrapper">
+                  <RouterLink to="/announcements" class="view-all-button">
+                    View all announcements
+                  </RouterLink>
+                </div>
+              </div>
             </div>
           </div>
-          <div id="home_btn">
-            <a href="/meetings">
-              <button id="info_btn">
-                Webinar Link
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </a>
+
+          <!-- Meeting Info Column -->
+          <div class="col-lg-6">
+            <div class="content-block">
+              <h2 class="section-title">Upcoming Meeting</h2>
+              <div class="meeting-preview" v-if="meeting">
+                <div class="meeting-date">
+                  <div class="date-badge">
+                    <span class="month">{{ month }}</span>
+                    <span class="day">{{ day }}</span>
+                  </div>
+                  <div class="time">6:00 PM Central</div>
+                </div>
+
+                <div class="meeting-content">
+                  <div class="meeting-details">
+                    <div class="location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>{{ meeting.address }}</span>
+                    </div>
+
+                    <div
+                      class="description"
+                      v-html="formattedDescription"
+                    ></div>
+                  </div>
+
+                  <div class="meeting-actions">
+                    <a
+                      :href="meeting.meeting_link"
+                      target="_blank"
+                      class="join-button"
+                    >
+                      <i class="fas fa-video"></i>
+                      Join Online
+                    </a>
+                    <RouterLink to="/meetings" class="more-info">
+                      More Information
+                    </RouterLink>
+                    <RouterLink to="/testing" class="testing-info">
+                      <i class="fas fa-clipboard-check"></i>
+                      License Testing
+                    </RouterLink>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Loading state -->
+              <div v-else-if="loading" class="meeting-preview loading">
+                <div class="spinner"></div>
+                <p>Loading meeting information...</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="full_page">
-      <img class="page_background" src="../assets/home/contactus.png" alt="" />
-      <div id="home_page3">
-        <div id="contact_form">
-          <!-- temp -->
-          <!-- <div id="work_div"></div> -->
-          <!-- temp -->
-          <div id="form_inner">
+        <!-- Contact Form Section -->
+        <div class="row content-section">
+          <div class="col-12">
             <form
-              id="form"
+              id="contact-form"
               action="https://formspree.io/f/mjvdnenz"
               method="POST"
             >
-              <div id="form_title_parent">
-                <div id="form_title">Send us a message</div>
-              </div>
-              <div class="input_parent">
+              <h2 class="section-title text-center">Contact Us</h2>
+              <div class="form-group">
+                <label for="name">Name</label>
                 <input
                   required
-                  placeholder="Your name..."
-                  class="input"
+                  placeholder="Enter your name"
                   type="text"
                   id="name"
                   name="name"
-                /><br />
-              </div>
-              <div class="input_parent">
-                <input
-                  required
-                  placeholder="Your email..."
-                  class="input"
-                  type="text"
-                  id="email"
-                  name="email"
+                  class="form-input"
                 />
               </div>
-              <div id="textarea_parent">
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  required
+                  placeholder="Enter your email"
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
                 <textarea
                   required
-                  placeholder="Your message..."
-                  class="textarea"
+                  placeholder="What would you like to tell us?"
                   name="message"
                   id="message"
-                  cols="20"
                   rows="5"
+                  class="form-input"
                 ></textarea>
               </div>
-              <div id="form_btn_parent">
-                <input id="form_btn" type="submit" value="Submit" />
-              </div>
+
+              <button type="submit" class="submit-button">
+                <i class="fas fa-paper-plane"></i>
+                Send Message
+              </button>
             </form>
           </div>
         </div>
-        <div id="contact_top">
-          <div id="contact_top_inner">
-            <div id="contact_text">
-              <div id="contact_title">
-                Need to contact us? Fill out our message form.
-              </div>
-              <div id="contact_subtext">We will get back to you ASAP!</div>
-            </div>
-          </div>
-        </div>
-        <div id="contact_bottom"></div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import axios from "axios";
-export default {
-  name: "HomePage",
-  components: {},
-  data() {
-    return {
-      year: "",
-      month: "",
-      day: "",
-      description: "",
-      link: "",
-    };
-  },
-  methods: {
-    scrollToTop() {
-      document.body.scrollTop = 0;
-    },
-    getMeetingInfo() {
-      let self = this;
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meetings/all`;
-      axios
-        .get(URL)
-        .then(function (response) {
-          // find meeting that is the closest to current date, but occurs after current date
-          const meetings = response.data;
+<script setup>
+import { ref, onMounted, computed } from "vue";
+import axios from "@/utils/axiosClient";
+import ClubAnnouncementCard from "@/components/ClubAnnouncementCard.vue";
+import { useAnnouncementStore } from "@/stores/announcementStore";
 
-          // Get last meeting in the list
-          const upcomingMeeting = meetings[meetings.length - 1];
-          const meetingDate = new Date(upcomingMeeting.date);
+const meeting = ref(null);
+const loading = ref(true);
+const month = ref("");
+const day = ref("");
 
-          self.year = meetingDate.getFullYear();
-          self.month = meetingDate.toLocaleString("default", {
-            month: "long",
-          });
-          self.day = meetingDate.getDate() + 1;
-          self.description = upcomingMeeting.description;
-          self.link = upcomingMeeting.link;
-        })
-        .catch(function (error) {
-          // handle error
-          console.error(error);
-        });
-    },
-  },
-  mounted() {
-    this.scrollToTop();
-    this.getMeetingInfo();
-  },
+const announcementStore = useAnnouncementStore();
+const announcements = computed(() => announcementStore.announcements);
+
+const getMeetingInfo = async () => {
+  try {
+    loading.value = true;
+    const response = await axios.get("/v1/meetings/upcoming");
+    meeting.value = response.data;
+
+    if (meeting.value) {
+      const meetingDate = new Date(meeting.value.meeting_date);
+      month.value = meetingDate.toLocaleString("default", {
+        month: "short",
+      });
+      day.value = meetingDate.getDate();
+    }
+  } catch (error) {
+    console.error("Error fetching meeting:", error);
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(() => {
+  scrollToTop();
+  getMeetingInfo();
+  announcementStore.fetchAnnouncementsWithLimit(2);
+});
+
+const scrollToTop = () => {
+  document.body.scrollTop = 0;
+};
+
+const formattedDescription = computed(() => {
+  if (!meeting.value?.description) return "";
+
+  // Truncate text if it's too long
+  const maxLength = 300;
+  let description = meeting.value.description;
+  if (description.length > maxLength) {
+    description = description.substring(0, maxLength) + "...";
+  }
+
+  // Split by newlines and wrap each paragraph
+  return description
+    .split("\n")
+    .filter((para) => para.trim())
+    .map((para) => `<p>${para}</p>`)
+    .join("");
+});
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.input {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  outline: none;
-  border: 2px dashed black;
-  padding: 0px 20px;
-  color: black;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
+* {
+  color: #fff;
 }
 
-.input_parent {
-  width: 100%;
-  height: 15%;
+.container-fluid {
+  padding: 0;
+  background-color: #111111;
+  min-height: 100vh;
 }
 
-#textarea_parent {
-  height: 25%;
-  width: 100%;
-}
-
-.textarea {
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
-  min-height: 25%;
-  background-color: rgba(255, 255, 255, 0.5);
-  outline: none;
-  border: 2px dashed black;
-  padding: 20px;
-  color: black;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-}
-
-#form_btn_parent {
-  height: 10%;
-  width: 100%;
-}
-
-#form_btn {
-  outline: none;
-  border: 0;
-  background-color: black;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  font-size: 1.2em;
-  height: 100%;
-  width: 100%;
-}
-
-#form_inner {
-  width: 100%;
-  height: 100%;
-}
-
-#form {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-#form_title_parent {
-  width: 100%;
-  height: 10%;
-}
-
-#form_title {
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  font-size: 2em;
-  height: 100%;
-  width: 100%;
-}
-
-.full_page {
-  width: 100%;
-  height: 110vh;
+.hero-section {
   position: relative;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 3rem;
 }
 
-.page_background {
-  position: absolute;
+.hero-image {
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
   object-fit: cover;
-  background-color: rgb(225, 225, 225);
-  object-position: left;
+  object-position: center 15%;
 }
 
-#home_page3 {
-  background-color: transparent;
-  z-index: 2;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-/* temp */
-/* #work_div{
-  width: 100%; height: 100%;
+.hero-title {
   position: absolute;
-  top: 0; left: 0;
-  background-position: center;
-  background-size: cover;
-  filter: brightness(0.8);
-} */
-/* #work_div:hover::after{
-  content: "This is under construction!";
-  display: flex;
-  justify-content: center; align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(44, 40, 59, 0.9);
+  padding: 2rem 3rem;
+  border-radius: 12px;
   text-align: center;
-  color: white;
-  font-size: 3em;
-  padding: 10px;
-  position: absolute;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  top: 0; left: 0;
-  cursor: not-allowed;
-} */
-/* temp */
-#contact_form {
-  position: absolute;
-  z-index: 2;
-  width: 30%;
-  height: 60%;
-  bottom: 10%;
-  right: 10%;
-  background-color: rgb(225, 225, 225);
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
-  padding: 4%;
-  color: black;
-  background-image: url("../assets/carosel-imgs/bg1.jpg");
-  background-position: left;
-  background-repeat: no-repeat;
+  font-size: 2.5rem;
+  color: #fff;
+  max-width: 90%;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-#contact_top {
-  width: 100%;
-  height: 80%;
-  background-color: transparent;
-  backdrop-filter: blur(20px);
-  color: black;
-  /* top | right | bottom | left */
-  padding: 0vh 45% 10vh 30%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+.main-content {
+  padding: 0 1rem;
 }
 
-#contact_top_inner {
-  position: relative;
-  /* left side of contact info */
-  height: 70%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.content-section {
+  margin-bottom: 4rem;
 }
 
-#contact_text {
-  font-family: "Montserrat", sans-serif;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#contact_title {
-  font-weight: bold;
-  font-size: 2em;
-}
-
-#contact_subtext {
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 1.5em;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40%;
-}
-
-.contact_visual {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 12.5%;
-}
-
-.contact_img_parent {
-  width: 20%;
+.content-block {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact_img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
-}
-
-.contact_data {
-  width: 80%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-#contact_bottom {
-  width: 100%;
-  height: 20%;
-  /* background-color: black; */
-  background: linear-gradient(0deg, rgb(17, 17, 17), rgb(39, 39, 39));
-
-  color: white;
-}
-
-.c-inner,
-.c-item,
-.c-parent {
-  position: relative;
-}
-
-#c-btn,
-.c-indicator {
-  z-index: 2;
-}
-
-.c.c-parent {
-  height: 100%;
-  width: 100%;
-}
-
-.c-item {
-  height: 100vh;
-  width: 100%;
-}
-
-.c-img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  filter: brightness(50%);
-}
-
-#home_page {
-  /* padding accounts for header height */
-  /* padding-top: 120px; */
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 213, 239);
-  width: 100%;
-  height: fit-content;
-  position: relative;
   display: flex;
   flex-direction: column;
 }
 
-#home_top {
-  position: relative;
-  position: absolute;
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+}
+
+.view-all-wrapper {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.view-all-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f58937;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.view-all-button:hover {
+  background-color: #e67825;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(245, 137, 55, 0.2);
+}
+
+/* Contact Form */
+#contact-form {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #2c283b;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e5e7eb;
+  font-weight: 500;
+}
+
+.form-input {
   width: 100%;
-  height: 100vh;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
-#text_image {
-  gap: 10px;
-  width: 70%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-#title {
-  font-size: 3em;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-}
-
-#subtext {
-  font-size: 1.5em;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-}
-
-#home-carousel {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-}
-
-/* Text with image and info */
-#home_text_image {
-  font-family: "Montserrat", sans-serif;
-  width: 100%;
-  height: 110vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#home_image {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  filter: brightness(30%);
-}
-
-#home_text_parent {
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px 200px;
-}
-
-#this_container {
-  height: 50%;
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-direction: column;
-}
-#home_title {
-  font-size: 3em;
-  color: white;
-  font-weight: bold;
-}
-#home_text {
-  font-weight: normal;
-  font-size: 2em;
-  color: white;
-}
-
-#home_info {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 30%;
-  text-transform: uppercase;
-}
-
-#home_info > div {
-  border: 3px solid rgb(84, 158, 238);
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#home_info_left,
-#home_info_right {
-  /* display: flex; justify-content: ; align-items: ; */
-  flex-direction: column;
-  line-height: 50px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-#info_big_left,
-#info_big_right {
-  color: white;
-}
-
-#info_small_right,
-#info_small_left {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-#info_big_left {
-  font-weight: bold;
-  font-size: 3.5em;
-}
-
-#info_small_left {
-  font-size: 1.7em;
-}
-
-#info_big_right {
-  font-weight: bold;
-  font-size: 2.5em;
-}
-
-#info_small_right {
-  font-size: 1.7em;
-}
-
-#home_btn {
-  position: relative;
-  width: 60%;
-  height: 80px;
-}
-
-#info_btn {
-  border: 0px;
+.form-input:focus {
   outline: none;
+  border-color: #f58937;
+  box-shadow: 0 0 0 2px rgba(245, 137, 55, 0.2);
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f58937;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
   width: 100%;
-  height: 100%;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  font-size: 2em;
-  background-color: white;
-  transition: 0.3s ease;
-  box-shadow: 0px 0px 0px 10px transparent;
+  justify-content: center;
+  font-size: 1rem;
 }
 
-#info_btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0px 0px 0px 0px white;
+.submit-button:hover {
+  background: #e67825;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(245, 137, 55, 0.2);
 }
 
-#info_btn:active {
-  background-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 0px 0px 0px white;
+.submit-button:active {
+  transform: translateY(0);
 }
 
-@media screen and (max-width: 1300px) {
-  #form_title {
-    font-size: 1.7em;
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .content-section {
+    margin-bottom: 2rem;
+  }
+
+  .content-block {
+    margin-bottom: 1rem;
   }
 }
 
-@media screen and (max-width: 1200px) {
-  #home_text {
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
     text-align: center;
   }
-  #form_title {
-    font-size: 2.5em;
-  }
-  #this_container {
-    height: 60%;
-    width: 100%;
-  }
+}
 
-  #home_text_parent {
-    padding: 0px 100px;
-  }
+.meeting-preview {
+  background: #2c283b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  height: calc(100% - 4rem);
+  display: flex;
+  flex-direction: column;
+}
 
-  #home_btn {
-    position: relative;
-    width: 60%;
-    height: 80px;
-  }
+.meeting-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0; /* Important for proper flex behavior */
+}
 
-  #info_btn {
-    width: 100%;
-    height: 100%;
-  }
+.meeting-date {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  #contact_top_inner {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
+.date-badge {
+  background: #f58937;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 100px;
+}
 
-  #contact_top {
-    height: 40%;
-    padding: 0vh 15% 5vh 15%;
-  }
+.date-badge .month {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+}
 
-  #contact_bottom {
-    height: 60%;
-    background-color: black;
-  }
+.date-badge .day {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-top: 0.25rem;
+}
 
-  #contact_form {
-    width: 80%;
-    height: 55%;
-    bottom: 13%;
-    right: 10%;
-    background-color: rgb(225, 225, 225);
-  }
+.time {
+  font-size: 1.2rem;
+  color: #9ca3af;
+}
 
-  .full_page {
-    width: 100%;
-    height: 150vh;
-  }
+.meeting-details {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-  .contact_img_parent {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e5e7eb;
+}
 
-  .contact_data {
-    justify-content: flex-start;
-    align-items: flex-start;
+.location i {
+  color: #f58937;
+}
+
+.description {
+  color: #9ca3af;
+  line-height: 1.6;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.description :deep(p) {
+  margin-bottom: 1rem;
+}
+
+.description :deep(p:last-child) {
+  margin-bottom: 0;
+}
+
+/* Custom scrollbar for webkit browsers */
+.description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.description::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.description::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.meeting-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.join-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f58937;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.join-button:hover {
+  background: #e67825;
+  transform: translateY(-1px);
+}
+
+.more-info {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(245, 137, 55, 0.3);
+  border-radius: 8px;
+  color: #f58937;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.more-info:hover {
+  background: rgba(245, 137, 55, 0.1);
+}
+
+.testing-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.testing-info:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.testing-info i {
+  color: #9ca3af;
+}
+
+/* Loading state */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #9ca3af;
+}
+
+.spinner {
+  border: 3px solid rgba(245, 137, 55, 0.1);
+  border-top: 3px solid #f58937;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-/* Half-Screen Styles */
-@media screen and (max-width: 900px) {
-  #contact_subtext {
-    font-size: 1.3em;
-  }
-  #home_info_left,
-  #home_info_right {
-    font-size: 0.8em;
-  }
-  #subtext,
-  #home_text {
-    font-size: 1.2em;
-  }
-  #contact_title {
-    font-size: 1.5em;
-  }
-  #title,
-  #home_title {
-    font-size: 2em;
-  }
-  #this_container {
-    height: 50%;
-    width: 100%;
-  }
-  #form_title {
-    font-size: 1.7em;
-  }
-  #home_text_parent {
-    padding: 0px 100px;
-  }
-
-  #this_container {
-    height: 70%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+@media (max-width: 768px) {
+  .meeting-date {
     flex-direction: column;
-  }
-
-  #home_btn {
-    position: relative;
-    width: 60%;
-    height: 80px;
-  }
-
-  #info_btn {
-    width: 100%;
-    height: 100%;
-  }
-
-  #home_info {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 70%;
-  }
-
-  #contact_top {
-    height: 50%;
-    padding: 0vh 10% 5vh 10%;
-  }
-
-  #contact_bottom {
-    height: 50%;
-    background-color: black;
-  }
-
-  #contact_form {
-    bottom: 2%;
-    height: 50%;
-  }
-  #textarea_parent {
-    font-size: 0.8em;
-  }
-  .input_parent {
-    width: 100%;
-    height: 15%;
-    font-size: 0.8em;
-  }
-  .full_page {
-    height: 160vh;
-  }
-}
-
-/* Mobile Styles */
-@media screen and (max-width: 768px) {
-  #contact_subtext {
-    font-size: 1.1em;
-  }
-  #contact_title {
-    font-size: 1.3em;
-  }
-  #subtext,
-  #home_text {
-    font-size: 1em;
-    text-shadow: 2px 2px 3px black;
-  }
-  #title,
-  #home_title {
-    font-size: 1.5em;
-  }
-  #this_container {
-    height: 80%;
-  }
-
-  #home_text_parent {
-    padding: 0px 50px;
-  }
-  .full_page {
-    height: 200vh;
-  }
-  #home_btn {
-    margin-top: 50px;
-    width: 100%;
-    height: 80px;
-  }
-
-  #info_btn {
-    border: 0px;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    font-size: 1.5em;
-  }
-
-  #home_info {
-    width: 100%;
-    height: 40%;
-  }
-
-  #info_big_right {
     text-align: center;
-    font-size: 2em;
+    gap: 1rem;
   }
 
-  #contact_top {
-    height: 50%;
-    padding: 0vh 10% 5vh 10%;
+  .meeting-actions {
+    flex-direction: column;
   }
-  #contact_form {
-    bottom: 2%;
-    height: 35%;
-  }
-  #textarea_parent {
-    font-size: 0.65em;
-  }
-  .input_parent {
+
+  .join-button,
+  .more-info,
+  .testing-info {
     width: 100%;
-    height: 13%;
-    font-size: 0.65em;
+    justify-content: center;
+  }
+}
+
+.announcements-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#view-all-announcements {
+  display: none;
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+  .content-section {
+    padding: 1rem 0;
+  }
+
+  .content-block {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 1.75rem;
   }
 }
 </style>

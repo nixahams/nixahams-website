@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 
 import { reactive } from "vue";
 const state = reactive({

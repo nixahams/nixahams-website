@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axiosClient";
 
 export default {
   name: "EditBanner",

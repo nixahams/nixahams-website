@@ -135,13 +135,13 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                     href="#"
-                    >{{ user.callsign }}</a
+                    >{{ navDropDownLabel }}</a
                   >
                   <ul class="dropdown-menu">
                     <li>
                       <a class="dropdown-item" href="/profile">Profile</a>
                     </li>
-                    <li v-if="user.permissionLevel == 'ADMIN'">
+                    <li v-if="isAdmin">
                       <a class="dropdown-item" href="/admin">Admin</a>
                     </li>
                     <li>
@@ -154,8 +154,7 @@
                 <button
                   v-else
                   class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
+                  @click="router.push('/login')"
                 >
                   Member Login
                 </button>
@@ -165,32 +164,41 @@
         </div>
       </div>
     </div>
-    <LoginModal />
   </nav>
 </template>
 
 <script>
-import LoginModal from "@/components/LoginModal.vue";
-import axios from "axios";
-// import VueCookies from 'vue-cookies'
+import { useUserStore } from "@/stores/userStore";
+import { useRouter } from "vue-router";
 
 export default {
   name: "ResultOption",
-  components: {
-    LoginModal,
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
   },
   computed: {
     isLoggedIn() {
-      return this.$store.state.loggedIn;
+      return this.userStore.isAuthenticated;
     },
     user() {
-      return this.$store.state.user;
+      return this.userStore.user;
+    },
+    navDropDownLabel() {
+      if (!this.user || !this.user.callsign) {
+        return "Loading...";
+      }
+      return this.user.callsign;
+    },
+    isAdmin() {
+      return this.userStore.isAdmin;
     },
   },
   data() {
     return {
       activepage: "home",
       componentKey: 0,
+      router: useRouter(),
     };
   },
   methods: {
@@ -198,18 +206,8 @@ export default {
       this.componentKey += 1;
     },
     logout() {
-      axios({
-        method: "post",
-        url: "/users/logout",
-        withCredentials: true,
-      }).then(() => {
-        this.$store.commit("changeUser", {});
-        this.$store.commit("changeLoggedIn", false);
-        this.$router.push("/");
-      });
-    },
-    toggleLoggedIn(newLoggedIn) {
-      this.$store.commit("changeLoggedIn", newLoggedIn);
+      this.userStore.logout();
+      this.forceRerender();
     },
     getTheme() {
       return localStorage.getItem("user-theme");
@@ -224,26 +222,6 @@ export default {
         return "light-theme";
       }
     },
-    getUserData() {
-      axios({
-        method: "get",
-        url: "/users",
-        withCredentials: true,
-      })
-        .then((res) => {
-          if (res.data.user) {
-            this.$store.commit("changeUser", res.data.user);
-            this.$store.commit("changeLoggedIn", true);
-          } else {
-            this.$store.commit("changeUser", {});
-            this.$store.commit("changeLoggedIn", false);
-          }
-        })
-        .catch((err) => {
-          this.$store.commit("changeUser", {});
-          this.$store.commit("changeLoggedIn", false);
-        });
-    },
     toggleNav() {
       const nav = document.getElementById("navItemsContainer");
       if (nav.style.display === "block") {
@@ -254,15 +232,19 @@ export default {
     },
   },
   watch: {
+    "userStore.user": {
+      handler(newVal) {
+        if (newVal) {
+          this.forceRerender();
+        }
+      },
+      deep: true,
+    },
     $route(to, from) {
-      // console.log('terdrt',this.getTheme())
       this.activepage = to.name;
     },
   },
   mounted() {
-    this.getUserData();
-
-    // this.colorMode = VueCookies.get('colorMode')
     this.forceRerender();
   },
 };

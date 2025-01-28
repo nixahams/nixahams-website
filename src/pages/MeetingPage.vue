@@ -1,374 +1,395 @@
 <template>
-  <div id="meeting">
-    <div id="absol">
-      <div id="absol_date">
-        <div id="target"></div>
-        <span>{{ month }}</span>
-        <span>{{ day }}</span>
-      </div>
-      <div id="absol_loc">
-        <span>Nixa, MO</span>
-        <span id="loc_address">460 Aldersgate Dr</span>
-      </div>
+  <div class="meeting-page">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1>Club Meetings</h1>
+      <p>Join us in person or online for our monthly meetings</p>
     </div>
-    <div id="top">
-      <iframe
-        id="map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50951.38718954761!2d-93.33008294252274!3d37.04647936034305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87cf6eed13ac8447%3A0xacf1a5ed53154eb7!2sNixa%2C%20MO%2065714!5e0!3m2!1sen!2sus!4v1673766963955!5m2!1sen!2sus"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-    <div id="bottom">
-      <div id="bottom_title">Join Us For The Next Meeting</div>
-      <div id="buttom_btn_parent">
-        <a :href="link">
-          <button id="buttom_btn">View Livestream</button>
-        </a>
-      </div>
-    </div>
-    <div id="topics">
-      <div id="calendarContainer">
-        <div id="calendarTitle">{{ month }} {{ year }}</div>
-        <div id="calendarMonth">
-          <span>
-            {{ description }}
-          </span>
+
+    <!-- Next Meeting Card -->
+    <div class="meeting-container">
+      <div class="meeting-card" v-if="meeting">
+        <!-- Date and Title Section -->
+        <div class="meeting-header">
+          <div class="date-badge">
+            <span class="month">{{ month }}</span>
+            <span class="day">{{ day }}</span>
+          </div>
+          <div class="meeting-title">
+            <h2>Next Meeting</h2>
+            <p class="time">7:00 PM Central</p>
+          </div>
         </div>
+
+        <!-- Description Section -->
+        <div class="info-section" v-if="meeting.description">
+          <h3 class="info-title">About This Meeting</h3>
+          <div class="description" v-html="formattedDescription"></div>
+        </div>
+
+        <!-- Location and Online Meeting Section -->
+        <div class="meeting-details">
+          <div class="location-info">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="text">
+                <h3>Location</h3>
+                <p>{{ meeting.address }}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fas fa-video"></i>
+              <div class="text">
+                <h3>Online Meeting</h3>
+                <p>Join us virtually via Google Meet</p>
+                <a
+                  :href="meeting.meeting_link"
+                  target="_blank"
+                  class="join-button"
+                >
+                  Join Online
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div v-else-if="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading meeting information...</p>
+      </div>
+
+      <!-- Error State -->
+      <div v-else class="error">
+        <i class="fas fa-exclamation-circle"></i>
+        <p>Unable to load meeting information</p>
+        <button @click="getMeeting" class="retry-button">Try Again</button>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-section" v-if="meeting">
+      <h2>How to Find Us</h2>
+      <div class="map-container">
+        <iframe
+          :src="`https://www.google.com/maps?q=${meeting.address}&z=17&output=embed&t=m&markers=color:red|${meeting.address}`"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axiosClient";
+
 export default {
   name: "MeetingPage",
-  props: {},
   data() {
     return {
-      year: "",
+      meeting: null,
+      loading: true,
+      error: false,
       month: "",
       day: "",
-      description: "",
-      link: "",
     };
   },
   methods: {
-    scrollToTop() {
-      document.body.scrollTop = 0;
-    },
-    getMeeting() {
-      let self = this;
-      // const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meeting?year=${this.currentYear}&month=${this.currentMonth.slice(0, 3)}`;
-      // const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meeting`;
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/meetings/all`;
-      axios
-        .get(URL)
-        .then(function (response) {
-          // find meeting that is the closest to current date, but occurs after current date
-          const meetings = response.data;
+    async getMeeting() {
+      this.loading = true;
+      this.error = false;
 
-          // Get last meeting in the list
-          const upcomingMeeting = meetings[meetings.length - 1];
-          const meetingDate = new Date(upcomingMeeting.date);
+      try {
+        const response = await axios.get("/v1/meetings/upcoming");
+        this.meeting = response.data;
 
-          self.year = meetingDate.getFullYear();
-          self.month = meetingDate.toLocaleString("default", {
-            month: "long",
+        if (this.meeting) {
+          const meetingDate = new Date(this.meeting.meeting_date);
+          this.month = meetingDate.toLocaleString("default", {
+            month: "short",
           });
-          self.day = meetingDate.getDate() + 1;
-          self.description = upcomingMeeting.description;
-          self.link = upcomingMeeting.link;
-        })
-        .catch(function (error) {
-          // handle error
-          console.error(error);
-        });
+          this.day = meetingDate.getDate();
+        }
+      } catch (error) {
+        console.error("Error fetching meeting:", error);
+        this.error = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+  computed: {
+    formattedDescription() {
+      if (!this.meeting?.description) return "";
+      // Split by newlines and wrap each paragraph in <p> tags
+      return this.meeting.description
+        .split("\n")
+        .filter((para) => para.trim()) // Remove empty paragraphs
+        .map((para) => `<p>${para}</p>`)
+        .join("");
     },
   },
   mounted() {
-    this.scrollToTop();
     this.getMeeting();
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#hideCalendar {
-  transition: 0.2s ease;
-  transform: scale(0);
-  width: 0;
-  height: 0;
+.meeting-page {
+  background-color: rgb(17, 17, 17);
+  min-height: 100vh;
+  color: #fff;
 }
 
-#calendarMonth {
-  width: 100%;
-  height: 100%;
-  padding-top: 4.5em;
-  background-clip: content-box;
-  gap: 1.5em;
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../assets/meeting-hero.jpg") center/cover;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #fd9947;
+}
+
+.meeting-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.meeting-card {
+  background: #2c283b;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meeting-header {
   display: flex;
-  flex-direction: column;
-  transition: 0.2s ease;
-  color: rgba(255, 255, 255, 0.6);
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(253, 153, 71, 0.2);
 }
 
-#calendarTitle:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
+.date-badge {
+  background: #fd9947;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 100px;
 }
 
-#calendarTitle {
+.month {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 2em;
-  position: absolute;
-  height: fit-content;
-  width: 100%;
-  padding: 5px 10px;
-  transition: 0.2s ease;
-  user-select: none;
-  color: white;
 }
 
-#calendarContainer {
-  position: relative;
-  height: 60%;
-  width: 90%;
+.day {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-#topics {
-  position: relative;
-  height: 100vh;
-  /* height: fit-content; */
-  width: 100%;
-  background-color: inherit;
-  padding: 0 10%;
-  font-family: "Montserrat";
+.meeting-title h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.time {
+  color: #fd9947;
+  font-size: 1.2rem;
+}
+
+.info-section {
+  background: #363246;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.info-title {
+  color: #fd9947;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-section p {
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.meeting-details {
+  display: grid;
+  gap: 2rem;
+}
+
+.location-info {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.info-item {
   display: flex;
-  justify-content: center;
+  gap: 1rem;
   align-items: flex-start;
 }
 
-#target::before,
-#target::after {
-  position: absolute;
-  width: 40%;
-  height: 20%;
-  content: "";
+.info-item i {
+  color: #fd9947;
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
 }
 
-#target::before {
-  left: 0;
-  top: 0;
-  border-left: 3px solid black;
-  border-top: 3px solid black;
+.info-item .text h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
-#target::after {
-  right: 0;
-  bottom: 0;
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
+.info-item .text p {
+  color: #ccc;
+  margin-bottom: 0.25rem;
 }
 
-#target {
-  position: absolute;
-  width: 70%;
-  height: 70%;
-}
-
-#loc_address {
-  font-size: 0.7em;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-#absol_loc {
-  width: 50%;
-  height: 100%;
-  color: #f3af41;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.join-button {
+  display: inline-flex;
   align-items: center;
-  font-size: 2em;
-}
-
-#absol_date::after {
-  content: "";
-  width: 2px;
-  height: 60%;
-  right: 0;
-  top: 50%;
-  transform: translate(0%, -50%);
-  border-radius: 54px;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-}
-
-#absol_date {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  font-size: 3em;
-  color: black;
-  font-weight: bold;
-}
-
-#meeting {
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(17, 17, 17);
-}
-
-#absol {
-  font-family: "Montserrat";
-  position: absolute;
-  width: 40%;
-  height: 30%;
-  background-color: #ffffff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px solid #f3af41;
-  border: 3px solid black;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  display: flex;
-}
-
-#absol::after {
-  content: "";
-  top: -24px;
-  left: 15%;
-  width: 0px;
-  height: 0px;
-  /* background-color: red; */
-  position: absolute;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 25px solid white;
-}
-
-#absol::before {
-  content: "";
-  top: -29px;
-  left: calc(15% - 3px);
-  width: 0px;
-  height: 0px;
-  /* background-color: red; */
-  position: absolute;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
-  border-bottom: 28px solid #f3af41;
-  border-bottom: 28px solid black;
-}
-
-#map {
-  width: 100%;
-  height: 100%;
-}
-
-#top {
-  height: 45vh;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-}
-
-#bottom {
-  height: 55vh;
-  width: 100%;
-  background-color: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding-bottom: 6%;
-  font-family: "Montserrat";
-}
-
-#bottom_title {
-  font-size: 3em;
+  gap: 0.5rem;
+  background: #fd9947;
   color: white;
-  height: 2em;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
 }
 
-#buttom_btn {
-  border-radius: 60px;
-  padding: 15px;
+.join-button:hover {
+  background: #e88835;
+}
+
+.map-section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-section h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.map-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: none;
-  outline: none;
+}
+
+/* Loading and Error States */
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  background: #2c283b;
+  border-radius: 12px;
+}
+
+.spinner {
+  border: 4px solid #2c283b;
+  border-top: 4px solid #fd9947;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.retry-button {
+  background: #fd9947;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  font-size: 0.85em;
-  transition: 0.2s ease;
 }
 
-#buttom_btn:hover {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Slightly Resized Screen Styles */
-@media screen and (max-width: 1200px) {
-  #target::before,
-  #target::after {
-    width: 45%;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
   }
 
-  #bottom_title {
-    font-size: 2.5em;
+  .meeting-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
 
-  #absol {
-    width: 50%;
-    font-size: 0.9em;
-  }
-}
-
-/* Half-Screen Styles */
-@media screen and (max-width: 900px) {
-  #target::before,
-  #target::after {
-    width: 50%;
+  .info-section {
+    text-align: left;
   }
 
-  #bottom_title {
-    font-size: 1.5em;
+  .date-badge {
+    margin: 0 auto;
   }
 
-  #absol {
-    width: 80%;
-    font-size: 0.7em;
+  .meeting-details {
+    grid-template-columns: 1fr;
+  }
+
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-item i {
+    margin: 0 auto 0.5rem;
   }
 }
 
-/* Mobile Styles */
-@media screen and (max-width: 768px) {
-  #target::before,
-  #target::after {
-    width: 70%;
-  }
+.description :deep(p) {
+  margin-bottom: 1rem;
+}
 
-  #bottom_title {
-    font-size: 1.3em;
-  }
-
-  #absol {
-    width: 95%;
-    font-size: 0.6em;
-  }
+.description :deep(p:last-child) {
+  margin-bottom: 0;
 }
 </style>
