@@ -3,9 +3,11 @@ import { ref, onMounted, nextTick } from "vue";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import apiClient from "@/utils/axiosClient";
+import { useToast } from "vue-toastification";
 
 const router = useRouter();
 const userStore = useUserStore();
+const toast = useToast();
 
 const email = ref("");
 const password = ref("");
@@ -16,10 +18,11 @@ const login = async () => {
     if (success) {
       await nextTick();
       router.push("/");
+    } else {
+      toast.error("Your email or password is incorrect. Please try again.");
     }
   } catch (error) {
-    console.error("Login failed:", error);
-    // Handle login error here
+    toast.error("Something went wrong. Please try again.");
   }
 };
 

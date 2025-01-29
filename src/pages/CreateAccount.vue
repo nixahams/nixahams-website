@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import apiClient from "@/utils/axiosClient";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 const router = useRouter();
 const step = ref(1);
@@ -35,6 +38,11 @@ function checkEmail() {
 }
 
 function addPerson() {
+  // check passwords match
+  if (!checkPasswordsMatch()) {
+    toast.error("Passwords do not match. Please try again.");
+    return;
+  }
   apiClient
     .post("/v1/users/addPerson", {
       name: userInfo.value.name,
@@ -50,19 +58,32 @@ function addPerson() {
       });
     })
     .then(() => {
+      toast.success("Account created successfully.");
       router.push("/login");
     })
     .catch((err) => {
-      console.error("Error creating account:", err);
-      userInfo.value.formResponse = "Error creating account. Please try again.";
+      toast.error("Error creating account. Please try again.");
     });
 }
 
 function addUser() {
-  return apiClient.post("/v1/users/addUser", {
-    email: email.value,
-    password: userInfo.value.password,
-  });
+  // check passwords match
+  if (!checkPasswordsMatch()) {
+    toast.error("Passwords do not match. Please try again.");
+    return;
+  }
+  apiClient
+    .post("/v1/users/addUser", {
+      email: email.value,
+      password: userInfo.value.password,
+    })
+    .then(() => {
+      toast.success("Account created successfully.");
+      router.push("/login");
+    })
+    .catch((err) => {
+      toast.error("Error creating account. Please try again.");
+    });
 }
 
 function checkPasswordsMatch() {
@@ -175,7 +196,7 @@ function checkPasswordsMatch() {
           type="password"
           class="form-control"
           id="confirmPassword"
-          v-model="userInfo.confirmPassword"
+          v-model="userInfo.passwordConfirm"
           required
         />
       </div>
