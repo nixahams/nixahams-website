@@ -167,10 +167,10 @@ const getMeetingInfo = async () => {
 
     if (meeting.value) {
       const meetingDate = new Date(meeting.value.meeting_date);
-      month.value = meetingDate.toLocaleString("default", {
+      month.value = meetingDate.toLocaleString("en-US", {
         month: "short",
       });
-      day.value = meetingDate.getDate();
+      day.value = meetingDate.toLocaleString("en-US", { day: "2-digit" });
     }
   } catch (error) {
     console.error("Error fetching meeting:", error);

@@ -114,7 +114,7 @@ export default {
           this.month = meetingDate.toLocaleString("default", {
             month: "short",
           });
-          this.day = meetingDate.getDate();
+          this.day = meetingDate.toLocaleString("en-US", { day: "2-digit" });
         }
       } catch (error) {
         console.error("Error fetching meeting:", error);
