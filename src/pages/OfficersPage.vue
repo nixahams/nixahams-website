@@ -1,16 +1,9 @@
 <script setup>
 import { useOfficerStore } from "@/stores/officerStore";
-import { onMounted, computed } from "vue";
+import { onMounted } from "vue";
 import OfficerCard from "@/components/OfficersCard.vue";
 
 const officerStore = useOfficerStore();
-
-const officersList = computed(() => {
-  return officerStore.officers.sort((a, b) => {
-    const order = ["President", "Vice-President", "Treasurer", "Secretary"];
-    return order.indexOf(a.position) - order.indexOf(b.position);
-  });
-});
 
 onMounted(() => {
   officerStore.loadOfficers();
@@ -22,7 +15,7 @@ onMounted(() => {
     <div id="staff_title">Meet the officers!</div>
     <div id="staff_parent">
       <OfficerCard
-        v-for="(officer, index) in officersList"
+        v-for="(officer, index) in officerStore.officers"
         :key="index"
         :name="officer.name"
         :callsign="officer.callsign"
