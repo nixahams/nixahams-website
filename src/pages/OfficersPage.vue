@@ -1,74 +1,38 @@
+<script setup>
+import { useOfficerStore } from "@/stores/officerStore";
+import { onMounted, computed } from "vue";
+import OfficerCard from "@/components/OfficersCard.vue";
+
+const officerStore = useOfficerStore();
+
+const officersList = computed(() => {
+  return officerStore.officers.sort((a, b) => {
+    const order = ["President", "Vice-President", "Treasurer", "Secretary"];
+    return order.indexOf(a.position) - order.indexOf(b.position);
+  });
+});
+
+onMounted(() => {
+  officerStore.loadOfficers();
+});
+</script>
+
 <template>
-  <div id="staffpage">
+  <div id="officerpage">
     <div id="staff_title">Meet the officers!</div>
     <div id="staff_parent">
       <OfficerCard
-        v-for="(staff, index) in officer_list"
+        v-for="(officer, index) in officersList"
         :key="index"
-        :name="staff.name"
-        :callsign="staff.callsign"
-        :position="staff.position"
-        :info="staff.info"
+        :name="officer.name"
+        :callsign="officer.callsign"
+        :position="officer.position"
+        :bio="officer.bio"
       />
     </div>
   </div>
 </template>
 
-<script>
-import OfficerCard from "../components/OfficersCard.vue";
-import axios from "@/utils/axiosClient";
-
-export default {
-  props: {
-    parallax: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  name: "OfficerPage",
-  components: {
-    OfficerCard,
-  },
-  data() {
-    return {
-      officer_list: [],
-      nodata: true,
-    };
-  },
-  methods: {
-    scrollToTop() {
-      document.body.scrollTop = 0;
-    },
-    getOfficers(VueOBJ) {
-      //call API to load officers from database
-      const URL = `https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/officer`;
-      axios
-        .get(URL)
-        .then(function (response) {
-          // handle success
-          if (!response.data) {
-            VueOBJ.nodata = true;
-            return;
-          }
-          console.log(response.data);
-          VueOBJ.officer_list = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          error;
-        })
-        .finally(function () {
-          // always executed
-        });
-    },
-  },
-  async mounted() {
-    this.scrollToTop();
-    await this.getOfficers(this);
-  },
-};
-</script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #staff_title {
   font-size: 4em;
