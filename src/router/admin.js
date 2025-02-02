@@ -45,6 +45,11 @@ export const adminRoutes = [
         name: "AdminNets",
         component: () => import("@/admin/pages/NetAdmin.vue"),
       },
+      {
+        path: "officers",
+        name: "AdminOfficers",
+        component: () => import("@/admin/pages/OfficerAdmin.vue"),
+      },
     ],
   },
 ];
