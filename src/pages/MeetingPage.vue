@@ -42,7 +42,7 @@
               <i class="fas fa-video"></i>
               <div class="text">
                 <h3>Online Meeting</h3>
-                <p>Join us virtually via Google Meet</p>
+                <p>Join us virtually via Microsoft Teams</p>
                 <a
                   :href="meeting.meeting_link"
                   target="_blank"
