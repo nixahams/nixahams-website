@@ -134,13 +134,15 @@ const fetchMeetings = async () => {
 
 const saveMeeting = async () => {
   try {
+    const meetingData = {
+      ...formData.value,
+      meeting_date: formData.value.meeting_date + "T12:00:00",
+    };
+
     if (editingMeeting.value) {
-      await axios.put(
-        `/v1/meetings/${editingMeeting.value.id}`,
-        formData.value
-      );
+      await axios.put(`/v1/meetings/${editingMeeting.value.id}`, meetingData);
     } else {
-      await axios.post("/v1/meetings", formData.value);
+      await axios.post("/v1/meetings", meetingData);
     }
 
     await fetchMeetings();
@@ -192,13 +194,6 @@ const formatDate = (dateStr) => {
     year: "numeric",
     month: "numeric",
     day: "numeric",
-  });
-};
-
-const formatTime = (timeStr) => {
-  return new Date(`2000-01-01T${timeStr}`).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
   });
 };
 
