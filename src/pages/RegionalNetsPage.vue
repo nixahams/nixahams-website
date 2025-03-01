@@ -27,13 +27,13 @@
         </div>
       </div>
       <BlogPost
-        v-for="(msg, index) in announcement_list"
+        v-for="(msg, index) in net_list"
         :day="msg.day"
         :time="msg.time"
-        :freq="msg.freq"
-        :pl="msg.pl"
-        :rep_loc="msg.rep_loc"
-        :net_sponsor="msg.net_sponsor"
+        :freq="`${msg.frequency} ${msg.offset}`"
+        :pl="msg.key"
+        :rep_loc="msg.location"
+        :net_sponsor="msg.net_name"
         :key="index"
       />
     </div>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      announcement_list: [],
+      net_list: [],
       inject: false,
     };
   },
@@ -59,27 +59,19 @@ export default {
     scrollToTop() {
       document.body.scrollTop = 0;
     },
-    getAnnouncement(VueObj) {
-      const URL =
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net";
-      axios
-        .get(URL)
-        .then(function (response) {
-          // handle success
-          VueObj.announcement_list = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          error;
-        })
-        .finally(function () {
-          // always executed
-        });
+    async getNets() {
+      try {
+        const response = await axios.get("/v1/nets");
+        console.log(response.data);
+        this.net_list = response.data;
+      } catch (error) {
+        console.error("Error fetching nets:", error);
+      }
     },
   },
   async mounted() {
     this.scrollToTop();
-    await this.getAnnouncement(this);
+    await this.getNets();
   },
 };
 </script>
