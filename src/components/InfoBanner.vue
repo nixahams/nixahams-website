@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bannerShow" :id="checkColor">
+  <!-- <div v-if="bannerShow" :id="checkColor">
     <div id="warning_icon">
       <i :class="message.icon"></i>
     </div>
@@ -16,7 +16,7 @@
         <i class="fa-sharp fa-solid fa-xmark"></i>
       </button>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -99,9 +99,9 @@ export default {
     },
   },
   mounted() {
-    if (!VueCookies.get("bannerAcknowledged")) {
-      this.getBannerInfo(this);
-    }
+    // if (!VueCookies.get("bannerAcknowledged")) {
+    //   this.getBannerInfo(this);
+    // }
   },
 };
 </script>
