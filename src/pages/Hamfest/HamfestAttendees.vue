@@ -1,6 +1,6 @@
 <template>
   <div class="table-parent">
-    <h1 class="text-center text-white">Hamfest Attendees 2023</h1>
+    <h1 class="text-center text-white">Hamfest Attendees 2025</h1>
     <h3 v-if="attendeeSelection === 1" class="text-center text-white">
       Total Attendees:
       {{ attendees.length }}<br />
