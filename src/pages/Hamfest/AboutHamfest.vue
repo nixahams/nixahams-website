@@ -5,7 +5,9 @@
         <h1 class="text-center">Nixa Amateur Radio Club Hamfest</h1>
         <h4 class="text-center font-italic">Brought to you by:</h4>
         <h5 class="text-center font-italic">
-          <a href="https://www.retevis.com/" target="_blank"
+          <a
+            href="https://www.retevis.com/?utm_source=narc&utm_medium=sponsor&utm_campaign=yvonne2025&utm_content=&utm_term="
+            target="_blank"
             >RETEVIS. We Are Together. Retevis.com</a
           >
         </h5>
@@ -22,7 +24,7 @@
             <p>Time: 8:00 AM - 1:00 PM</p>
             <p>Where: Victory Baptist Church</p>
             <p>Address: 252 N Nicholas Road, Nixa, MO 65714</p>
-            <!--
+
             <button
               class="btn btn-primary m-auto"
               id="buyTicketsBtn"
@@ -30,7 +32,6 @@
             >
               Buy Tickets
             </button>
-            -->
           </div>
         </div>
       </div>
@@ -59,19 +60,20 @@
         </p>
 
         <p>
-          For those looking to grab breakfast, a morning treat, or lunch, WHAT
-          IS THE FOOD will be conveniently available right on the premises!
+          For those looking to grab breakfast or lunch, food will be
+          conveniently available right on the premises provided by Victory
+          Baptist Church!
         </p>
 
         <p>
-          There is plenty of parking on site. To streamline entry, the entry
-          cost is $10.00 and that gives you 2 chances at hamfest prizes. And, if
-          you would like to purchase the Super Ticket for $20.00, that gives you
-          20 chances to win!
+          There is plenty of parking on site. To streamline entry, you can
+          purchase tickets online in advance. The entry cost is $10.00 and that
+          gives you 2 door prize tickets. And, if you would like to purchase the
+          Super Ticket for $20.00, that gives you 20 chances to win!
         </p>
 
         <p>
-          IS THIS STILL CORRECT???? Local Talk-in: 147.015+ PL 162.2 Hz<br />
+          Local Talk-in: 147.015+ PL 162.2 Hz<br />
           Regional Talk-in : Southwest Missouri Linked Repeater System
         </p>
 
@@ -105,7 +107,7 @@
             <div class="col-12 col-md-6 col-lg-4">
               <div class="sponsor-card">
                 <a
-                  href="https://www.retevis.com/"
+                  href="https://www.retevis.com/?utm_source=narc&utm_medium=sponsor&utm_campaign=yvonne2025&utm_content=&utm_term="
                   target="_blank"
                   class="sponsor-link"
                 >
@@ -179,7 +181,7 @@
                   class="sponsor-link"
                 >
                   <img
-                    src="@/assets/hamfest-sponsors/blank.png"
+                    src="@/assets/hamfest-sponsors/associated.png"
                     alt="Associated Radio"
                     class="sponsor-logo"
                   />
