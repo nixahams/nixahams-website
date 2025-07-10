@@ -15,7 +15,7 @@ const router = createRouter({
     },
     // Group related routes
     ...netRoutes,
-    //...hamfestRoutes,
+    ...hamfestRoutes,
     ...adminRoutes,
     // Auth routes
     {
