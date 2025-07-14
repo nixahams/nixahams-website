@@ -30,10 +30,10 @@
         v-for="(msg, index) in net_list"
         :day="msg.day"
         :time="msg.time"
-        :freq="`${msg.freq}`"
-        :pl="msg.key"
-        :rep_loc="msg.repeater_location"
-        :net_sponsor="msg.net_name"
+        :freq="`${msg.frequency}`"
+        :pl="msg.plCode"
+        :rep_loc="msg.repeaterLocation"
+        :net_sponsor="msg.name"
         :key="index"
       />
     </div>
