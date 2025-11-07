@@ -25,13 +25,15 @@
             <p>Where: Victory Baptist Church</p>
             <p>Address: 252 N Nicholas Road, Nixa, MO 65714</p>
 
-            <button
+            <!-- <button
               class="btn btn-primary m-auto"
               id="buyTicketsBtn"
               @click="buyTickets"
             >
               Buy Tickets
-            </button>
+            </button> -->
+            <br />
+            <p><em>Online Ticket Sales Have Closed</em></p>
           </div>
         </div>
       </div>

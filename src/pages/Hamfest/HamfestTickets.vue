@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import router from "@/router";
 import AdmissionTickets from "@/components/Hamfest/AdmissionTickets.vue";
 import ReserveTable from "@/components/Hamfest/ReserveTable.vue";
 import SelectTicketOption from "@/components/Hamfest/SelectTicketOption.vue";
@@ -204,7 +205,8 @@ export default {
     },
   },
   mounted() {
-    this.getTotalTablesSold();
+    // this.getTotalTablesSold();
+    router.push("/hamfest");
   },
 };
 </script>
