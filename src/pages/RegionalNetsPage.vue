@@ -31,9 +31,9 @@
         :day="msg.day"
         :time="msg.time"
         :freq="msg.freq"
-        :pl="msg.pl"
-        :rep_loc="msg.rep_loc"
-        :net_sponsor="msg.net_sponsor"
+        :pl="msg.pl_code"
+        :rep_loc="msg.repeater_location"
+        :net_sponsor="msg.net_name"
         :key="index"
       />
     </div>
@@ -60,21 +60,13 @@ export default {
       document.body.scrollTop = 0;
     },
     getAnnouncement(VueObj) {
-      const URL =
-        "https://us-east-1.aws.data.mongodb-api.com/app/app-0-yyrfg/endpoint/net";
-      axios
-        .get(URL)
-        .then(function (response) {
-          // handle success
-          VueObj.announcement_list = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          error;
-        })
-        .finally(function () {
-          // always executed
+      try {
+        const response = axios.get("/v1/nets/").then((res) => {
+          VueObj.announcement_list = res.data;
         });
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
     },
   },
   async mounted() {
@@ -119,7 +111,7 @@ export default {
 }
 .blog_txt {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   font-size: 1.1em;
   font-weight: bold;
@@ -129,6 +121,15 @@ export default {
 }
 .blog_txt:nth-child(6) {
   border-right: 0px solid white;
+}
+
+/* Alternating row colors */
+#blog_parent > div:nth-child(even) #blog_parent {
+  background-color: rgb(235, 235, 235);
+}
+
+#blog_parent > div:nth-child(even) #blog_parent:hover {
+  background-color: rgb(215, 215, 215);
 }
 
 #news_letter {
