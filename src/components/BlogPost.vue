@@ -45,18 +45,32 @@ export default {
 #blog_parent {
     position: relative;
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     background-color: rgb(220, 220, 220);
     border-radius: 5px;
     display: grid;
     grid-template-columns: repeat(4,1fr) 1.5fr 2fr;
     transition: 0.2s ease;
 }
+
+#blog_parent:hover {
+    background-color: rgb(200, 200, 200);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
 .blog_text{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 10px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.blog_text:last-child {
+    border-right: none;
 }
 
 #blog_desc::-webkit-scrollbar,#blog_title::-webkit-scrollbar{
